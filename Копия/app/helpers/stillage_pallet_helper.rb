@@ -1,0 +1,2 @@
+module StillagePalletHelper
+end

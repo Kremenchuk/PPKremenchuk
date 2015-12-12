@@ -1,0 +1,583 @@
+%h1 Константы
+= simple_form_for @constant do |f|
+  .container-fluid
+    .row
+      .col-md-6
+        .text_size{:onclick => "showHide('hiden_element_1','chg_img_1')" }
+          %img{:id => "chg_img_1", :alt => "mater", :src => "/assets/plus.png", :name => "img_1", :width => "30", :height => "30"}
+            Материалы
+    .row
+      .col-md-6
+        .hiden_element_1
+          %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+            %tr
+              %th.header_table Наименование
+              %th.header_table Вес
+              %th.header_table Цена
+            %tr.color_head
+              %td{:colspan => "3"} Общие
+            %tr
+              %td Лист 2000х1000х0,55
+              %td
+                .input_style
+                  =f.input :wei_list_2_1_055, label: false
+              %td
+                .input_style
+                  =f.input :mat_list_2_1_055, label: false
+            %tr
+              %td Лист 2000х1000х0,7
+              %td
+                .input_style
+                  =f.input :wei_list_2_1_07, label: false
+              %td
+                .input_style
+                  =f.input :mat_list_2_1_07, label: false
+            %tr
+              %td Лист 2500х1250х0,7
+              %td
+                .input_style
+                  =f.input :wei_list_25_125_07, label: false
+              %td
+                .input_style
+                  =f.input :mat_list_25_125_07, label: false
+            %tr
+              %td Лист 2000х1000х1
+              %td
+                .input_style
+                  =f.input :wei_list_2_1_1, label: false
+              %td
+                .input_style
+                  =f.input :mat_list_2_1_1, label: false
+            %tr
+              %td Лист 2000х1000х2 ХК
+              %td
+                .input_style
+                  =f.input :wei_list_2_1_2, label: false
+              %td
+                .input_style
+                  =f.input :mat_list_2_1_2, label: false
+            %tr
+              %td Лист 2500х1250х2 ХК
+              %td
+                .input_style
+                  =f.input :wei_list_25_125_2, label: false
+              %td
+                .input_style
+                  =f.input :mat_list_25_125_2, label: false
+            %tr
+              %td Лист 2000х1000х2,5 ХК
+              %td
+                .input_style
+                  =f.input :wei_list_2_1_25, label: false
+              %td
+                .input_style
+                  =f.input :mat_list_2_1_25, label: false
+            %tr
+              %td Лист 2500х1250х2,5 ХК
+              %td
+                .input_style
+                  =f.input :wei_list_25_125_25, label: false
+              %td
+                .input_style
+                  =f.input :mat_list_25_125_25, label: false
+            %tr.color_head
+              %td{:colspan => "3"} Стеллаж ПК
+            %tr
+              %td Стойки ПК
+              %td
+                .input_style
+                  =f.input :wei_stoyki_arx, label: false
+              %td
+                .input_style
+                  =f.input :mat_stoyki_arx, label: false
+            %tr
+              %td Подпятники ПК
+              %td
+                .input_style
+                  =f.input :wei_pyatki_arx, label: false
+              %td
+                .input_style
+                  =f.input :mat_pyatki_arx, label: false
+            %tr.color_head
+              %td{:colspan => "3"} Складской стеллаж
+            %tr
+              %td Стойки складского
+              %td
+                .input_style
+                  =f.input :wei_stoyki_sklad, label: false
+              %td
+                .input_style
+                  =f.input :mat_stoyki_sklad, label: false
+            %tr
+              %td Траверса складского ПТ-50
+              %td
+                .input_style
+                  =f.input :wei_traversa_sklad, label: false
+              %td
+                .input_style
+                  =f.input :mat_traversa_sklad, label: false
+            %tr
+              %td Подпятники складского
+              %td
+                .input_style
+                  =f.input :wei_pyatki_sklad, label: false
+              %td
+                .input_style
+                  =f.input :mat_pyatki_sklad, label: false
+            %tr
+              %td Метизы складского
+              %td
+                .input_style
+                  =f.input :wei_metizi_sklad, label: false
+              %td
+                .input_style
+                  =f.input :mat_metizi_sklad, label: false
+            %tr
+              %td Укосы складского
+              %td
+                .input_style
+                  =f.input :wei_ukosi_sklad, label: false
+              %td
+                .input_style
+                  =f.input :mat_ukosi_sklad, label: false
+            %tr
+              %td Зацеп складского
+              %td
+                .input_style
+                  =f.input :wei_zatsep_sklad, label: false
+              %td
+                .input_style
+                  =f.input :mat_zatsep_sklad, label: false
+            %tr
+              %td Труба 25х25х1,2
+              %td
+                .input_style
+                  =f.input :wei_truba_25_25_12, label: false
+              %td
+                .input_style
+                  =f.input :mat_truba_25_25_12, label: false
+            %tr
+              %td Труба 25х25х1,5
+              %td
+                .input_style
+                  =f.input :wei_truba_25_25_15, label: false
+              %td
+                .input_style
+                  =f.input :mat_truba_25_25_15, label: false
+            %tr
+              %td Скоба стяжного усил.
+              %td
+                .input_style
+                  =f.input :wei_skoba_styagnogo, label: false
+              %td
+                .input_style
+                  =f.input :mat_skoba_styagnogo, label: false
+            %tr.color_head
+              %td{:colspan => "3"} Паллетный стеллаж
+            %tr
+              %td Стойки паллетного
+              %td
+                .input_style
+                  =f.input :wei_stoyki_pallet, label: false
+              %td
+                .input_style
+                  =f.input :mat_stoyki_pallet, label: false
+            %tr
+              %td Подпятники паллетного
+              %td
+                .input_style
+                  =f.input :wei_pyatki_pallet, label: false
+              %td
+                .input_style
+                  =f.input :mat_pyatki_pallet, label: false
+            %tr
+              %td Укосы паллетного
+              %td
+                .input_style
+                  =f.input :wei_ukosi_pallet, label: false
+              %td
+                .input_style
+                  =f.input :mat_ukosi_pallet, label: false
+            %tr
+              %td Метизы для паллетных рам
+              %td
+                .input_style
+                  =f.input :wei_metizi_pallet_ram, label: false
+              %td
+                .input_style
+                  =f.input :mat_metizi_pallet_ram, label: false
+            %tr
+              %td Метизы паллетных траверс
+              %td
+                .input_style
+                  =f.input :wei_metizi_pallet_travers, label: false
+              %td
+                .input_style
+                  =f.input :mat_metizi_pallet_travers, label: false
+            %tr
+              %td Зацеп паллетной траверсы
+              %td
+                .input_style
+                  =f.input :wei_zatsep_pallet, label: false
+              %td
+                .input_style
+                  =f.input :mat_zatsep_pallet, label: false
+            %tr
+              %td Профиль 100х60х100 1,5мм
+              %td
+                .input_style
+                  =f.input :wei_100x60x100x15, label: false
+              %td
+                .input_style
+                  =f.input :mat_100x60x100x15, label: false
+            %tr.color_head
+              %td{:colspan => "3"} Тележки
+            %tr
+              %td Труба ДУ 20х2,5
+              %td
+                .input_style
+                  =f.input :wei_truba_du_20_25, label: false
+              %td
+                .input_style
+                  =f.input :mat_truba_du_20_25, label: false
+            %tr
+              %td Пластины под колеса
+              %td
+                .input_style
+                  =f.input :wei_plastini_teleg, label: false
+              %td
+                .input_style
+                  =f.input :mat_plastini_teleg, label: false
+            %tr
+              %td Метизы для телег
+              %td
+                .input_style
+                  =f.input :wei_metizi_teleg, label: false
+              %td
+                .input_style
+                  =f.input :mat_metizi_teleg, label: false
+            %tr
+              %td Труба 25х25х2
+              %td
+                .input_style
+                  =f.input :wei_truba_25_25_2, label: false
+              %td
+                .input_style
+                  =f.input :mat_truba_25_25_2, label: false
+            %tr
+              %td Сетка 50х50х3
+              %td
+                .input_style
+                  =f.input :wei_setka_50_50_3, label: false
+              %td
+                .input_style
+                  =f.input :mat_setka_50_50_3, label: false
+            %tr
+              %td Уголок 20х20х3
+              %td
+                .input_style
+                  =f.input :wei_ugolok_20_20_3, label: false
+              %td
+                .input_style
+                  =f.input :mat_ugolok_20_20_3, label: false
+            %tr
+              %td ДСП ламинат 2800x2070x16
+              %td
+                .input_style
+                  =f.input :wei_dsp_laminat, label: false
+              %td
+                .input_style
+                  =f.input :mat_dsp_laminat, label: false
+            %tr
+              %td ДСП шлифованое 3500х1750х16
+              %td
+                .input_style
+                  =f.input :wei_dsp_shlif, label: false
+              %td
+                .input_style
+                  =f.input :mat_dsp_shlif, label: false
+
+
+  .container-fluid
+    .row
+      .col-md-6
+        .text_size{:onclick => "showHide('hiden_element_2','chg_img_2')" }
+          %img{:id => "chg_img_2",:alt => "mater", :src => "/assets/plus.png", :name => "chg_img_2", :width => "30", :height => "30"}
+            Работы
+    .row
+      .col-md-6
+        .hiden_element_2
+          %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+            %tr
+              %th.header_table Наименование
+              %th.header_table Стоимость работы
+            %tr.color_head
+              %td{:colspan => "2"} Стеллажи ПК
+            %tr
+              %td Пробивка стоек ПК
+              %td
+                .input_style
+                  =f.input :job_stoyki_arx, label: false
+            %tr
+              %td Полки ПК
+              %td
+                .input_style
+                  =f.input :job_polki_arx, label: false
+            %tr
+              %td Усилители ПК
+              %td
+                .input_style
+                  =f.input :job_usil_arx, label: false
+            %tr
+              %td Упаковка
+              %td
+                .input_style
+                  =f.input :job_upakovka_arx, label: false
+            %tr
+              %td Ограничители
+              %td
+                .input_style
+                  =f.input :job_ogranich, label: false
+            %tr
+              %td Окраска стоек ПК
+              %td
+                .input_style
+                  =f.input :job_okr_stoyki_arx, label: false
+            %tr
+              %td Окраска полок ПК
+              %td
+                .input_style
+                  =f.input :job_okr_polki_arx, label: false
+            %tr
+              %td Косвенные архивные
+              %td
+                .input_style
+                  =f.input :job_kostven_arx, label: false
+            %tr.color_head
+              %td{:colspan => "2"} Складские стеллажи
+            %tr
+              %td Пробивка складских стоек
+              %td
+                .input_style
+                  =f.input :job_stoyki_sklad, label: false
+            %tr
+              %td Траверсы складского
+              %td
+                .input_style
+                  =f.input :job_traversi_sklad, label: false
+            %tr
+              %td Полки ПМ
+              %td
+                .input_style
+                  =f.input :job_polki_sklad, label: false
+            %tr
+              %td Укосы складского
+              %td
+                .input_style
+                  =f.input :job_ukosi_sklad, label: false
+            %tr
+              %td Усилитель стяжной
+              %td
+                .input_style
+                  =f.input :job_usil_styagnoy, label: false
+            %tr
+              %td Усилитель Г-обр.
+              %td
+                .input_style
+                  =f.input :job_usil_g, label: false
+            %tr
+              %td Окраска усилителей складского
+              %td
+                .input_style
+                  =f.input :job_okr_usil_sklad, label: false
+            %tr
+              %td Окраска стоек складского
+              %td
+                .input_style
+                  =f.input :job_okr_stoyki_sklad, label: false
+            %tr
+              %td Окраска полок складского
+              %td
+                .input_style
+                  =f.input :job_ork_polki_sklad, label: false
+            %tr
+              %td Окраска траверс складского
+              %td
+                .input_style
+                  =f.input :job_okr_traversi_sklad, label: false
+            %tr
+              %td Упаковка складского
+              %td
+                .input_style
+                  =f.input :job_upakovka_sklad, label: false
+            %tr
+              %td Косвенные складского
+              %td
+                .input_style
+                  =f.input :job_kostven_sklad, label: false
+            %tr.color_head
+              %td{:colspan => "2"} Паллетка
+            %tr
+              %td Стойки паллетного
+              %td
+                .input_style
+                  =f.input :job_stoyki_pallet, label: false
+            %tr
+              %td Траверсы паллетного
+              %td
+                .input_style
+                  =f.input :job_traversi_pallet, label: false
+            %tr
+              %td Окраска траверс паллетного
+              %td
+                .input_style
+                  =f.input :job_okr_travers_pallet, label: false
+            %tr
+              %td Укосы паллетного
+              %td
+                .input_style
+                  =f.input :job_ukosi_pallet, label: false
+            %tr
+              %td Косвенные паллетки
+              %td
+                .input_style
+                  =f.input :job_kostven_pallet, label: false
+            %tr.color_head
+              %td{:colspan => "2"} Тележки
+            %tr
+              %td Сварка KS-01
+              %td
+                .input_style
+                  =f.input :job_svarka_ks_01, label: false
+            %tr
+              %td Сварка KS-02
+              %td
+                .input_style
+                  =f.input :job_svarka_ks_02, label: false
+            %tr
+              %td Сварка KS-03
+              %td
+                .input_style
+                  =f.input :job_svarka_ks_03, label: false
+            %tr
+              %td Сварка KS-04
+              %td
+                .input_style
+                  =f.input :job_svarka_ks_04, label: false
+            %tr
+              %td Сварка PT-01
+              %td
+                .input_style
+                  =f.input :job_svarka_pt_01, label: false
+            %tr
+              %td Сварка PT-02
+              %td
+                .input_style
+                  =f.input :job_svarka_pt_02, label: false
+            %tr
+              %td Сварка PT-03
+              %td
+                .input_style
+                  =f.input :job_svarka_pt_03, label: false
+            %tr
+              %td Сварка PT-04
+              %td
+                .input_style
+                  =f.input :job_svarka_pt_04, label: false
+            %tr
+              %td Сварка TP-01
+              %td
+                .input_style
+                  =f.input :job_svarka_tp_01, label: false
+            %tr
+              %td Сварка TP-02
+              %td
+                .input_style
+                  =f.input :job_svarka_tp_02, label: false
+            %tr
+              %td Сварка TP-03
+              %td
+                .input_style
+                  =f.input :job_svarka_tp_03, label: false
+            %tr
+              %td Сварка TP-04
+              %td
+                .input_style
+                  =f.input :job_svarka_tp_04, label: false
+            %tr
+              %td Сварка TP-05
+              %td
+                .input_style
+                  =f.input :job_svarka_tp_05, label: false
+            %tr
+              %td Сварка TP-06
+              %td
+                .input_style
+                  =f.input :job_svarka_tp_06, label: false
+            %tr
+              %td Сварка TP-07
+              %td
+                .input_style
+                  =f.input :job_svarka_tp_07, label: false
+            %tr
+              %td Резка
+              %td
+                .input_style
+                  =f.input :job_rezka, label: false
+            %tr
+              %td Окраска тележек
+              %td
+                .input_style
+                  =f.input :job_okr_telegek, label: false
+            %tr
+              %td Гибка трубы ДУ 20х2,5
+              %td
+                .input_style
+                  =f.input :job_gibka_du_20_25, label: false
+            %tr
+              %td Рихтовка уголка
+              %td
+                .input_style
+                  =f.input :job_rixtovka_ugolka, label: false
+            %tr
+              %td Упаковка телег
+              %td
+                .input_style
+                  =f.input :job_upakovka_teleg, label: false
+            %tr
+              %td Косвенные тележки
+              %td
+                .input_style
+                  =f.input :job_kostven_telegi, label: false
+            %tr
+              %td Резка 1 м/п ДСП
+              %td
+                .input_style
+                  =f.input :job_rez_dsp_1mp, label: false
+            %tr
+              %td Процент удорожания сварки тележки с увеличением её размеров %
+              %td
+                .input_style
+                  =f.input :job_procent_udor_svarki_telegki, label: false
+            %tr
+              %td Дилерская наценка %
+              %td
+                .input_style
+                  =f.input :job_natsen_diler, label: false
+            %tr
+              %td Наценка %
+              %td
+                .input_style
+                  =f.input :job_natsenka, label: false
+            %tr
+              %td Доставка 1 кг
+              %td
+                .input_style
+                  =f.input :job_dostavka_1kg, label: false
+
+
+
+
+  %p= f.submit "Редактировать товар"
+
+

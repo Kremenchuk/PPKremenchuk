@@ -1,0 +1,63 @@
+.container
+  .row
+    .col-md-5
+      %h1 ПП Кременчук
+
+.container
+  .row
+    .col-md-4
+      = link_to 'Стеллажи архивные (online-расчет стоимость)', "stillage/index"
+  .row
+    .col-md-4
+      = link_to 'Стеллажи складские (online-расчет стоимость)', "stillage_warehouse/index"
+  .row
+    .col-md-4
+      = link_to 'Стеллажи паллетные (online-расчет стоимость)', "stillage_pallet/index"
+  .row
+    .col-md-4
+      = link_to 'Тележки (online-расчет стоимость)', "trolleys/index"
+  .row
+    .col-md-4
+      %p
+.container-fluid
+  .row
+    .col-md-12
+      .description_of_the_company
+        %p ПП Кременчук - является производителем бытовых стеллажей, паллетных стеллажей, складских стеллажей, платформенных тележек, а также осуществляет полный комплекс услуг по проектированию, поставке и монтажу складских, промышленных и бытовых стеллажных систем.
+        %p Благодаря современному дизайну, и отличному качеству, торговые стеллажи ПП Кременчук удовлетворят потребности даже самых требовательных наших клиентов. Мы предлагаем своим клиентам не просто стеллажи конструкторы, а комфорт во всех отношениях по разумным ценам.
+        %p Большим преимуществом является отсутствие стандартных решений. Любая конструкция подбирается и просчитывается индивидуально для клиента, с учетом всех пожеланий. ПП Кременчук является производителем и предоставляет вам лучшее соотношение цены и качества.
+
+.row
+  %p
+
+.row
+  .col-xs-3
+    %p
+  .col-xs-3
+    %p
+
+
+.container
+  .row
+    .col-md-1
+    .col-md-2
+      .button_style
+        = link_to image_tag('Stillage_arhivn/stillage_arhivn.png'), "stillage/index"
+        %p Стеллажи архивные
+    .col-md-1
+    .col-md-2
+      .button_style
+        = link_to image_tag('Stillage_warehouse/stillage_werehouse.png'), "stillage_warehouse/index"
+        %p Стеллажи складские
+    .col-md-1
+    .col-md-2
+      .button_style
+        =link_to image_tag('Stillage_pallet/stillage_pallet.png'), "stillage_pallet/index"
+        %p Стеллажи паллетные
+    .col-md-1
+    .col-md-2
+      .button_style
+        =link_to image_tag('trolleys/PT_02_button.png'), "trolleys/index"
+        %p Тележки
+
+
