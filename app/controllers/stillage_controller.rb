@@ -1,7 +1,7 @@
 class StillageController < ApplicationController
 
   #before_filter :check_if_admin, only: [:show]
-
+  include Include_Module
 
   #before_filter :authenticate_user!, only: [:index] #Рабочее ограничение на юзара
   def index
@@ -21,15 +21,12 @@ class StillageController < ApplicationController
     a_polki = @width_var + 90
     b_polki = @depth_var + 90
     if a_polki > 1000
-      @price_polki_bolsh = list_price_polki(a_polki,  b_polki, 2500, 1250, @constant.mat_list_25_125_07,
-                                           @constant.wei_list_25_125_07)
+      @price_polki_bolsh = price_shelf_layer(a_polki,  b_polki, 2500, 1250, @constant.mat_list_25_125_07)
       @price_polki_mal = @constant.mat_list_2_1_07
 
     else
-      @price_polki_mal = list_price_polki(a_polki,  b_polki, 2000, 1000, @constant.mat_list_2_1_07,
-                                         @constant.wei_list_2_1_07)
-      @price_polki_bolsh = list_price_polki(a_polki,  b_polki, 2500, 1250, @constant.mat_list_25_125_07,
-                                           @constant.wei_list_25_125_07)
+      @price_polki_mal = price_shelf_layer(a_polki,  b_polki, 2000, 1000, @constant.mat_list_2_1_07)
+      @price_polki_bolsh = price_shelf_layer(a_polki,  b_polki, 2500, 1250, @constant.mat_list_25_125_07)
     end
     if @price_polki_mal < @price_polki_bolsh
       @price_polki = @price_polki_mal
@@ -37,12 +34,14 @@ class StillageController < ApplicationController
       b_list = 1000
       @kol_polok_s_lista = @constant.mat_list_2_1_07 / @price_polki
       @price_list = @constant.mat_list_2_1_07
+      @wei_polki = (@constant.wei_list_2_1_07 * (a_polki/1000.0)*(b_polki/1000.0))/2
     else
       @price_polki = @price_polki_bolsh
       a_list = 2500
       b_list = 1250
       @kol_polok_s_lista = @constant.mat_list_25_125_07 / @price_polki
       @price_list = @constant.mat_list_25_125_07
+      @wei_polki = (@constant.wei_list_25_125_07 * (a_polki/1000.0)*(b_polki/1000.0))/3.125
     end
     @price_polki += @constant.job_polki_arx
 
@@ -135,57 +134,4 @@ class StillageController < ApplicationController
     @price_stillage = @price_stillage.to_s(:rounded, :precision => 2)
   end
 
-
-
-  private
-  def list_price_polki(a_pol, b_pol, a_list, b_list, price_list, wei_list)
-
-    #Вариант рубки №1
-
-    result1 = a_list / b_pol
-    result2 = b_list / a_pol
-    #Вычисляем остатки и что с них можем еще получить
-    ost = b_list - result2 * a_pol #какой кусок остался
-    vozm = b_pol * (b_list / b_pol)  #возможность отрубить по длине более одной заготовки
-    if vozm ==0
-      vozm =1
-    end
-    if vozm > a_pol
-      koef = (b_list / vozm) * 2
-    else
-      koef = (b_list / vozm) * 1
-    end
-    r_ost = (ost / b_pol) * koef
-    vsego1 = result1 * result2 + r_ost #Всего с листа при рубке по варианту №1
-
-    #Вариант рубки №2
-
-    result1 = a_list / a_pol
-    result2 = b_list / b_pol
-    #Вычисляем остатки и что с них можем еще получить
-    ost = a_list - result1 * a_pol #какой кусок остался
-    vozm = b_pol * ((b_list / 2) / b_pol)  #возможность отрубить по длине более одной заготовки
-    if vozm ==0
-      vozm =1
-    end
-    if vozm > a_pol
-      koef = ((b_list / 2) / vozm) * 2
-      if koef ==0
-        koef = 1
-      end
-    else
-      koef = 1
-    end
-    r_ost = (ost / b_pol) * koef
-
-    vsego2 = result1 * result2 + r_ost #Всего с листа при рубке по варианту №2
-
-    # Вычисляем и возвращаем наименьшую цену за полку
-    @wei_polki = (wei_list * (a_pol/1000.0)*(b_pol/1000.0))/((a_list/1000.0)*(b_list/1000.0))
-    if vsego1 >= vsego2
-      return price_list/vsego1
-    else
-      return price_list/vsego2
-    end
-  end
 end

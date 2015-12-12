@@ -236,9 +236,4 @@ class TrolleysController < ApplicationController
     return price_trol
   end
 
-
-
-
-
-
 end
