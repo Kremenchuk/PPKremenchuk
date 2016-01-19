@@ -43,7 +43,10 @@ html {
   padding: 0;
 }
 
-
+a, a:hover
+{
+  text-decoration: none;
+}
 
 
 
@@ -380,7 +383,30 @@ html {
 
 
 @media only screen and (min-width : 581px)
-{  .col5:hover
+{
+
+  .row_gallery
+  {
+    display: table;
+    width: 100%;
+    border-spacing: 10px 1px;
+    text-align:center;
+  }
+  .col_horizon_arxiv_gallery
+  {
+    display: table-cell;
+    height: 120px;
+    width: 150px;
+  }
+
+  .col_vertical_arxiv_gallery
+  {
+    display: table-cell;
+    height: 150px;
+    width: 120px;
+  }
+
+  .col5:hover
   {
     background: #FE7D14;
     cursor: default;
@@ -391,10 +417,7 @@ html {
     padding: 10px 0px 10px 0px;
     background: #FE7D14;
   }
-  a, a:hover
-  {
-    text-decoration: none;
-  }
+
 
 
   //добавить выше
