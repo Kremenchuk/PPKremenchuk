@@ -1,63 +1,67 @@
-.container
-  .row
-    .col-md-5
-      %h1 ПП Кременчук
+- if @admin_in
+  - @visible_const = "display: block;"
+- else
+  - @visible_const = "display: none;"
+  =image_tag("design/all_parts/basis.gif", class: "basis")
 
-.container
-  .row
-    .col-md-4
-      = link_to 'Стеллажи архивные (online-расчет стоимость)', "stillage/index"
-  .row
-    .col-md-4
-      = link_to 'Стеллажи складские (online-расчет стоимость)', "stillage_warehouse/index"
-  .row
-    .col-md-4
-      = link_to 'Стеллажи паллетные (online-расчет стоимость)', "stillage_pallet/index"
-  .row
-    .col-md-4
-      = link_to 'Тележки (online-расчет стоимость)', "trolleys/index"
-  .row
-    .col-md-4
-      %p
-.container-fluid
-  .row
-    .col-md-12
-      .description_of_the_company
-        %p ПП Кременчук - является производителем бытовых стеллажей, паллетных стеллажей, складских стеллажей, платформенных тележек, а также осуществляет полный комплекс услуг по проектированию, поставке и монтажу складских, промышленных и бытовых стеллажных систем.
-        %p Благодаря современному дизайну, и отличному качеству, торговые стеллажи ПП Кременчук удовлетворят потребности даже самых требовательных наших клиентов. Мы предлагаем своим клиентам не просто стеллажи конструкторы, а комфорт во всех отношениях по разумным ценам.
-        %p Большим преимуществом является отсутствие стандартных решений. Любая конструкция подбирается и просчитывается индивидуально для клиента, с учетом всех пожеланий. ПП Кременчук является производителем и предоставляет вам лучшее соотношение цены и качества.
+#block_id{:style => "#{@visible_const}"}
+  =link_to image_tag("design/all_parts/basis.gif", class: "basis"), "/constants/index"
 
-.row
-  %p
+#myScroll_product
+%table{:cellspacing => "5", :cellpadding => "5", :width => "100%"}
+  %tr.tb1_row1_welcome{:align => "center"}
+    %td
+  %tr.tb1_row2_welcome{:align => "center"}
+    %td.tb1_col1_welcome
 
-.row
-  .col-xs-3
-    %p
-  .col-xs-3
-    %p
+    %td.tb1_col2_welcome
+      = link_to image_tag('design/all_parts/stillage_arxiv.gif', class: "products_buttons_welcome"), "stillage/index"
+    %td.tb1_col3_welcome
 
+    %td.tb1_col2_welcome
+      = link_to image_tag('design/all_parts/stillage_warehouse.gif', class: "products_buttons_welcome"), "stillage_warehouse/index"
+    %td.tb1_col1_welcome
 
-.container
-  .row
-    .col-md-1
-    .col-md-2
-      .button_style
-        = link_to image_tag('Stillage_arhivn/stillage_arhivn.png'), "stillage/index"
-        %p Стеллажи архивные
-    .col-md-1
-    .col-md-2
-      .button_style
-        = link_to image_tag('Stillage_warehouse/stillage_werehouse.png'), "stillage_warehouse/index"
-        %p Стеллажи складские
-    .col-md-1
-    .col-md-2
-      .button_style
-        =link_to image_tag('Stillage_pallet/stillage_pallet.png'), "stillage_pallet/index"
-        %p Стеллажи паллетные
-    .col-md-1
-    .col-md-2
-      .button_style
-        =link_to image_tag('trolleys/PT_02_button.png'), "trolleys/index"
-        %p Тележки
+  %tr.tb1_row3_welcome{:align => "center"}
 
+  %tr.tb1_row4_welcome{:align => "center"}
+    %td.tb1_col1_welcome
 
+    %td.tb1_col2_welcome
+      =link_to image_tag('design/all_parts/stillage_pallet.gif', class: "products_buttons_welcome"), "stillage_pallet/index"
+    %td.tb1_col3_welcome
+
+    %td.tb1_col2_welcome
+      =link_to image_tag('design/all_parts/troles.gif', class: "products_buttons_welcome"), "trolleys/index"
+    %td.tb1_col1_welcome
+
+  %tr.tb1_row3_welcome{:align => "center"}
+
+  %tr.tb1_row4_welcome{:align => "center"}
+    %td.tb1_col1_welcome
+
+    %td.tb1_col2_welcome
+      =link_to image_tag('design/all_parts/stillage_mezonin.gif', class: "products_buttons_welcome"), "mezzanine/index"
+    %td.tb1_col3_welcome
+
+    %td.tb1_col2_welcome
+      =link_to image_tag('design/all_parts/gallery.gif', class: "products_buttons_welcome"), "gallery/index"
+    %td.tb1_col1_welcome
+
+%table{:cellspacing => "5", :cellpadding => "5", :width => "100%"}
+  %tr.tb2_tr1_row1_welcome{:align => "center"}
+    %td
+
+  %tr.tb2_tr2_row2_welcome{:align => "left"}
+    %td.tb2_tr3_col1_welcome
+    %td.tb2_tr2_col1_welcome
+      #myScroll_about
+        О нас
+  %tr.tb2_tr3_row3_welcome{:align => "left"}
+    %td.tb2_tr3_col1_welcome
+    %td.tb2_tr3_col2_welcome
+      %p ЧП Кременчук - является производителем бытовых(архивных), паллетных, складских стеллажей, платформенных тележек, а также осуществляет полный комплекс услуг по проектированию, поставке и монтажу складских, промышленных и бытовых стеллажных систем.
+      %p Большим преимуществом является возможность изготовить любой размер и тип стеллажной системы. Любая конструкция подбирается и просчитывается индивидуально для клиента, с учетом всех пожеланий. ПП Кременчук является производителем и предоставляет вам лучшее соотношение цены и качества.
+    %td.tb2_tr3_col3_welcome
+      =image_tag('design/all_parts/about.gif', class: "about_picture_welcome")
+    %td.tb2_tr3_col4_welcome

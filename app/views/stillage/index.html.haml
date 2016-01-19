@@ -1,4 +1,13 @@
-%h1 Стеллажи архивные
+%h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
+  Стеллажи архивные
+.container-fluid
+  .row
+    .col-md-6
+      %p
+  .row
+    .col-md-12.all_tytle_page_img_stillage_stillage_warehouse_stillage_pallet
+      =image_tag("design/all_parts/stillage_arxiv/tytle_page.gif", :class => "tytle_page_img_stillage_stillage_warehouse_stillage_pallet")
+%p
 %form{:action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_stilage ( );"}
   .container-fluid
     .text_size{:onclick => "showHide('hiden_element_1','chg_img_1')" }
@@ -47,7 +56,7 @@
 
       .row
         .col-md-3
-          .style_p
+          .style_text_about_stillage_stillage_warehouse_stillage_pallet
             %input{:name => "group1" , :type => "radio", :value => "osinkovaniy", :checked => "checked"}
               Оцинкованый
             %p
@@ -60,27 +69,22 @@
       .row
         .col-md-3
           %input{:name => "send", :type => "submit", :value => "Рассчитать стеллаж", :class => "btn btn-success"}
+%p
 
 .container-fluid
   .row
-    .col-md-6
-      %p
-  .row
-    .col-md-6
-      =image_tag("Stillage_arhivn/Paspor.png", :width => 400, :height => 500)
-  .row
-    .col-md-12.style_p
+    .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet
       Стеллаж состоит из: стоек, полок и усилителей (наличие усилителей зависит от нагрузки на полку).
       %p
         1. Стойка: гнутый уголок с продольными ребрами жесткости длинной 1000-3500мм. из оцинкованного листа марки 08 КП толщиной 1,15 мм.
         Зацепы для крепления полок пробиты по длине стойки с шагом  100-400 мм., что позволяет переставлять полки на требуемую высоту.
       %p
         2. Полка: гнутая коробчатая конструкция с продольными и поперечными ребрами жесткости. Длина полки 400-1150 мм. ,ширина 250-800 мм.  Высота ребер жесткости 30 мм.
-        Полка изготовлена из оцинкованного листа марки 08КП толщиной 0,55 -1.00 мм. Клиновидные отверстия для зацепления за стойки, проделаны в ребрах жесткости по два с каждой стороны.
+        Полка изготовлена из оцинкованного листа марки 08КП толщиной 0,55-1.00 мм. Клиновидные отверстия для зацепления за стойки, пробиты в ребрах жесткости по два с каждой стороны.
       %p
-        3. Усилитель: гнутая профильная конструкция из листа 08КП толщиной 0,55 -1.00 мм.
+        3. Усилитель: гнутая профильная конструкция из листа 08КП толщиной 0,55-1.00 мм.
   .row
-    .col-md-12.style_p
+    .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet
       %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
         %tr
           %th.header_table Фото
@@ -88,7 +92,7 @@
           %th.header_table Технические характеристики
           %tr{:align => "center"}
             %td
-              =image_tag("Stillage_arhivn/Paspor_stoyka.png", :width => "100", :height => "200")
+              =image_tag("design/all_parts/stillage_arxiv/Paspor_stoyka.png", :width => "100", :height => "200")
             %td
               Стойка
             %td
@@ -112,4 +116,15 @@
                 Нагрузка – до 100 кг
               %p
                 Оцинкованная/Окрашенная (RAL5005, RAL7035)
-
+          %tr{:align => "center"}
+            %td
+              =image_tag("", :width => "200", :height => "200")
+            %td
+              Усилитель
+            %td
+              %p
+                Длина – 400-1150 мм
+              %p
+                Ширина 40 мм
+              %p
+                Оцинкованный/Окрашенный (RAL5005, RAL7035)

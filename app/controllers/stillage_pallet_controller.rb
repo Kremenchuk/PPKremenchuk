@@ -1,11 +1,10 @@
 class StillagePalletController < ApplicationController
+  before_filter :check_if_diller, only: [:index, :show]
 
   def index
-    button_const
   end
 
   def show
-    button_const
     @hight_var      = Integer(params[:hight])
     @width_var      = Integer(params[:widthS])
     @depth_var      = 1100
@@ -132,8 +131,8 @@ class StillagePalletController < ApplicationController
     @price_ram += @price_ram * @constant.job_kostven_pallet
     @price_traversa += @price_traversa * @constant.job_kostven_pallet
 
-    @price_traversa *=  (@constant.job_natsenka/100 +1)
-    @price_ram *=  (@constant.job_natsenka/100 +1)
+    @price_traversa *=  (@natsenka/100 +1)
+    @price_ram *=  (@natsenka/100 +1)
 
     @price_stillage_osn   = @price_ram * 2 + @price_traversa * @num_of_shelves_var
     @price_stillage_prist = @price_stillage_osn - @price_ram

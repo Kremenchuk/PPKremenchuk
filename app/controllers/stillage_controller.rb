@@ -1,22 +1,20 @@
 class StillageController < ApplicationController
 
-  #before_filter :check_if_admin, only: [:show]
+  before_filter :check_if_diller, only: [:index, :show]
   include Include_Module
 
   #before_filter :authenticate_user!, only: [:index] #Рабочее ограничение на юзара
   def index
-    button_const
   end
 
   def show
-    button_const
     @hight_var      = Integer(params[:hight])
     @width_var      = Integer(params[:widthS])
     @depth_var      = Integer(params[:depth])
     @num_of_shelves_var = Integer(params[:num_of_shelves])
     @shelf_load_var     = Integer(params[:shelf_load])
     @okr_or_oc          = params[:group1]
-    @constant = Constant.where("id = 1").first
+    #@constant = Constant.where("id = 1").first
 
     a_polki = @width_var + 90
     b_polki = @depth_var + 90
@@ -104,7 +102,9 @@ class StillageController < ApplicationController
 
     @kostven = @sebest * @constant.job_kostven_arx
     @sebest = @sebest + @kostven
-    @price_stillage = @sebest * (@constant.job_natsenka/100 +1)
+
+
+    @price_stillage = @sebest * (@natsenka/100 +1)
 
     @name_stilage = "#{@hight_var} x #{@width_var} x #{@depth_var} #{@num_of_shelves_var}п "
 

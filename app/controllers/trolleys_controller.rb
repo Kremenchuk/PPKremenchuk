@@ -1,12 +1,12 @@
 class TrolleysController < ApplicationController
+  before_filter :check_if_diller, only: [:index, :show]
 
   include Include_Module
+
   def index
-    button_const
   end
 
   def show
-    button_const
     @lengthT_var    = Integer(params[:lengthT])
     @width_var      = Integer(params[:widthS])
     @hight_ruch     = Integer(params[:hight_ruch])
@@ -109,7 +109,7 @@ class TrolleysController < ApplicationController
     @wei_trol = @wei_trol.to_s(:rounded, :precision => 2)
     price_trol = price_ugolok + price_shelf_layer_var * kol_shelf + price_kvadr + price_round + plosh_trol * @constant.job_okr_telegek +
                   price_svarka + @constant.mat_plastini_teleg * 4 + @constant.mat_metizi_teleg * 16
-    price_trol = (price_trol + price_trol * @constant.job_kostven_telegi) * ((@constant.job_natsenka/100)+1)
+    price_trol = (price_trol + price_trol * @constant.job_kostven_telegi) * ((@natsenka/100)+1)
     return price_trol
   end
 
@@ -165,7 +165,7 @@ class TrolleysController < ApplicationController
         price_setki_shot * set_shot
 
     @wei_trol = @wei_trol.to_s(:rounded, :precision => 2)
-    price_trol = (price_trol + price_trol * @constant.job_kostven_telegi) * ((@constant.job_natsenka/100)+1)
+    price_trol = (price_trol + price_trol * @constant.job_kostven_telegi) * ((@natsenka/100)+1)
     return price_trol
   end
 
@@ -232,7 +232,7 @@ class TrolleysController < ApplicationController
         price_svarka + @constant.mat_plastini_teleg * 4 + @constant.mat_metizi_teleg * 16 + price_setki
 
     @wei_trol = @wei_trol.to_s(:rounded, :precision => 2)
-    price_trol = (price_trol + price_trol * @constant.job_kostven_telegi) * ((@constant.job_natsenka/100)+1)
+    price_trol = (price_trol + price_trol * @constant.job_kostven_telegi) * ((@natsenka/100)+1)
     return price_trol
   end
 

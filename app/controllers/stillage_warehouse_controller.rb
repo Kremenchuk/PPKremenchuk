@@ -1,13 +1,11 @@
 class StillageWarehouseController < ApplicationController
-
+  before_filter :check_if_diller, only: [:index, :show]
   include Include_Module
 
   def index
-    button_const
   end
 
   def show
-    button_const
     @hight_var      = Integer(params[:hight])
     @width_var      = Integer(params[:widthS])
     @depth_var      = Integer(params[:depth])
@@ -228,12 +226,12 @@ class StillageWarehouseController < ApplicationController
     @price_shelves    = @price_shelves    + @price_shelves    * @constant.job_kostven_sklad
 
 
-    @price_usil_styag = ((@price_usil_styag * (@constant.job_natsenka/100 + 1)).to_s(:rounded, :precision => 2)).to_f
-    @price_usil_g     = ((@price_usil_g     * (@constant.job_natsenka/100 + 1)).to_s(:rounded, :precision => 2)).to_f
-    @price_polki      = ((@price_polki      * (@constant.job_natsenka/100 + 1)).to_s(:rounded, :precision => 2)).to_f
-    @price_ram        = ((@price_ram        * (@constant.job_natsenka/100 + 1)).to_s(:rounded, :precision => 2)).to_f
-    @price_traversa   = ((@price_traversa   * (@constant.job_natsenka/100 + 1)).to_s(:rounded, :precision => 2)).to_f
-    @price_shelves    = ((@price_shelves    * (@constant.job_natsenka/100 + 1)).to_s(:rounded, :precision => 2)).to_f
+    @price_usil_styag = ((@price_usil_styag * (@natsenka/100 + 1)).to_s(:rounded, :precision => 2)).to_f
+    @price_usil_g     = ((@price_usil_g     * (@natsenka/100 + 1)).to_s(:rounded, :precision => 2)).to_f
+    @price_polki      = ((@price_polki      * (@natsenka/100 + 1)).to_s(:rounded, :precision => 2)).to_f
+    @price_ram        = ((@price_ram        * (@natsenka/100 + 1)).to_s(:rounded, :precision => 2)).to_f
+    @price_traversa   = ((@price_traversa   * (@natsenka/100 + 1)).to_s(:rounded, :precision => 2)).to_f
+    @price_shelves    = ((@price_shelves    * (@natsenka/100 + 1)).to_s(:rounded, :precision => 2)).to_f
 
 
 

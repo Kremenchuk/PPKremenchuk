@@ -1,4 +1,13 @@
-%h1 Стеллажи складские полочные сборно-разборные
+%h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
+  Стеллажи складские
+.container-fluid
+  .row
+    .col-md-6
+      %p
+  .row
+    .col-md-12.all_tytle_page_img_stillage_stillage_warehouse_stillage_pallet
+      =image_tag("design/all_parts/stillage_warehouse/tytle_page.gif", :class => "tytle_page_img_stillage_stillage_warehouse_stillage_pallet")
+%p
 %form{:action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form ( );"}
   .container-fluid
     .text_size{:onclick => "showHide('hiden_element_1','chg_img_1')" }
@@ -37,7 +46,7 @@
           %p{:title => "Количество полок на один стеллаж"}
             %input{:maxlength => "2", :name => "num_of_shelves", :pattern => "^[ 0-9]+$",
                 :size => "10", :value => "", :type => "text"}
-        .col-md-2
+        .col-md-3
           =label_tag(:q, "Нагрузка на уровень")
           %p
             (150-400 кг.)
@@ -46,7 +55,7 @@
                 :size => "10", :value => "", :type => "text"}
       .row
         .col-md-5
-          .style_p
+          .style_text_about_stillage_stillage_warehouse_stillage_pallet
             %input{:name => "group3" , :type => "radio", :value => "metall", :checked => "checked", :onclick => "hide_dsp( )"}
               Полка металлическая
               %p
@@ -55,7 +64,7 @@
 
       .row
         .col-md-6
-          .style_p
+          .style_text_about_stillage_stillage_warehouse_stillage_pallet
             %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
               %tr
                 %th{:colspan => "2"} Окраска
@@ -82,16 +91,12 @@
           %p
           %input{:name => "send", :type => "submit", :value => "Рассчитать стеллаж", :class => "btn btn-success"}
 
+%p
+
 
 .container-fluid
   .row
-    .col-md-6
-      %p
-  .row
-    .col-md-6
-      =image_tag("Stillage_warehouse/Pasport.png", :width => 400, :height => 500)
-  .row
-    .col-md-12.style_p
+    .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet
       Стеллаж состоит из  : рам, траверс, и  полок с усилителями.
       %p
         1.  Рама стеллажа представляет собой две вертикальные стойки специального профиля с перфорацией, соединённых между собой горизонтальными и наклонными перемычками..
@@ -102,7 +107,7 @@
       %p
         4. Шаг перестановки траверс – 75 мм
   .row
-    .col-md-12.style_p
+    .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet
       %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
         %tr
           %th.header_table Фото
@@ -110,7 +115,7 @@
           %th.header_table Технические характеристики
           %tr{:align => "center"}
             %td
-              =image_tag("Stillage_warehouse/Pasport_table_rama.png", :width => "200", :height => "200")
+              =image_tag("design/all_parts/stillage_warehouse/Pasport_table_rama.png", :width => "200", :height => "200")
             %td
               Рама
             %td
@@ -124,7 +129,7 @@
                 Оцинкованная/Окрашенная (RAL5005)
           %tr{:align => "center"}
             %td
-              =image_tag("Stillage_warehouse/Pasport_table_travers.png", :width => "200", :height => "200")
+              =image_tag("design/all_parts/stillage_warehouse/Pasport_table_travers.png", :width => "200", :height => "200")
             %td
               Траверса
             %td

@@ -7,25 +7,54 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    .sessionInfo
-      - if current_user
-        = current_user.email
-        | #{link_to "Выход", destroy_user_session_path}
-      - else
-        = link_to "Войти", new_user_session_path
-        | #{link_to "Регистрация", new_user_registration_path}
-      - if @admin_in
-        - @visible_const = "display: block;"
-      - else
-        - @visible_const = "display: none;"
-      .row
-        .col-xs-3
-          #block_id{:style => "#{@visible_const}"}
-            %input{:onclick => "location.href='/constants/index'", :type => "button", :value => "Константы", :name => "button_const3"}
-      .row
-        .col-xs-3
-          %input{:onclick => "location.href='/'", :type => "button", :value => "На главную", :name => "button_glav"}
-    %p{:style => "color: green"}
-      = flash[:success]
-    %p{:style => "color: red"}= flash[:error]
-    = yield
+    .wrapper
+      .content
+        .sessionInfo
+          %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+            %tr{:align => "center"}
+              %td.col1
+                =link_to image_tag("design/all_parts/Header/Logo.gif", class: "logo", :title => "На главную"), "/"
+                .text_pp
+                  %span.colortext1 ЧП
+                  %span.colortext2 КРЕМЕНЧУК
+              %td.col2
+                - if current_user
+                  = current_user.email
+                  %p
+                  =link_to "Выход", destroy_user_session_path
+                - else
+                  .about_href
+                    = link_to "Войти", new_user_session_path
+                    %p
+                    = link_to "Регистрация", new_user_registration_path
+              %td.col3
+                %ul.dropdown
+                  ПРОДУКЦИЯ
+                  %li.dropdown-top
+                    %ul.dropdown-inside
+                      %li
+                        %a{:href => "/stillage/index"} Стеллажи архивные (on-line расчет)
+                      %li
+                        %a{:href => "/stillage_warehouse/index"} Стеллажи складские (on-line расчет)
+                      %li
+                        %a{:href => "/stillage_pallet/index"} Стеллажи паллетные (on-line расчет)
+                      %li
+                        %a{:href => "/trolleys/index"} Тележки грузовые (on-line расчет)
+                      %li
+                        %a{:href => "/mezzanine/index"} Мезонинные слеллажи
+                      %li
+                        %a{:href => "/gallery/index"} Галерея
+
+              %td.col5{:onClick => "document.location='/contact/index'"}
+                КОНТАКТЫ
+      =yield
+    .boofer
+    .footer
+      %table{:cellspacing => "5", :cellpadding => "5", :width => "100%"}
+        %tr
+          %td.footer_style{:align => "right"}
+            Сайт: Кременчук Артем
+        %tr
+          %td.footer_style{:align => "right"}
+            Дизай: Чернышов Георгий
+

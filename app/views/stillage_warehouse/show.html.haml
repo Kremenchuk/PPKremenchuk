@@ -1,13 +1,15 @@
 %h1 Стеллажи складские полочные сборно-разборные
 %p
 .container-fluid
-  .row
+  .row.style_p
     .col-md-10
-      %p.style_p
+      %p
+        ="#{@hight_var}x#{@width_var}x#{@depth_var} #{@num_of_shelves_var} п."
+      %p
         ="Максимальная нагрузка на уровень #{@shelf_load_var} кг."
-      %p.style_p
+      %p
         ="Вес основной секции: #{@wei_osn}"
-      %p.style_p
+      %p
         ="Вес приставной секции: #{@wei_pris}"
       %p
   .row

@@ -1,0 +1,27 @@
+%table{:border => "1", :cellpadding => "5", :cellspacing => "5", :width => "100%"}
+  %tr.table_header_admin_panel
+    %th Логин
+    %th e-mail
+    %th Имя
+    %th Админ
+    %th{:title => "Назначение диллеров"} Диллер
+    %th Удалить пользователя
+  - @users.each do |i|
+    %tr.table_data_admin_panel
+      %td= i.login
+      %td= i.email
+      %td= i.name
+      %td
+        -if i.admin
+          Да
+        -else
+          Нет
+        =link_to image_tag("design/all_parts/update.gif", class: "update_picture", title: "Изменить"), change_admin_admin_panel_path(i.id)
+      %td{:title => "Назначение диллеров"}
+        -if i.diller
+          Да
+        -else
+          Нет
+        =link_to image_tag("design/all_parts/update.gif", class: "update_picture", title: "Изменить"), change_diller_admin_panel_path(i.id)
+      %td
+        =link_to "Удалить", admin_panel_path(i.id), method: :delete, data: {confirm: "Точно удалить?"}

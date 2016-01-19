@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2>Регистрация</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
@@ -9,17 +9,17 @@
     </div>
 
     <div class="field">
-      <%= f.label :login %><br />
+      <%= f.label "Логин" %><br />
       <%= f.text_field :login, autofocus: true %>
     </div>
 
     <div class="field">
-      <%= f.label :name %><br />
+      <%= f.label "Имя" %><br />
       <%= f.text_field :name, autofocus: true %>
     </div>
 
     <div class="field">
-      <%= f.label :password %>
+      <%= f.label "Пароль" %>
       <% if @validatable %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %><br />
@@ -27,13 +27,14 @@
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation %><br />
+      <%= f.label "Повтор пароля" %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </div>
-
-    <div class="actions">
-      <%= f.submit "Sign up" %>
-    </div>
+    <p>
+        <div class="actions">
+          <%= f.submit "Регистрация" %>
+        </div>
+    </p>
 <% end %>
 
 <%= render "devise/shared/links" %>

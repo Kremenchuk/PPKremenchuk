@@ -17,12 +17,25 @@ Rails.application.routes.draw do
   get 'trolleys/index'
   get 'trolleys/show'
 
+  get 'mezzanine/index'
+
+  get 'gallery/index'
+
+  get 'contact/index'
+
+  get 'admin_panel/index'
+  resources :admin_panel do
+    get :change_diller, on: :member
+    get :change_admin, on: :member
+  end
+
   #root 'welcome#index'
 
   #get 'constants/:id/edit' => 'material_path'
   resources :constants
+  devise_for :users, controllers: {registrations: 'registrations' }
+  #devise_for :users
 
-  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
