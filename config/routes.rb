@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'contact/index'
 
   get 'admin_panel/index'
+
   resources :admin_panel do
     get :change_diller, on: :member
     get :change_admin, on: :member
