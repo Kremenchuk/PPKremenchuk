@@ -37,9 +37,9 @@ function validate_form_stilage ( )
         alert ( "Значение поля 'Высота' не должно быть больше 3500 мм." );
         valid = false;
     }
-    if ( Number(document.contact_form.hight.value) < 1000  )
+    if ( Number(document.contact_form.hight.value) < 500  )
     {
-        alert ( "Значение поля 'Высота' не должно быть меньше 1000 мм." );
+        alert ( "Значение поля 'Высота' не должно быть меньше 500 мм." );
         valid = false;
     }
     //проверка поля ширина
@@ -67,9 +67,9 @@ function validate_form_stilage ( )
         }
 
     //проверка для поля Количество полок
-        if ( Number(document.contact_form.num_of_shelves.value) > 8 )
+        if ( Number(document.contact_form.num_of_shelves.value) > 15 )
         {
-            alert ( "Количество полок не более 8 шт." );
+            alert ( "Количество полок не более 15 шт." );
             valid = false;
         }
         if ( Number(document.contact_form.num_of_shelves.value) < 2 )

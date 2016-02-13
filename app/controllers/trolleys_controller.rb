@@ -6,14 +6,37 @@ class TrolleysController < ApplicationController
   def index
   end
 
+  def control_parameters
+    if @hight_var>3500 or @hight_var<500
+      redirect_to "/stillage/index"
+    end
+    if @width_var>1150 or @width_var<400
+      redirect_to "/stillage/index"
+    end
+    if @depth_var>800 or @depth_var<250
+      redirect_to "/stillage/index"
+    end
+    if @num_of_shelves_var>15 or @num_of_shelves_var<2
+      redirect_to "/stillage/index"
+    end
+    if @shelf_load_var>100 or @shelf_load_var<20
+      redirect_to "/stillage/index"
+    end
+  end
+
+
   def show
     @lengthT_var    = Integer(params[:lengthT])
     @width_var      = Integer(params[:widthS])
     @hight_ruch     = Integer(params[:hight_ruch])
     @shelf_load_var = Integer(params[:shelf_load])
-    @constant = Constant.where("id = 1").first
     @vid = params[:vid]
     @type_shelf = params[:group1]
+
+    control_parameters
+
+    @constant = Constant.where("id = 1").first
+
     proc_udorogania_svarki = (((@lengthT_var - 1000)/100.0 + (@width_var - 600)/100.0) * @constant.job_procent_udor_svarki_telegki)/100.0 + 1.0
     if proc_udorogania_svarki < 1.0
       proc_udorogania_svarki = 1.0

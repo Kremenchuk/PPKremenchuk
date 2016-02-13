@@ -7,9 +7,11 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    .wrapper
-      .content
-        .sessionInfo
+    .main
+      .wrap1
+        .span_header
+          .left1
+        .fix
           %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
             %tr{:align => "center"}
               %td.col1
@@ -47,8 +49,12 @@
 
               %td.col5{:onClick => "document.location='/contact/index'"}
                 КОНТАКТЫ
-      =yield
-    .boofer
+        .span_header
+          .right1
+      .wrapper
+        .sessionInfo
+        =yield
+        .boofer
     .footer
       %table{:cellspacing => "5", :cellpadding => "5", :width => "100%"}
         %tr

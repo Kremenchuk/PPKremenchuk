@@ -1,44 +1,14 @@
-%h1 Стеллаж архивный
-%p
-.container-fluid
-  .row
-    .col-md-10
-      %p.style_p
-        ="Максимальная нагрузка на одну полку #{@shelf_load_var} кг."
-  .row
-    .col-md-12.style_p
-      %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-        %tr
-          %th.header_table
-            Наименование
-          %th.header_table
-            Цена
-          %th.header_table
-            Вес стеллажа
-          %tr{:align => "center"}
-            %td
-              ="#{@name_stilage}"
-            %td
-              ="#{@price_stillage}"
-            %td
-              ="#{@wei_stilage}"
+%h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
+  Стеллаж архивный
+%p.style_p
+  ="#{@name_stilage}"
+%p.style_p
+  ="Максимальная нагрузка на одну полку #{@shelf_load_var} кг."
+%p.style_p
+  ="Вес: #{@wei_stilage} кг."
+%p.style_p
+  ="Цена: #{@price_stillage} грн."
 
 
-%p
-  ="@price_polki #{@price_polki}"
-%p
-  ="@price_polki_mal #{@price_polki_mal}"
 
-%p
-  ="@price_polki_bolsh #{@price_polki_bolsh}"
-%p
-  ="@kol_polok_s_lista #{@kol_polok_s_lista}"
-%p
-  ="@price_usil #{@price_usil}"
-%p
-  ="@kol_vozmogn_usil #{@kol_vozmogn_usil}"
-%p
-  ="@usil #{@usil}"
-  %p
-  ="@natsenka #{@natsenka}"
 

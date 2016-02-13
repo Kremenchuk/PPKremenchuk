@@ -7,6 +7,24 @@ class StillageController < ApplicationController
   def index
   end
 
+  def control_parameters
+    if @hight_var>3500 or @hight_var<500
+      redirect_to "/stillage/index"
+    end
+    if @width_var>1150 or @width_var<400
+      redirect_to "/stillage/index"
+    end
+    if @depth_var>800 or @depth_var<250
+      redirect_to "/stillage/index"
+    end
+    if @num_of_shelves_var>15 or @num_of_shelves_var<2
+      redirect_to "/stillage/index"
+    end
+    if @shelf_load_var>100 or @shelf_load_var<20
+      redirect_to "/stillage/index"
+    end
+  end
+
   def show
     @hight_var      = Integer(params[:hight])
     @width_var      = Integer(params[:widthS])
@@ -14,7 +32,12 @@ class StillageController < ApplicationController
     @num_of_shelves_var = Integer(params[:num_of_shelves])
     @shelf_load_var     = Integer(params[:shelf_load])
     @okr_or_oc          = params[:group1]
-    #@constant = Constant.where("id = 1").first
+
+    control_parameters
+
+    @constant = Constant.where("id = 1").first
+
+
 
     a_polki = @width_var + 90
     b_polki = @depth_var + 90
@@ -43,49 +66,36 @@ class StillageController < ApplicationController
     end
     @price_polki += @constant.job_polki_arx
 
-    #Вычисляем возможность отрубить с остатка усилитель
-      #Проверка того, что полку для рубки расположили не как обычно
-        if a_list == 2500 and a_polki < 1000
-          #Проверка, что можно вырубить усилитель по длине листа
-           #@kol_vozmogn_usil = ((b_list - b_polki * (1250/b_polki)) / 120) * (a_list/a_polki)
-          #Проверка, что можно вырубить усилитель по ширине листа
-           @kol_vozmogn_usil = ((a_list - (a_list / a_polki) * a_polki)) / 120
-        else
-          #Проверка, что можно вырубить усилитель по длине листа
-            #@kol_vozmogn_usil = ((b_list - a_polki) / 120) * (a_list/(b_polki * 2))
-          #Проверка, что можно вырубить усилитель по ширине листа
-            @kol_vozmogn_usil = ((a_list - (Integer(@kol_polok_s_lista) * b_polki)) / 120)
-        end
-      #Количество ПОЛНЫХ листов необходимых для стеллажа
-
-      #@kol_vozmogn_usil *= @num_of_shelves_var/Integer(@kol_polok_s_lista) unless (@num_of_shelves_var/Integer(@kol_polok_s_lista)) < 1
-
 
     @usil=0
-    
-    if @depth_var >= 500
-      if @shelf_load_var <= 60
-        @usil = 0
-        if @depth_var >= 600
-          @usil = 1
-        end
-      end
 
-      if @shelf_load_var > 60
+    if @depth_var > 650
+      @usil = 1
+    end
+
+    if @shelf_load_var > 60
+      if @depth_var >= 500
         @usil = 1
-        if @depth_var >= 600
-          @usil = 2
-        end
+      end
+      if @depth_var >= 650
+        @usil = 2
       end
     end
-    @usil = ((Float(@usil) * Float(@num_of_shelves_var)) - Float(@kol_vozmogn_usil)) /
-            (Float(@usil) * Float(@num_of_shelves_var)) unless @usil == 0
 
-    if @width_var > 1000
-      @price_usil   = (@constant.mat_list_25_125_07/20) + @constant.job_usil_arx
-    else
-      @price_usil   = (@constant.mat_list_2_1_07/16) + @constant.job_usil_arx
-    end
+    @kol_usil=0
+    #Вычисляем количество усилителей на одну полку в зависимости от количества усилителей вырубаных с остатка от листа по длине
+      mini_var = Float(@usil * @num_of_shelves_var)
+      if mini_var!=0
+        @kol_usil = @usil * (1-(Float(Integer((a_list-(@kol_polok_s_lista * b_polki)) / 120))/mini_var))
+      end
+
+
+    #стоимость усилителей при заготовек 120 мм
+      if @width_var > 1000
+        @price_usil   = (@constant.mat_list_25_125_07/20) + @constant.job_usil_arx
+      else
+        @price_usil   = (@constant.mat_list_2_1_07/16) + @constant.job_usil_arx
+      end
 
 
     #Вес стеллажа
@@ -97,8 +107,8 @@ class StillageController < ApplicationController
     @price_stoyka = (Float(@hight_var)/1000) * @constant.mat_stoyki_arx + @constant.job_stoyki_arx
 
     @sebest = @price_stoyka * 4 + @price_polki * @num_of_shelves_var +
-              @price_usil * @num_of_shelves_var * @usil + @constant.mat_pyatki_arx * 4 +
-              @constant.job_upakovka_arx + @kol_vozmogn_usil * @constant.job_usil_arx
+              @price_usil * @num_of_shelves_var * @kol_usil + @constant.mat_pyatki_arx * 4 +
+              @constant.job_upakovka_arx
 
     @kostven = @sebest * @constant.job_kostven_arx
     @sebest = @sebest + @kostven

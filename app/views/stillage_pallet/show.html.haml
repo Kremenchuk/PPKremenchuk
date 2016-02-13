@@ -23,10 +23,6 @@
             %p
               ="#{@width_var}x#{@hight_traversi}x#{@depth_traversi}x1.5"
           %th.header_table
-            Уровень хранения
-            %p
-              2 траверсы
-          %th.header_table
             Основная секция
             %p
               ="2 рамы, #{@num_of_shelves_var*2} траверс"
@@ -40,37 +36,7 @@
             %td
               ="#{@price_traversa}"
             %td
-              ="#{(Float(@price_traversa)*2).to_s(:rounded, :precision => 2)}"
-            %td
               ="#{@price_stillage_osn}"
             %td
               ="#{@price_stillage_prist}"
 
-%p
-  ="@ukos_g #{@ukos_g}"
-%p
-  ="@ukos_b #{@ukos_b}"
-%p
-  ="@price_stoyka #{@price_stoyka}"
-%p
-  ="#{}"
-%p
-  ="#{}"
-%p
-  ="#{}"
-%p
-  ="#{}"
-%p
-  ="#{}"
-%p
-  ="#{}"
-%p
-  ="#{}"
-%p
-  ="#{}"
-%p
-  ="#{}"
-%p
-  ="#{}"
-%p
-  ="#{}"

@@ -5,6 +5,35 @@ class StillageWarehouseController < ApplicationController
   def index
   end
 
+  def control_parameters
+    if @hight_var>5200 or @hight_var<1500
+      redirect_to "/stillage_warehouse/index"
+    end
+    if @width_var>2700 or @width_var<800
+      redirect_to "/stillage_warehouse/index"
+    end
+    if @pol_met_or_dsp =="metall"
+      if @depth_var>1215
+        redirect_to "/stillage_warehouse/index"
+      end
+    end
+    if @pol_met_or_dsp =="dsp"
+      if @depth_var>1500
+        redirect_to "/stillage_warehouse/index"
+      end
+    end
+    if @depth_var<300
+      redirect_to "/stillage_warehouse/index"
+    end
+    if @num_of_shelves_var>15 or @num_of_shelves_var<2
+      redirect_to "/stillage_warehouse/index"
+    end
+    if @shelf_load_var>400 or @shelf_load_var<150
+      redirect_to "/stillage_warehouse/index"
+    end
+  end
+
+
   def show
     @hight_var      = Integer(params[:hight])
     @width_var      = Integer(params[:widthS])
@@ -14,6 +43,9 @@ class StillageWarehouseController < ApplicationController
     @okr_or_oc_ram          = params[:group1]
     @okr_or_oc_pol          = params[:group2]
     @pol_met_or_dsp         = params[:group3]
+
+    control_parameters
+
     @constant = Constant.where("id = 1").first
 
     #Определение длины и количества укосов
@@ -69,8 +101,8 @@ class StillageWarehouseController < ApplicationController
     @dlin_ukos_b = ((Math.sqrt(Float((@depth_var-64) * (@depth_var-64) + shag**2))+16).to_s(:rounded, :precision => 0)).to_f
 
     #Определение стоимости укосов
-    @ukos_g = (@dlin_ukos_g/1000) * @constant.mat_ukosi_sklad + @constant.job_ukosi_sklad
-    @ukos_b = (@dlin_ukos_b/1000) * @constant.mat_ukosi_sklad + @constant.job_ukosi_sklad
+    @ukos_g = (@dlin_ukos_g/1000.0) * @constant.mat_ukosi_sklad + @constant.job_ukosi_sklad
+    @ukos_b = (@dlin_ukos_b/1000.0) * @constant.mat_ukosi_sklad + @constant.job_ukosi_sklad
 
 
     #Площадь рам
@@ -91,7 +123,7 @@ class StillageWarehouseController < ApplicationController
     #стоимость рамы
     @price_ram = @price_stoyka * 2 + @ukos_g * ukos_g_kol + @ukos_b * ukos_b_kol + @plosh_ram *
                 @constant.job_okr_stoyki_sklad + @constant.mat_pyatki_sklad * 2 + (@constant.mat_metizi_sklad *
-                (ukos_g_kol + ukos_b_kol) * 2)
+                (ukos_g_kol + ukos_b_kol + 2) * 2)
 
     #Вычисление с какого листа и какую по размеру полочку ПМ вырубивать в зависимости от веса на уровень
 

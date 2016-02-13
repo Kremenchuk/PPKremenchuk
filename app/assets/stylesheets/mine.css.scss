@@ -1,22 +1,5 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- */
 
 
-.header_table {
-  //align: center;
-  text-align: center;
-}
 
 .hiden_element_1 {
   display: none;
@@ -30,25 +13,23 @@
 .hiden_element_4 {
   display: none;
 }
-body {
-  //no-repeat center center fixed;
+
+html, body {
   background: url(design/all_parts/background.jpg);// center; //no-repeat center center fixed //no-repeat center center fixed
   height: 100%;
   margin: 0;
   padding: 0;
 }
-html {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
 
-a, a:hover
+a:hover
 {
   text-decoration: none;
 }
 
-
+* {
+  margin: 0;
+  padding: 0;
+}
 
 
 
@@ -294,12 +275,7 @@ a, a:hover
     width: 960px;
     height: 419px;
   }
-  .sessionInfo
-  {
-    font-size: 15px;
-    color: white;
-    background: rgb(25,18,8);
-  }
+
   .colortext1
   {
 
@@ -334,17 +310,15 @@ a, a:hover
   }
   .wrapper
   {
-    max-width: 568px;
+
+    display: table;
+    max-width: 960px;
     margin: auto;
     min-height: 100%;
     margin-bottom: -80px;
   }
   * html .wrapper {
     height: 100%;
-  }
-  .boofer
-  {
-    height: 80px;
   }
   .footer
   {
@@ -384,6 +358,60 @@ a, a:hover
 
 @media only screen and (min-width : 581px)
 {
+  .style_p
+  {
+    font-size: 20px;
+  }
+  .header_table {
+    font-size: 20px;
+    text-align: center;
+  }
+  .table_position_trolleys
+  {
+    display: table;
+    border-spacing: 1px 1px;
+
+  }
+  /*.row_table_position_trolleys
+  {
+    display: table-cell;
+  }*/
+
+  .span_header
+  {
+    display:table-cell;
+    height:100%;
+  }
+
+  .span_header:nth-child(odd)
+  {
+    width: 30%;
+  }
+  .fix
+  {
+    width: 960px;
+    min-width: 960px;
+    max-width: 960px;
+  }
+  .left1
+  {
+    float: left;
+
+  }
+
+  .right1
+  {
+    float: right;
+  }
+
+  .wrap1
+  {
+    display: table;
+    font-size: 15px;
+    color: white;
+    width: 100%;
+    background: #191208;
+  }
 
   .row_gallery
   {
@@ -470,6 +498,8 @@ a, a:hover
   }
   ul.dropdown-inside > li
   {
+    height: 50px;
+    line-height: 45px;
     border: 1px solid #000000;
   }
   ul.dropdown li.dropdown-top
@@ -490,6 +520,8 @@ a, a:hover
   }
   ul.dropdown .dropdown-inside a:hover
   {
+    height: 50px;
+    line-height: 45px;
     background: #9a2917;
     text-decoration: none
   }
@@ -651,12 +683,11 @@ a, a:hover
   {
     width: 960px;
     height: 419px;
+    padding: 5px 0px 0px 0px;
   }
   .sessionInfo
   {
-    font-size: 15px;
-    color: white;
-    background: #191208;
+
   }
   .colortext1
   {
@@ -696,31 +727,33 @@ a, a:hover
     font-size: 14px;
     width: 220px
   }
+  .main
+  {
+    min-height: 100%;
+    padding-bottom: 20px;
+  }
   .wrapper
   {
-    max-width: 960px;
+
+    width: 960px;
     margin: auto;
-    min-height: 100%;
-    margin-bottom: -80px;
-    display:table;
-  }
-  * html .wrapper {
-    height: 100%;
   }
   .boofer
   {
-    height: 80px;
+    height: 40px;
   }
   .footer
   {
-    height: 80px;
+    font-size: 10px;
     background: #FE7D14;
-    clear:both;
+    height: 40px;
+    margin-top: -40px;
+  }
+  * html .main
+  { /* хак для ie6 */
+    height: 100%; /* для ие6, т.к. не понимает min-height */
   }
 
-  header {
-    padding: 20px 0;
-  }
 
 }
 
@@ -748,29 +781,29 @@ a, a:hover
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width : 321px) {
 
-    /* Styles */
+  /* Styles */
 
 }
 
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
 
-    /* Styles */
+  /* Styles */
 
 }
 
 
 
-  /* iPads (landscape) ----------- */
+/* iPads (landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
 
-    /* Styles */
+  /* Styles */
 
 }
 
 /* iPads (portrait) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
-      /* Styles */
+  /* Styles */
 
 }
 
@@ -780,14 +813,14 @@ a, a:hover
 /* Large screens ----------- */
 @media only screen and (min-width : 1824px) {
 
-    /* Styles */
+  /* Styles */
 
 }
 
 /* iPhone 4 ----------- */
 @media only screen and (-webkit-min-device-pixel-ratio : 1.5),only screen and (min-device-pixel-ratio : 1.5) {
 
-    /* Styles */
+  /* Styles */
 
 }
 

@@ -4,12 +4,31 @@ class StillagePalletController < ApplicationController
   def index
   end
 
+  def control_parameters
+    if @hight_var>6000 or @hight_var<2000
+      redirect_to "/stillage_pallet/index"
+    end
+    if @width_var>3500 or @width_var<1200
+      redirect_to "/stillage_pallet/index"
+    end
+    if @num_of_shelves_var>10 or @num_of_shelves_var<2
+      redirect_to "/stillage_pallet/index"
+    end
+    if @shelf_load_var>3000 or @shelf_load_var<500
+      redirect_to "/stillage_pallet/index"
+    end
+  end
+
+
   def show
     @hight_var      = Integer(params[:hight])
     @width_var      = Integer(params[:widthS])
     @depth_var      = 1100
     @num_of_shelves_var = Integer(params[:num_of_shelves])
     @shelf_load_var     = Integer(params[:shelf_load])
+
+    control_parameters
+
     @constant = Constant.where("id = 1").first
 
     #Определение длины и количества укосов
