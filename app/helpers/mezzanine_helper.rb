@@ -1,0 +1,2 @@
+module MezzanineHelper
+end
