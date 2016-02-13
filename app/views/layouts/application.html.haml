@@ -16,9 +16,10 @@
             %tr{:align => "center"}
               %td.col1
                 =link_to image_tag("design/all_parts/Header/Logo.gif", class: "logo", :title => "На главную"), "/"
-                .text_pp
-                  %span.colortext1 ЧП
-                  %span.colortext2 КРЕМЕНЧУК
+                %a{:href => "/"}
+                  .text_pp
+                    %span.colortext1 ЧП
+                    %span.colortext2 КРЕМЕНЧУК
               %td.col2
                 - if current_user
                   = current_user.email
