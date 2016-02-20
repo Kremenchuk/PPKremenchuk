@@ -39,3 +39,36 @@
               ="#{@price_stillage_osn}"
             %td
               ="#{@price_stillage_prist}"
+%h2{:align =>"center"}
+  Основная секция
+.dimensions_stillage_warehouse
+  .indent_left_stilage_warehouse
+  .dimension_image_stilage_warehouse
+    .height_size_stilage_warehouse_primery
+      ="#{@hight_var}"
+    .widht_size_stilage_warehouse_primery
+      ="#{@width_var}"
+    .widht_section_size_stilage_warehouse_primery
+      ="#{@width_var + 100}"
+    .depth_size_stilage_warehouse_primery
+      ="#{@depth_var}"
+    =image_tag('design/all_parts/stillage_warehouse/Stilage_warehouse45_primary.gif', class: "dimaension_image_size_stilage_warehouse")
+  .indent_right_stilage_warehouse
+%div{:style => " width:100%; height:1px; clear:both;"}
+
+%h2{:align =>"center"}
+  Приставная секция
+.dimensions_stillage_warehouse
+  .indent_left_stilage_warehouse
+  .dimension_image_stilage_warehouse
+    .height_size_stilage_warehouse_addl
+      ="#{@hight_var}"
+    .widht_size_stilage_warehouse_addl
+      ="#{@width_var}"
+    .widht_section_size_stilage_warehouse_addl
+      ="#{@width_var + 50}"
+    .depth_size_stilage_warehouse_addl
+      ="#{@depth_var}"
+    =image_tag('design/all_parts/stillage_warehouse/Stilage_warehouse45_addl.gif', class: "dimaension_image_size_stilage_warehouse")
+  .indent_right_stilage_warehouse
+%div{:style => " width:100%; height:30px; clear:both;"}

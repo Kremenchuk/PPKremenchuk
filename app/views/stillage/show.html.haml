@@ -1,14 +1,26 @@
 %h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
   Стеллаж архивный
-%p.style_p
+.style_p
   ="#{@name_stilage}"
-%p.style_p
+.style_p
   ="Максимальная нагрузка на одну полку #{@shelf_load_var} кг."
-%p.style_p
+.style_p
   ="Вес: #{@wei_stilage} кг."
-%p.style_p
+.style_p
   ="Цена: #{@price_stillage} грн."
 
+.dimensions_stillage
+  .indent_left_stilage
+  .dimension_image_stilage
+    .height_size_stilage
+      ="#{@hight_var}"
+    .widht_size_stilage
+      ="#{@width_var}"
+    .depth_size_stilage
+      ="#{@depth_var}"
+    =image_tag("design/all_parts/stillage_arxiv/stillage_show_dimension 45.gif", class: "dimaension_image_size_stilage")
+  .indent_right_stilage
+%div{:style => " width:100%; height:1px; clear:both;"}
 
 
 
