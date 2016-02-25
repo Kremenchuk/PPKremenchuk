@@ -14,82 +14,86 @@
       %img{:id => "chg_img_1", :alt => "mater", :src => "/assets/plus.png", :name => "img_1", :width => "30", :height => "30"}
       On-line расчет стеллажа
     .hiden_element_1
-      .row
-        .col-md-2
-          =label_tag(:q, "Высота")
-          %p
-            (1500-5200 мм)
-          %p{:title => "Высота вашего стеллажа указаная в милиметрах"}
-            %input{:maxlength => "4", :name => "hight", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
+      -if @constant.on_off_calc_stillage_warehouse==false
+        .row
+          .col-md-2
+            =label_tag(:q, "Высота")
+            %p
+              (1500-5200 мм)
+            %p{:title => "Высота вашего стеллажа указаная в милиметрах"}
+              %input{:maxlength => "4", :name => "hight", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
 
-        .col-md-2
-          =label_tag(:q, "Ширина")
-          %p
-            (800-2700 мм)
-          %p{:title => "Шрина полочки указаная в милиметрах"}
-            %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
+          .col-md-2
+            =label_tag(:q, "Ширина")
+            %p
+              (800-2700 мм)
+            %p{:title => "Шрина полочки указаная в милиметрах"}
+              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
 
-        .col-md-2
-          =label_tag(:q, "Глубина")
-          %p
-            (300-1500 мм)
-          %p{:title => "Глубина полочки указаная в милиметрах"}
-            %input{:maxlength => "4", :name => "depth", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
+          .col-md-2
+            =label_tag(:q, "Глубина")
+            %p
+              (300-1500 мм)
+            %p{:title => "Глубина полочки указаная в милиметрах"}
+              %input{:maxlength => "4", :name => "depth", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
 
-        .col-md-2
-          =label_tag(:q, "Количество полок")
-          %p
-            (2-15 шт.)
-          %p{:title => "Количество полок на один стеллаж"}
-            %input{:maxlength => "2", :name => "num_of_shelves", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-3
-          =label_tag(:q, "Нагрузка на уровень")
-          %p
-            (150-400 кг.)
-          %p{:title => "Максимальная распределенная нагрузка на один уровень хранения стеллажа"}
-            %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-5
-          .style_text_about_stillage_stillage_warehouse_stillage_pallet
-            %input{:name => "group3" , :type => "radio", :value => "metall", :checked => "checked", :onclick => "hide_dsp( )"}
-              Полка металлическая
-              %p
-                %input{:name => "group3" , :type => "radio", :value => "dsp", :onclick => "hide_dsp( )" }
-                  Полка ДСП (шлифованное)
+          .col-md-2
+            =label_tag(:q, "Количество полок")
+            %p
+              (2-15 шт.)
+            %p{:title => "Количество полок на один стеллаж"}
+              %input{:maxlength => "2", :name => "num_of_shelves", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-3
+            =label_tag(:q, "Нагрузка на уровень")
+            %p
+              (150-400 кг.)
+            %p{:title => "Максимальная распределенная нагрузка на один уровень хранения стеллажа"}
+              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-5
+            .style_text_about_stillage_stillage_warehouse_stillage_pallet
+              %input{:name => "group3" , :type => "radio", :value => "metall", :checked => "checked", :onclick => "hide_dsp( )"}
+                Полка металлическая
+                %p
+                  %input{:name => "group3" , :type => "radio", :value => "dsp", :onclick => "hide_dsp( )" }
+                    Полка ДСП (шлифованное)
 
-      .row
-        .col-md-6
-          .style_text_about_stillage_stillage_warehouse_stillage_pallet
-            %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-              %tr
-                %th{:colspan => "2"} Окраска
-              %tr
-                %td Рама
-                %td
-                  %input{:name => "group1" , :type => "radio", :value => "osinkovaniy", :checked => "checked"}
-                    Оцинкованная
-                  %p
-                    %input{:name => "group1" , :type => "radio", :value => "okrash"}
-                      Окрашенная
-                %tr{:id => "hiden_radio_3"}
-                  %td Полка
+        .row
+          .col-md-6
+            .style_text_about_stillage_stillage_warehouse_stillage_pallet
+              %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+                %tr
+                  %th{:colspan => "2"} Окраска
+                %tr
+                  %td Рама
                   %td
-                    %input{:id => "hiden_radio_1", :name => "group2" , :type => "radio", :value => "osinkovaniy", :checked => "checked"}
+                    %input{:name => "group1" , :type => "radio", :value => "osinkovaniy", :checked => "checked"}
                       Оцинкованная
                     %p
-                      %input{:id => "hiden_radio_2", :name => "group2" , :type => "radio", :value => "okrash"}
+                      %input{:name => "group1" , :type => "radio", :value => "okrash"}
                         Окрашенная
-        .col-md-3
-          %p
-      .row
-        .col-md-3
-          %p
-          %input{:name => "send", :type => "submit", :value => "Рассчитать стеллаж", :class => "btn btn-success"}
+                  %tr{:id => "hiden_radio_3"}
+                    %td Полка
+                    %td
+                      %input{:id => "hiden_radio_1", :name => "group2" , :type => "radio", :value => "osinkovaniy", :checked => "checked"}
+                        Оцинкованная
+                      %p
+                        %input{:id => "hiden_radio_2", :name => "group2" , :type => "radio", :value => "okrash"}
+                          Окрашенная
+          .col-md-3
+            %p
+        .row
+          .col-md-3
+            %p
+            %input{:name => "send", :type => "submit", :value => "Рассчитать стеллаж", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
 
 %p
 

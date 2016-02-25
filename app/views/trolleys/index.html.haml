@@ -28,39 +28,43 @@
       %img{:id => "chg_img_10", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
       On-line расчет модели ТР-01
     .hidenelement1a
-      .row
-        .col-md-6
-          =label_tag(:q, "Длина")
-          %p
-            (600-1500 мм)
-          %p{:title => "Длина платформы тележки в миллиметрах"}
-            %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Ширина")
-          %p
-            (500-1200 мм)
-            %p{:title => "Шрина тележки в милиметрах"}
-              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-6
-          =label_tag(:q, "Высота ручки")
-          %p
-            (600-1200 мм)
-          %p{:title => "Высота ручки от пола в милиметрах"}
-            %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Нагрузка на полочку")
-          %p
-            (50-400 кг.)
-          %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-            %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-3
-          %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -if @constant.on_off_calc_TP01==false
+        .row
+          .col-md-6
+            =label_tag(:q, "Длина")
+            %p
+              (600-1500 мм)
+            %p{:title => "Длина платформы тележки в миллиметрах"}
+              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Ширина")
+            %p
+              (500-1200 мм)
+              %p{:title => "Шрина тележки в милиметрах"}
+                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-6
+            =label_tag(:q, "Высота ручки")
+            %p
+              (600-1200 мм)
+            %p{:title => "Высота ручки от пола в милиметрах"}
+              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Нагрузка на полочку")
+            %p
+              (50-400 кг.)
+            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-3
+            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
     %p.distance_from_trolleys
 
 
@@ -92,40 +96,44 @@
       %img{:id => "chg_img_11", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
       On-line расчет модели ТР-02
     .hidenelement2
-      .row
-        .col-md-6
-          =label_tag(:q, "Длина")
-          %p
-            (600-1500 мм)
-          %p{:title => "Длина платформы тележки в миллиметрах"}
-            %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Ширина")
-          %p
-            (500-1200 мм)
-            %p{:title => "Шрина тележки в милиметрах"}
-              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-6
-          =label_tag(:q, "Высота ручки")
-          %p
-            (600-1200 мм)
-          %p{:title => "Высота ручки от пола в милиметрах"}
-            %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Нагрузка на полочку")
-          %p
-            (50-400 кг.)
-          %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-            %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
+      -if @constant.on_off_calc_TP02==false
+        .row
+          .col-md-6
+            =label_tag(:q, "Длина")
+            %p
+              (600-1500 мм)
+            %p{:title => "Длина платформы тележки в миллиметрах"}
+              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Ширина")
+            %p
+              (500-1200 мм)
+              %p{:title => "Шрина тележки в милиметрах"}
+                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-6
+            =label_tag(:q, "Высота ручки")
+            %p
+              (600-1200 мм)
+            %p{:title => "Высота ручки от пола в милиметрах"}
+              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Нагрузка на полочку")
+            %p
+              (50-400 кг.)
+            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
 
-      .row
-        .col-md-3
-          %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        .row
+          .col-md-3
+            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
     %p.distance_from_trolleys
 %div{:style => " width:5%; height:1px; clear:both;"}
 
@@ -163,40 +171,44 @@
       %img{:id => "chg_img_12", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
       On-line расчет модели ТР-03
     .hidenelement3
-      .row
-        .col-md-6
-          =label_tag(:q, "Длина")
-          %p
-            (600-1500 мм)
-          %p{:title => "Длина платформы тележки в миллиметрах"}
-            %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Ширина")
-          %p
-            (500-1200 мм)
-            %p{:title => "Шрина тележки в милиметрах"}
-              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-6
-          =label_tag(:q, "Высота ручки")
-          %p
-            (600-1200 мм)
-          %p{:title => "Высота ручки от пола в милиметрах"}
-            %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Нагрузка на полочку")
-          %p
-            (50-400 кг.)
-          %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-            %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
+      -if @constant.on_off_calc_TP03==false
+        .row
+          .col-md-6
+            =label_tag(:q, "Длина")
+            %p
+              (600-1500 мм)
+            %p{:title => "Длина платформы тележки в миллиметрах"}
+              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Ширина")
+            %p
+              (500-1200 мм)
+              %p{:title => "Шрина тележки в милиметрах"}
+                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-6
+            =label_tag(:q, "Высота ручки")
+            %p
+              (600-1200 мм)
+            %p{:title => "Высота ручки от пола в милиметрах"}
+              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Нагрузка на полочку")
+            %p
+              (50-400 кг.)
+            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
 
-      .row
-        .col-md-3
-          %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        .row
+          .col-md-3
+            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
     %p.distance_from_trolleys
 
 
@@ -234,39 +246,43 @@
       %img{:id => "chg_img_13", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
       On-line расчет модели ТР-04
     .hidenelement4
-      .row
-        .col-md-6
-          =label_tag(:q, "Длина")
-          %p
-            (600-1500 мм)
-          %p{:title => "Длина платформы тележки в миллиметрах"}
-            %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Ширина")
-          %p
-            (500-1200 мм)
-            %p{:title => "Шрина тележки в милиметрах"}
-              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-6
-          =label_tag(:q, "Высота ручки")
-          %p
-            (600-1200 мм)
-          %p{:title => "Высота ручки от пола в милиметрах"}
-            %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Нагрузка на полочку")
-          %p
-            (50-400 кг.)
-          %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-            %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-3
-          %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -if @constant.on_off_calc_TP04==false
+        .row
+          .col-md-6
+            =label_tag(:q, "Длина")
+            %p
+              (600-1500 мм)
+            %p{:title => "Длина платформы тележки в миллиметрах"}
+              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Ширина")
+            %p
+              (500-1200 мм)
+              %p{:title => "Шрина тележки в милиметрах"}
+                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-6
+            =label_tag(:q, "Высота ручки")
+            %p
+              (600-1200 мм)
+            %p{:title => "Высота ручки от пола в милиметрах"}
+              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Нагрузка на полочку")
+            %p
+              (50-400 кг.)
+            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-3
+            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
     %p.distance_from_trolleys
 %div{:style => " width:5%; height:1px; clear:both;"}
 
@@ -301,40 +317,44 @@
       %img{:id => "chg_img_14", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
       On-line расчет модели ТР-05
     .hidenelement5
-      .row
-        .col-md-6
-          =label_tag(:q, "Длина")
-          %p
-            (600-1500 мм)
-          %p{:title => "Длина платформы тележки в миллиметрах"}
-            %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Ширина")
-          %p
-            (500-1200 мм)
-            %p{:title => "Шрина тележки в милиметрах"}
-              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-6
-          =label_tag(:q, "Высота ручки")
-          %p
-            (600-1200 мм)
-          %p{:title => "Высота ручки от пола в милиметрах"}
-            %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Нагрузка на полочку")
-          %p
-            (50-400 кг.)
-          %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-            %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
+      -if @constant.on_off_calc_TP05==false
+        .row
+          .col-md-6
+            =label_tag(:q, "Длина")
+            %p
+              (600-1500 мм)
+            %p{:title => "Длина платформы тележки в миллиметрах"}
+              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Ширина")
+            %p
+              (500-1200 мм)
+              %p{:title => "Шрина тележки в милиметрах"}
+                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-6
+            =label_tag(:q, "Высота ручки")
+            %p
+              (600-1200 мм)
+            %p{:title => "Высота ручки от пола в милиметрах"}
+              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Нагрузка на полочку")
+            %p
+              (50-400 кг.)
+            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
 
-      .row
-        .col-md-3
-          %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        .row
+          .col-md-3
+            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
     %p.distance_from_trolleys
 
 
@@ -368,39 +388,43 @@
       %img{:id => "chg_img_15", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
       On-line расчет модели ТР-06
     .hidenelement6
-      .row
-        .col-md-6
-          =label_tag(:q, "Длина")
-          %p
-            (600-1500 мм)
-          %p{:title => "Длина платформы тележки в миллиметрах"}
-            %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Ширина")
-          %p
-            (500-1200 мм)
-            %p{:title => "Шрина тележки в милиметрах"}
-              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-6
-          =label_tag(:q, "Высота ручки")
-          %p
-            (600-1200 мм)
-          %p{:title => "Высота ручки от пола в милиметрах"}
-            %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Нагрузка на полочку")
-          %p
-            (50-400 кг.)
-          %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-            %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-3
-          %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -if @constant.on_off_calc_TP06==false
+        .row
+          .col-md-6
+            =label_tag(:q, "Длина")
+            %p
+              (600-1500 мм)
+            %p{:title => "Длина платформы тележки в миллиметрах"}
+              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Ширина")
+            %p
+              (500-1200 мм)
+              %p{:title => "Шрина тележки в милиметрах"}
+                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-6
+            =label_tag(:q, "Высота ручки")
+            %p
+              (600-1200 мм)
+            %p{:title => "Высота ручки от пола в милиметрах"}
+              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Нагрузка на полочку")
+            %p
+              (50-400 кг.)
+            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-3
+            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
     %p.distance_from_trolleys
 %div{:style => " width:5%; height:1px; clear:both;"}
 
@@ -433,40 +457,44 @@
       %img{:id => "chg_img_16", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
       On-line расчет модели ТР-07
     .hidenelement7
-      .row
-        .col-md-6
-          =label_tag(:q, "Длина")
-          %p
-            (600-1500 мм)
-          %p{:title => "Длина платформы тележки в миллиметрах"}
-            %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Ширина")
-          %p
-            (500-1200 мм)
-            %p{:title => "Шрина тележки в милиметрах"}
-              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-6
-          =label_tag(:q, "Высота ручки")
-          %p
-            (600-1200 мм)
-          %p{:title => "Высота ручки от пола в милиметрах"}
-            %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Нагрузка на полочку")
-          %p
-            (50-400 кг.)
-          %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-            %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
+      -if @constant.on_off_calc_TP07==false
+        .row
+          .col-md-6
+            =label_tag(:q, "Длина")
+            %p
+              (600-1500 мм)
+            %p{:title => "Длина платформы тележки в миллиметрах"}
+              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Ширина")
+            %p
+              (500-1200 мм)
+              %p{:title => "Шрина тележки в милиметрах"}
+                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-6
+            =label_tag(:q, "Высота ручки")
+            %p
+              (600-1200 мм)
+            %p{:title => "Высота ручки от пола в милиметрах"}
+              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Нагрузка на полочку")
+            %p
+              (50-400 кг.)
+            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
 
-      .row
-        .col-md-3
-          %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        .row
+          .col-md-3
+            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
     %p.distance_from_trolleys
 %div{:style => " width:100%; height:1px; clear:both;"}
 
@@ -504,46 +532,50 @@
       %img{:id => "chg_img_17", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
       On-line расчет модели KS-01
     .hidenelement8
-      .row
-        .col-md-6
-          =label_tag(:q, "Длина")
-          %p
-            (600-1500 мм)
-          %p{:title => "Длина платформы тележки в миллиметрах"}
-            %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Ширина")
-          %p
-            (500-1200 мм)
-            %p{:title => "Шрина тележки в милиметрах"}
-              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-6
-          =label_tag(:q, "Высота ручки")
-          %p
-            (600-1200 мм)
-          %p{:title => "Высота ручки от пола в милиметрах"}
-            %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Нагрузка на полочку")
-          %p
-            (50-400 кг.)
-          %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-            %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-12
-          %input{:id => "hiden_radio_1", :name => "group1" , :type => "radio", :value => "met", :checked => "checked"}
-            Лист 2мм
-          %p
-            %input{:id => "hiden_radio_2", :name => "group1" , :type => "radio", :value => "dsp"}
-              Ламинированное ДСП
-      .row
-        .col-md-12
-          %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -if @constant.on_off_calc_KS01==false
+        .row
+          .col-md-6
+            =label_tag(:q, "Длина")
+            %p
+              (600-1500 мм)
+            %p{:title => "Длина платформы тележки в миллиметрах"}
+              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Ширина")
+            %p
+              (500-1200 мм)
+              %p{:title => "Шрина тележки в милиметрах"}
+                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-6
+            =label_tag(:q, "Высота ручки")
+            %p
+              (600-1200 мм)
+            %p{:title => "Высота ручки от пола в милиметрах"}
+              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Нагрузка на полочку")
+            %p
+              (50-400 кг.)
+            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-12
+            %input{:id => "hiden_radio_1", :name => "group1" , :type => "radio", :value => "met", :checked => "checked"}
+              Лист 2мм
+            %p
+              %input{:id => "hiden_radio_2", :name => "group1" , :type => "radio", :value => "dsp"}
+                Ламинированное ДСП
+        .row
+          .col-md-12
+            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
     %p.distance_from_trolleys
 
 
@@ -579,46 +611,50 @@
       %img{:id => "chg_img_18", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
       On-line расчет модели KS-02
     .hidenelement9
-      .row
-        .col-md-6
-          =label_tag(:q, "Длина")
-          %p
-            (600-1500 мм)
-          %p{:title => "Длина платформы тележки в миллиметрах"}
-            %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Ширина")
-          %p
-            (500-1200 мм)
-            %p{:title => "Шрина тележки в милиметрах"}
-              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-6
-          =label_tag(:q, "Высота ручки")
-          %p
-            (600-1200 мм)
-          %p{:title => "Высота ручки от пола в милиметрах"}
-            %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Нагрузка на полочку")
-          %p
-            (50-400 кг.)
-          %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-            %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-12
-          %input{:id => "hiden_radio_1", :name => "group1" , :type => "radio", :value => "met", :checked => "checked"}
-            Лист 2мм
-          %p
-            %input{:id => "hiden_radio_2", :name => "group1" , :type => "radio", :value => "dsp"}
-              Ламинированное ДСП
-      .row
-        .col-md-12
-          %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -if @constant.on_off_calc_KS02==false
+        .row
+          .col-md-6
+            =label_tag(:q, "Длина")
+            %p
+              (600-1500 мм)
+            %p{:title => "Длина платформы тележки в миллиметрах"}
+              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Ширина")
+            %p
+              (500-1200 мм)
+              %p{:title => "Шрина тележки в милиметрах"}
+                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-6
+            =label_tag(:q, "Высота ручки")
+            %p
+              (600-1200 мм)
+            %p{:title => "Высота ручки от пола в милиметрах"}
+              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Нагрузка на полочку")
+            %p
+              (50-400 кг.)
+            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-12
+            %input{:id => "hiden_radio_1", :name => "group1" , :type => "radio", :value => "met", :checked => "checked"}
+              Лист 2мм
+            %p
+              %input{:id => "hiden_radio_2", :name => "group1" , :type => "radio", :value => "dsp"}
+                Ламинированное ДСП
+        .row
+          .col-md-12
+            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
     %p.distance_from_trolleys
 %div{:style => " width:5%; height:1px; clear:both;"}
 
@@ -652,46 +688,50 @@
       %img{:id => "chg_img_19", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
       On-line расчет модели KS-03
     .hidenelement10a
-      .row
-        .col-md-6
-          =label_tag(:q, "Длина")
-          %p
-            (600-1500 мм)
-          %p{:title => "Длина платформы тележки в миллиметрах"}
-            %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Ширина")
-          %p
-            (500-1200 мм)
-            %p{:title => "Шрина тележки в милиметрах"}
-              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-6
-          =label_tag(:q, "Высота ручки")
-          %p
-            (600-1200 мм)
-          %p{:title => "Высота ручки от пола в милиметрах"}
-            %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Нагрузка на полочку")
-          %p
-            (50-400 кг.)
-          %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-            %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-12
-          %input{:id => "hiden_radio_1", :name => "group1" , :type => "radio", :value => "met", :checked => "checked"}
-            Лист 2мм
-          %p
-            %input{:id => "hiden_radio_2", :name => "group1" , :type => "radio", :value => "dsp"}
-              Ламинированное ДСП
-      .row
-        .col-md-12
-          %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -if @constant.on_off_calc_KS03==false
+        .row
+          .col-md-6
+            =label_tag(:q, "Длина")
+            %p
+              (600-1500 мм)
+            %p{:title => "Длина платформы тележки в миллиметрах"}
+              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Ширина")
+            %p
+              (500-1200 мм)
+              %p{:title => "Шрина тележки в милиметрах"}
+                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-6
+            =label_tag(:q, "Высота ручки")
+            %p
+              (600-1200 мм)
+            %p{:title => "Высота ручки от пола в милиметрах"}
+              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Нагрузка на полочку")
+            %p
+              (50-400 кг.)
+            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-12
+            %input{:id => "hiden_radio_1", :name => "group1" , :type => "radio", :value => "met", :checked => "checked"}
+              Лист 2мм
+            %p
+              %input{:id => "hiden_radio_2", :name => "group1" , :type => "radio", :value => "dsp"}
+                Ламинированное ДСП
+        .row
+          .col-md-12
+            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
     %p.distance_from_trolleys
 
 
@@ -726,46 +766,50 @@
       %img{:id => "chg_img_20", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
       On-line расчет модели KS-04
     .hidenelement11a
-      .row
-        .col-md-6
-          =label_tag(:q, "Длина")
-          %p
-            (600-1500 мм)
-          %p{:title => "Длина платформы тележки в миллиметрах"}
-            %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Ширина")
-          %p
-            (500-1200 мм)
-            %p{:title => "Шрина тележки в милиметрах"}
-              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-6
-          =label_tag(:q, "Высота ручки")
-          %p
-            (600-1200 мм)
-          %p{:title => "Высота ручки от пола в милиметрах"}
-            %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Нагрузка на полочку")
-          %p
-            (50-400 кг.)
-          %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-            %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-12
-          %input{:id => "hiden_radio_1", :name => "group1" , :type => "radio", :value => "met", :checked => "checked"}
-            Лист 2мм
-          %p
-            %input{:id => "hiden_radio_2", :name => "group1" , :type => "radio", :value => "dsp"}
-              Ламинированное ДСП
-      .row
-        .col-md-12
-          %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -if @constant.on_off_calc_KS04==false
+        .row
+          .col-md-6
+            =label_tag(:q, "Длина")
+            %p
+              (600-1500 мм)
+            %p{:title => "Длина платформы тележки в миллиметрах"}
+              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Ширина")
+            %p
+              (500-1200 мм)
+              %p{:title => "Шрина тележки в милиметрах"}
+                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-6
+            =label_tag(:q, "Высота ручки")
+            %p
+              (600-1200 мм)
+            %p{:title => "Высота ручки от пола в милиметрах"}
+              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Нагрузка на полочку")
+            %p
+              (50-400 кг.)
+            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-12
+            %input{:id => "hiden_radio_1", :name => "group1" , :type => "radio", :value => "met", :checked => "checked"}
+              Лист 2мм
+            %p
+              %input{:id => "hiden_radio_2", :name => "group1" , :type => "radio", :value => "dsp"}
+                Ламинированное ДСП
+        .row
+          .col-md-12
+            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
     %p.distance_from_trolleys
 %div{:style => " width:5%; height:1px; clear:both;"}
 
@@ -801,39 +845,43 @@
       %img{:id => "chg_img_21", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
       On-line расчет модели PT-01
     .hidenelement12a
-      .row
-        .col-md-6
-          =label_tag(:q, "Длина")
-          %p
-            (600-1500 мм)
-          %p{:title => "Длина платформы тележки в миллиметрах"}
-            %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Ширина")
-          %p
-            (500-1200 мм)
-            %p{:title => "Шрина тележки в милиметрах"}
-              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-6
-          =label_tag(:q, "Высота ручки")
-          %p
-            (600-1200 мм)
-          %p{:title => "Высота ручки от пола в милиметрах"}
-            %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Нагрузка на полочку")
-          %p
-            (50-400 кг.)
-          %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-            %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-3
-          %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -if @constant.on_off_calc_PT01==false
+        .row
+          .col-md-6
+            =label_tag(:q, "Длина")
+            %p
+              (600-1500 мм)
+            %p{:title => "Длина платформы тележки в миллиметрах"}
+              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Ширина")
+            %p
+              (500-1200 мм)
+              %p{:title => "Шрина тележки в милиметрах"}
+                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-6
+            =label_tag(:q, "Высота ручки")
+            %p
+              (600-1200 мм)
+            %p{:title => "Высота ручки от пола в милиметрах"}
+              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Нагрузка на полочку")
+            %p
+              (50-400 кг.)
+            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-3
+            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
     %p.distance_from_trolleys
 
 
@@ -864,40 +912,44 @@
       %img{:id => "chg_img_22", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
       On-line расчет модели PT-02
     .hidenelement13a
-      .row
-        .col-md-6
-          =label_tag(:q, "Длина")
-          %p
-            (600-1500 мм)
-          %p{:title => "Длина платформы тележки в миллиметрах"}
-            %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Ширина")
-          %p
-            (500-1200 мм)
-            %p{:title => "Шрина тележки в милиметрах"}
-              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-6
-          =label_tag(:q, "Высота ручки")
-          %p
-            (600-1200 мм)
-          %p{:title => "Высота ручки от пола в милиметрах"}
-            %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Нагрузка на полочку")
-          %p
-            (50-400 кг.)
-          %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-            %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
+      -if @constant.on_off_calc_PT02==false
+        .row
+          .col-md-6
+            =label_tag(:q, "Длина")
+            %p
+              (600-1500 мм)
+            %p{:title => "Длина платформы тележки в миллиметрах"}
+              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Ширина")
+            %p
+              (500-1200 мм)
+              %p{:title => "Шрина тележки в милиметрах"}
+                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-6
+            =label_tag(:q, "Высота ручки")
+            %p
+              (600-1200 мм)
+            %p{:title => "Высота ручки от пола в милиметрах"}
+              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Нагрузка на полочку")
+            %p
+              (50-400 кг.)
+            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
 
-      .row
-        .col-md-3
-          %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        .row
+          .col-md-3
+            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
     %p.distance_from_trolleys
 %div{:style => " width:100%; height:1px; clear:both;"}
 
@@ -930,40 +982,44 @@
       %img{:id => "chg_img_23", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
       On-line расчет модели PT-03
     .hidenelement14a
-      .row
-        .col-md-6
-          =label_tag(:q, "Длина")
-          %p
-            (600-1500 мм)
-          %p{:title => "Длина платформы тележки в миллиметрах"}
-            %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Ширина")
-          %p
-            (500-1200 мм)
-            %p{:title => "Шрина тележки в милиметрах"}
-              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-6
-          =label_tag(:q, "Высота ручки")
-          %p
-            (600-1200 мм)
-          %p{:title => "Высота ручки от пола в милиметрах"}
-            %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Нагрузка на полочку")
-          %p
-            (50-400 кг.)
-          %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-            %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
+      -if @constant.on_off_calc_PT03==false
+        .row
+          .col-md-6
+            =label_tag(:q, "Длина")
+            %p
+              (600-1500 мм)
+            %p{:title => "Длина платформы тележки в миллиметрах"}
+              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Ширина")
+            %p
+              (500-1200 мм)
+              %p{:title => "Шрина тележки в милиметрах"}
+                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-6
+            =label_tag(:q, "Высота ручки")
+            %p
+              (600-1200 мм)
+            %p{:title => "Высота ручки от пола в милиметрах"}
+              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Нагрузка на полочку")
+            %p
+              (50-400 кг.)
+            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
 
-      .row
-        .col-md-3
-          %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        .row
+          .col-md-3
+            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
     %p.distance_from_trolleys
 
 
@@ -999,40 +1055,44 @@
       %img{:id => "chg_img_24", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
       On-line расчет модели PT-04
     .hidenelement15a
-      .row
-        .col-md-6
-          =label_tag(:q, "Длина")
-          %p
-            (600-1500 мм)
-          %p{:title => "Длина платформы тележки в миллиметрах"}
-            %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Ширина")
-          %p
-            (500-1200 мм)
-            %p{:title => "Шрина тележки в милиметрах"}
-              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-6
-          =label_tag(:q, "Высота ручки")
-          %p
-            (600-1200 мм)
-          %p{:title => "Высота ручки от пола в милиметрах"}
-            %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
-        .col-md-6
-          =label_tag(:q, "Нагрузка на полочку")
-          %p
-            (50-400 кг.)
-          %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-            %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                   :size => "10", :value => "", :type => "text"}
+      -if @constant.on_off_calc_PT04==false
+        .row
+          .col-md-6
+            =label_tag(:q, "Длина")
+            %p
+              (600-1500 мм)
+            %p{:title => "Длина платформы тележки в миллиметрах"}
+              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Ширина")
+            %p
+              (500-1200 мм)
+              %p{:title => "Шрина тележки в милиметрах"}
+                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-6
+            =label_tag(:q, "Высота ручки")
+            %p
+              (600-1200 мм)
+            %p{:title => "Высота ручки от пола в милиметрах"}
+              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+          .col-md-6
+            =label_tag(:q, "Нагрузка на полочку")
+            %p
+              (50-400 кг.)
+            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
 
-      .row
-        .col-md-3
-          %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        .row
+          .col-md-3
+            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
     %p.distance_from_trolleys
 %div{:style => " width:100%; height:1px; clear:both;"}
 

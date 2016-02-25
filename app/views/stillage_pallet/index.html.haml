@@ -15,39 +15,43 @@
       %img{:id => "chg_img_1", :alt => "mater", :src => "/assets/plus.png", :name => "img_1", :width => "30", :height => "30"}
       On-line расчет стеллажа
     .hiden_element_1
-      .row
-        .col-md-3
-          =label_tag(:q, "Высота")
-          %p
-            (2000-6000 мм)
-          %p{:title => "Высота вашего стеллажа указаная в милиметрах"}
-            %input{:maxlength => "4", :name => "hight", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-3
-          =label_tag(:q, "Ширина (длина траверсы)")
-          %p
-            (1200-3500 мм)
-          %p{:title => "Шрина полочки указаная в милиметрах"}
-            %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-3
-          =label_tag(:q, "Количество уровней")
-          %p
-            (2-10 шт.)
-          %p{:title => "Количество уровней на одину секцию стеллажа"}
-            %input{:maxlength => "2", :name => "num_of_shelves", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .col-md-3
-          =label_tag(:q, "Нагрузка на уровень")
-          %p
-            (500-3000 кг.)
-          %p{:title => "Максимальная распределенная нагрузка на один уровень хранения стеллажа"}
-            %input{:maxlength => "4", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-3
-          %p
-          %input{:name => "send", :type => "submit", :value => "Рассчитать стеллаж", :class => "btn btn-success"}
+      -if @constant.on_off_calc_stillage_pallet==false
+        .row
+          .col-md-3
+            =label_tag(:q, "Высота")
+            %p
+              (2000-6000 мм)
+            %p{:title => "Высота вашего стеллажа указаная в милиметрах"}
+              %input{:maxlength => "4", :name => "hight", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-3
+            =label_tag(:q, "Ширина (длина траверсы)")
+            %p
+              (1200-3500 мм)
+            %p{:title => "Шрина полочки указаная в милиметрах"}
+              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-3
+            =label_tag(:q, "Количество уровней")
+            %p
+              (2-10 шт.)
+            %p{:title => "Количество уровней на одину секцию стеллажа"}
+              %input{:maxlength => "2", :name => "num_of_shelves", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+          .col-md-3
+            =label_tag(:q, "Нагрузка на уровень")
+            %p
+              (500-3000 кг.)
+            %p{:title => "Максимальная распределенная нагрузка на один уровень хранения стеллажа"}
+              %input{:maxlength => "4", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                  :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-3
+            %p
+            %input{:name => "send", :type => "submit", :value => "Рассчитать стеллаж", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
 
 %p
 .container-fluid

@@ -28,7 +28,11 @@ class Constant < ActiveRecord::Base
                   :wei_truba_25_25_15, :wei_shina_30_4, :wei_skoba_styagnogo, :wei_stoyki_pallet,
                   :wei_pyatki_pallet, :wei_metizi_pallet_ram, :wei_metizi_pallet_travers,
                   :wei_zatsep_pallet, :wei_ukosi_pallet, :wei_truba_du_20_25, :wei_plastini_teleg,
-                  :wei_metizi_teleg, :wei_ugolok_20_20_3, :wei_dsp_laminat, :wei_dsp_shlif, :wei_100x60x100x15
+                  :wei_metizi_teleg, :wei_ugolok_20_20_3, :wei_dsp_laminat, :wei_dsp_shlif, :wei_100x60x100x15,:email_to_send,
+                  :on_off_calc_stillage, :on_off_calc_stillage_warehouse, :on_off_calc_stillage_pallet, :on_off_calc_TP01, :on_off_calc_TP02,
+                  :on_off_calc_TP03, :on_off_calc_TP04, :on_off_calc_TP05,:on_off_calc_TP06, :on_off_calc_TP07, :on_off_calc_KS01,
+                  :on_off_calc_KS02, :on_off_calc_KS03, :on_off_calc_KS04, :on_off_calc_PT01, :on_off_calc_PT02, :on_off_calc_PT03,
+                  :on_off_calc_PT04
 
   validates :job_stoyki_arx, :job_polki_arx, :job_usil_arx, :job_upakovka_arx, :job_ogranich,
             :job_okr_stoyki_arx, :job_okr_polki_arx, :job_stoyki_sklad, :job_traversi_sklad,

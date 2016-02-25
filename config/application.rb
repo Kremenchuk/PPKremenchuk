@@ -11,6 +11,7 @@ require "sprockets/railtie"
 require "rails/all"
 require "rubyXL"
 require "rubypython"
+require "roo"
 
 
 # require "rails/test_unit/railtie"

@@ -142,6 +142,10 @@ class StillageController < ApplicationController
     @price_stillage = @price_stillage + @okraska
 
     @price_stillage = @price_stillage.to_s(:rounded, :precision => 2)
+
+
+
+    enter_row_to_excel(@name_stilage, @price_stillage) #внесение в ексель файл данных о расчете стеллажа.
   end
 
 end

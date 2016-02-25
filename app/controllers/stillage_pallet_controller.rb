@@ -1,5 +1,6 @@
 class StillagePalletController < ApplicationController
   before_filter :check_if_diller, only: [:index, :show]
+  include Include_Module
 
   def index
   end

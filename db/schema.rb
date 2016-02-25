@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107115311) do
+ActiveRecord::Schema.define(version: 20160221170258) do
 
   create_table "constants", force: :cascade do |t|
     t.float    "mat_list_2_1_055",                default: 0.0
@@ -137,6 +137,25 @@ ActiveRecord::Schema.define(version: 20151107115311) do
     t.float    "wei_setka_50_50_3",               default: 2.0
     t.float    "job_natsen_diler",                default: 2.0
     t.float    "job_procent_udor_svarki_telegki", default: 2.0
+    t.string   "email_to_send"
+    t.boolean  "on_off_calc_stillage"
+    t.boolean  "on_off_calc_stillage_warehouse"
+    t.boolean  "on_off_calc_stillage_pallet"
+    t.boolean  "on_off_calc_TP01"
+    t.boolean  "on_off_calc_TP02"
+    t.boolean  "on_off_calc_TP03"
+    t.boolean  "on_off_calc_TP04"
+    t.boolean  "on_off_calc_TP05"
+    t.boolean  "on_off_calc_TP06"
+    t.boolean  "on_off_calc_TP07"
+    t.boolean  "on_off_calc_KS01"
+    t.boolean  "on_off_calc_KS02"
+    t.boolean  "on_off_calc_KS03"
+    t.boolean  "on_off_calc_KS04"
+    t.boolean  "on_off_calc_PT01"
+    t.boolean  "on_off_calc_PT02"
+    t.boolean  "on_off_calc_PT03"
+    t.boolean  "on_off_calc_PT04"
   end
 
   create_table "users", force: :cascade do |t|

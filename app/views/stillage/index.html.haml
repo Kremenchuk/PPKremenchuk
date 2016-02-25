@@ -14,61 +14,65 @@
       %img{:id => "chg_img_1", :alt => "mater", :src => "/assets/plus.png", :name => "img_1", :width => "30", :height => "30"}
       On-line расчет стеллажа
     .hiden_element_1
-      .row
-        .col-md-2
-          =label_tag(:q, "Высота")
-          %p
-            (500-3500 мм)
-          %p{:title => "Высота вашего стеллажа указаная в милиметрах"}
-            %input{:maxlength => "4", :name => "hight", :pattern => "^[ 0-9]+$",
-              :size => "10", :value => "", :type => "text"}
-        .col-md-2
-          =label_tag(:q, "Ширина")
-          %p
-            (400-1150 мм)
-          %p{:title => "Шрина полочки указаная в милиметрах"}
-            %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-              :size => "10", :value => "", :type => "text"}
-        .col-md-2
-          =label_tag(:q, "Глубина")
-          %p
-            (250-800 мм)
-          %p{:title => "Глубина полочки указаная в милиметрах"}
-            %input{:maxlength => "4", :name => "depth", :pattern => "^[ 0-9]+$",
-              :size => "10", :value => "", :type => "text"}
-        .col-md-2
-          =label_tag(:q, "Количество полок")
-          %p
-            (2-15 шт.)
-          %p{:title => "Количество полок на один стеллаж"}
-            %input{:maxlength => "2", :name => "num_of_shelves", :pattern => "^[ 0-9]+$",
-              :size => "10", :value => "", :type => "text"}
-        .col-md-3
-          =label_tag(:q, "Нагрузка на полку")
-          %p
-            (20-100 кг)
-          %p{:title => "Максимальная распределенная нагрузка на одну полку стеллажа"}
-            %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-              :size => "10", :value => "", :type => "text"}
-      .row
-        .col-md-3
-          %p
-
-      .row
-        .col-md-3
-          .style_text_about_stillage_stillage_warehouse_stillage_pallet
-            %input{:name => "group1" , :type => "radio", :value => "osinkovaniy", :checked => "checked"}
-              Оцинкованый
+      -if @constant.on_off_calc_stillage==false
+        .row
+          .col-md-2
+            =label_tag(:q, "Высота")
             %p
-              %input{:name => "group1" , :type => "radio", :value => "okrash"}
-                Окрашенный
-      .row
-        .col-md-3
-          %p
+              (500-3500 мм)
+            %p{:title => "Высота вашего стеллажа указаная в милиметрах"}
+              %input{:maxlength => "4", :name => "hight", :pattern => "^[ 0-9]+$",
+                :size => "10", :value => "", :type => "text"}
+          .col-md-2
+            =label_tag(:q, "Ширина")
+            %p
+              (400-1150 мм)
+            %p{:title => "Шрина полочки указаная в милиметрах"}
+              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                :size => "10", :value => "", :type => "text"}
+          .col-md-2
+            =label_tag(:q, "Глубина")
+            %p
+              (250-800 мм)
+            %p{:title => "Глубина полочки указаная в милиметрах"}
+              %input{:maxlength => "4", :name => "depth", :pattern => "^[ 0-9]+$",
+                :size => "10", :value => "", :type => "text"}
+          .col-md-2
+            =label_tag(:q, "Количество полок")
+            %p
+              (2-15 шт.)
+            %p{:title => "Количество полок на один стеллаж"}
+              %input{:maxlength => "2", :name => "num_of_shelves", :pattern => "^[ 0-9]+$",
+                :size => "10", :value => "", :type => "text"}
+          .col-md-3
+            =label_tag(:q, "Нагрузка на полку")
+            %p
+              (20-100 кг)
+            %p{:title => "Максимальная распределенная нагрузка на одну полку стеллажа"}
+              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                :size => "10", :value => "", :type => "text"}
+        .row
+          .col-md-3
+            %p
 
-      .row
-        .col-md-3
-          %input{:name => "send", :type => "submit", :value => "Рассчитать стеллаж", :class => "btn btn-success"}
+        .row
+          .col-md-3
+            .style_text_about_stillage_stillage_warehouse_stillage_pallet
+              %input{:name => "group1" , :type => "radio", :value => "osinkovaniy", :checked => "checked"}
+                Оцинкованый
+              %p
+                %input{:name => "group1" , :type => "radio", :value => "okrash"}
+                  Окрашенный
+        .row
+          .col-md-3
+            %p
+
+        .row
+          .col-md-3
+            %input{:name => "send", :type => "submit", :value => "Рассчитать стеллаж", :class => "btn btn-success"}
+      -else
+        .on_line_calculation_off
+          On-line расчет временно недоступен.
 %p
 
 .container-fluid
