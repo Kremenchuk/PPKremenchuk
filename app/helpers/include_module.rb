@@ -93,8 +93,19 @@ module Include_Module
     workbook = RubyXL::Parser.parse("1.xlsx")
     worksheet = workbook[0]
     worksheet.insert_row(1)
-    worksheet.add_cell(1, 0, "#{current_user.login}")
-    worksheet.add_cell(1, 1, "#{current_user.email}")
+    if current_user.login == nil
+      loginvar = "Без логина"
+    else
+      loginvar = current_user.login
+    end
+
+    if current_user.email == nil
+      emailvar = "Без логина"
+    else
+      emailvar = current_user.email
+    end
+    worksheet.add_cell(1, 0, "#{loginvar}")
+    worksheet.add_cell(1, 1, "#{emailvar}")
     worksheet.add_cell(1, 2, "#{stillage}")
     worksheet.add_cell(1, 3, "#{price}")
     worksheet.add_cell(1, 4, "#{t.strftime("%H:%M")}")
