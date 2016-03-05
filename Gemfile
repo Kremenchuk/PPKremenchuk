@@ -15,7 +15,8 @@ gem 'axlsx'
 gem 'rubyXL'
 gem 'roo'
 gem 'rubypython'
-
+gem 'capistrano'
+#gem 'fcgi'
 #gem 'debugger'
 
 
@@ -58,12 +59,12 @@ group :development, :test do
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-  gem 'capistrano-deploy', '~> 0.1.1', :require => nil
+  #gem 'capistrano-deploy', '~> 0.1.1', :require => nil
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
   group :production do
-      gem 'unicorn', '~> 3.6.2', :require => nil
+      #gem 'unicorn', '~> 3.6.2', :require => nil
   end
 end
 
