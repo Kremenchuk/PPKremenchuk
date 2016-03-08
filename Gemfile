@@ -15,7 +15,7 @@ gem 'axlsx'
 gem 'rubyXL'
 gem 'roo'
 gem 'rubypython'
-gem 'capistrano'
+#gem 'capistrano'
 #gem 'fcgi'
 #gem 'debugger'
 
