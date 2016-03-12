@@ -175,7 +175,7 @@ class ConstantsController < ApplicationController
     @constants.on_off_calc_PT02= false
     @constants.on_off_calc_PT03= false
     @constants.on_off_calc_PT04= false
-    @constant.save
+    @constants.save
 
   end
 
