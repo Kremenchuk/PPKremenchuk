@@ -47,7 +47,7 @@ class ConstantsController < ApplicationController
     @constants.mat_pyatki_arx= 1.00
     @constants.mat_stoyki_sklad= 1.00
     @constants.mat_traversa_sklad= 1.00
-    @constants.mat_pyatki_skladv= 1.00
+    @constants.mat_pyatki_sklad= 1.00
     @constants.mat_metizi_sklad= 1.00
     @constants.mat_ukosi_sklad= 1.00
     @constants.mat_zatsep_sklad= 1.00
