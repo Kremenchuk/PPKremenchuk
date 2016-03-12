@@ -33,7 +33,7 @@ class ConstantsController < ApplicationController
 
 
 
-    #@constants = Constant.new
+    @constants = Constant.new
 
     #@constants.mat_list_2_1_055= 1.00
     #@constants.mat_list_2_1_07= 1.00
@@ -157,25 +157,25 @@ class ConstantsController < ApplicationController
     #@constants.job_natsen_diler= 1.00
     #@constants.job_procent_udor_svarki_telegki= 1.00
     #@constants.email_to_send= 1.00
-    #@constants.on_off_calc_stillage= 1
-    #@constants.on_off_calc_stillage_warehouse= 1
-    #@constants.on_off_calc_stillage_pallet= 1
-    #@constants.on_off_calc_TP01= 1
-    #@constants.on_off_calc_TP02= 1
-    #@constants.on_off_calc_TP03= 1
-    #@constants.on_off_calc_TP04= 1
-    #@constants.on_off_calc_TP05= 1
-    #@constants.on_off_calc_TP06= 1
-    #@constants.on_off_calc_TP07= 1
-    #@constants.on_off_calc_KS01= 1
-    #@constants.on_off_calc_KS02= 1
-    #@constants.on_off_calc_KS03= 1
-    #@constants.on_off_calc_KS04= 1
-    #@constants.on_off_calc_PT01= 1
-    #@constants.on_off_calc_PT02= 1
-    #@constants.on_off_calc_PT03= 1
-    #@constants.on_off_calc_PT04= 1
-    #@constant.save
+    #@constants.on_off_calc_stillage= false
+    #@constants.on_off_calc_stillage_warehouse= false
+    #@constants.on_off_calc_stillage_pallet= false
+    #@constants.on_off_calc_TP01= false
+    #@constants.on_off_calc_TP02= false
+    #@constants.on_off_calc_TP03= false
+    #@constants.on_off_calc_TP04= false
+    #@constants.on_off_calc_TP05= false
+    #@constants.on_off_calc_TP06= false
+    #@constants.on_off_calc_TP07= false
+    #@constants.on_off_calc_KS01= false
+    #@constants.on_off_calc_KS02= false
+    #@constants.on_off_calc_KS03= false
+    #@constants.on_off_calc_KS04= false
+    #@constants.on_off_calc_PT01= false
+    #@constants.on_off_calc_PT02= false
+    #@constants.on_off_calc_PT03= false
+    #@constants.on_off_calc_PT04= false
+    @constant.save
 
   end
 
