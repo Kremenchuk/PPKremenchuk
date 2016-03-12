@@ -24,11 +24,12 @@
                 - if current_user
                   = current_user.email
                   %p
-                  =link_to "Выход", destroy_user_session_path
+                    =link_to "Выход", destroy_user_session_path
                 - else
                   .about_href
                     = link_to "Войти", new_user_session_path
-                    = link_to "Регистрация", new_user_registration_path
+                    %p
+                      = link_to "Регистрация", new_user_registration_path
               %td.col3
                 %ul.dropdown
                   ПРОДУКЦИЯ
