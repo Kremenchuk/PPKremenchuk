@@ -158,7 +158,7 @@ class ConstantsController < ApplicationController
     @constants.job_procent_udor_svarki_telegki= 1.00
     @constants.email_to_send= "kremenchuk@bk.ru"
     @constants.on_off_calc_stillage= false
-    constants.on_off_calc_stillage_warehouse= false
+    @constants.on_off_calc_stillage_warehouse= false
     @constants.on_off_calc_stillage_pallet= false
     @constants.on_off_calc_TP01= false
     @constants.on_off_calc_TP02= false
