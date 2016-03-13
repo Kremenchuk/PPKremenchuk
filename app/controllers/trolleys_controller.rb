@@ -7,19 +7,16 @@ class TrolleysController < ApplicationController
   end
 
   def control_parameters
-    if @hight_var>3500 or @hight_var<500
+    if @lengthT_var>1500 or @lengthT_var<600
       redirect_to "/stillage/index"
     end
-    if @width_var>1150 or @width_var<400
+    if @width_var>1200 or @width_var<500
       redirect_to "/stillage/index"
     end
-    if @depth_var>800 or @depth_var<250
+    if @hight_ruch>1200 or @hight_ruch<600
       redirect_to "/stillage/index"
     end
-    if @num_of_shelves_var>15 or @num_of_shelves_var<2
-      redirect_to "/stillage/index"
-    end
-    if @shelf_load_var>100 or @shelf_load_var<20
+    if @shelf_load_var>400 or @shelf_load_var<50
       redirect_to "/stillage/index"
     end
   end
