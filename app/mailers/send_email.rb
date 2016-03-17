@@ -10,7 +10,7 @@ class SendEmail < ApplicationMailer
 
   def send_calculation_file
     @constant = Constant.where("id = 1").first
-    attachments['1.xlsx'] = File.read('1.xlsx')
+    attachments['2.xlsx'] = File.read('2.xlsx')
     mail(to: "#{@constant.email_to_send}", subject: "Файл с расчетами по сайту")
   end
 end
