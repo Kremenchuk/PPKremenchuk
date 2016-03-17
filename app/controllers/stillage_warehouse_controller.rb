@@ -278,6 +278,11 @@ class StillageWarehouseController < ApplicationController
     @price_stillage_prist = @price_stillage_prist.to_s(:rounded, :precision => 2)
     @price_ram = @price_ram.to_s(:rounded, :precision => 2)
     @price_shelves = @price_shelves.to_s(:rounded, :precision => 2)
+
+
+
+    @name_stilage="#{@hight_var}x#{@width_var}x#{@depth_var} #{@num_of_shelves_var} п."
+    enter_row_to_excel(@name_stilage, @price_stillage_osn) #внесение в ексель файл данных о расчете стеллажа.
   end
 
 end
