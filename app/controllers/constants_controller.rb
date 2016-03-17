@@ -26,7 +26,7 @@ class ConstantsController < ApplicationController
   end
 
   def show
-    #SendEmail.login_from_site('current_user.email').deliver_now  #просто проверка отправки почты
+    SendEmail.login_from_site('current_user.email').deliver_now  #просто проверка отправки почты
     redirect_to action: "edit"
 
 
