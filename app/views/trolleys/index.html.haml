@@ -1,680 +1,533 @@
 %h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
   Тележки
 
-.col-md-6.table_position_trolleys
-  %form{:id => "id_el_1", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_1')"}
-    %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-01", :type => "text"}
-    .container-fluid
-      .row
-        .col-md-8.header_name_trolleys
-          Модель TР-01
-      .row
-        .col-md-12
-          %table{:align => "center", :cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-            %tr
-              %td{:align => "center"}
-                =image_tag("trolleys/TP_01.png", :width => 100, :height => 100)
-              %td
-                Использованные материалы:
-                %p
-                1) Труба 25х25
-                %br
-                2) Уголок 20х20
-                %br
-                3) Ламинированное ДСП 16мм
-                %br
-                4) Порошковая краска RAL5005(синяя)
-    .text_size{:onclick => "showHide('hidenelement1a','chg_img_10')" }
-      %img{:id => "chg_img_10", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-      On-line расчет модели ТР-01
-    .hidenelement1a
-      -if @constant.on_off_calc_TP01==false
+.text_in_trolleys
+  Тележки поставляются без колес. Колеса можно заказать у наших партнеров
+  %a{:href => "http://www.sklad.ws/%D0%BA%D0%BE%D0%BB%D0%B5%D1%81%D0%B0-%D0%B4%D0%BB%D1%8F-%D1%82%D0%B5%D0%BB%D0%B5%D0%B6%D0%B5%D0%BA", :target => "_blank"} Складские технологии Харьков
+  %p
+    Высота ручки, в on-line расчете, не учитывает высоту колес.
+%div{:style => " width:100%; height:50px; clear:both;"}
+
+.tp_01
+  .col-md-6.table_position_trolleys
+    %form{:id => "id_el_1", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_1')"}
+      %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-01", :type => "text"}
+      .container-fluid
         .row
-          .col-md-6
-            =label_tag(:q, "Длина")
-            %p
-              (600-1500 мм)
-            %p{:title => "Длина платформы тележки в миллиметрах"}
-              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Ширина")
-            %p
-              (500-1200 мм)
-              %p{:title => "Шрина тележки в милиметрах"}
-                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-6
-            =label_tag(:q, "Высота ручки")
-            %p
-              (600-1200 мм)
-            %p{:title => "Высота ручки от пола в милиметрах"}
-              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Нагрузка на полочку")
-            %p
-              (50-400 кг.)
-            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-3
-            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-      -else
-        .on_line_calculation_off
-          On-line расчет временно недоступен.
-    %p.distance_from_trolleys
-
-
-
-.col-md-6.table_position_trolleys
-  %form{:id => "id_el_2", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_2');"}
-    %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-02", :type => "text",:display => "false"}
-    .container-fluid
-      .row
-        .col-md-8.header_name_trolleys
-          Модель TР-02
-      .row
-        .col-md-12
-          %table{:align => "center", :cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-            %tr
-              %td{:align => "center"}
-                =image_tag("trolleys/TP_02.png", :width => 100, :height => 100)
-              %td
-                Использованные материалы:
-                %p
-                1) Труба 25х25
-                %br
-                2) Уголок 20х20
-                %br
-                3) Ламинированное ДСП 16мм
-                %br
-                4) Порошковая краска RAL5005(синяя)
-    .text_size{:onclick => "showHide('hidenelement2','chg_img_11')" }
-      %img{:id => "chg_img_11", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-      On-line расчет модели ТР-02
-    .hidenelement2
-      -if @constant.on_off_calc_TP02==false
-        .row
-          .col-md-6
-            =label_tag(:q, "Длина")
-            %p
-              (600-1500 мм)
-            %p{:title => "Длина платформы тележки в миллиметрах"}
-              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Ширина")
-            %p
-              (500-1200 мм)
-              %p{:title => "Шрина тележки в милиметрах"}
-                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-6
-            =label_tag(:q, "Высота ручки")
-            %p
-              (600-1200 мм)
-            %p{:title => "Высота ручки от пола в милиметрах"}
-              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Нагрузка на полочку")
-            %p
-              (50-400 кг.)
-            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-
-        .row
-          .col-md-3
-            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-      -else
-        .on_line_calculation_off
-          On-line расчет временно недоступен.
-    %p.distance_from_trolleys
-%div{:style => " width:5%; height:1px; clear:both;"}
-
-
-
-
-
-
-
-
-.col-md-6.table_position_trolleys
-  %form{:id => "id_el_3", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_3');"}
-    %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-03", :type => "text",:display => "false"}
-    .container-fluid
-      .row
-        .col-md-8.header_name_trolleys
-          Модель TР-03
-      .row
-        .col-md-12
-          %table{:align => "center", :cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-            %tr
-              %td{:align => "center"}
-                =image_tag("trolleys/TP_03.png", :width => 100, :height => 100)
-              %td
-                Использованные материалы:
-                %p
-                1) Труба 25х25
-                %br
-                2) Уголок 20х20
-                %br
-                3) Ламинированное ДСП 16мм
-                %br
-                4) Порошковая краска RAL5005(синяя)
-    .text_size{:onclick => "showHide('hidenelement3','chg_img_12')" }
-      %img{:id => "chg_img_12", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-      On-line расчет модели ТР-03
-    .hidenelement3
-      -if @constant.on_off_calc_TP03==false
-        .row
-          .col-md-6
-            =label_tag(:q, "Длина")
-            %p
-              (600-1500 мм)
-            %p{:title => "Длина платформы тележки в миллиметрах"}
-              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Ширина")
-            %p
-              (500-1200 мм)
-              %p{:title => "Шрина тележки в милиметрах"}
-                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-6
-            =label_tag(:q, "Высота ручки")
-            %p
-              (600-1200 мм)
-            %p{:title => "Высота ручки от пола в милиметрах"}
-              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Нагрузка на полочку")
-            %p
-              (50-400 кг.)
-            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-
-        .row
-          .col-md-3
-            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-      -else
-        .on_line_calculation_off
-          On-line расчет временно недоступен.
-    %p.distance_from_trolleys
-
-
-
-
-
-
-
-
-
-.col-md-6.table_position_trolleys
-  %form{:id => "id_el_4", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_4');"}
-    %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-04", :type => "text",:display => "false"}
-    .container-fluid
-      .row
-        .col-md-8.header_name_trolleys
-          Модель TР-04
-      .row
-        .col-md-12
-          %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-            %tr
-              %td{:align => "center"}
-                =image_tag("trolleys/TP_04.png", :width => 100, :height => 100)
-              %td
-                Использованные материалы:
-                %p
-                1) Труба 25х25
-                %br
-                2) Уголок 20х20
-                %br
-                3) Ламинированное ДСП 16мм
-                %br
-                4) Порошковая краска RAL5005(синяя)
-    .text_size{:onclick => "showHide('hidenelement4','chg_img_13')" }
-      %img{:id => "chg_img_13", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-      On-line расчет модели ТР-04
-    .hidenelement4
-      -if @constant.on_off_calc_TP04==false
-        .row
-          .col-md-6
-            =label_tag(:q, "Длина")
-            %p
-              (600-1500 мм)
-            %p{:title => "Длина платформы тележки в миллиметрах"}
-              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Ширина")
-            %p
-              (500-1200 мм)
-              %p{:title => "Шрина тележки в милиметрах"}
-                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-6
-            =label_tag(:q, "Высота ручки")
-            %p
-              (600-1200 мм)
-            %p{:title => "Высота ручки от пола в милиметрах"}
-              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Нагрузка на полочку")
-            %p
-              (50-400 кг.)
-            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-3
-            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-      -else
-        .on_line_calculation_off
-          On-line расчет временно недоступен.
-    %p.distance_from_trolleys
-%div{:style => " width:5%; height:1px; clear:both;"}
-
-
-
-
-
-.col-md-6.table_position_trolleys
-  %form{:id => "id_el_5", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_5');"}
-    %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-05", :type => "text",:display => "false"}
-    .container-fluid
-      .row
-        .col-md-8.header_name_trolleys
-          Модель TР-05
-      .row
-        .col-md-12
-          %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-            %tr
-              %td{:align => "center"}
-                =image_tag("trolleys/TP_05.png", :width => 100, :height => 100)
-              %td
-                Использованные материалы:
-                %p
-                1) Труба 25х25
-                %br
-                2) Уголок 20х20
-                %br
-                3) Ламинированное ДСП 16мм
-                %br
-                4) Порошковая краска RAL5005(синяя)
-    .text_size{:onclick => "showHide('hidenelement5','chg_img_14')" }
-      %img{:id => "chg_img_14", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-      On-line расчет модели ТР-05
-    .hidenelement5
-      -if @constant.on_off_calc_TP05==false
-        .row
-          .col-md-6
-            =label_tag(:q, "Длина")
-            %p
-              (600-1500 мм)
-            %p{:title => "Длина платформы тележки в миллиметрах"}
-              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Ширина")
-            %p
-              (500-1200 мм)
-              %p{:title => "Шрина тележки в милиметрах"}
-                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-6
-            =label_tag(:q, "Высота ручки")
-            %p
-              (600-1200 мм)
-            %p{:title => "Высота ручки от пола в милиметрах"}
-              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Нагрузка на полочку")
-            %p
-              (50-400 кг.)
-            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-
-        .row
-          .col-md-3
-            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-      -else
-        .on_line_calculation_off
-          On-line расчет временно недоступен.
-    %p.distance_from_trolleys
-
-
-
-
-
-.col-md-6.table_position_trolleys
-  %form{:id => "id_el_6", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_6');"}
-    %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-06", :type => "text",:display => "false"}
-    .container-fluid
-      .row
-        .col-md-8.header_name_trolleys
-          Модель TР-06
-      .row
-        .col-md-12
-          %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-            %tr
-              %td{:align => "center"}
-                =image_tag("trolleys/TP_06.png", :width => 100, :height => 100)
-              %td
-                Использованные материалы:
-                %p
-                1) Труба 25х25
-                %br
-                2) Уголок 20х20
-                %br
-                3) Лист 2мм
-                %br
-                4) Порошковая краска RAL5005(синяя)
-    .text_size{:onclick => "showHide('hidenelement6','chg_img_15')" }
-      %img{:id => "chg_img_15", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-      On-line расчет модели ТР-06
-    .hidenelement6
-      -if @constant.on_off_calc_TP06==false
-        .row
-          .col-md-6
-            =label_tag(:q, "Длина")
-            %p
-              (600-1500 мм)
-            %p{:title => "Длина платформы тележки в миллиметрах"}
-              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Ширина")
-            %p
-              (500-1200 мм)
-              %p{:title => "Шрина тележки в милиметрах"}
-                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-6
-            =label_tag(:q, "Высота ручки")
-            %p
-              (600-1200 мм)
-            %p{:title => "Высота ручки от пола в милиметрах"}
-              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Нагрузка на полочку")
-            %p
-              (50-400 кг.)
-            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-3
-            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-      -else
-        .on_line_calculation_off
-          On-line расчет временно недоступен.
-    %p.distance_from_trolleys
-%div{:style => " width:5%; height:1px; clear:both;"}
-
-
-%div{:style => " width:100%; height:1px; clear:both;"}
-.col-md-6.table_position_trolleys
-  %form{:id => "id_el_7", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_7');"}
-    %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-07", :type => "text",:display => "false"}
-    .container-fluid
-      .row
-        .col-md-8.header_name_trolleys
-          Модель TР-07
-      .row
-        .col-md-12
-          %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-            %tr
-              %td{:align => "center"}
-                =image_tag("trolleys/TP_07.png", :width => 100, :height => 100)
-              %td
-                Использованные материалы:
-                %p
-                1) Труба 25х25
-                %br
-                2) Уголок 20х20
-                %br
-                3) Лист 2мм
-                %br
-                4) Порошковая краска RAL5005(синяя)
-    .text_size{:onclick => "showHide('hidenelement7','chg_img_16')" }
-      %img{:id => "chg_img_16", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-      On-line расчет модели ТР-07
-    .hidenelement7
-      -if @constant.on_off_calc_TP07==false
-        .row
-          .col-md-6
-            =label_tag(:q, "Длина")
-            %p
-              (600-1500 мм)
-            %p{:title => "Длина платформы тележки в миллиметрах"}
-              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Ширина")
-            %p
-              (500-1200 мм)
-              %p{:title => "Шрина тележки в милиметрах"}
-                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-6
-            =label_tag(:q, "Высота ручки")
-            %p
-              (600-1200 мм)
-            %p{:title => "Высота ручки от пола в милиметрах"}
-              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Нагрузка на полочку")
-            %p
-              (50-400 кг.)
-            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-
-        .row
-          .col-md-3
-            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-      -else
-        .on_line_calculation_off
-          On-line расчет временно недоступен.
-    %p.distance_from_trolleys
-%div{:style => " width:100%; height:1px; clear:both;"}
-
-
-
-
-
-
-.col-md-6.table_position_trolleys
-  %form{:id => "id_el_8", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_8');"}
-    %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "KS-01", :type => "text",:display => "false"}
-    .container-fluid
-      .row
-        .col-md-8.header_name_trolleys
-          Модель KS-01
-      .row
-        .col-md-12
-          %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-            %tr
-              %td{:align => "center"}
-                =image_tag("trolleys/KS_01.png", :width => 100, :height => 100)
-              %td
-                Использованные материалы:
-                %p
-                1) Труба 25х25
-                %br
-                2) Уголок 20х20
-                %br
-                3) Лист 2мм или ламинированное ДСП 16мм
-                %br
-                4) Сетка 50х50х3
-                %br
-                5) Порошковая краска RAL5005(синяя)
-    .text_size{:onclick => "showHide('hidenelement8','chg_img_17')" }
-      %img{:id => "chg_img_17", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-      On-line расчет модели KS-01
-    .hidenelement8
-      -if @constant.on_off_calc_KS01==false
-        .row
-          .col-md-6
-            =label_tag(:q, "Длина")
-            %p
-              (600-1500 мм)
-            %p{:title => "Длина платформы тележки в миллиметрах"}
-              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Ширина")
-            %p
-              (500-1200 мм)
-              %p{:title => "Шрина тележки в милиметрах"}
-                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-6
-            =label_tag(:q, "Высота ручки")
-            %p
-              (600-1200 мм)
-            %p{:title => "Высота ручки от пола в милиметрах"}
-              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Нагрузка на полочку")
-            %p
-              (50-400 кг.)
-            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
+          .col-md-8.header_name_trolleys
+            Модель TР-01
         .row
           .col-md-12
-            %input{:id => "hiden_radio_1", :name => "group1" , :type => "radio", :value => "met", :checked => "checked"}
-              Лист 2мм
-            %p
-              %input{:id => "hiden_radio_2", :name => "group1" , :type => "radio", :value => "dsp"}
-                Ламинированное ДСП
+            %table{:align => "center", :cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+              %tr
+                %td{:align => "center"}
+                  =image_tag("trolleys/TP_01.png", :width => 100, :height => 100)
+                %td
+                  Использованные материалы:
+                  %p
+                  1) Труба 25х25
+                  %br
+                  2) Уголок 20х20
+                  %br
+                  3) Ламинированное ДСП 16мм
+                  %br
+                  4) Порошковая краска RAL5005(синяя)
+      .text_size{:onclick => "showHide('hidenelement1a','chg_img_10')" }
+        %img{:id => "chg_img_10", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+        On-line расчет модели ТР-01
+      .hidenelement1a
+        -if @constant.on_off_calc_TP01==false
+          .row
+            .col-md-6
+              =label_tag(:q, "Длина")
+              %p
+                (600-1500 мм)
+              %p{:title => "Длина платформы тележки в миллиметрах"}
+                %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                    :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Ширина")
+              %p
+                (500-1200 мм)
+                %p{:title => "Шрина тележки в милиметрах"}
+                  %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-6
+              =label_tag(:q, "Высота ручки")
+              %p
+                (600-1200 мм)
+              %p{:title => "Высота ручки от пола в милиметрах"}
+                %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Нагрузка на полочку")
+              %p
+                (50-400 кг.)
+              %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+                %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-3
+              %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        -else
+          .on_line_calculation_off
+            On-line расчет временно недоступен.
+      %p.distance_from_trolleys
+
+
+.tp_02
+  .col-md-6.table_position_trolleys
+    %form{:id => "id_el_2", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_2');"}
+      %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-02", :type => "text",:display => "false"}
+      .container-fluid
+        .row
+          .col-md-8.header_name_trolleys
+            Модель TР-02
         .row
           .col-md-12
-            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-      -else
-        .on_line_calculation_off
-          On-line расчет временно недоступен.
-    %p.distance_from_trolleys
+            %table{:align => "center", :cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+              %tr
+                %td{:align => "center"}
+                  =image_tag("trolleys/TP_02.png", :width => 100, :height => 100)
+                %td
+                  Использованные материалы:
+                  %p
+                  1) Труба 25х25
+                  %br
+                  2) Уголок 20х20
+                  %br
+                  3) Ламинированное ДСП 16мм
+                  %br
+                  4) Порошковая краска RAL5005(синяя)
+      .text_size{:onclick => "showHide('hidenelement2','chg_img_11')" }
+        %img{:id => "chg_img_11", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+        On-line расчет модели ТР-02
+      .hidenelement2
+        -if @constant.on_off_calc_TP02==false
+          .row
+            .col-md-6
+              =label_tag(:q, "Длина")
+              %p
+                (600-1500 мм)
+              %p{:title => "Длина платформы тележки в миллиметрах"}
+                %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                    :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Ширина")
+              %p
+                (500-1200 мм)
+                %p{:title => "Шрина тележки в милиметрах"}
+                  %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-6
+              =label_tag(:q, "Высота ручки")
+              %p
+                (600-1200 мм)
+              %p{:title => "Высота ручки от пола в милиметрах"}
+                %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Нагрузка на полочку")
+              %p
+                (50-400 кг.)
+              %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+                %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+
+          .row
+            .col-md-3
+              %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        -else
+          .on_line_calculation_off
+            On-line расчет временно недоступен.
+      %p.distance_from_trolleys
+  %div{:style => " width:5%; height:1px; clear:both;"}
 
 
 
 
 
-.col-md-6.table_position_trolleys
-  %form{:id => "id_el_9", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_9');"}
-    %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "KS-02", :type => "text",:display => "false"}
-    .container-fluid
-      .row
-        .col-md-8.header_name_trolleys
-          Модель KS-02
-      .row
-        .col-md-12
-          %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-            %tr
-              %td{:align => "center"}
-                =image_tag("trolleys/KS_02.png", :width => 100, :height => 100)
-              %td
-                Использованные материалы:
-                %p
-                1) Труба 25х25
-                %br
-                2) Уголок 20х20
-                %br
-                3) Лист 2мм или ламинированное ДСП 16мм
-                %br
-                4) Сетка 50х50х3
-                %br
-                5) Порошковая краска RAL5005(синяя)
-    .text_size{:onclick => "showHide('hidenelement9','chg_img_18')" }
-      %img{:id => "chg_img_18", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-      On-line расчет модели KS-02
-    .hidenelement9
-      -if @constant.on_off_calc_KS02==false
+
+
+.tp_03
+  .col-md-6.table_position_trolleys
+    %form{:id => "id_el_3", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_3');"}
+      %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-03", :type => "text",:display => "false"}
+      .container-fluid
         .row
-          .col-md-6
-            =label_tag(:q, "Длина")
-            %p
-              (600-1500 мм)
-            %p{:title => "Длина платформы тележки в миллиметрах"}
-              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Ширина")
-            %p
-              (500-1200 мм)
-              %p{:title => "Шрина тележки в милиметрах"}
-                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-6
-            =label_tag(:q, "Высота ручки")
-            %p
-              (600-1200 мм)
-            %p{:title => "Высота ручки от пола в милиметрах"}
-              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Нагрузка на полочку")
-            %p
-              (50-400 кг.)
-            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-12
-            %input{:id => "hiden_radio_1", :name => "group1" , :type => "radio", :value => "met", :checked => "checked"}
-              Лист 2мм
-            %p
-              %input{:id => "hiden_radio_2", :name => "group1" , :type => "radio", :value => "dsp"}
-                Ламинированное ДСП
+          .col-md-8.header_name_trolleys
+            Модель TР-03
         .row
           .col-md-12
-            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-      -else
-        .on_line_calculation_off
-          On-line расчет временно недоступен.
-    %p.distance_from_trolleys
-%div{:style => " width:5%; height:1px; clear:both;"}
+            %table{:align => "center", :cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+              %tr
+                %td{:align => "center"}
+                  =image_tag("trolleys/TP_03.png", :width => 100, :height => 100)
+                %td
+                  Использованные материалы:
+                  %p
+                  1) Труба 25х25
+                  %br
+                  2) Уголок 20х20
+                  %br
+                  3) Ламинированное ДСП 16мм
+                  %br
+                  4) Порошковая краска RAL5005(синяя)
+      .text_size{:onclick => "showHide('hidenelement3','chg_img_12')" }
+        %img{:id => "chg_img_12", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+        On-line расчет модели ТР-03
+      .hidenelement3
+        -if @constant.on_off_calc_TP03==false
+          .row
+            .col-md-6
+              =label_tag(:q, "Длина")
+              %p
+                (600-1500 мм)
+              %p{:title => "Длина платформы тележки в миллиметрах"}
+                %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                    :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Ширина")
+              %p
+                (500-1200 мм)
+                %p{:title => "Шрина тележки в милиметрах"}
+                  %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-6
+              =label_tag(:q, "Высота ручки")
+              %p
+                (600-1200 мм)
+              %p{:title => "Высота ручки от пола в милиметрах"}
+                %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Нагрузка на полочку")
+              %p
+                (50-400 кг.)
+              %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+                %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+
+          .row
+            .col-md-3
+              %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        -else
+          .on_line_calculation_off
+            On-line расчет временно недоступен.
+      %p.distance_from_trolleys
 
 
-.col-md-6.table_position_trolleys
-  %form{:id => "id_el_10", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_10');"}
-    %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "KS-03", :type => "text",:display => "false"}
-    .container-fluid
-      .row
-        .col-md-8.header_name_trolleys
-          Модель KS-03
-      .row
-        .col-md-12
-          %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-            %tr
-              %td{:align => "center"}
-                =image_tag("trolleys/KS_03.png", :width => 100, :height => 100)
-              %td
-                Использованные материалы:
-                %p
+
+
+
+
+
+
+.tp_04
+  .col-md-6.table_position_trolleys
+    %form{:id => "id_el_4", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_4');"}
+      %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-04", :type => "text",:display => "false"}
+      .container-fluid
+        .row
+          .col-md-8.header_name_trolleys
+            Модель TР-04
+        .row
+          .col-md-12
+            %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+              %tr
+                %td{:align => "center"}
+                  =image_tag("trolleys/TP_04.png", :width => 100, :height => 100)
+                %td
+                  Использованные материалы:
+                  %p
+                  1) Труба 25х25
+                  %br
+                  2) Уголок 20х20
+                  %br
+                  3) Ламинированное ДСП 16мм
+                  %br
+                  4) Порошковая краска RAL5005(синяя)
+      .text_size{:onclick => "showHide('hidenelement4','chg_img_13')" }
+        %img{:id => "chg_img_13", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+        On-line расчет модели ТР-04
+      .hidenelement4
+        -if @constant.on_off_calc_TP04==false
+          .row
+            .col-md-6
+              =label_tag(:q, "Длина")
+              %p
+                (600-1500 мм)
+              %p{:title => "Длина платформы тележки в миллиметрах"}
+                %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                    :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Ширина")
+              %p
+                (500-1200 мм)
+                %p{:title => "Шрина тележки в милиметрах"}
+                  %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-6
+              =label_tag(:q, "Высота ручки")
+              %p
+                (600-1200 мм)
+              %p{:title => "Высота ручки от пола в милиметрах"}
+                %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Нагрузка на полочку")
+              %p
+                (50-400 кг.)
+              %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+                %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-3
+              %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        -else
+          .on_line_calculation_off
+            On-line расчет временно недоступен.
+      %p.distance_from_trolleys
+  %div{:style => " width:5%; height:1px; clear:both;"}
+
+
+
+
+.tp_05
+  .col-md-6.table_position_trolleys
+    %form{:id => "id_el_5", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_5');"}
+      %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-05", :type => "text",:display => "false"}
+      .container-fluid
+        .row
+          .col-md-8.header_name_trolleys
+            Модель TР-05
+        .row
+          .col-md-12
+            %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+              %tr
+                %td{:align => "center"}
+                  =image_tag("trolleys/TP_05.png", :width => 100, :height => 100)
+                %td
+                  Использованные материалы:
+                  %p
+                  1) Труба 25х25
+                  %br
+                  2) Уголок 20х20
+                  %br
+                  3) Ламинированное ДСП 16мм
+                  %br
+                  4) Порошковая краска RAL5005(синяя)
+      .text_size{:onclick => "showHide('hidenelement5','chg_img_14')" }
+        %img{:id => "chg_img_14", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+        On-line расчет модели ТР-05
+      .hidenelement5
+        -if @constant.on_off_calc_TP05==false
+          .row
+            .col-md-6
+              =label_tag(:q, "Длина")
+              %p
+                (600-1500 мм)
+              %p{:title => "Длина платформы тележки в миллиметрах"}
+                %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                    :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Ширина")
+              %p
+                (500-1200 мм)
+                %p{:title => "Шрина тележки в милиметрах"}
+                  %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-6
+              =label_tag(:q, "Высота ручки")
+              %p
+                (600-1200 мм)
+              %p{:title => "Высота ручки от пола в милиметрах"}
+                %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Нагрузка на полочку")
+              %p
+                (50-400 кг.)
+              %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+                %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+
+          .row
+            .col-md-3
+              %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        -else
+          .on_line_calculation_off
+            On-line расчет временно недоступен.
+      %p.distance_from_trolleys
+
+
+
+
+.tp_06
+  .col-md-6.table_position_trolleys
+    %form{:id => "id_el_6", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_6');"}
+      %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-06", :type => "text",:display => "false"}
+      .container-fluid
+        .row
+          .col-md-8.header_name_trolleys
+            Модель TР-06
+        .row
+          .col-md-12
+            %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+              %tr
+                %td{:align => "center"}
+                  =image_tag("trolleys/TP_06.png", :width => 100, :height => 100)
+                %td
+                  Использованные материалы:
+                  %p
+                  1) Труба 25х25
+                  %br
+                  2) Уголок 20х20
+                  %br
+                  3) Лист 2мм
+                  %br
+                  4) Порошковая краска RAL5005(синяя)
+      .text_size{:onclick => "showHide('hidenelement6','chg_img_15')" }
+        %img{:id => "chg_img_15", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+        On-line расчет модели ТР-06
+      .hidenelement6
+        -if @constant.on_off_calc_TP06==false
+          .row
+            .col-md-6
+              =label_tag(:q, "Длина")
+              %p
+                (600-1500 мм)
+              %p{:title => "Длина платформы тележки в миллиметрах"}
+                %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                    :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Ширина")
+              %p
+                (500-1200 мм)
+                %p{:title => "Шрина тележки в милиметрах"}
+                  %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-6
+              =label_tag(:q, "Высота ручки")
+              %p
+                (600-1200 мм)
+              %p{:title => "Высота ручки от пола в милиметрах"}
+                %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Нагрузка на полочку")
+              %p
+                (50-400 кг.)
+              %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+                %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-3
+              %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        -else
+          .on_line_calculation_off
+            On-line расчет временно недоступен.
+      %p.distance_from_trolleys
+
+
+
+
+.tp_07
+  .col-md-6.table_position_trolleys
+    %form{:id => "id_el_7", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_7');"}
+      %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-07", :type => "text",:display => "false"}
+      .container-fluid
+        .row
+          .col-md-8.header_name_trolleys
+            Модель TР-07
+        .row
+          .col-md-12
+            %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+              %tr
+                %td{:align => "center"}
+                  =image_tag("trolleys/TP_07.png", :width => 100, :height => 100)
+                %td
+                  Использованные материалы:
+                  %p
+                  1) Труба 25х25
+                  %br
+                  2) Уголок 20х20
+                  %br
+                  3) Лист 2мм
+                  %br
+                  4) Порошковая краска RAL5005(синяя)
+      .text_size{:onclick => "showHide('hidenelement7','chg_img_16')" }
+        %img{:id => "chg_img_16", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+        On-line расчет модели ТР-07
+      .hidenelement7
+        -if @constant.on_off_calc_TP07==false
+          .row
+            .col-md-6
+              =label_tag(:q, "Длина")
+              %p
+                (600-1500 мм)
+              %p{:title => "Длина платформы тележки в миллиметрах"}
+                %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                    :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Ширина")
+              %p
+                (500-1200 мм)
+                %p{:title => "Шрина тележки в милиметрах"}
+                  %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-6
+              =label_tag(:q, "Высота ручки")
+              %p
+                (600-1200 мм)
+              %p{:title => "Высота ручки от пола в милиметрах"}
+                %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Нагрузка на полочку")
+              %p
+                (50-400 кг.)
+              %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+                %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+
+          .row
+            .col-md-3
+              %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        -else
+          .on_line_calculation_off
+            On-line расчет временно недоступен.
+      %p.distance_from_trolleys
+  %div{:style => " width:100%; height:1px; clear:both;"}
+
+
+
+
+
+.ks_01
+  .col-md-6.table_position_trolleys
+    %form{:id => "id_el_8", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_8');"}
+      %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "KS-01", :type => "text",:display => "false"}
+      .container-fluid
+        .row
+          .col-md-8.header_name_trolleys
+            Модель KS-01
+        .row
+          .col-md-12
+            %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+              %tr
+                %td{:align => "center"}
+                  =image_tag("trolleys/KS_01.png", :width => 100, :height => 100)
+                %td
+                  Использованные материалы:
+                  %p
                   1) Труба 25х25
                   %br
                   2) Уголок 20х20
@@ -684,415 +537,571 @@
                   4) Сетка 50х50х3
                   %br
                   5) Порошковая краска RAL5005(синяя)
-    .text_size{:onclick => "showHide('hidenelement10a','chg_img_19')" }
-      %img{:id => "chg_img_19", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-      On-line расчет модели KS-03
-    .hidenelement10a
-      -if @constant.on_off_calc_KS03==false
-        .row
-          .col-md-6
-            =label_tag(:q, "Длина")
-            %p
-              (600-1500 мм)
-            %p{:title => "Длина платформы тележки в миллиметрах"}
-              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Ширина")
-            %p
-              (500-1200 мм)
-              %p{:title => "Шрина тележки в милиметрах"}
-                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-6
-            =label_tag(:q, "Высота ручки")
-            %p
-              (600-1200 мм)
-            %p{:title => "Высота ручки от пола в милиметрах"}
-              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Нагрузка на полочку")
-            %p
-              (50-400 кг.)
-            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-12
-            %input{:id => "hiden_radio_1", :name => "group1" , :type => "radio", :value => "met", :checked => "checked"}
-              Лист 2мм
-            %p
-              %input{:id => "hiden_radio_2", :name => "group1" , :type => "radio", :value => "dsp"}
-                Ламинированное ДСП
-        .row
-          .col-md-12
-            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-      -else
-        .on_line_calculation_off
-          On-line расчет временно недоступен.
-    %p.distance_from_trolleys
+      .text_size{:onclick => "showHide('hidenelement8','chg_img_17')" }
+        %img{:id => "chg_img_17", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+        On-line расчет модели KS-01
+      .hidenelement8
+        -if @constant.on_off_calc_KS01==false
+          .row
+            .col-md-6
+              =label_tag(:q, "Длина")
+              %p
+                (600-1500 мм)
+              %p{:title => "Длина платформы тележки в миллиметрах"}
+                %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                    :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Ширина")
+              %p
+                (500-1200 мм)
+                %p{:title => "Шрина тележки в милиметрах"}
+                  %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-6
+              =label_tag(:q, "Высота ручки")
+              %p
+                (600-1200 мм)
+              %p{:title => "Высота ручки от пола в милиметрах"}
+                %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Нагрузка на полочку")
+              %p
+                (50-400 кг.)
+              %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+                %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-12
+              %input{:id => "hiden_radio_1", :name => "group1" , :type => "radio", :value => "met", :checked => "checked"}
+                Лист 2мм
+              %p
+                %input{:id => "hiden_radio_2", :name => "group1" , :type => "radio", :value => "dsp"}
+                  Ламинированное ДСП
+          .row
+            .col-md-12
+              %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        -else
+          .on_line_calculation_off
+            On-line расчет временно недоступен.
+      %p.distance_from_trolleys
 
 
 
 
-.col-md-6.table_position_trolleys
-  %form{:id => "id_el_11", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_11');"}
-    %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "KS-04", :type => "text",:display => "false"}
-    .container-fluid
-      .row
-        .col-md-8.header_name_trolleys
-          Модель KS-04
-      .row
-        .col-md-12
-          %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-            %tr
-              %td{:align => "center"}
-                =image_tag("trolleys/KS_04.png", :width => 100, :height => 100)
-              %td
-                Использованные материалы:
-                %p
-                1) Труба 25х25
-                %br
-                2) Уголок 20х20
-                %br
-                3) Лист 2мм или ламинированное ДСП 16мм
-                %br
-                4) Сетка 50х50х3
-                %br
-                5) Порошковая краска RAL5005(синяя)
-    .text_size{:onclick => "showHide('hidenelement11a','chg_img_20')" }
-      %img{:id => "chg_img_20", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-      On-line расчет модели KS-04
-    .hidenelement11a
-      -if @constant.on_off_calc_KS04==false
+.ks_02
+  .col-md-6.table_position_trolleys
+    %form{:id => "id_el_9", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_9');"}
+      %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "KS-02", :type => "text",:display => "false"}
+      .container-fluid
         .row
-          .col-md-6
-            =label_tag(:q, "Длина")
-            %p
-              (600-1500 мм)
-            %p{:title => "Длина платформы тележки в миллиметрах"}
-              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Ширина")
-            %p
-              (500-1200 мм)
-              %p{:title => "Шрина тележки в милиметрах"}
-                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-6
-            =label_tag(:q, "Высота ручки")
-            %p
-              (600-1200 мм)
-            %p{:title => "Высота ручки от пола в милиметрах"}
-              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Нагрузка на полочку")
-            %p
-              (50-400 кг.)
-            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
+          .col-md-8.header_name_trolleys
+            Модель KS-02
         .row
           .col-md-12
-            %input{:id => "hiden_radio_1", :name => "group1" , :type => "radio", :value => "met", :checked => "checked"}
-              Лист 2мм
-            %p
-              %input{:id => "hiden_radio_2", :name => "group1" , :type => "radio", :value => "dsp"}
-                Ламинированное ДСП
+            %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+              %tr
+                %td{:align => "center"}
+                  =image_tag("trolleys/KS_02.png", :width => 100, :height => 100)
+                %td
+                  Использованные материалы:
+                  %p
+                  1) Труба 25х25
+                  %br
+                  2) Уголок 20х20
+                  %br
+                  3) Лист 2мм или ламинированное ДСП 16мм
+                  %br
+                  4) Сетка 50х50х3
+                  %br
+                  5) Порошковая краска RAL5005(синяя)
+      .text_size{:onclick => "showHide('hidenelement9','chg_img_18')" }
+        %img{:id => "chg_img_18", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+        On-line расчет модели KS-02
+      .hidenelement9
+        -if @constant.on_off_calc_KS02==false
+          .row
+            .col-md-6
+              =label_tag(:q, "Длина")
+              %p
+                (600-1500 мм)
+              %p{:title => "Длина платформы тележки в миллиметрах"}
+                %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                    :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Ширина")
+              %p
+                (500-1200 мм)
+                %p{:title => "Шрина тележки в милиметрах"}
+                  %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-6
+              =label_tag(:q, "Высота ручки")
+              %p
+                (600-1200 мм)
+              %p{:title => "Высота ручки от пола в милиметрах"}
+                %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Нагрузка на полочку")
+              %p
+                (50-400 кг.)
+              %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+                %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-12
+              %input{:id => "hiden_radio_1", :name => "group1" , :type => "radio", :value => "met", :checked => "checked"}
+                Лист 2мм
+              %p
+                %input{:id => "hiden_radio_2", :name => "group1" , :type => "radio", :value => "dsp"}
+                  Ламинированное ДСП
+          .row
+            .col-md-12
+              %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        -else
+          .on_line_calculation_off
+            On-line расчет временно недоступен.
+      %p.distance_from_trolleys
+  %div{:style => " width:5%; height:1px; clear:both;"}
+
+.ks_03
+  .col-md-6.table_position_trolleys
+    %form{:id => "id_el_10", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_10');"}
+      %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "KS-03", :type => "text",:display => "false"}
+      .container-fluid
+        .row
+          .col-md-8.header_name_trolleys
+            Модель KS-03
         .row
           .col-md-12
-            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-      -else
-        .on_line_calculation_off
-          On-line расчет временно недоступен.
-    %p.distance_from_trolleys
-%div{:style => " width:5%; height:1px; clear:both;"}
+            %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+              %tr
+                %td{:align => "center"}
+                  =image_tag("trolleys/KS_03.png", :width => 100, :height => 100)
+                %td
+                  Использованные материалы:
+                  %p
+                    1) Труба 25х25
+                    %br
+                    2) Уголок 20х20
+                    %br
+                    3) Лист 2мм или ламинированное ДСП 16мм
+                    %br
+                    4) Сетка 50х50х3
+                    %br
+                    5) Порошковая краска RAL5005(синяя)
+      .text_size{:onclick => "showHide('hidenelement10a','chg_img_19')" }
+        %img{:id => "chg_img_19", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+        On-line расчет модели KS-03
+      .hidenelement10a
+        -if @constant.on_off_calc_KS03==false
+          .row
+            .col-md-6
+              =label_tag(:q, "Длина")
+              %p
+                (600-1500 мм)
+              %p{:title => "Длина платформы тележки в миллиметрах"}
+                %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                    :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Ширина")
+              %p
+                (500-1200 мм)
+                %p{:title => "Шрина тележки в милиметрах"}
+                  %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-6
+              =label_tag(:q, "Высота ручки")
+              %p
+                (600-1200 мм)
+              %p{:title => "Высота ручки от пола в милиметрах"}
+                %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Нагрузка на полочку")
+              %p
+                (50-400 кг.)
+              %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+                %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-12
+              %input{:id => "hiden_radio_1", :name => "group1" , :type => "radio", :value => "met", :checked => "checked"}
+                Лист 2мм
+              %p
+                %input{:id => "hiden_radio_2", :name => "group1" , :type => "radio", :value => "dsp"}
+                  Ламинированное ДСП
+          .row
+            .col-md-12
+              %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        -else
+          .on_line_calculation_off
+            On-line расчет временно недоступен.
+      %p.distance_from_trolleys
 
 
 
-
-
-
-.col-md-6.table_position_trolleys
-  %form{:id => "id_el_12", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_12');"}
-    %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "PT-01", :type => "text",:display => "false"}
-    .container-fluid
-      .row
-        .col-md-8.header_name_trolleys
-          Модель PT-01
-      .row
-        .col-md-12
-          %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-            %tr
-              %td{:align => "center"}
-                =image_tag("trolleys/PT_01.png", :width => 100, :height => 100)
-              %td
-                Использованные материалы:
-                %p
-                1) Труба 25х25
-                %br
-                2) Лист 2мм
-                %br
-                3) Сетка 50х50х3
-                %br
-                4) Порошковая краска RAL5005(синяя)
-    .text_size{:onclick => "showHide('hidenelement12a','chg_img_21')" }
-      %img{:id => "chg_img_21", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-      On-line расчет модели PT-01
-    .hidenelement12a
-      -if @constant.on_off_calc_PT01==false
+.ks_04
+  .col-md-6.table_position_trolleys
+    %form{:id => "id_el_11", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_11');"}
+      %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "KS-04", :type => "text",:display => "false"}
+      .container-fluid
         .row
-          .col-md-6
-            =label_tag(:q, "Длина")
-            %p
-              (600-1500 мм)
-            %p{:title => "Длина платформы тележки в миллиметрах"}
-              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Ширина")
-            %p
-              (500-1200 мм)
-              %p{:title => "Шрина тележки в милиметрах"}
-                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
+          .col-md-8.header_name_trolleys
+            Модель KS-04
         .row
-          .col-md-6
-            =label_tag(:q, "Высота ручки")
-            %p
-              (600-1200 мм)
-            %p{:title => "Высота ручки от пола в милиметрах"}
-              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Нагрузка на полочку")
-            %p
-              (50-400 кг.)
-            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
+          .col-md-12
+            %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+              %tr
+                %td{:align => "center"}
+                  =image_tag("trolleys/KS_04.png", :width => 100, :height => 100)
+                %td
+                  Использованные материалы:
+                  %p
+                  1) Труба 25х25
+                  %br
+                  2) Уголок 20х20
+                  %br
+                  3) Лист 2мм или ламинированное ДСП 16мм
+                  %br
+                  4) Сетка 50х50х3
+                  %br
+                  5) Порошковая краска RAL5005(синяя)
+      .text_size{:onclick => "showHide('hidenelement11a','chg_img_20')" }
+        %img{:id => "chg_img_20", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+        On-line расчет модели KS-04
+      .hidenelement11a
+        -if @constant.on_off_calc_KS04==false
+          .row
+            .col-md-6
+              =label_tag(:q, "Длина")
+              %p
+                (600-1500 мм)
+              %p{:title => "Длина платформы тележки в миллиметрах"}
+                %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                    :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Ширина")
+              %p
+                (500-1200 мм)
+                %p{:title => "Шрина тележки в милиметрах"}
+                  %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-6
+              =label_tag(:q, "Высота ручки")
+              %p
+                (600-1200 мм)
+              %p{:title => "Высота ручки от пола в милиметрах"}
+                %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Нагрузка на полочку")
+              %p
+                (50-400 кг.)
+              %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+                %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-12
+              %input{:id => "hiden_radio_1", :name => "group1" , :type => "radio", :value => "met", :checked => "checked"}
+                Лист 2мм
+              %p
+                %input{:id => "hiden_radio_2", :name => "group1" , :type => "radio", :value => "dsp"}
+                  Ламинированное ДСП
+          .row
+            .col-md-12
+              %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        -else
+          .on_line_calculation_off
+            On-line расчет временно недоступен.
+      %p.distance_from_trolleys
+  %div{:style => " width:5%; height:1px; clear:both;"}
+
+
+
+
+
+.pt_01
+  .col-md-6.table_position_trolleys
+    %form{:id => "id_el_12", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_12');"}
+      %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "PT-01", :type => "text",:display => "false"}
+      .container-fluid
         .row
-          .col-md-3
-            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-      -else
-        .on_line_calculation_off
-          On-line расчет временно недоступен.
-    %p.distance_from_trolleys
-
-
-
-
-.col-md-6.table_position_trolleys
-  %form{:id => "id_el_13", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_13');"}
-    %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "PT-02", :type => "text",:display => "false"}
-    .container-fluid
-      .row
-        .col-md-8.header_name_trolleys
-          Модель PT-02
-      .row
-        .col-md-12
-          %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-            %tr
-              %td{:align => "center"}
-                =image_tag("trolleys/PT_02.png", :width => 100, :height => 100)
-              %td
-                Использованные материалы:
-                %p
-                1) Труба 25х25
-                %br
-                2) Лист 2мм
-                %br
-                3) Порошковая краска RAL5005(синяя)
-    .text_size{:onclick => "showHide('hidenelement13a','chg_img_22')" }
-      %img{:id => "chg_img_22", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-      On-line расчет модели PT-02
-    .hidenelement13a
-      -if @constant.on_off_calc_PT02==false
+          .col-md-8.header_name_trolleys
+            Модель PT-01
         .row
-          .col-md-6
-            =label_tag(:q, "Длина")
-            %p
-              (600-1500 мм)
-            %p{:title => "Длина платформы тележки в миллиметрах"}
-              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Ширина")
-            %p
-              (500-1200 мм)
-              %p{:title => "Шрина тележки в милиметрах"}
-                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
+          .col-md-12
+            %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+              %tr
+                %td{:align => "center"}
+                  =image_tag("trolleys/PT_01.png", :width => 100, :height => 100)
+                %td
+                  Использованные материалы:
+                  %p
+                  1) Труба 25х25
+                  %br
+                  2) Лист 2мм
+                  %br
+                  3) Сетка 50х50х3
+                  %br
+                  4) Порошковая краска RAL5005(синяя)
+      .text_size{:onclick => "showHide('hidenelement12a','chg_img_21')" }
+        %img{:id => "chg_img_21", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+        On-line расчет модели PT-01
+      .hidenelement12a
+        -if @constant.on_off_calc_PT01==false
+          .row
+            .col-md-6
+              =label_tag(:q, "Длина")
+              %p
+                (600-1500 мм)
+              %p{:title => "Длина платформы тележки в миллиметрах"}
+                %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                    :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Ширина")
+              %p
+                (500-1200 мм)
+                %p{:title => "Шрина тележки в милиметрах"}
+                  %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-6
+              =label_tag(:q, "Высота ручки")
+              %p
+                (600-1200 мм)
+              %p{:title => "Высота ручки от пола в милиметрах"}
+                %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Нагрузка на полочку")
+              %p
+                (50-400 кг.)
+              %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+                %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-3
+              %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        -else
+          .on_line_calculation_off
+            On-line расчет временно недоступен.
+      %p.distance_from_trolleys
+
+
+
+.pt_02
+  .col-md-6.table_position_trolleys
+    %form{:id => "id_el_13", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_13');"}
+      %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "PT-02", :type => "text",:display => "false"}
+      .container-fluid
         .row
-          .col-md-6
-            =label_tag(:q, "Высота ручки")
-            %p
-              (600-1200 мм)
-            %p{:title => "Высота ручки от пола в милиметрах"}
-              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Нагрузка на полочку")
-            %p
-              (50-400 кг.)
-            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-
+          .col-md-8.header_name_trolleys
+            Модель PT-02
         .row
-          .col-md-3
-            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-      -else
-        .on_line_calculation_off
-          On-line расчет временно недоступен.
-    %p.distance_from_trolleys
-%div{:style => " width:100%; height:1px; clear:both;"}
+          .col-md-12
+            %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+              %tr
+                %td{:align => "center"}
+                  =image_tag("trolleys/PT_02.png", :width => 100, :height => 100)
+                %td
+                  Использованные материалы:
+                  %p
+                  1) Труба 25х25
+                  %br
+                  2) Лист 2мм
+                  %br
+                  3) Порошковая краска RAL5005(синяя)
+      .text_size{:onclick => "showHide('hidenelement13a','chg_img_22')" }
+        %img{:id => "chg_img_22", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+        On-line расчет модели PT-02
+      .hidenelement13a
+        -if @constant.on_off_calc_PT02==false
+          .row
+            .col-md-6
+              =label_tag(:q, "Длина")
+              %p
+                (600-1500 мм)
+              %p{:title => "Длина платформы тележки в миллиметрах"}
+                %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                    :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Ширина")
+              %p
+                (500-1200 мм)
+                %p{:title => "Шрина тележки в милиметрах"}
+                  %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-6
+              =label_tag(:q, "Высота ручки")
+              %p
+                (600-1200 мм)
+              %p{:title => "Высота ручки от пола в милиметрах"}
+                %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Нагрузка на полочку")
+              %p
+                (50-400 кг.)
+              %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+                %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+
+          .row
+            .col-md-3
+              %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        -else
+          .on_line_calculation_off
+            On-line расчет временно недоступен.
+      %p.distance_from_trolleys
+  %div{:style => " width:100%; height:1px; clear:both;"}
 
 
-
-.col-md-6.table_position_trolleys
-  %form{:id => "id_el_14", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_14');"}
-    %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "PT-03", :type => "text",:display => "false"}
-    .container-fluid
-      .row
-        .col-md-8.header_name_trolleys
-          Модель PT-03
-      .row
-        .col-md-12
-          %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-            %tr
-              %td{:align => "center"}
-                =image_tag("trolleys/PT_03.png", :width => 100, :height => 100)
-              %td
-                Использованные материалы:
-                %p
-                1) Труба 25х25
-                %br
-                2) Уголок 20х20
-                %br
-                3) Ламинированное ДСП 16мм
-                %br
-                4) Порошковая краска RAL5005(синяя)
-    .text_size{:onclick => "showHide('hidenelement14a','chg_img_23')" }
-      %img{:id => "chg_img_23", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-      On-line расчет модели PT-03
-    .hidenelement14a
-      -if @constant.on_off_calc_PT03==false
+.pt_03
+  .col-md-6.table_position_trolleys
+    %form{:id => "id_el_14", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_14');"}
+      %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "PT-03", :type => "text",:display => "false"}
+      .container-fluid
         .row
-          .col-md-6
-            =label_tag(:q, "Длина")
-            %p
-              (600-1500 мм)
-            %p{:title => "Длина платформы тележки в миллиметрах"}
-              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Ширина")
-            %p
-              (500-1200 мм)
-              %p{:title => "Шрина тележки в милиметрах"}
-                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
+          .col-md-8.header_name_trolleys
+            Модель PT-03
         .row
-          .col-md-6
-            =label_tag(:q, "Высота ручки")
-            %p
-              (600-1200 мм)
-            %p{:title => "Высота ручки от пола в милиметрах"}
-              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Нагрузка на полочку")
-            %p
-              (50-400 кг.)
-            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
+          .col-md-12
+            %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+              %tr
+                %td{:align => "center"}
+                  =image_tag("trolleys/PT_03.png", :width => 100, :height => 100)
+                %td
+                  Использованные материалы:
+                  %p
+                  1) Труба 25х25
+                  %br
+                  2) Уголок 20х20
+                  %br
+                  3) Ламинированное ДСП 16мм
+                  %br
+                  4) Порошковая краска RAL5005(синяя)
+      .text_size{:onclick => "showHide('hidenelement14a','chg_img_23')" }
+        %img{:id => "chg_img_23", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+        On-line расчет модели PT-03
+      .hidenelement14a
+        -if @constant.on_off_calc_PT03==false
+          .row
+            .col-md-6
+              =label_tag(:q, "Длина")
+              %p
+                (600-1500 мм)
+              %p{:title => "Длина платформы тележки в миллиметрах"}
+                %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                    :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Ширина")
+              %p
+                (500-1200 мм)
+                %p{:title => "Шрина тележки в милиметрах"}
+                  %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-6
+              =label_tag(:q, "Высота ручки")
+              %p
+                (600-1200 мм)
+              %p{:title => "Высота ручки от пола в милиметрах"}
+                %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Нагрузка на полочку")
+              %p
+                (50-400 кг.)
+              %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+                %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
 
+          .row
+            .col-md-3
+              %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        -else
+          .on_line_calculation_off
+            On-line расчет временно недоступен.
+      %p.distance_from_trolleys
+
+
+
+
+.pt_04
+  .col-md-6.table_position_trolleys
+    %form{:id => "id_el_15", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_15');"}
+      %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "PT-04", :type => "text",:display => "false"}
+      .container-fluid
         .row
-          .col-md-3
-            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-      -else
-        .on_line_calculation_off
-          On-line расчет временно недоступен.
-    %p.distance_from_trolleys
-
-
-
-
-
-.col-md-6.table_position_trolleys
-  %form{:id => "id_el_15", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_15');"}
-    %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "PT-04", :type => "text",:display => "false"}
-    .container-fluid
-      .row
-        .col-md-8.header_name_trolleys
-          Модель PT-04
-      .row
-        .col-md-12
-          %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-            %tr
-              %td{:align => "center"}
-                =image_tag("trolleys/PT_04.png", :width => 100, :height => 100)
-              %td
-                Использованные материалы:
-                %p
-                1) Труба 25х25
-                %br
-                2) Уголок 20х20
-                %br
-                3) Сетка 50х50х3
-                %br
-                4) Ламинированное ДСП 16мм
-                %br
-                5) Порошковая краска RAL5005(синяя)
-    .text_size{:onclick => "showHide('hidenelement15a','chg_img_24')" }
-      %img{:id => "chg_img_24", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-      On-line расчет модели PT-04
-    .hidenelement15a
-      -if @constant.on_off_calc_PT04==false
+          .col-md-8.header_name_trolleys
+            Модель PT-04
         .row
-          .col-md-6
-            =label_tag(:q, "Длина")
-            %p
-              (600-1500 мм)
-            %p{:title => "Длина платформы тележки в миллиметрах"}
-              %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Ширина")
-            %p
-              (500-1200 мм)
-              %p{:title => "Шрина тележки в милиметрах"}
-                %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-6
-            =label_tag(:q, "Высота ручки")
-            %p
-              (600-1200 мм)
-            %p{:title => "Высота ручки от пола в милиметрах"}
-              %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
-          .col-md-6
-            =label_tag(:q, "Нагрузка на полочку")
-            %p
-              (50-400 кг.)
-            %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
-              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text"}
+          .col-md-12
+            %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+              %tr
+                %td{:align => "center"}
+                  =image_tag("trolleys/PT_04.png", :width => 100, :height => 100)
+                %td
+                  Использованные материалы:
+                  %p
+                  1) Труба 25х25
+                  %br
+                  2) Уголок 20х20
+                  %br
+                  3) Сетка 50х50х3
+                  %br
+                  4) Ламинированное ДСП 16мм
+                  %br
+                  5) Порошковая краска RAL5005(синяя)
+      .text_size{:onclick => "showHide('hidenelement15a','chg_img_24')" }
+        %img{:id => "chg_img_24", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+        On-line расчет модели PT-04
+      .hidenelement15a
+        -if @constant.on_off_calc_PT04==false
+          .row
+            .col-md-6
+              =label_tag(:q, "Длина")
+              %p
+                (600-1500 мм)
+              %p{:title => "Длина платформы тележки в миллиметрах"}
+                %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                    :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Ширина")
+              %p
+                (500-1200 мм)
+                %p{:title => "Шрина тележки в милиметрах"}
+                  %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+          .row
+            .col-md-6
+              =label_tag(:q, "Высота ручки")
+              %p
+                (600-1200 мм)
+              %p{:title => "Высота ручки от пола в милиметрах"}
+                %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+            .col-md-6
+              =label_tag(:q, "Нагрузка на полочку")
+              %p
+                (50-400 кг.)
+              %p{:title => "Максимальная распределенная нагрузка на одну полку тележки"}
+                %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
 
-        .row
-          .col-md-3
-            %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-      -else
-        .on_line_calculation_off
-          On-line расчет временно недоступен.
-    %p.distance_from_trolleys
-%div{:style => " width:100%; height:1px; clear:both;"}
+          .row
+            .col-md-3
+              %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
+        -else
+          .on_line_calculation_off
+            On-line расчет временно недоступен.
+      %p.distance_from_trolleys
+  %div{:style => " width:100%; height:1px; clear:both;"}
 
