@@ -93,13 +93,13 @@ module Include_Module
     workbook = RubyXL::Parser.parse("1.xlsx")
     worksheet = workbook[0]
     worksheet.insert_row(1)
-    if current_user.login == nil
+    if current_user == nil
       loginvar = "Без логина"
     else
       loginvar = current_user.login
     end
 
-    if current_user.email == nil
+    if current_user == nil
       emailvar = "Без логина"
     else
       emailvar = current_user.email

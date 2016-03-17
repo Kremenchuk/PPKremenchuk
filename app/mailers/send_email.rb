@@ -1,5 +1,6 @@
 class SendEmail < ApplicationMailer
   default from: 'kremartem@gmail.com'#, template_path: 'mailers/items'
+  #default from: 'kremenchuka@ukr.net'
 
   def login_from_site(user_login)
     @constant = Constant.where("id = 1").first

@@ -26,7 +26,7 @@ class ConstantsController < ApplicationController
   end
 
   def show
-    redirect_to action: "edit"
+   redirect_to action: "edit"
 
 
 
@@ -156,7 +156,7 @@ class ConstantsController < ApplicationController
     #@constants.wei_setka_50_50_3= 1.00
     #@constants.job_natsen_diler= 1.00
     #@constants.job_procent_udor_svarki_telegki= 1.00
-    #@constants.email_to_send= "kremenchuk@bk.ru"
+    #@constants.email_to_send= "kremenchuk#@bk.ru"
     #@constants.on_off_calc_stillage= false
     #@constants.on_off_calc_stillage_warehouse= false
     #@constants.on_off_calc_stillage_pallet= false
