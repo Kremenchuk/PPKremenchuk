@@ -181,6 +181,10 @@ class StillageWarehouseController < ApplicationController
         @price_polki = @price_polki + @constant.job_rez_dsp_1mp * ((a_polki + b_polki)/1000.0)
         @wei_polki = (@constant.wei_dsp_shlif * (a_polki/1000.0)*(b_polki/1000.0))/6.125
         @kol_polok = 1
+
+        #Добавлено для исключения расчета полочки ДСП (только каркас)
+        @price_polki = 0.1
+        @wei_polki = 0.1
       end
 
 
