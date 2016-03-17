@@ -69,7 +69,7 @@ class StillageController < ApplicationController
 
     @usil=0
 
-    if @depth_var > 600
+    if @depth_var >= 600
       @usil = 1
     end
 
