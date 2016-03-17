@@ -90,7 +90,7 @@ module Include_Module
   def write_row_to_excel(stillage,price)
     t=Time.now
 
-    workbook = RubyXL::Parser.parse("1.xlsx")
+    workbook = RubyXL::Parser.parse("2.xlsx")
     worksheet = workbook[0]
     worksheet.insert_row(1)
     if current_user.login == nil
