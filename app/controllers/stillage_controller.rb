@@ -72,11 +72,12 @@ class StillageController < ApplicationController
     if @depth_var >= 600
       @usil = 1
     end
-
-    if @shelf_load_var > 60
-      if @depth_var >= 500
+    if @shelf_load_var > 70
+      if @depth_var >= 459
         @usil = 1
       end
+    end
+    if @shelf_load_var > 60
       if @depth_var >= 600
         @usil = 2
       end
