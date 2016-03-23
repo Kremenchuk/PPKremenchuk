@@ -4,7 +4,7 @@
   .row.style_p
     .col-md-10
       %p
-        ="#{@hight_var}x#{@width_var}x#{@depth_var} #{@num_of_shelves_var} п."
+        ="#{@name_stillage}"
       %p
         ="Максимальная нагрузка на уровень #{@shelf_load_var} кг."
       %p
@@ -25,11 +25,11 @@
           %th.header_table
             Основная секция
             %p
-              ="2 рамы, #{@num_of_shelves_var} уровней"
+              ="2 рамы, #{@num_of_shelves_var} #{@text_var}"
           %th.header_table
             Приставная секция
             %p
-              ="1 рама, #{@num_of_shelves_var} уровней"
+              ="1 рама, #{@num_of_shelves_var} #{@text_var}"
           %tr{:align => "center"}
             %td
               ="#{@price_ram}"

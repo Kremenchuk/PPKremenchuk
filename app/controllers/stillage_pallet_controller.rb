@@ -163,6 +163,18 @@ class StillagePalletController < ApplicationController
     @price_stillage_osn = @price_stillage_osn.to_s(:rounded, :precision => 2)
     @price_stillage_prist = @price_stillage_prist.to_s(:rounded, :precision => 2)
 
+
+    @text_var = "уровень"
+
+    if @num_of_shelves_var>1
+      @text_var = "уровня"
+    end
+    if @num_of_shelves_var>4
+      @text_var = "уровней"
+    end
+    @name_stillage="#{@hight_var}x#{@width_var} траверса: #{@width_var}x#{@hight_traversi}x#{@depth_traversi}x1.5 уровней: #{@num_of_shelves_var} п. "
+    enter_row_to_excel(@name_stillage, @price_stillage_osn) #внесение в ексель файл данных о расчете стеллажа.
+
   end
 
 

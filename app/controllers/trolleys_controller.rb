@@ -86,6 +86,9 @@ class TrolleysController < ApplicationController
         @price_trol = pricePT(2.0,0.0,"dsp", svarka, 1).to_s(:rounded, :precision => 2)
     end
 
+
+    @name_stillage="Тип: #{@vid} #{@lengthT_var}x#{@width_var} высота ручки: #{@hight_ruch}"
+    enter_row_to_excel(@name_stillage, @price_trol) #внесение в ексель файл данных о расчете стеллажа.
   end
 
   #Расчет телег типа ТР

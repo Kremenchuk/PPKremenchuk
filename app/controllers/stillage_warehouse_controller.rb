@@ -217,7 +217,7 @@ class StillageWarehouseController < ApplicationController
     plosh_usil_styag = (0.1 * (@dlin_usil_styag/1000.0)).to_s(:rounded, :precision => 5).to_f
     plosh_usil_g = (0.1 * (@dlin_usil_g/1000.0)).to_s(:rounded, :precision => 5).to_f
 
-
+    type_stillage = "Металлическая полка"
     #Вычисляем стоимость усилителей
     @price_usil_styag = 0
     @price_usil_g     = 0
@@ -226,6 +226,7 @@ class StillageWarehouseController < ApplicationController
                         plosh_usil_styag * @constant.job_okr_usil_sklad
       @price_usil_g = ((@dlin_usil_g/1000.0) * @constant.mat_truba_25_25_12) + @constant.job_usil_g +
           plosh_usil_g * @constant.job_okr_usil_sklad
+      type_stillage = "Каркас под ДСП"
     end
 
 
@@ -233,6 +234,7 @@ class StillageWarehouseController < ApplicationController
       @plosh_polki = 0
       if @pol_met_or_dsp == "metall"
         if @okr_or_oc_pol == "okrash"
+          type_stillage = "Окрашенная металлическая полка"
           @plosh_polki = ((a_polki * b_polki * 2)/1000000.0).to_s(:rounded, :precision => 5).to_f
           @price_polki = @price_polki + @plosh_polki * @constant.job_ork_polki_sklad
         end
@@ -279,10 +281,17 @@ class StillageWarehouseController < ApplicationController
     @price_ram = @price_ram.to_s(:rounded, :precision => 2)
     @price_shelves = @price_shelves.to_s(:rounded, :precision => 2)
 
+    @text_var = "уровень"
 
+    if @num_of_shelves_var>1
+      @text_var = "уровня"
+    end
+    if @num_of_shelves_var>4
+      @text_var = "уровней"
+    end
 
-    @name_stilage="#{@hight_var}x#{@width_var}x#{@depth_var} #{@num_of_shelves_var} п."
-    enter_row_to_excel(@name_stilage, @price_stillage_osn) #внесение в ексель файл данных о расчете стеллажа.
+    @name_stillage="#{@hight_var}x#{@width_var}x#{@depth_var} #{@num_of_shelves_var} п. " + type_stillage
+    enter_row_to_excel(@name_stillage, @price_stillage_osn) #внесение в ексель файл данных о расчете стеллажа.
   end
 
 end
