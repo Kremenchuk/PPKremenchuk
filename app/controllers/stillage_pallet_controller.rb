@@ -78,7 +78,7 @@ class StillagePalletController < ApplicationController
 
 
     #Стоимость и вес стойки
-      @price_stoyka = (@hight_var/1000.0) * @constant.mat_stoyki_pallet + @constant.job_stoyki_pallet
+      @price_stoyka = (leng_stoyki(@hight_var, @constant.rack_multiplicity)/1000.0) * @constant.mat_stoyki_pallet + @constant.job_stoyki_pallet
       wei_stoyki = @constant.wei_stoyki_pallet * (@hight_var/1000.0)
 
     #стоимость траверсы
@@ -147,6 +147,8 @@ class StillagePalletController < ApplicationController
       @wei_traversi = @wei_traversi.to_s(:rounded, :precision => 2)
       @wei_ram = @wei_ram.to_s(:rounded, :precision => 2)
 
+    @price_traversa *=  (@constant.otxod_pl/100 +1)
+    @price_ram *=  (@constant.otxod_pl/100 +1)
 
     @price_ram += @price_ram * @constant.job_kostven_pallet
     @price_traversa += @price_traversa * @constant.job_kostven_pallet

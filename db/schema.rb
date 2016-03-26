@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221170258) do
+ActiveRecord::Schema.define(version: 20160326103702) do
 
   create_table "constants", force: :cascade do |t|
     t.float    "mat_list_2_1_055",                default: 0.0
@@ -156,6 +156,11 @@ ActiveRecord::Schema.define(version: 20160221170258) do
     t.boolean  "on_off_calc_PT02"
     t.boolean  "on_off_calc_PT03"
     t.boolean  "on_off_calc_PT04"
+    t.integer  "rack_multiplicity",               default: 1
+    t.float    "otxod_pk",                        default: 1.0
+    t.float    "otxod_sk",                        default: 1.0
+    t.float    "otxod_pl",                        default: 1.0
+    t.float    "otxod_trol",                      default: 1.0
   end
 
   create_table "users", force: :cascade do |t|

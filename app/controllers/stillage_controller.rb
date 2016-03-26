@@ -37,22 +37,23 @@ class StillageController < ApplicationController
 
     @constant = Constant.where("id = 1").first
 
-
-
     a_polki = @width_var + 90
     b_polki = @depth_var + 90
     if a_polki > 1000
       @price_polki_bolsh = price_shelf_layer(a_polki,  b_polki, 2500, 1250, @constant.mat_list_25_125_07)
       @price_polki_mal = @constant.mat_list_2_1_07
-
+      kol_usil_virub_bol = $kol_usil_virub
     else
       @price_polki_mal = price_shelf_layer(a_polki,  b_polki, 2000, 1000, @constant.mat_list_2_1_07)
+      kol_usil_virub_mal = $kol_usil_virub
       @price_polki_bolsh = price_shelf_layer(a_polki,  b_polki, 2500, 1250, @constant.mat_list_25_125_07)
+      kol_usil_virub_bol = $kol_usil_virub
     end
     if @price_polki_mal < @price_polki_bolsh
       @price_polki = @price_polki_mal
       a_list = 2000
       b_list = 1000
+      @kol_usil_virub = kol_usil_virub_mal
       @kol_polok_s_lista = @constant.mat_list_2_1_07 / @price_polki
       @price_list = @constant.mat_list_2_1_07
       @wei_polki = (@constant.wei_list_2_1_07 * (a_polki/1000.0)*(b_polki/1000.0))/2
@@ -60,6 +61,7 @@ class StillageController < ApplicationController
       @price_polki = @price_polki_bolsh
       a_list = 2500
       b_list = 1250
+      @kol_usil_virub = kol_usil_virub_bol
       @kol_polok_s_lista = @constant.mat_list_25_125_07 / @price_polki
       @price_list = @constant.mat_list_25_125_07
       @wei_polki = (@constant.wei_list_25_125_07 * (a_polki/1000.0)*(b_polki/1000.0))/3.125
@@ -85,10 +87,13 @@ class StillageController < ApplicationController
 
     @kol_usil=0
     #Вычисляем количество усилителей на одну полку в зависимости от количества усилителей вырубаных с остатка от листа по длине
-      mini_var = Float(@usil * @num_of_shelves_var)
-      if mini_var!=0
-        @kol_usil = @usil * (1-(Float(Integer((a_list-(@kol_polok_s_lista * b_polki)) / 120))/mini_var))
+      @mini_var = Float(@usil * @kol_polok_s_lista)
+      if @mini_var!=0
+        @kol_usil = @usil * (1-(Float(@kol_usil_virub)/@mini_var))
       end
+    if @kol_usil<0
+      @kol_usil=0
+    end
 
 
     #стоимость усилителей при заготовек 120 мм
@@ -105,12 +110,13 @@ class StillageController < ApplicationController
       @wei_stilage = @wei_stilage.to_s(:rounded, :precision => 2)
 
 
-    @price_stoyka = (Float(@hight_var)/1000) * @constant.mat_stoyki_arx + @constant.job_stoyki_arx
+    @price_stoyka = (leng_stoyki(@hight_var, @constant.rack_multiplicity)/1000.0) * @constant.mat_stoyki_arx + @constant.job_stoyki_arx
 
     @sebest = @price_stoyka * 4 + @price_polki * @num_of_shelves_var +
               @price_usil * @num_of_shelves_var * @kol_usil + @constant.mat_pyatki_arx * 4 +
               @constant.job_upakovka_arx
 
+    @sebest = @sebest * (@constant.otxod_pk/100 +1)
     @kostven = @sebest * @constant.job_kostven_arx
     @sebest = @sebest + @kostven
 

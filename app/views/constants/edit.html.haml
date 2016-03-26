@@ -85,6 +85,15 @@
             %td
               .input_style_constant
                 =f.input :mat_list_25_125_25, label: false
+          %tr
+            %td Кратность длины стойки
+            %td
+              .input_style_constant
+            %td
+              .input_style_constant
+                =f.input :rack_multiplicity, label: false
+
+
           %tr.color_head_constant
             %td{:colspan => "3"} Стеллаж ПК
           %tr
@@ -270,7 +279,7 @@
               .input_style_constant
                 =f.input :mat_truba_25_25_2, label: false
           %tr
-            %td Сетка 50х50х3
+            %td Сетка 50х50х3 за м2
             %td
               .input_style_constant
                 =f.input :wei_setka_50_50_3, label: false
@@ -358,6 +367,11 @@
             %td
               .input_style_constant
                 =f.input :job_kostven_arx, label: false
+          %tr
+            %td % Отхода по металлу коробчатых
+            %td
+              .input_style_constant
+                =f.input :otxod_pk, label: false
           %tr.color_head_constant
             %td{:colspan => "2"} Складские стеллажи
           %tr
@@ -420,6 +434,11 @@
             %td
               .input_style_constant
                 =f.input :job_kostven_sklad, label: false
+          %tr
+            %td % Отхода по металлу складских
+            %td
+              .input_style_constant
+                =f.input :otxod_sk, label: false
           %tr.color_head_constant
             %td{:colspan => "2"} Паллетка
           %tr
@@ -447,6 +466,11 @@
             %td
               .input_style_constant
                 =f.input :job_kostven_pallet, label: false
+          %tr
+            %td % Отхода по металлу паллетки
+            %td
+              .input_style_constant
+                =f.input :otxod_pl, label: false
           %tr.color_head_constant
             %td{:colspan => "2"} Тележки
           %tr
@@ -554,6 +578,11 @@
             %td
               .input_style_constant
                 =f.input :job_kostven_telegi, label: false
+          %tr
+            %td % Отхода по металлу тележек
+            %td
+              .input_style_constant
+                =f.input :otxod_trol, label: false
           %tr
             %td Резка 1 м/п ДСП
             %td

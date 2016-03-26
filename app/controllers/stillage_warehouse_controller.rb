@@ -114,7 +114,7 @@ class StillageWarehouseController < ApplicationController
       end
 
     #Стоимость стойки
-    @price_stoyka = (Float(@hight_var)/1000) * @constant.mat_stoyki_sklad + @constant.job_stoyki_sklad
+    @price_stoyka = (leng_stoyki(@hight_var, @constant.rack_multiplicity)/1000.0) * @constant.mat_stoyki_sklad + @constant.job_stoyki_sklad
 
     #стоимость траверсы
     @price_traversa = (Float(@width_var)/1000) * @constant.mat_traversa_sklad + @constant.job_traversi_sklad +
@@ -256,6 +256,14 @@ class StillageWarehouseController < ApplicationController
         @price_usil_g * @kol_usil_g
 
 
+    @price_usil_styag = @price_usil_styag * (@constant.otxod_sk/100 + 1)
+    @price_usil_g     = @price_usil_g     * (@constant.otxod_sk/100 + 1)
+    @price_polki      = @price_polki      * (@constant.otxod_sk/100 + 1)
+    @price_ram        = @price_ram        * (@constant.otxod_sk/100 + 1)
+    @price_traversa   = @price_traversa   * (@constant.otxod_sk/100 + 1)
+    @price_shelves    = @price_shelves    * (@constant.otxod_sk/100 + 1)
+
+
     @price_usil_styag = @price_usil_styag + @price_usil_styag * @constant.job_kostven_sklad
     @price_usil_g     = @price_usil_g     + @price_usil_g     * @constant.job_kostven_sklad
     @price_polki      = @price_polki      + @price_polki      * @constant.job_kostven_sklad
@@ -293,5 +301,4 @@ class StillageWarehouseController < ApplicationController
     @name_stillage="#{@hight_var}x#{@width_var}x#{@depth_var} #{@num_of_shelves_var} п. " + type_stillage
     enter_row_to_excel(@name_stillage, @price_stillage_osn) #внесение в ексель файл данных о расчете стеллажа.
   end
-
 end
