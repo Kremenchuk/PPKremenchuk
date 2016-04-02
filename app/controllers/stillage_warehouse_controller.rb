@@ -141,16 +141,13 @@ class StillageWarehouseController < ApplicationController
         @width_polki = (35/(Float(@shelf_load_var)/Float(@width_var-20))).to_i
         @kol_polok = (@width_var-20)/@width_polki
       end
-      i=0
-      while i<1 do
-        @kol_polok = (@width_var-20)/@width_polki
-        length = @width_polki * @kol_polok
-        if (@width_var - 20 - length)>15
-          @width_polki = @width_polki - 1
-        else
-          i=2
-        end
-      end
+
+    @kol_polok = (@width_var-20)/@width_polki
+    length = @width_polki * @kol_polok
+    if (@width_var - 20 - length)>15
+      @kol_polok+=1
+      @width_polki = (@width_var-20)/@kol_polok
+    end
 
     #Вычисление с какого листа делаем полку (критерий = минимальная стоимость материала)
 
@@ -183,8 +180,8 @@ class StillageWarehouseController < ApplicationController
         @kol_polok = 1
 
         #Добавлено для исключения расчета полочки ДСП (только каркас)
-        @price_polki = 0.1
-        @wei_polki = 0.1
+        @price_polki = 0.0
+        @wei_polki = 0.0
       end
 
 
