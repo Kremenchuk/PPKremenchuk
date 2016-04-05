@@ -52,7 +52,7 @@ module Include_Module
     s_ost = 0
     if ost_a>=a_pol
       if ost_b>=b_pol
-        s_ost = quantity_shelf_layer_v2(a_pol, b_pol,ost_a,ost_b)
+        s_ost = quantity_shelf_layer_v2(a_pol, b_pol,ost_a,ost_b) * 2
       end
     end
     @kol_usil_v1 = (a_list - result1 * b_pol) / 120
