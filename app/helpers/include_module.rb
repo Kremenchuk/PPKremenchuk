@@ -88,13 +88,13 @@ module Include_Module
       write_row_to_excel(stillage,price)
     else
 
-      worksheet = workbook[0]
-      @last_date = Integer(worksheet[@kol_row][5].value)
-      @current_date = t.strftime("%Y%m%d")
+      #worksheet = workbook[0]
+      #@last_date = Integer(worksheet[@kol_row][5].value)
+      #@current_date = t.strftime("%Y%m%d")
 
-      if Integer(@last_date)==Integer(@current_date)
-        write_row_to_excel(stillage,price)
-      else
+      #if Integer(@last_date)==Integer(@current_date)
+      #  write_row_to_excel(stillage,price)
+      #else
         #отправка файла на е-маил и отчистка строк
         SendEmail.send_calculation_file.deliver_now
 
@@ -110,7 +110,7 @@ module Include_Module
         worksheet = workbook[1]
         worksheet.add_cell(1, 0, '0')
         workbook.write
-      end
+      #end
     end
 
   end
