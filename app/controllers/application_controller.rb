@@ -20,13 +20,18 @@ class ApplicationController < ActionController::Base
     @diller_in = false
     #SendEmail.login_from_site(current_user.email).deliver_now
     if current_user != nil
-      if current_user.diller?
-        @natsenka = @constant.job_natsen_diler
+      case current_user.diller
+        when 4
+          @natsenka = @constant.job_natsenka
+        when 1
+          @natsenka = @constant.job_natsen_diler
+        when 2
+          @natsenka = @constant.job_natsen_diler_second
+        when 3
+          @natsenka = @constant.job_natsen_diler_third
       else
         @natsenka = @constant.job_natsenka
       end
-    else
-      @natsenka = @constant.job_natsenka
     end
   end
 

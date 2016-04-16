@@ -295,6 +295,14 @@
               .input_style_constant
                 =f.input :mat_ugolok_20_20_3, label: false
           %tr
+            %td Шпингалеты, навесы
+            %td
+              .input_style_constant
+                =f.input :wei_shpingalet_naves, label: false
+            %td
+              .input_style_constant
+                =f.input :mat_shpingalet_naves, label: false
+          %tr
             %td ДСП ламинат 2800x2070x16
             %td
               .input_style_constant
@@ -594,12 +602,22 @@
               .input_style_constant
                 =f.input :job_procent_udor_svarki_telegki, label: false
           %tr
-            %td Дилерская наценка %
+            %td Дилерская наценка категория №1 %
             %td
               .input_style_constant
                 =f.input :job_natsen_diler, label: false
           %tr
-            %td Наценка %
+            %td Дилерская наценка категория №2 %
+            %td
+              .input_style_constant
+                =f.input :job_natsen_diler_second, label: false
+          %tr
+            %td Дилерская наценка категория №3 %
+            %td
+              .input_style_constant
+                =f.input :job_natsen_diler_third , label: false
+          %tr
+            %td Розничная наценка %
             %td
               .input_style_constant
                 =f.input :job_natsenka, label: false

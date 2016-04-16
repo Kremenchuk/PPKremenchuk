@@ -191,13 +191,13 @@ class StillageWarehouseController < ApplicationController
     if @pol_met_or_dsp == "dsp"
       @kol_usil_styag = 1
       @kol_usil_g = 2
-      if @width_var>2000 and @shelf_load_var>250
+      if @width_var>1900 and @shelf_load_var>250
         @kol_usil_styag = 2
       end
       #if @width_var>1500 and @width_var<=2000 and @shelf_load_var>250
       #  @kol_usil_styag = 2
       #end
-      if @depth_var>=900 and @width_var>2000
+      if @depth_var>=900 and @width_var>1900
         @kol_usil_styag = 2
       end
       if @depth_var>=1200 and @width_var>=1500

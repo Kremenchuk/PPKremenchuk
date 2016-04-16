@@ -221,6 +221,18 @@ class TrolleysController < ApplicationController
         price_svarka + @constant.mat_plastini_teleg * 4 + @constant.mat_metizi_teleg * 16 + price_setki_long * set_long +
         price_setki_shot * set_shot
 
+
+    case @vid
+      when "KS-04"
+        price_trol += @constant.mat_shpingalet_naves * 4
+        @wei_trol += @constant.wei_shpingalet_naves * 4
+      when "KS-02"
+        plosh = ((@width_var / 1000.0) - 52) * 0.084
+        price_trol += ((@width_var / 1000.0) - 52) * @constant.mat_truba_du_20_25 +  @constant.job_rezka + plosh * @constant.job_okr_telegek
+        @wei_trol += ((@width_var / 1000.0) - 52) * @constant.wei_truba_du_20_25
+    end
+
+
     @wei_trol = @wei_trol.to_s(:rounded, :precision => 2)
 
     price_trol = price_trol * (@constant.otxod_trol/100 +1)
@@ -290,6 +302,17 @@ class TrolleysController < ApplicationController
       end
     price_trol = price_shelf + price_kvadr + price_round + plosh_trol * @constant.job_okr_telegek +
         price_svarka + @constant.mat_plastini_teleg * 4 + @constant.mat_metizi_teleg * 16 + price_setki
+
+    case @vid
+      when "PT-02"
+        plosh = ((@width_var / 1000.0) - 52) * 0.084
+        price_trol += ((@width_var / 1000.0) - 52) * @constant.mat_truba_du_20_25 +  @constant.job_rezka + plosh * @constant.job_okr_telegek
+        @wei_trol += ((@width_var / 1000.0) - 52) * @constant.wei_truba_du_20_25
+      when "PT-01"
+        plosh = ((@width_var / 1000.0) - 52) * 0.084
+        price_trol += ((@width_var / 1000.0) - 52) * @constant.mat_truba_du_20_25 +  @constant.job_rezka + plosh * @constant.job_okr_telegek
+        @wei_trol += ((@width_var / 1000.0) - 52) * @constant.wei_truba_du_20_25
+    end
 
     @wei_trol = @wei_trol.to_s(:rounded, :precision => 2)
 
