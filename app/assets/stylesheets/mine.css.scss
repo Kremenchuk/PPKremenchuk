@@ -44,6 +44,14 @@ a:hover
 /* Smartphones (portrait and landscape) ----------- */
 
 @media only screen and (max-device-width : 580px) {
+  .google_map
+  {
+    height: 250px;
+    width: 400px;
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+    background: #FE7D14;
+  }
   .text_in_trolleys
   {
     font-size: 18px;
@@ -322,14 +330,7 @@ a:hover
     background: #FE7D14;
     cursor: default;
   }
-  .google_map
-  {
-      height: 250px;
-      width: 400px;
-      text-align: center;
-      padding: 10px 0px 10px 0px;
-      background: #FE7D14;
-  }
+
 
 
 
