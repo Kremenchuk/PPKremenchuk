@@ -44,6 +44,298 @@ a:hover
 /* Smartphones (portrait and landscape) ----------- */
 
 @media only screen and (max-device-width : 580px) {
+  .text_in_trolleys
+  {
+    font-size: 18px;
+    text-indent: 20px;
+    color: #ff0000;
+  }
+  .text_in_trolleys_sec
+  {
+    font-size: 18px;
+    text-indent: 20px;
+  }
+  .tp_01
+  {
+    display: none;
+  }
+  .tp_02
+  {
+    display: none;
+  }
+  .tp_03
+  {
+    display: none;
+  }
+  .tp_04
+  {
+    display: none;
+  }
+  .tp_05
+  {
+    display: none;
+  }
+  .pt_03
+  {
+    display: none;
+  }
+  .pt_04
+  {
+    display: none;
+  }
+
+
+  .on_line_calculation_off
+  {
+    //background: #ff0000;
+    color: #ff0000;
+    font-size: 20px;
+    text-indent: 20px
+  }
+  .alert_in_site
+  {
+    background: #ff0000;
+    color: #ffff00;
+    font-size: 20px;
+    text-indent: 20px
+  }
+  .input_email_to_send
+  {
+    width: 30%;
+  }
+  .dimensions_stillage
+  {
+    display: table;
+    //text-align: center;
+  }
+  .indent_left_stilage
+  {
+    float: left;
+    display: table-cell;
+    width: 300px;
+  }
+  .indent_right_stilage
+  {
+    float: right;
+    display: table-cell;
+    width: 10%;
+  }
+  .dimension_image_stilage
+  {
+    //width: 80%;
+    display: table-cell;
+  }
+  .dimaension_image_size_stilage
+  {
+    width: 277px;
+    height: 420px;
+  }
+  .height_size_stilage
+  {
+    position: relative;
+    left: 120px;
+    top: 140px;
+    transform: rotate(270deg);
+  }
+  .widht_size_stilage
+  {
+    position: relative;
+    left: 40px;
+    top: 460px;
+    transform: rotate(25deg);
+  }
+  .depth_size_stilage
+  {
+    position: relative;
+    left: 135px;
+    top: 350px;
+    transform: rotate(335deg);
+  }
+
+
+
+
+  .dimensions_stillage_warehouse
+  {
+    display: table;
+    //text-align: center;
+  }
+  .indent_left_stilage_warehouse
+  {
+    float: left;
+    display: table-cell;
+    width: 300px;
+  }
+  .indent_right_stilage_warehouse
+  {
+    float: right;
+    display: table-cell;
+    width: 10%;
+  }
+  .dimension_image_stilage_warehouse
+  {
+    //width: 80%;
+    display: table-cell;
+  }
+  .dimaension_image_size_stilage_warehouse
+  {
+    width: 435px;
+    height: 562px;
+  }
+  .height_size_stilage_warehouse_primery
+  {
+    position: relative;
+    left: 200px;
+    top: 130px;
+    transform: rotate(270deg);
+  }
+  .widht_size_stilage_warehouse_primery
+  {
+    position: relative;
+    left: 125px;
+    top: 560px;
+    transform: rotate(18deg);
+  }
+  .widht_section_size_stilage_warehouse_primery
+  {
+    position: relative;
+    left: 110px;
+    top: 585px;
+    transform: rotate(18deg);
+  }
+  .depth_size_stilage_warehouse_primery
+  {
+    position: relative;
+    left: 290px;
+    top: 380px;
+    transform: rotate(325deg);
+  }
+
+
+  .height_size_stilage_warehouse_addl
+  {
+    position: relative;
+    left: 200px;
+    top: 130px;
+    transform: rotate(270deg);
+  }
+  .widht_size_stilage_warehouse_addl
+  {
+    position: relative;
+    left: 125px;
+    top: 560px;
+    transform: rotate(18deg);
+  }
+  .widht_section_size_stilage_warehouse_addl
+  {
+    position: relative;
+    left: 110px;
+    top: 585px;
+    transform: rotate(18deg);
+  }
+  .depth_size_stilage_warehouse_addl
+  {
+    position: relative;
+    left: 290px;
+    top: 380px;
+    transform: rotate(325deg);
+  }
+
+  .style_p
+  {
+    font-size: 20px;
+  }
+  .header_table {
+    font-size: 20px;
+    text-align: center;
+  }
+  .table_position_trolleys
+  {
+    display: table;
+    border-spacing: 1px 1px;
+
+  }
+  /*.row_table_position_trolleys
+  {
+    display: table-cell;
+  }*/
+
+  .span_header
+  {
+    display:table-cell;
+    height:100%;
+  }
+
+  .span_header:nth-child(odd)
+  {
+    width: 30%;
+  }
+  .fix
+  {
+    width: 580px;
+    min-width: 580px;
+    max-width: 580px;
+  }
+  .left1
+  {
+    float: left;
+
+  }
+
+  .right1
+  {
+    float: right;
+  }
+
+  .wrap1
+  {
+    display: table;
+    font-size: 15px;
+    color: white;
+    width: 100%;
+    background: #191208;
+  }
+
+  .row_gallery
+  {
+    display: table;
+    width: 100%;
+    border-spacing: 10px 1px;
+    text-align:center;
+  }
+  .col_horizon_arxiv_gallery
+  {
+    display: table-cell;
+    height: 120px;
+    width: 150px;
+  }
+
+  .col_vertical_arxiv_gallery
+  {
+    display: table-cell;
+    height: 150px;
+    width: 120px;
+  }
+
+  .col5:hover
+  {
+    background: #FE7D14;
+    cursor: default;
+  }
+  .google_map
+  {
+      height: 250px;
+      width: 400px;
+      text-align: center;
+      padding: 10px 0px 10px 0px;
+      background: #FE7D14;
+  }
+
+
+
+
+
+
 
 
 
@@ -307,15 +599,16 @@ a:hover
   {
     font-size: 18px;
     width: 189px
+
   }
   .wrapper
   {
 
     display: table;
-    max-width: 960px;
+    max-width: 580px;
     margin: auto;
     min-height: 100%;
-    margin-bottom: -80px;
+    margin-bottom: -20px;
   }
   * html .wrapper {
     height: 100%;
@@ -330,6 +623,31 @@ a:hover
   header {
     padding: 20px 0;
   }
+
+  .main
+  {
+    min-height: 100%;
+    padding-bottom: 50px;
+  }
+
+  .boofer
+  {
+    height: 20px;
+  }
+  .footer
+  {
+    width: 579px;
+    font-size: 10px;
+    background: #FE7D14;
+    height: 40px;
+    margin-top: -40px;
+  }
+  * html .main
+  { /* хак для ie6 */
+    height: 100%; /* для ие6, т.к. не понимает min-height */
+  }
+
+
 }
 
 //border: 1px solid #CCC;
@@ -396,8 +714,6 @@ a:hover
   {
     display: none;
   }
-
-
   .on_line_calculation_off
   {
     //background: #ff0000;
@@ -464,9 +780,6 @@ a:hover
     top: 350px;
     transform: rotate(335deg);
   }
-
-
-
 
   .dimensions_stillage_warehouse
   {
@@ -554,15 +867,6 @@ a:hover
     transform: rotate(325deg);
   }
 
-
-
-
-
-
-
-
-
-
   .style_p
   {
     font-size: 20px;
@@ -646,18 +950,12 @@ a:hover
   }
   .google_map
   {
+    height: 450px;
+    width: 600px;
     text-align: center;
     padding: 10px 0px 10px 0px;
     background: #FE7D14;
   }
-
-
-
-  //добавить выше
-
-
-
-
   .abbout_trolleys_all
   {
     text-align: center;
