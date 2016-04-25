@@ -38,7 +38,7 @@ class TrolleysController < ApplicationController
     if proc_udorogania_svarki < 1.0
       proc_udorogania_svarki = 1.0
     end
-
+    kol_square_plat
     case @vid
       when "TP-01"
         svarka =  @constant.job_svarka_tp_01 * proc_udorogania_svarki
@@ -97,19 +97,19 @@ class TrolleysController < ApplicationController
             ((@lengthT_var/1000.0) * (@hight_ruch/1000.0) * 2)
       when "PT-01"
         svarka =  @constant.job_svarka_pt_01 * proc_udorogania_svarki
-        @price_trol = pricePT(2.0,0.0,"met", svarka, 1)
+        @price_trol = pricePT(2.0,"met", svarka, 1)
         @plosh_upakovki = (@lengthT_var/1000.0) * (@width_var/1000.0) * 2 + (@hight_ruch/1000.0) * (@width_var/1000.0) * 2
       when "PT-02"
         svarka =  @constant.job_svarka_pt_02 * proc_udorogania_svarki
-        @price_trol = pricePT(0.0,1.0,"met", svarka, 0)
+        @price_trol = pricePT(0.0,"met", svarka, 0)
         @plosh_upakovki = (@lengthT_var/1000.0) * (@width_var/1000.0) * 2 + (@hight_ruch/1000.0) * (@width_var/1000.0)*2
       when "PT-03"
         svarka =  @constant.job_svarka_pt_03 * proc_udorogania_svarki
-        @price_trol = pricePT(0.0,1.0,"dsp", svarka, 0)
+        @price_trol = pricePT(0.0,"dsp", svarka, 0)
         @plosh_upakovki = (@lengthT_var/1000.0) * (@width_var/1000.0) * 2 + (@hight_ruch/1000.0) * (@width_var/1000.0)*2
       when "PT-04"
         svarka =  @constant.job_svarka_pt_04 * proc_udorogania_svarki
-        @price_trol = pricePT(2.0,0.0,"dsp", svarka, 1)
+        @price_trol = pricePT(2.0,"dsp", svarka, 1)
         @plosh_upakovki = (@lengthT_var/1000.0) * (@width_var/1000.0) * 2 + (@hight_ruch/1000.0) * (@width_var/1000.0)*2
     end
     prise_upakovki = @plosh_upakovki * @constant.job_upakovka_teleg
@@ -121,6 +121,24 @@ class TrolleysController < ApplicationController
     @name_stillage="Тип: #{@vid} #{@lengthT_var}x#{@width_var} высота ручки: #{@hight_ruch}"
     enter_row_to_excel(@name_stillage, @price_trol) #внесение в ексель файл данных о расчете стеллажа.
   end
+
+
+
+  def kol_square_plat #Длина квадратной трубы на платформу тележки
+    @kvadrat_leng = 0.0
+    if @lengthT_var <= 1100
+      @kvadrat_leng = (@lengthT_var * 2 + @width_var * 4 + (@lengthT_var - 380.0))/1000.0
+    end
+    if @lengthT_var > 1100 and @lengthT_var <= 1350
+      @kvadrat_leng = (@lengthT_var * 2 + @width_var * 4 + (@lengthT_var - 380.0)*2)/1000.0
+    end
+    if @lengthT_var > 1350
+      @kvadrat_leng = (@lengthT_var * 2 + @width_var * 6 + (@lengthT_var - 380.0)*2)/1000.0
+    end
+  end
+
+
+
 
   #Расчет телег типа ТР
   def priceTP(kol_shelf, shelf_typ, price_svarka, kol_ruchek)
@@ -149,14 +167,14 @@ class TrolleysController < ApplicationController
         @constant.job_rixtovka_ugolka * 8.0 + @constant.job_rezka * 8.0
     @wei_trol += ((@lengthT_var * kol_shelf * 2 + @width_var * kol_shelf * 2)/1000.0) * @constant.wei_ugolok_20_20_3
 
-    price_kvadr = ((@lengthT_var * 3.0 + @width_var * 5.0 + (@hight_ruch - 150) * 4)/1000.0) * @constant.mat_truba_25_25_2 +
+    price_kvadr = (@kvadrat_leng + (((@hight_ruch - 150) * 4)/1000.0)) * @constant.mat_truba_25_25_2 +
                   @constant.job_rezka * 12.0
-    @wei_trol += ((@lengthT_var * 3.0 + @width_var * 5.0 + (@hight_ruch - 150) * 4)/1000.0) * @constant.wei_truba_25_25_2
+    @wei_trol += (@kvadrat_leng + (((@hight_ruch - 150) * 4)/1000.0)) * @constant.wei_truba_25_25_2
 
     price_round = (((@width_var + 300)/1000.0) * kol_ruchek) * @constant.mat_truba_du_20_25 + @constant.job_rezka * 2.0 + @constant.job_gibka_du_20_25 * 2.0
     @wei_trol +=(((@width_var + 300)/1000.0) * kol_ruchek) * @constant.wei_truba_du_20_25
 
-    plosh_trol = ((@lengthT_var * 3.0 + @width_var * 5.0 + (@hight_ruch - 150) * 4)/1000.0) * 0.1 +
+    plosh_trol = (@kvadrat_leng + ((@hight_ruch - 150) * 4)/1000.0) * 0.1 +
                   (((@width_var + 300)/1000.0) * kol_ruchek) * 0.084 +
                   ((@lengthT_var * 2.0 + @width_var * 2.0)/1000.0) * kol_shelf * 0.074 + (plosh_shelf * 2) * kol_shelf + 0.066
     @wei_trol = @wei_trol.to_s(:rounded, :precision => 2)
@@ -198,9 +216,9 @@ class TrolleysController < ApplicationController
     @wei_trol+=((@lengthT_var * nl + @width_var * 4.0 + (@hight_ruch - 150.0) * nh)/1000.0) * @constant.wei_ugolok_20_20_3
 
     #Расчет труб и ручки на тележку
-    price_kvadr = ((@lengthT_var * 3.0 + @width_var * 3.0)/1000.0) * @constant.mat_truba_25_25_2 +
+    price_kvadr = @kvadrat_leng * @constant.mat_truba_25_25_2 +
         @constant.job_rezka * 8.0
-    @wei_trol += ((@lengthT_var * 3.0 + @width_var * 3.0)/1000.0) * @constant.wei_truba_25_25_2
+    @wei_trol += @kvadrat_leng * @constant.wei_truba_25_25_2
 
     price_round = ((@hight_ruch * 4.0 + @width_var * 2.0)/1000.0) * @constant.mat_truba_du_20_25 +
         @constant.job_rezka * 2.0 + @constant.job_gibka_du_20_25 * 2.0
@@ -245,7 +263,7 @@ class TrolleysController < ApplicationController
 
 
   #Расчет телег типа PT
-  def pricePT(nw,pk, shelf_typ, price_svarka, setka)
+  def pricePT(nw, shelf_typ, price_svarka, setka)
     @wei_trol = 0.0
     #Расчет одной полочки тележки
     if shelf_typ == "dsp"
@@ -276,13 +294,12 @@ class TrolleysController < ApplicationController
     end
 
     #Расчет труб и ручки на тележку
-    price_kvadr = ((@lengthT_var * 3.0 + @width_var * 3.0)/1000.0) * @constant.mat_truba_25_25_2 +
-        @constant.job_rezka * 8.0
-    @wei_trol += ((@lengthT_var * 3.0 + @width_var * 3.0)/1000.0) * @constant.wei_truba_25_25_2
+    price_kvadr = @kvadrat_leng * @constant.mat_truba_25_25_2 + @constant.job_rezka * 8.0
+    @wei_trol += @kvadrat_leng * @constant.wei_truba_25_25_2
 
-    price_round = ((@hight_ruch * 2.0 + @width_var * (pk + 1))/1000.0) * @constant.mat_truba_du_20_25 +
+    price_round = ((@hight_ruch * 2.0 + @width_var)/1000.0) * @constant.mat_truba_du_20_25 +
         @constant.job_rezka * 2.0 + @constant.job_gibka_du_20_25 * 2.0
-    @wei_trol +=((@hight_ruch * 2.0 + @width_var * (pk + 1))/1000.0) * @constant.wei_truba_du_20_25
+    @wei_trol +=((@hight_ruch * 2.0 + @width_var)/1000.0) * @constant.wei_truba_du_20_25
 
     price_setki = price_shelf_layer(@width_var,(@hight_ruch-150),2000,1000,(@constant.mat_setka_50_50_3*2)) * setka
     @wei_trol += (@constant.wei_setka_50_50_3 / 2.0) * (((@hight_ruch - 150)/1000.0) * (@width_var/1000.0))
@@ -295,23 +312,23 @@ class TrolleysController < ApplicationController
           ((@width_var / 1000.0) * ((@hight_ruch - 150.0)/1000.0)) * setka
     else
       plosh_trol = ((@lengthT_var * 3.0 + @width_var * 3.0)/1000.0) * 0.1 +
-          ((@hight_ruch * 2.0 + @width_var * (1+pk))/1000.0) * 0.084 +
+          ((@hight_ruch * 2.0 + @width_var)/1000.0) * 0.084 +
           (((@width_var * nw) + ((@hight_ruch - 150.0) * nw))/1000.0) * 0.074 +
           (plosh_shelf * 2.0)  + 0.066 +
           ((@width_var / 1000.0) * ((@hight_ruch - 150.0)/1000.0)) * setka
-      end
+    end
     price_trol = price_shelf + price_kvadr + price_round + plosh_trol * @constant.job_okr_telegek +
         price_svarka + @constant.mat_plastini_teleg * 4 + @constant.mat_metizi_teleg * 16 + price_setki
 
     case @vid
       when "PT-02"
-        plosh = ((@width_var / 1000.0) - 52) * 0.084
-        price_trol += ((@width_var / 1000.0) - 52) * @constant.mat_truba_du_20_25 +  @constant.job_rezka + plosh * @constant.job_okr_telegek
-        @wei_trol += ((@width_var / 1000.0) - 52) * @constant.wei_truba_du_20_25
+        plosh = ((@width_var - 52) / 1000.0) * 0.084
+        price_trol += ((@width_var - 52) / 1000.0) * @constant.mat_truba_du_20_25 +  @constant.job_rezka + plosh * @constant.job_okr_telegek
+        @wei_trol += ((@width_var - 52 ) / 1000.0) * @constant.wei_truba_du_20_25
       when "PT-01"
-        plosh = ((@width_var / 1000.0) - 52) * 0.084
-        price_trol += ((@width_var / 1000.0) - 52) * @constant.mat_truba_du_20_25 +  @constant.job_rezka + plosh * @constant.job_okr_telegek
-        @wei_trol += ((@width_var / 1000.0) - 52) * @constant.wei_truba_du_20_25
+        plosh = ((@width_var - 52) / 1000.0) * 0.084
+        price_trol += ((@width_var - 52) / 1000.0) * @constant.mat_truba_du_20_25 +  @constant.job_rezka + plosh * @constant.job_okr_telegek
+        @wei_trol += ((@width_var - 52 )/ 1000.0) * @constant.wei_truba_du_20_25
     end
 
     @wei_trol = @wei_trol.to_s(:rounded, :precision => 2)

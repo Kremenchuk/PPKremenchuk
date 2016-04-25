@@ -29,9 +29,9 @@ class ApplicationController < ActionController::Base
           @natsenka = @constant.job_natsen_diler_second
         when 3
           @natsenka = @constant.job_natsen_diler_third
-      else
-        @natsenka = @constant.job_natsenka
       end
+    else
+      @natsenka = @constant.job_natsenka
     end
   end
 
