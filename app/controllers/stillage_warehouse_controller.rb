@@ -149,42 +149,6 @@ class StillageWarehouseController < ApplicationController
       @width_polki = (@width_var-20)/@kol_polok
     end
 
-    #Вычисление с какого листа делаем полку (критерий = минимальная стоимость материала)
-
-      if @pol_met_or_dsp == "metall"
-        a_polki = @depth_var + 32
-        b_polki = @width_polki + 56
-        if a_polki > 1000
-          @price_polki_bolsh = price_shelf_layer(a_polki,  b_polki, 2500, 1250, @constant.mat_list_25_125_07)
-          @price_polki_mal = @constant.mat_list_2_1_07
-
-        else
-          @price_polki_mal = price_shelf_layer(a_polki,  b_polki, 2000, 1000, @constant.mat_list_2_1_07)
-          @price_polki_bolsh = price_shelf_layer(a_polki,  b_polki, 2500, 1250, @constant.mat_list_25_125_07)
-        end
-        if @price_polki_mal < @price_polki_bolsh
-          @price_polki = @price_polki_mal
-          @wei_polki = (@constant.wei_list_2_1_07 * (a_polki/1000.0)*(b_polki/1000.0))/2
-        else
-          @price_polki = @price_polki_bolsh
-          @wei_polki = (@constant.wei_list_25_125_07 * (a_polki/1000.0)*(b_polki/1000.0))/3.125
-        end
-        @price_polki = @price_polki + @constant.job_polki_sklad
-      else
-        #если полка ДСП
-        a_polki = @depth_var
-        b_polki = @width_var - 10
-        @price_polki = price_shelf_layer(a_polki,  b_polki, 3500, 1750, @constant.mat_dsp_shlif)
-        @price_polki = @price_polki + @constant.job_rez_dsp_1mp * ((a_polki + b_polki)/1000.0)
-        @wei_polki = (@constant.wei_dsp_shlif * (a_polki/1000.0)*(b_polki/1000.0))/6.125
-        @kol_polok = 1
-
-        #Добавлено для исключения расчета полочки ДСП (только каркас)
-        @price_polki = 0.0
-        @wei_polki = 0.0
-      end
-
-
     #Вычисляем количество усилителей
     @kol_usil_styag = 0
     @kol_usil_g = 0
@@ -220,11 +184,47 @@ class StillageWarehouseController < ApplicationController
     @price_usil_g     = 0
     if @pol_met_or_dsp == "dsp"
       @price_usil_styag = ((@dlin_usil_styag/1000.0) * @constant.mat_truba_25_25_12) + @constant.job_usil_styagnoy +
-                        plosh_usil_styag * @constant.job_okr_usil_sklad
+          plosh_usil_styag * @constant.job_okr_usil_sklad
       @price_usil_g = ((@dlin_usil_g/1000.0) * @constant.mat_truba_25_25_12) + @constant.job_usil_g +
           plosh_usil_g * @constant.job_okr_usil_sklad
       type_stillage = "Каркас под ДСП"
     end
+
+
+    #Вычисление с какого листа делаем полку (критерий = минимальная стоимость материала)
+
+      if @pol_met_or_dsp == "metall"
+        a_polki = @depth_var + 32
+        b_polki = @width_polki + 56
+        if a_polki > 1000
+          @price_polki_bolsh = price_shelf_layer(a_polki,  b_polki, 2500, 1250, @constant.mat_list_25_125_07)
+          @price_polki_mal = @constant.mat_list_2_1_07
+
+        else
+          @price_polki_mal = price_shelf_layer(a_polki,  b_polki, 2000, 1000, @constant.mat_list_2_1_07)
+          @price_polki_bolsh = price_shelf_layer(a_polki,  b_polki, 2500, 1250, @constant.mat_list_25_125_07)
+        end
+        if @price_polki_mal < @price_polki_bolsh
+          @price_polki = @price_polki_mal
+          @wei_polki = (@constant.wei_list_2_1_07 * (a_polki/1000.0)*(b_polki/1000.0))/2
+        else
+          @price_polki = @price_polki_bolsh
+          @wei_polki = (@constant.wei_list_25_125_07 * (a_polki/1000.0)*(b_polki/1000.0))/3.125
+        end
+        @price_polki = @price_polki + @constant.job_polki_sklad
+      else
+        #если полка ДСП
+        a_polki = @depth_var
+        b_polki = @width_var - 10
+        @price_polki = price_shelf_layer(a_polki,  b_polki, 3500, 1750, @constant.mat_dsp_shlif)
+        @price_polki = @price_polki + @constant.job_rez_dsp_1mp * ((a_polki + b_polki)/1000.0)
+        @wei_polki = (@constant.wei_dsp_shlif * (a_polki/1000.0)*(b_polki/1000.0))/6.125
+        @kol_polok = 1
+
+        #Добавлено для исключения расчета полочки ДСП (только каркас)
+        @price_polki = 0.0
+        @wei_polki = @kol_usil_styag * (@dlin_usil_styag/1000.0) + @kol_usil_g * (@dlin_usil_g/1000.0)
+      end
 
 
     #Вычисляем площадь полочки

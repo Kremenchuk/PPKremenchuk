@@ -154,10 +154,10 @@ class TrolleysController < ApplicationController
       var2 = price_shelf_layer(@lengthT_var,@width_var,2500,1250,@constant.mat_list_25_125_2)
       plosh_shelf = (@lengthT_var/1000.0) * (@width_var/1000.0)
        if var1<=var2
-         price_shelf_layer_var = var1
+         @price_shelf_layer_var = var1
          @wei_trol = (@constant.wei_list_2_1_2 / 2.0) * ((@lengthT_var/1000.0) * (@width_var/1000.0)) * kol_shelf
        else
-         price_shelf_layer_var = var2
+         @price_shelf_layer_var = var2
          @wei_trol = (@constant.wei_list_25_125_2 / 3.125) * ((@lengthT_var/1000.0) * (@width_var/1000.0)) * kol_shelf
        end
      end
@@ -178,7 +178,7 @@ class TrolleysController < ApplicationController
                   (((@width_var + 300)/1000.0) * kol_ruchek) * 0.084 +
                   ((@lengthT_var * 2.0 + @width_var * 2.0)/1000.0) * kol_shelf * 0.074 + (plosh_shelf * 2) * kol_shelf + 0.066
     @wei_trol = @wei_trol.to_s(:rounded, :precision => 2)
-    price_trol = price_ugolok + price_shelf_layer_var * kol_shelf + price_kvadr + price_round + plosh_trol * @constant.job_okr_telegek +
+    price_trol = price_ugolok + @price_shelf_layer_var * kol_shelf + price_kvadr + price_round + plosh_trol * @constant.job_okr_telegek +
                   price_svarka + @constant.mat_plastini_teleg * 4 + @constant.mat_metizi_teleg * 16
 
     price_trol = price_trol * (@constant.otxod_trol/100 +1)
@@ -245,9 +245,9 @@ class TrolleysController < ApplicationController
         price_trol += @constant.mat_shpingalet_naves * 4
         @wei_trol += @constant.wei_shpingalet_naves * 4
       when "KS-02"
-        plosh = ((@width_var / 1000.0) - 52) * 0.084
-        price_trol += ((@width_var / 1000.0) - 52) * @constant.mat_truba_du_20_25 +  @constant.job_rezka + plosh * @constant.job_okr_telegek
-        @wei_trol += ((@width_var / 1000.0) - 52) * @constant.wei_truba_du_20_25
+        plosh = ((@width_var - 52) / 1000.0) * 0.084
+        price_trol += ((@width_var - 52) / 1000.0) * @constant.mat_truba_du_20_25 +  @constant.job_rezka + plosh * @constant.job_okr_telegek
+        @wei_trol += ((@width_var - 52) / 1000.0) * @constant.wei_truba_du_20_25
     end
 
 
