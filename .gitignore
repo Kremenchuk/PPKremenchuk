@@ -31,4 +31,6 @@ doc/
 /.gitignore
 
 #игнор файлов стред из-за личных настроек
-config/environments/*
+/config/environments/development.rb
+/config/environments/production.rb
+/config/environments/test.rb
