@@ -17,14 +17,6 @@
 /log/*.log
 /tmp
 
-# Игнорирование прочих ненужных файлов.
-#database.yml
-#secrets.yml
-#development.rb
-#production.rb
-#test.rb
-
-
 doc/
 *.swp
 *~
@@ -37,9 +29,10 @@ doc/
 
 
 #игнор файлов сред
-/config/environments/development.rb
-/config/environments/production.rb
-/config/environments/test.rb
-/config/environments/as.txt
+#/config/environments/development.rb
+#/config/environments/production.rb
+#/config/environments/test.rb
 /config/environments/*
+
 /config/database.yml
+/config/secrets.yml
