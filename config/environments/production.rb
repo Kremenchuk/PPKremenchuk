@@ -22,7 +22,7 @@ Rails.application.configure do
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
       :address => "smtp.gmail.com",
-      :port => 587,
+      :port => 25,
       :domain => 'k-sklad.com.ua',
       :user_name => "kremartem@gmail.com",
       :password => "ufkfrnbrf810",
