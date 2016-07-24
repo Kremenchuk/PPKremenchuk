@@ -10,6 +10,8 @@
 # Игнорирование дефолтной базы данных SQLite.
 /db/*.sqlite3
 /db/*.sqlite3-journal
+/db/secrets.yml
+
 
 # Игнорирование всех логов и временных файлов.
 /log/*.log
@@ -29,4 +31,4 @@ doc/
 /.gitignore
 
 #игнор файлов стред из-за личных настроек
-/config/environments/*
+config/environments/*
