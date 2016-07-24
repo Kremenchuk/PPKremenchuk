@@ -78,26 +78,25 @@ module Include_Module
 
 
   private
-  def enter_row_to_excel(stillage,price)  #Внесение данных в книгу расчета
+  def enter_row_to_excel(stillage, price)  #Внесение данных в книгу расчета
     t=Time.now
     workbook = RubyXL::Parser.parse("1.xlsx")
     worksheet = workbook[1]
     @kol_row = worksheet[1][0].value
 
     if @kol_row==0
-      write_row_to_excel(stillage,price)
+      write_row_to_excel(stillage, price)
     else
 
-      #worksheet = workbook[0]
-      #@last_date = Integer(worksheet[@kol_row][5].value)
-      #@current_date = t.strftime("%Y%m%d")
+      worksheet = workbook[0]
+      @last_date = Integer(worksheet[@kol_row][5].value)
+      @current_date = t.strftime("%Y%m%d")
 
-      #if Integer(@last_date)==Integer(@current_date)
-      #  write_row_to_excel(stillage,price)
-      #else
+      if Integer(@last_date)==Integer(@current_date)
+        write_row_to_excel(stillage, price)
+      else
         #отправка файла на е-маил и отчистка строк
         SendEmail.send_calculation_file.deliver_now
-
         worksheet = workbook[0]
         @kol_row.times do |a|
           worksheet.delete_cell(a+1, 0)
@@ -110,7 +109,7 @@ module Include_Module
         worksheet = workbook[1]
         worksheet.add_cell(1, 0, '0')
         workbook.write
-      #end
+      end
     end
 
   end
@@ -129,17 +128,12 @@ module Include_Module
       emailvar = current_user.email
     end
 
-    #if current_user == nil
-    #  emailvar = "Без логина"
-    #else
-    #  emailvar = current_user.email
-   # end
     worksheet.add_cell(1, 0, "#{loginvar}")
     worksheet.add_cell(1, 1, "#{emailvar}")
     worksheet.add_cell(1, 2, "#{stillage}")
     worksheet.add_cell(1, 3, "#{price}")
     worksheet.add_cell(1, 4, "#{t.strftime("%H:%M")}")
-    worksheet.add_cell(1, 5, "#{t.strftime("%Y%m%d")}")
+    worksheet.add_cell(1, 5, "#{t.strftime("%d.%m.%Y")}")
     worksheet = workbook[1]
     kol_row = worksheet[1][0].value
     kol_row=kol_row+1

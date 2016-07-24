@@ -24,3 +24,9 @@ doc/
 .DS_Store
 .idea
 .secret
+
+#игнор гитигнора
+.gitignore
+
+#игнор файлов стред из-за личных настроек
+/config/environments
