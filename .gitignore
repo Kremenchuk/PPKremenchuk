@@ -26,7 +26,7 @@ doc/
 .secret
 
 #игнор гитигнора
-.gitignore
+/.gitignore
 
 #игнор файлов стред из-за личных настроек
 /config/environments/*.*
