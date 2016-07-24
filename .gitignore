@@ -32,7 +32,7 @@ doc/
 #/config/environments/development.rb
 #/config/environments/production.rb
 #/config/environments/test.rb
-/config/environments/*
+#/config/environments/*
 
 /config/database.yml
 /config/secrets.yml
