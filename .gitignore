@@ -18,11 +18,11 @@
 /tmp
 
 # Игнорирование прочих ненужных файлов.
-database.yml
-secrets.yml
-development.rb
-production.rb
-test.rb
+#database.yml
+#secrets.yml
+#development.rb
+#production.rb
+#test.rb
 
 
 doc/
@@ -42,3 +42,4 @@ doc/
 /config/environments/test.rb
 /config/environments/as.txt
 /config/environments/*
+/config/database.yml
