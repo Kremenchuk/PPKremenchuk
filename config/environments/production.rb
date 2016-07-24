@@ -16,14 +16,14 @@ Rails.application.configure do
 
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host:'http://k-sklad.com.ua', port: '80' }
+  config.action_mailer.default_url_options = { host:'k-sklad.com.ua', port: '80' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
       :address => "smtp.gmail.com",
       :port => 587,
-      :domain => 'http://k-sklad.com.ua:80',
+      :domain => 'k-sklad.com.ua',
       :user_name => "kremartem@gmail.com",
       :password => "ufkfrnbrf810",
       :authentication => :plain,
