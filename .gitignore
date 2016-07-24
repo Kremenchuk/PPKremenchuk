@@ -42,3 +42,4 @@ doc/
 /config/environments/production.rb
 /config/environments/test.rb
 /config/environments/as.txt
+/config/environments/*
