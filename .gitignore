@@ -21,7 +21,10 @@
 database.yml
 secrets.yml
 development.rb
+production.rb
+test.rb
 asd.txt
+as.txt
 
 doc/
 *.swp
