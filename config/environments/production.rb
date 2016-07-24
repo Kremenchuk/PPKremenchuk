@@ -14,18 +14,36 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  config.action_mailer.raise_delivery_errors = false
-  #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  config.action_mailer.delivery_method =:smtp
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host:'195.64.155.99', port: '80' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
-      address:            "smtp.gmail.com",
-      port:               587,
-      domain:             "domain.ru",
-      authentication:     "plain",
-      user_name:          "kremartem@gmail.com",
-      password:           "ufkfrnbrf810",
-      enable_starttls_auto: true
+      :address => "smtp.gmail.com",
+      :port => 587,
+      :domain => '195.64.155.99:80',
+      :user_name => "kremartem@gmail.com",
+      :password => "ufkfrnbrf810",
+      :authentication => :plain,
+      :enable_starttls_auto => true
   }
+
+
+  #
+  # config.action_mailer.raise_delivery_errors = false
+  # #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  # config.action_mailer.delivery_method =:smtp
+  # config.action_mailer.smtp_settings = {
+  #     address:            "smtp.gmail.com",
+  #     port:               587,
+  #     domain:             "domain.ru",
+  #     authentication:     "plain",
+  #     user_name:          "kremartem@gmail.com",
+  #     password:           "ufkfrnbrf810",
+  #     enable_starttls_auto: true
+  # }
 
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
