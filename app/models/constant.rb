@@ -33,7 +33,16 @@ class Constant < ActiveRecord::Base
                   :on_off_calc_TP03, :on_off_calc_TP04, :on_off_calc_TP05,:on_off_calc_TP06, :on_off_calc_TP07, :on_off_calc_KS01,
                   :on_off_calc_KS02, :on_off_calc_KS03, :on_off_calc_KS04, :on_off_calc_PT01, :on_off_calc_PT02, :on_off_calc_PT03,
                   :on_off_calc_PT04, :rack_multiplicity, :otxod_pk, :otxod_sk, :otxod_pl, :otxod_trol, :job_natsen_diler_third, :job_natsen_diler_second,
-                  :mat_shpingalet_naves, :wei_shpingalet_naves
+                  :mat_shpingalet_naves, :wei_shpingalet_naves,
+                  :mat_profil_usil_warehouse, :area_profil_usil_warehouse, :wei_profil_usil_warehouse, :area_stoyki_arx,
+                  :area_pyatki_arx, :area_stoyki_sklad, :area_traversa_sklad, :area_pyatki_sklad, :area_ukosi_sklad,
+                  :area_zatsep_sklad, :area_truba_25_25_12, :area_truba_25_25_15, :area_truba_25_25_2, :area_shina_30_4,
+                  :area_skoba_styagnogo, :area_stoyki_pallet, :area_pyatki_pallet, :area_zatsep_pallet, :area_ukosi_pallet,
+                  :area_truba_du_20_25, :area_plastini_teleg, :area_ugolok_20_20_3, :area_100x60x100x15, :area_usil_arx
+                  :area_shpingalet_naves
+
+
+
 
   validates :job_stoyki_arx, :job_polki_arx, :job_usil_arx, :job_upakovka_arx, :job_ogranich,
             :job_okr_stoyki_arx, :job_okr_polki_arx, :job_stoyki_sklad, :job_traversi_sklad,
@@ -66,5 +75,12 @@ class Constant < ActiveRecord::Base
             :wei_metizi_teleg, :wei_ugolok_20_20_3, :wei_dsp_laminat, :wei_dsp_shlif, :wei_100x60x100x15, :wei_setka_50_50_3,
             :rack_multiplicity, :otxod_pk, :otxod_sk, :otxod_pl, :otxod_trol, :job_natsen_diler_third, :job_natsen_diler_second,
             :mat_shpingalet_naves, :wei_shpingalet_naves,
+            :mat_profil_usil_warehouse, :area_profil_usil_warehouse, :wei_profil_usil_warehouse, :area_stoyki_arx,
+            :area_pyatki_arx, :area_stoyki_sklad, :area_traversa_sklad, :area_pyatki_sklad, :area_ukosi_sklad,
+            :area_zatsep_sklad, :area_truba_25_25_12, :area_truba_25_25_15, :area_truba_25_25_2, :area_shina_30_4,
+            :area_skoba_styagnogo, :area_stoyki_pallet, :area_pyatki_pallet, :area_zatsep_pallet, :area_ukosi_pallet,
+            :area_truba_du_20_25, :area_plastini_teleg, :area_ugolok_20_20_3, :area_100x60x100x15,
+            :area_shpingalet_naves, :area_usil_arx,
             numericality: {greater_than: 0}, presence: true
+
 end

@@ -174,9 +174,10 @@ class TrolleysController < ApplicationController
     price_round = (((@width_var + 300)/1000.0) * kol_ruchek) * @constant.mat_truba_du_20_25 + @constant.job_rezka * 2.0 + @constant.job_gibka_du_20_25 * 2.0
     @wei_trol +=(((@width_var + 300)/1000.0) * kol_ruchek) * @constant.wei_truba_du_20_25
 
-    plosh_trol = (@kvadrat_leng + ((@hight_ruch - 150) * 4)/1000.0) * 0.1 +
-                  (((@width_var + 300)/1000.0) * kol_ruchek) * 0.084 +
-                  ((@lengthT_var * 2.0 + @width_var * 2.0)/1000.0) * kol_shelf * 0.074 + (plosh_shelf * 2) * kol_shelf + 0.066
+    plosh_trol = (@kvadrat_leng + ((@hight_ruch - 150) * 4)/1000.0) * @constant.area_truba_25_25_2+
+                  (((@width_var + 300)/1000.0) * kol_ruchek) * @constant.area_truba_du_20_25 +
+                  ((@lengthT_var * 2.0 + @width_var * 2.0)/1000.0) * kol_shelf * @constant.area_ugolok_20_20_3 + (plosh_shelf * 2) * kol_shelf +
+                  @constant.area_plastini_teleg * 2
     @wei_trol = @wei_trol.to_s(:rounded, :precision => 2)
     price_trol = price_ugolok + @price_shelf_layer_var * kol_shelf + price_kvadr + price_round + plosh_trol * @constant.job_okr_telegek +
                   price_svarka + @constant.mat_plastini_teleg * 4 + @constant.mat_metizi_teleg * 16
@@ -229,9 +230,9 @@ class TrolleysController < ApplicationController
     @wei_trol += (price_setki_long/@constant.mat_setka_50_50_3) * @constant.wei_setka_50_50_3 * set_long +
                  (price_setki_shot/@constant.mat_setka_50_50_3) * @constant.wei_setka_50_50_3 * set_shot
 
-    plosh_trol = ((@lengthT_var * 3.0 + @width_var * 3.0)/1000.0) * 0.1 +
-        ((@hight_ruch * 4.0 + @width_var * 2.0)/1000.0) * 0.084 +
-        ((@lengthT_var * nl + @width_var * nh)/1000.0) * 0.074 + (plosh_shelf * 2) + 0.066 +
+    plosh_trol = ((@lengthT_var * 3.0 + @width_var * 3.0)/1000.0) * @constant.area_truba_25_25_2 +
+        ((@hight_ruch * 4.0 + @width_var * 2.0)/1000.0) * @constant.area_truba_du_20_25 +
+        ((@lengthT_var * nl + @width_var * nh)/1000.0) * @constant.area_ugolok_20_20_3 + (plosh_shelf * 2) + @constant.area_plastini_teleg * 2 +
         ((@lengthT_var / 1000.0) * ((@hight_ruch - 150.0)/1000.0)) * set_long +
         ((@width_var / 1000.0) * ((@hight_ruch - 150.0)/1000.0)) * set_shot
 
@@ -245,7 +246,7 @@ class TrolleysController < ApplicationController
         price_trol += @constant.mat_shpingalet_naves * 4
         @wei_trol += @constant.wei_shpingalet_naves * 4
       when "KS-02"
-        plosh = ((@width_var - 52) / 1000.0) * 0.084
+        plosh = ((@width_var - 52) / 1000.0) * @constant.area_truba_du_20_25
         price_trol += ((@width_var - 52) / 1000.0) * @constant.mat_truba_du_20_25 +  @constant.job_rezka + plosh * @constant.job_okr_telegek
         @wei_trol += ((@width_var - 52) / 1000.0) * @constant.wei_truba_du_20_25
     end
@@ -305,16 +306,16 @@ class TrolleysController < ApplicationController
     @wei_trol += (@constant.wei_setka_50_50_3 / 2.0) * (((@hight_ruch - 150)/1000.0) * (@width_var/1000.0))
 
     if shelf_typ == "dsp"
-      plosh_trol = ((@lengthT_var * 3.0 + @width_var * 3.0)/1000.0) * 0.1 +
-          ((@hight_ruch * 2.0 + @width_var * 2.0)/1000.0) * 0.084 +
-          ((@width_var * 2.0 + @lengthT_var * 2.0 + @width_var * nw + (@hight_ruch - 150.0) * nw)/1000.0) * 0.074 +
-          (plosh_shelf * 2.0)  + 0.066 +
+      plosh_trol = ((@lengthT_var * 3.0 + @width_var * 3.0)/1000.0) * @constant.area_truba_25_25_2 +
+          ((@hight_ruch * 2.0 + @width_var * 2.0)/1000.0) * @constant.area_truba_du_20_25 +
+          ((@width_var * 2.0 + @lengthT_var * 2.0 + @width_var * nw + (@hight_ruch - 150.0) * nw)/1000.0) * @constant.area_ugolok_20_20_3 +
+          (plosh_shelf * 2.0)  + @constant.area_plastini_teleg * 2 +
           ((@width_var / 1000.0) * ((@hight_ruch - 150.0)/1000.0)) * setka
     else
-      plosh_trol = ((@lengthT_var * 3.0 + @width_var * 3.0)/1000.0) * 0.1 +
-          ((@hight_ruch * 2.0 + @width_var)/1000.0) * 0.084 +
-          (((@width_var * nw) + ((@hight_ruch - 150.0) * nw))/1000.0) * 0.074 +
-          (plosh_shelf * 2.0)  + 0.066 +
+      plosh_trol = ((@lengthT_var * 3.0 + @width_var * 3.0)/1000.0) * @constant.area_truba_25_25_2 +
+          ((@hight_ruch * 2.0 + @width_var)/1000.0) * @constant.area_truba_du_20_25 +
+          (((@width_var * nw) + ((@hight_ruch - 150.0) * nw))/1000.0) * @constant.area_ugolok_20_20_3 +
+          (plosh_shelf * 2.0)  + @constant.area_plastini_teleg * 2 +
           ((@width_var / 1000.0) * ((@hight_ruch - 150.0)/1000.0)) * setka
     end
     price_trol = price_shelf + price_kvadr + price_round + plosh_trol * @constant.job_okr_telegek +
@@ -322,11 +323,11 @@ class TrolleysController < ApplicationController
 
     case @vid
       when "PT-02"
-        plosh = ((@width_var - 52) / 1000.0) * 0.084
+        plosh = ((@width_var - 52) / 1000.0) * @constant.area_truba_du_20_25
         price_trol += ((@width_var - 52) / 1000.0) * @constant.mat_truba_du_20_25 +  @constant.job_rezka + plosh * @constant.job_okr_telegek
         @wei_trol += ((@width_var - 52 ) / 1000.0) * @constant.wei_truba_du_20_25
       when "PT-01"
-        plosh = ((@width_var - 52) / 1000.0) * 0.084
+        plosh = ((@width_var - 52) / 1000.0) * @constant.area_truba_du_20_25
         price_trol += ((@width_var - 52) / 1000.0) * @constant.mat_truba_du_20_25 +  @constant.job_rezka + plosh * @constant.job_okr_telegek
         @wei_trol += ((@width_var - 52 )/ 1000.0) * @constant.wei_truba_du_20_25
     end

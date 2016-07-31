@@ -52,9 +52,15 @@ module Include_Module
     s_ost = 0
     if ost_a>=a_pol
       if ost_b>=b_pol
-        x = @kol_usil_v2
+        begin
+          x = @kol_usil_v2
+        rescue
+        end
         s_ost = quantity_shelf_layer_v2(a_pol, b_pol,ost_a,ost_b) * 2
-        @kol_usil_v2 += x + @kol_usil_v2
+        begin
+          @kol_usil_v2 += x + @kol_usil_v2
+        rescue
+        end
       end
     end
     @kol_usil_v1 = (a_list - result1 * b_pol) / 120
@@ -70,9 +76,15 @@ module Include_Module
     s_ost = 0
     if ost_a>=b_pol
       if ost_b>=a_pol
-        x = @kol_usil_v1
+        begin
+          x = @kol_usil_v1
+        rescue
+        end
         s_ost = quantity_shelf_layer_v1(a_pol, b_pol,ost_a,ost_b)
-        @kol_usil_v1 += x + @kol_usil_v1
+        begin
+          @kol_usil_v1 += x + @kol_usil_v1
+        rescue
+        end
       end
     end
     @kol_usil_v2 = (ost_a - s_ost * b_pol) / 120

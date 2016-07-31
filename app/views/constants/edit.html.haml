@@ -12,13 +12,14 @@
         %img{:id => "chg_img_1", :alt => "mater", :src => "/assets/plus.png", :name => "img_1", :width => "30", :height => "30"}
           Материалы
   .row
-    .col-md-8
+    .col-md-10
       .hiden_element_1
         %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
           %tr
             %th.header_table{:width => "50%"} Наименование
             %th.header_table Вес
             %th.header_table Цена
+            %th.header_table Площадь за м/п или шт.
           %tr.color_head_constant
             %td{:colspan => "3"} Общие
           %tr
@@ -92,6 +93,28 @@
             %td
               .input_style_constant
                 =f.input :rack_multiplicity, label: false
+          %tr
+            %td Труба 25х25х1,2
+            %td
+              .input_style_constant
+                =f.input :wei_truba_25_25_12, label: false
+            %td
+              .input_style_constant
+                =f.input :mat_truba_25_25_12, label: false
+            %td
+              .input_style_constant
+                =f.input :area_truba_25_25_12, label: false
+          %tr
+            %td Труба 25х25х1,5
+            %td
+              .input_style_constant
+                =f.input :wei_truba_25_25_15, label: false
+            %td
+              .input_style_constant
+                =f.input :mat_truba_25_25_15, label: false
+            %td
+              .input_style_constant
+                =f.input :area_truba_25_25_15, label: false
 
 
           %tr.color_head_constant
@@ -104,6 +127,9 @@
             %td
               .input_style_constant
                 =f.input :mat_stoyki_arx, label: false
+            %td
+              .input_style_constant
+                =f.input :area_stoyki_arx, label: false
           %tr
             %td Подпятники ПК
             %td
@@ -112,6 +138,18 @@
             %td
               .input_style_constant
                 =f.input :mat_pyatki_arx, label: false
+            %td
+              .input_style_constant
+                =f.input :area_pyatki_arx, label: false
+          %tr
+            %td Усилитель ПК
+            %td
+              .input_style_constant
+            %td
+              .input_style_constant
+            %td
+              .input_style_constant
+                =f.input :area_usil_arx, label: false
           %tr.color_head_constant
             %td{:colspan => "3"} Складской стеллаж
           %tr
@@ -122,6 +160,9 @@
             %td
               .input_style_constant
                 =f.input :mat_stoyki_sklad, label: false
+            %td
+              .input_style_constant
+                =f.input :area_stoyki_sklad, label: false
           %tr
             %td Траверса складского ПТ-50
             %td
@@ -130,6 +171,9 @@
             %td
               .input_style_constant
                 =f.input :mat_traversa_sklad, label: false
+            %td
+              .input_style_constant
+                =f.input :area_traversa_sklad, label: false
           %tr
             %td Подпятники складского
             %td
@@ -138,6 +182,9 @@
             %td
               .input_style_constant
                 =f.input :mat_pyatki_sklad, label: false
+            %td
+              .input_style_constant
+                =f.input :area_pyatki_sklad, label: false
           %tr
             %td Метизы складского
             %td
@@ -154,30 +201,31 @@
             %td
               .input_style_constant
                 =f.input :mat_ukosi_sklad, label: false
+            %td
+              .input_style_constant
+                =f.input :area_ukosi_sklad, label: false
           %tr
-            %td Зацеп складского
+            %td Зацеп складского (крючек)
             %td
               .input_style_constant
                 =f.input :wei_zatsep_sklad, label: false
             %td
               .input_style_constant
                 =f.input :mat_zatsep_sklad, label: false
+            %td
+              .input_style_constant
+                =f.input :area_zatsep_sklad, label: false
           %tr
-            %td Труба 25х25х1,2
+            %td Профиль на усилители складского
             %td
               .input_style_constant
-                =f.input :wei_truba_25_25_12, label: false
+                =f.input :wei_profil_usil_warehouse , label: false
             %td
               .input_style_constant
-                =f.input :mat_truba_25_25_12, label: false
-          %tr
-            %td Труба 25х25х1,5
+                =f.input :mat_profil_usil_warehouse, label: false
             %td
               .input_style_constant
-                =f.input :wei_truba_25_25_15, label: false
-            %td
-              .input_style_constant
-                =f.input :mat_truba_25_25_15, label: false
+                =f.input :area_profil_usil_warehouse, label: false
           %tr
             %td Скоба стяжного усил.
             %td
@@ -186,6 +234,9 @@
             %td
               .input_style_constant
                 =f.input :mat_skoba_styagnogo, label: false
+            %td
+              .input_style_constant
+                =f.input :area_skoba_styagnogo, label: false
           %tr.color_head_constant
             %td{:colspan => "3"} Паллетный стеллаж
           %tr
@@ -196,6 +247,9 @@
             %td
               .input_style_constant
                 =f.input :mat_stoyki_pallet, label: false
+            %td
+              .input_style_constant
+                =f.input :area_stoyki_pallet, label: false
           %tr
             %td Подпятники паллетного
             %td
@@ -204,6 +258,9 @@
             %td
               .input_style_constant
                 =f.input :mat_pyatki_pallet, label: false
+            %td
+              .input_style_constant
+                =f.input :area_pyatki_pallet, label: false
           %tr
             %td Укосы паллетного
             %td
@@ -212,6 +269,9 @@
             %td
               .input_style_constant
                 =f.input :mat_ukosi_pallet, label: false
+            %td
+              .input_style_constant
+                =f.input :area_ukosi_pallet, label: false
           %tr
             %td Метизы для паллетных рам
             %td
@@ -236,6 +296,9 @@
             %td
               .input_style_constant
                 =f.input :mat_zatsep_pallet, label: false
+            %td
+              .input_style_constant
+                =f.input :area_zatsep_pallet, label: false
           %tr
             %td Профиль 100х60х100 1,5мм
             %td
@@ -244,6 +307,9 @@
             %td
               .input_style_constant
                 =f.input :mat_100x60x100x15, label: false
+            %td
+              .input_style_constant
+                =f.input :area_100x60x100x15, label: false
           %tr.color_head_constant
             %td{:colspan => "3"} Тележки
           %tr
@@ -254,6 +320,9 @@
             %td
               .input_style_constant
                 =f.input :mat_truba_du_20_25, label: false
+            %td
+              .input_style_constant
+                =f.input :area_truba_du_20_25, label: false
           %tr
             %td Пластины под колеса
             %td
@@ -262,6 +331,9 @@
             %td
               .input_style_constant
                 =f.input :mat_plastini_teleg, label: false
+            %td
+              .input_style_constant
+                =f.input :area_plastini_teleg, label: false
           %tr
             %td Метизы для телег
             %td
@@ -278,6 +350,9 @@
             %td
               .input_style_constant
                 =f.input :mat_truba_25_25_2, label: false
+            %td
+              .input_style_constant
+                =f.input :area_truba_25_25_2, label: false
           %tr
             %td Сетка 50х50х3 за м2
             %td
@@ -294,6 +369,9 @@
             %td
               .input_style_constant
                 =f.input :mat_ugolok_20_20_3, label: false
+            %td
+              .input_style_constant
+                =f.input :area_ugolok_20_20_3, label: false
           %tr
             %td Шпингалеты, навесы
             %td
@@ -302,6 +380,9 @@
             %td
               .input_style_constant
                 =f.input :mat_shpingalet_naves, label: false
+            %td
+              .input_style_constant
+                =f.input :area_shpingalet_naves, label: false
           %tr
             %td ДСП ламинат 2800x2070x16
             %td

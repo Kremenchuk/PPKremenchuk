@@ -39,35 +39,6 @@ class StillageController < ApplicationController
 
     a_polki = @width_var + 90
     b_polki = @depth_var + 90
-    if a_polki > 1000
-      @price_polki_bolsh = price_shelf_layer(a_polki,  b_polki, 2500, 1250, @constant.mat_list_25_125_07)
-      @price_polki_mal = @constant.mat_list_2_1_07
-      kol_usil_virub_bol = $kol_usil_virub
-    else
-      @price_polki_mal = price_shelf_layer(a_polki,  b_polki, 2000, 1000, @constant.mat_list_2_1_07)
-      kol_usil_virub_mal = $kol_usil_virub
-      @price_polki_bolsh = price_shelf_layer(a_polki,  b_polki, 2500, 1250, @constant.mat_list_25_125_07)
-      kol_usil_virub_bol = $kol_usil_virub
-    end
-    if @price_polki_mal < @price_polki_bolsh
-      @price_polki = @price_polki_mal
-      a_list = 2000
-      b_list = 1000
-      @kol_usil_virub = kol_usil_virub_mal
-      @kol_polok_s_lista = @constant.mat_list_2_1_07 / @price_polki
-      @price_list = @constant.mat_list_2_1_07
-      @wei_polki = (@constant.wei_list_2_1_07 * (a_polki/1000.0)*(b_polki/1000.0))/2
-    else
-      @price_polki = @price_polki_bolsh
-      a_list = 2500
-      b_list = 1250
-      @kol_usil_virub = kol_usil_virub_bol
-      @kol_polok_s_lista = @constant.mat_list_25_125_07 / @price_polki
-      @price_list = @constant.mat_list_25_125_07
-      @wei_polki = (@constant.wei_list_25_125_07 * (a_polki/1000.0)*(b_polki/1000.0))/3.125
-    end
-    @price_polki += @constant.job_polki_arx
-
 
     @usil=0
 
@@ -85,6 +56,37 @@ class StillageController < ApplicationController
       end
     end
 
+    if a_polki > 1000
+      @price_polki_bolsh = price_shelf_layer(a_polki,  b_polki, 2500, 1250, @constant.mat_list_25_125_07)
+      @price_polki_mal = @constant.mat_list_2_1_07
+      kol_usil_virub_bol = $kol_usil_virub
+    else
+      @price_polki_mal = price_shelf_layer(a_polki,  b_polki, 2000, 1000, @constant.mat_list_2_1_07)
+      kol_usil_virub_mal = $kol_usil_virub
+      @price_polki_bolsh = price_shelf_layer(a_polki,  b_polki, 2500, 1250, @constant.mat_list_25_125_07)
+      kol_usil_virub_bol = $kol_usil_virub
+    end
+    if @price_polki_mal < @price_polki_bolsh
+      @price_polki = @price_polki_mal
+      a_list = 2000
+      b_list = 1000
+      @kol_usil_virub = kol_usil_virub_mal
+      @kol_polok_s_lista = @constant.mat_list_2_1_07 / @price_polki
+      @price_list = @constant.mat_list_2_1_07
+      @wei_polki = ((@constant.wei_list_2_1_07 * (a_polki/1000.0)*(b_polki/1000.0))/2) +
+                   ((@constant.wei_list_2_1_07 * (@usil * (@constant.area_usil_arx/2) * (@width_var/1000.0)))/2)
+    else
+      @price_polki = @price_polki_bolsh
+      a_list = 2500
+      b_list = 1250
+      @kol_usil_virub = kol_usil_virub_bol
+      @kol_polok_s_lista = @constant.mat_list_25_125_07 / @price_polki
+      @price_list = @constant.mat_list_25_125_07
+      @wei_polki = ((@constant.wei_list_25_125_07 * (a_polki/1000.0)*(b_polki/1000.0))/3.125) +
+                   ((@constant.wei_list_25_125_07 * (@usil * (@constant.area_usil_arx/2) * (@width_var/1000.0)))/3.125)
+    end
+    @price_polki += @constant.job_polki_arx     #((H5*(F4*(J8/2)*(B3/1000)))/3.125)
+
     @kol_usil=0
     #Вычисляем количество усилителей на одну полку в зависимости от количества усилителей вырубаных с остатка от листа по длине
       @mini_var = Float(@usil * @kol_polok_s_lista)
@@ -96,11 +98,11 @@ class StillageController < ApplicationController
     end
 
 
-    #стоимость усилителей при заготовек 120 мм
+    #стоимость усилителей при заготовке 120 мм
       if @width_var > 1000
-        @price_usil   = (@constant.mat_list_25_125_07/20) + @constant.job_usil_arx
+        @price_usil   = (@constant.mat_list_25_125_07/(Integer(2500/((@constant.area_usil_arx/2))/1000))) + @constant.job_usil_arx
       else
-        @price_usil   = (@constant.mat_list_2_1_07/16) + @constant.job_usil_arx
+        @price_usil   = (@constant.mat_list_2_1_07/(Integer(2000/((@constant.area_usil_arx/2))/1000))) + @constant.job_usil_arx
       end
 
 
@@ -142,8 +144,8 @@ class StillageController < ApplicationController
 
       #считаем площадь
                 #площадь стоек + площадь полок + площадь усилителей
-      @plosh_st = (0.136 * (Float(@hight_var))/1000 * 4)
-      @plosh_pol= Float(((@width_var + 100) * (@depth_var + 100))* 2 * @num_of_shelves_var)/1000000
+      @plosh_st = (@constant.area_stoyki_arx * (Float(@hight_var))/1000 * 4)
+      @plosh_pol= Float(((((@width_var + 90) * (@depth_var + 90) * 2.0)/1000000.0) + ((@constant.area_usil_arx / 2.0) * @usil) * (@width_var/1000.0)) * @num_of_shelves_var)
       @okraska = @plosh_st * @constant.job_okr_stoyki_arx + @plosh_pol * @constant.job_okr_polki_arx
     end
     @price_stillage = @price_stillage + @okraska

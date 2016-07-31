@@ -108,8 +108,8 @@ class StillageWarehouseController < ApplicationController
     #Площадь рам
       @plosh_ram = 0
       if @okr_or_oc_ram == "okrash"
-       plosh_stoyki = (Float(0.142 * @hight_var)/1000)*2
-       plosh_ukosi = (Float(0.087 * (@dlin_ukos_g * ukos_g_kol + @dlin_ukos_b * ukos_b_kol))/1000)*2
+       plosh_stoyki = (Float(@constant.area_stoyki_sklad * @hight_var)/1000.0 + @constant.area_pyatki_sklad)
+       plosh_ukosi = (Float(@constant.area_ukosi_sklad * (@dlin_ukos_g * ukos_g_kol + @dlin_ukos_b * ukos_b_kol))/1000.0)
        @plosh_ram = (plosh_stoyki * 2 + plosh_ukosi).to_s(:rounded, :precision => 5).to_f
       end
 
@@ -117,8 +117,10 @@ class StillageWarehouseController < ApplicationController
     @price_stoyka = (leng_stoyki(@hight_var, @constant.rack_multiplicity)/1000.0) * @constant.mat_stoyki_sklad + @constant.job_stoyki_sklad
 
     #стоимость траверсы
-    @price_traversa = (Float(@width_var)/1000) * @constant.mat_traversa_sklad + @constant.job_traversi_sklad +
-        @constant.mat_zatsep_sklad * 2 + (0.2*(Float(@width_var)/1000)+0.01) * @constant.job_okr_traversi_sklad
+    @plosh_travera = @constant.area_traversa_sklad * (@width_var/1000.0) + @constant.area_zatsep_sklad * 2
+
+    @price_traversa = (Float(@width_var)/1000.0) * @constant.mat_traversa_sklad + @constant.job_traversi_sklad +
+        @constant.mat_zatsep_sklad * 2 + @plosh_travera * @constant.job_okr_traversi_sklad
 
     #стоимость рамы
     @price_ram = @price_stoyka * 2 + @ukos_g * ukos_g_kol + @ukos_b * ukos_b_kol + @plosh_ram *
@@ -175,17 +177,17 @@ class StillageWarehouseController < ApplicationController
     #Вычисляем длину и площадь усилителей
     @dlin_usil_styag = @depth_var - 45
     @dlin_usil_g = @depth_var - 38
-    plosh_usil_styag = (0.1 * (@dlin_usil_styag/1000.0)).to_s(:rounded, :precision => 5).to_f
-    plosh_usil_g = (0.1 * (@dlin_usil_g/1000.0)).to_s(:rounded, :precision => 5).to_f
+    plosh_usil_styag = (@constant.area_profil_usil_warehouse * (@dlin_usil_styag/1000.0)).to_s(:rounded, :precision => 5).to_f
+    plosh_usil_g = (@constant.area_profil_usil_warehouse * (@dlin_usil_g/1000.0)).to_s(:rounded, :precision => 5).to_f
 
     type_stillage = "Металлическая полка"
     #Вычисляем стоимость усилителей
     @price_usil_styag = 0
     @price_usil_g     = 0
     if @pol_met_or_dsp == "dsp"
-      @price_usil_styag = ((@dlin_usil_styag/1000.0) * @constant.mat_truba_25_25_12) + @constant.job_usil_styagnoy +
+      @price_usil_styag = ((@dlin_usil_styag/1000.0) * @constant.mat_profil_usil_warehouse) + @constant.job_usil_styagnoy +
           plosh_usil_styag * @constant.job_okr_usil_sklad
-      @price_usil_g = ((@dlin_usil_g/1000.0) * @constant.mat_truba_25_25_12) + @constant.job_usil_g +
+      @price_usil_g = ((@dlin_usil_g/1000.0) * @constant.mat_profil_usil_warehouse) + @constant.job_usil_g +
           plosh_usil_g * @constant.job_okr_usil_sklad
       type_stillage = "Каркас под ДСП"
     end

@@ -104,7 +104,7 @@ class StillagePalletController < ApplicationController
             @hight_traversi_verx = (@hight_traversi_verx * 10) + 5
             @hight_traversi_niz = @hight_traversi_verx - 5
           end
-            #Расчет нагрузки на верхни)й и нижний предел высоты траверсы
+            #Расчет нагрузки на верхний и нижний предел высоты траверсы
             @p_verx = (160000*(((@depth_traversi/10.0) * (@hight_traversi_verx/10.0)**3) -
                    (((@depth_traversi - 3)/10.0) * ((@hight_traversi_verx-6)/10.0)**3))/
                    (6 * (@hight_traversi_verx/10.0)))/@width_var
@@ -128,7 +128,7 @@ class StillagePalletController < ApplicationController
 
     #Расчет стоимости траверсы
       scope_traversi = (((@hight_traversi*2) + (@depth_traversi*4))/1000.0)*0.0015
-      plosh_traversi = (((@hight_traversi*2) + (@depth_traversi*2))/1000.0)*(@width_var/1000.0) + 0.065
+      plosh_traversi = (((@hight_traversi*2) + (@depth_traversi*2))/1000.0)*(@width_var/1000.0) + @constant.area_zatsep_pallet * 2
       @price_traversa = ((scope_traversi / 0.00033) * @constant.mat_100x60x100x15)*(@width_var/1000.0) +
                       @constant.mat_zatsep_pallet * 2 + @constant.job_traversi_pallet +
                       @constant.mat_metizi_pallet_travers * 4 + plosh_traversi * @constant.job_okr_travers_pallet

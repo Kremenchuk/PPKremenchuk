@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416103226) do
+ActiveRecord::Schema.define(version: 20160729200805) do
 
   create_table "constants", force: :cascade do |t|
     t.float    "mat_list_2_1_055",                default: 0.0
@@ -165,6 +165,31 @@ ActiveRecord::Schema.define(version: 20160416103226) do
     t.float    "job_natsen_diler_third",          default: 2.0
     t.float    "mat_shpingalet_naves",            default: 2.0
     t.float    "wei_shpingalet_naves",            default: 2.0
+    t.float    "mat_profil_usil_warehouse",       default: 2.0
+    t.float    "area_profil_usil_warehouse",      default: 2.0
+    t.float    "wei_profil_usil_warehouse",       default: 2.0
+    t.float    "area_stoyki_arx",                 default: 2.0
+    t.float    "area_pyatki_arx",                 default: 2.0
+    t.float    "area_stoyki_sklad",               default: 2.0
+    t.float    "area_traversa_sklad",             default: 2.0
+    t.float    "area_pyatki_sklad",               default: 2.0
+    t.float    "area_ukosi_sklad",                default: 2.0
+    t.float    "area_zatsep_sklad",               default: 2.0
+    t.float    "area_truba_25_25_12",             default: 2.0
+    t.float    "area_truba_25_25_15",             default: 2.0
+    t.float    "area_truba_25_25_2",              default: 2.0
+    t.float    "area_shina_30_4",                 default: 2.0
+    t.float    "area_skoba_styagnogo",            default: 2.0
+    t.float    "area_stoyki_pallet",              default: 2.0
+    t.float    "area_pyatki_pallet",              default: 2.0
+    t.float    "area_zatsep_pallet",              default: 2.0
+    t.float    "area_ukosi_pallet",               default: 2.0
+    t.float    "area_truba_du_20_25",             default: 2.0
+    t.float    "area_plastini_teleg",             default: 2.0
+    t.float    "area_ugolok_20_20_3",             default: 2.0
+    t.float    "area_100x60x100x15",              default: 2.0
+    t.float    "area_shpingalet_naves",           default: 2.0
+    t.float    "area_usil_arx",                   default: 2.0
   end
 
   create_table "users", force: :cascade do |t|
