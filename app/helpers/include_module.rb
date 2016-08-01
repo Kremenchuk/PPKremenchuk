@@ -105,10 +105,10 @@ module Include_Module
     else
 
       worksheet = workbook[0]
-      @last_date = Integer(worksheet[@kol_row][5].value.gsub('.', ''))
+      @last_date = String(worksheet[@kol_row][5].value.gsub('.', ''))
       @current_date = t.strftime("%d%m%Y")
 
-      if Integer(@last_date)==Integer(@current_date)
+      if String(@last_date)==String(@current_date)
         write_row_to_excel(stillage, price)
       else
         #отправка файла на е-маил и отчистка строк
