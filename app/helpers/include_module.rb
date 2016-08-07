@@ -93,6 +93,7 @@ module Include_Module
   end
 
 
+
   private
   def enter_row_to_excel(stillage, price)  #Внесение данных в книгу расчета
     t=Time.now
