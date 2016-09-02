@@ -16,7 +16,7 @@ gem 'rubyXL'
 gem 'roo-xls'
 gem 'rubypython'
 #gem 'capistrano'
-#gem 'fcgi'
+gem 'fcgi'
 #gem 'debugger'
 gem 'passenger'
 
