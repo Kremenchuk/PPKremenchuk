@@ -12,6 +12,7 @@ require "rails/all"
 require "rubyXL"
 require "rubypython"
 require "roo"
+require 'yaml'
 
 
 # require "rails/test_unit/railtie"

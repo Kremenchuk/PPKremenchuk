@@ -1,4 +1,15 @@
 %h1 Константы
+%p{:class => "#{flash[:class]}", :style => "#{flash[:style]}"}= flash[:message]
+/.alert.alert-success{:style => "font-size:20px;"}= flash[:success]
+/.alert.#{@disp_alert}{:style => "font-size:20px;"}= flash[:error]
+= form_tag({:action => :load_constant}, :multipart => true) do
+  = label_tag 'constant_file', "Файл констант:"
+  = file_field_tag 'constant_file'
+  %p
+    %br
+    = submit_tag "Забрать значения констант из файла", {:class =>"btn btn-success"}
+%p
+  %hr
 %p
   =link_to "Панель администратора","/admin_panel/index"
 = simple_form_for @constant do |f|

@@ -38,7 +38,7 @@ class Constant < ActiveRecord::Base
                   :area_pyatki_arx, :area_stoyki_sklad, :area_traversa_sklad, :area_pyatki_sklad, :area_ukosi_sklad,
                   :area_zatsep_sklad, :area_truba_25_25_12, :area_truba_25_25_15, :area_truba_25_25_2, :area_shina_30_4,
                   :area_skoba_styagnogo, :area_stoyki_pallet, :area_pyatki_pallet, :area_zatsep_pallet, :area_ukosi_pallet,
-                  :area_truba_du_20_25, :area_plastini_teleg, :area_ugolok_20_20_3, :area_100x60x100x15, :area_usil_arx
+                  :area_truba_du_20_25, :area_plastini_teleg, :area_ugolok_20_20_3, :area_100x60x100x15, :area_usil_arx,
                   :area_shpingalet_naves
 
 

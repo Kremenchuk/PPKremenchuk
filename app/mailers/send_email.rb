@@ -1,6 +1,6 @@
 class SendEmail < ActionMailer::Base
   #default from: 'info@my.site'#, template_path: 'mailers/items'
-  default from: 'kremartem@gmail.com'
+  # default from: 'kremartem@gmail.com'
 
   def login_from_site(user_login)
     @constant = Constant.where("id = 1").first

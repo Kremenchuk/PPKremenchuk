@@ -27,8 +27,7 @@ class AdminPanelController < ApplicationController
     redirect_to action: "index"
   end
 
-
-  def change_diller
+   def change_diller
     @diller_type          = params[:select2]
 
     case @diller_type

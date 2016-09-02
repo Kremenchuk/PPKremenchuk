@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'contact/index'
 
   get 'admin_panel/index'
+  post 'constants/load_constant' => 'constants#load_constant'
 
   resources :admin_panel do
     get :change_diller, on: :member
