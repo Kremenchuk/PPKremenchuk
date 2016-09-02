@@ -18,7 +18,7 @@ gem 'rubypython'
 #gem 'capistrano'
 #gem 'fcgi'
 #gem 'debugger'
-#gem 'passenger'
+gem 'passenger'
 
 
 
