@@ -106,7 +106,7 @@ module Include_Module
     else
 
       worksheet = workbook[0]
-      @last_date = String(worksheet[@kol_row][5].value.gsub('.', ''))
+      @last_date = String(worksheet[@kol_row.to_i][5].value.gsub('.', ''))
       @current_date = t.strftime("%d%m%Y")
 
       if String(@last_date)==String(@current_date)
@@ -115,7 +115,7 @@ module Include_Module
         #отправка файла на е-маил и отчистка строк
         SendEmail.send_calculation_file.deliver_now
         worksheet = workbook[0]
-        @kol_row.times do |a|
+        @kol_row.to_i.times do |a|
           worksheet.delete_cell(a+1, 0)
           worksheet.delete_cell(a+1, 1)
           worksheet.delete_cell(a+1, 2)
