@@ -99,23 +99,23 @@ module Include_Module
     t=Time.now
     workbook = RubyXL::Parser.parse("1.xlsx")
     worksheet = workbook[1]
-    @kol_row = worksheet[1][0].value
+    @kol_row = worksheet[1][0].value.to_i
 
-    if @kol_row==0
+    if @kol_row == 0
       write_row_to_excel(stillage, price)
     else
 
       worksheet = workbook[0]
-      @last_date = String(worksheet[@kol_row.to_i][5].value.gsub('.', ''))
+      @last_date = String(worksheet[@kol_row][5].value.gsub('.', ''))
       @current_date = t.strftime("%d%m%Y")
 
-      if String(@last_date)==String(@current_date)
+      if String(@last_date) == String(@current_date)
         write_row_to_excel(stillage, price)
       else
         #отправка файла на е-маил и отчистка строк
         SendEmail.send_calculation_file.deliver_now
         worksheet = workbook[0]
-        @kol_row.to_i.times do |a|
+        @kol_row.times do |a|
           worksheet.delete_cell(a+1, 0)
           worksheet.delete_cell(a+1, 1)
           worksheet.delete_cell(a+1, 2)
@@ -152,8 +152,8 @@ module Include_Module
     worksheet.add_cell(1, 4, "#{t.strftime("%H:%M")}")
     worksheet.add_cell(1, 5, "#{t.strftime("%d.%m.%Y")}")
     worksheet = workbook[1]
-    kol_row = worksheet[1][0].value
-    kol_row=kol_row+1
+    kol_row = worksheet[1][0].value.to_i
+    kol_row = kol_row + 1
     worksheet.add_cell(1, 0, "#{kol_row}")
     workbook.write
   end
