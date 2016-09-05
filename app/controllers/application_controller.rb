@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   #protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
-  before_action :configure_permitted_parameters, if: :devise_controller?
 
 
   def check_if_admin
@@ -41,7 +40,7 @@ class ApplicationController < ActionController::Base
     #SendEmail.login_from_site(current_user.email).deliver_now
     if current_user != nil
       if current_user.admin?
-        @admin_in=true
+        @admin_in = true
       end
     end
   end
@@ -55,14 +54,4 @@ class ApplicationController < ActionController::Base
     render file: "public/404.html", ststus: 404
   end
 
-
-  protected
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up)    {
-        |u| u.permit(:email, :password, :password_confirmation, :login, :name)
-    }
-    devise_parameter_sanitizer.for(:account_update) {
-        |u| u.permit(:email, :password, :password_confirmation, :current_password, :login, :name)
-    }
-  end
 end
