@@ -18,16 +18,24 @@ class ConstantsController < ApplicationController
 
     uploaded_io = params[:constant_file]
     if uploaded_io != nil
-      FileUtils.rm_rf(Dir.glob(Rails.root.join('file') + "*"))
-      File.open(Rails.root.join('file', uploaded_io.original_filename), 'wb') do |file|
-        file.write(uploaded_io.read)
+      begin
+        FileUtils.mkdir_p(Rails.root.join('public', 'file'))
+      rescue => error
+        flash_message("danger", "Невозможно открыть файл. #{error.message}")
       end
-
+      begin
+        FileUtils.rm_rf(Dir.glob(Rails.root.join('public', 'file') + "*"))
+        File.open(Rails.root.join('public', 'file', uploaded_io.original_filename), 'wb') do |file|
+          file.write(uploaded_io.read)
+        end
+      rescue => error
+        flash_message("danger", "Невозможно открыть файл. #{error.message}")
+      end
       column_names = Constant.column_names.to_a
 
       # Завантаження констант
       begin
-        workbook = Roo::Spreadsheet.open(Rails.root.join('file', uploaded_io.original_filename).to_s)
+        workbook = Roo::Spreadsheet.open(Rails.root.join('public', 'file', uploaded_io.original_filename).to_s)
       rescue => error
         flash_message("danger", "Невозможно открыть файл. #{error.message}")
       end
@@ -64,17 +72,27 @@ class ConstantsController < ApplicationController
         end
 
 
-        # Проверка все ли поля найдены
-
+        # Проверка все ли поля найдены и не равні 0
+        warnings = ''
         result.each do |key, value|
-          column_names.delete(key.to_s)
-        end
+          if value == 0
+            warnings += "#{key} равняеться #{value}. "
+          else
+            column_names.delete(key.to_s)
+          end
 
-        if column_names.count == 0
-          @constant.update_attributes(result)
-          flash_message("success", "Константы загружены")
+
+        end
+        if warnings.present?
+          warnings += "Константы не обновлены"
+          flash_message("danger", warnings)
         else
-          flash_message("danger", "Поля #{column_names.inspect} не найдены. Константы не обновлены")
+          if column_names.count == 0
+            @constant.update_attributes(result)
+            flash_message("success", "Константы загружены")
+          else
+            flash_message("danger", "Поля #{column_names.inspect} не найдены. Константы не обновлены")
+          end
         end
       end
     else
