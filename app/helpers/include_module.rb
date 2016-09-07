@@ -96,39 +96,37 @@ module Include_Module
 
   private
   def enter_row_to_excel(stillage, price)  #Внесение данных в книгу расчета
-    # t=Time.now
-    # workbook = RubyXL::Parser.parse("1.xlsx")
-    # worksheet = workbook[1]
-    # @kol_row = worksheet[1][0].value.to_i
-    #
-    # if @kol_row == 0
-    #   write_row_to_excel(stillage, price)
-    # else
-    #
-    #   worksheet = workbook[0]
-    #
-    #   @last_date = String(worksheet[@kol_row][5].value.gsub('.', ''))
-    #   @current_date = t.strftime("%d%m%Y")
-    #
-    #   if String(@last_date) == String(@current_date)
-    #     write_row_to_excel(stillage, price)
-    #   else
-    #     #отправка файла на е-маил и отчистка строк
-    #     SendEmail.send_calculation_file.deliver_now
-    #     worksheet = workbook[0]
-    #     @kol_row.times do |a|
-    #       worksheet.delete_cell(a+1, 0)
-    #       worksheet.delete_cell(a+1, 1)
-    #       worksheet.delete_cell(a+1, 2)
-    #       worksheet.delete_cell(a+1, 3)
-    #       worksheet.delete_cell(a+1, 4)
-    #       worksheet.delete_cell(a+1, 5)
-    #     end
-    #     worksheet = workbook[1]
-    #     worksheet.add_cell(1, 0, '0')
-    #     workbook.write
-    #   end
-    # end
+    @current_date = Time.now.strftime("%d.%m.%Y")
+    begin
+      workbook = RubyXL::Parser.parse(Rails.root.join("1.xlsx").to_s)
+    rescue
+      return
+    end
+
+    worksheet = workbook[1]
+    @kol_row = worksheet[1][0].value.to_i
+
+    if @kol_row == 0
+      write_row_to_excel(stillage, price)
+    else
+      worksheet = workbook[0]
+      @last_date = String(worksheet[@kol_row][5].value.gsub('.', ''))
+      if String(@last_date) == String(@current_date.gsub('.', ''))
+        write_row_to_excel(stillage, price)
+      else
+      #отправка файла на е-маил и отчистка строк
+        SendEmail.send_calculation_file.deliver_now
+        worksheet = workbook[0]
+        @kol_row.times do |a|
+          worksheet.delete_row(1)
+        end
+        worksheet = workbook[1]
+        worksheet[1][0].change_contents("0")
+        workbook.write(Rails.root.join("1.xlsx").to_s)
+        write_row_to_excel(stillage, price)
+
+      end
+    end
 
   end
 
@@ -142,20 +140,28 @@ module Include_Module
       loginvar = "Без логина"
       emailvar = "Без логина"
     else
-      loginvar = current_user.login
-      emailvar = current_user.email
+      if current_user.login.present?
+        loginvar = current_user.login
+      else
+        loginvar = "Без логина"
+      end
+      if current_user.email.present?
+        emailvar = current_user.email
+      else
+        emailvar = "Без логина"
+      end
     end
 
-    worksheet.add_cell(1, 0, "#{loginvar}")
-    worksheet.add_cell(1, 1, "#{emailvar}")
-    worksheet.add_cell(1, 2, "#{stillage}")
-    worksheet.add_cell(1, 3, "#{price}")
-    worksheet.add_cell(1, 4, "#{t.strftime("%H:%M")}")
-    worksheet.add_cell(1, 5, "#{t.strftime('%d.%m.%Y')}")
+    worksheet[1][0].change_contents("#{loginvar}")
+    worksheet[1][1].change_contents("#{emailvar}")
+    worksheet[1][2].change_contents("#{stillage}")
+    worksheet[1][3].change_contents("#{price}")
+    worksheet[1][4].change_contents("#{t.strftime("%H:%M")}")
+    worksheet[1][5].change_contents("#{@current_date}")
     worksheet = workbook[1]
     kol_row = worksheet[1][0].value.to_i
     kol_row = kol_row + 1
-    worksheet.add_cell(1, 0, "#{kol_row}")
-    workbook.write
+    worksheet[1][0].change_contents("#{kol_row}")
+    workbook.write(Rails.root.join("1.xlsx").to_s)
   end
 end

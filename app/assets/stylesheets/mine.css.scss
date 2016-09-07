@@ -19,20 +19,23 @@ html, body {
   padding: 0;
 }
 
-a:hover
-{
-  text-decoration: none;
-}
+
 
 * {
   margin: 0;
   padding: 0;
 }
 
+.fix a
+{
+  color: white;
+  text-decoration: none;
+}
 
-
-
-
+.fix a:hover
+{
+  text-decoration: underline;
+}
 
 
 
@@ -471,15 +474,6 @@ a:hover
 
 
 
-  .about_href {
-    color: rgb(255,255,255);
-    text-decoration: none;
-  }
-  .about_href:hover
-  {
-    color: rgb(0,255,0);
-    text-decoration: underline;
-  }
   .table_data_admin_panel
   {
     font-size: 12px;
@@ -1090,15 +1084,6 @@ a:hover
   }
 
 
-  .about_href {
-    color: #FFFFFF; /* Цвет обычной ссылки */
-    text-decoration: none; /* Убираем подчеркивание у ссылок */
-  }
-  .about_href:hover
-  {
-    color: #00FF00; /* Цвет ссылки при наведении на нее курсора мыши */
-    text-decoration: underline; /* Добавляем подчеркивание */
-  }
   .table_data_admin_panel
   {
     font-size: 18px;
