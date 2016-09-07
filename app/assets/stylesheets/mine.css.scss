@@ -18,7 +18,15 @@ html, body {
   margin: 0;
   padding: 0;
 }
+.fix a
+{
+  color: white;
+}
 
+.fix a:hover
+{
+  text-decoration: underline;
+}
 
 
 * {
@@ -26,16 +34,7 @@ html, body {
   padding: 0;
 }
 
-.fix a
-{
-  color: white;
-  text-decoration: none;
-}
 
-.fix a:hover
-{
-  text-decoration: underline;
-}
 
 
 
