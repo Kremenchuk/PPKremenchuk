@@ -96,72 +96,78 @@ module Include_Module
 
   private
   def enter_row_to_excel(stillage, price)  #Внесение данных в книгу расчета
-    @current_date = Time.now.strftime("%d.%m.%Y")
+    @logger ||= Logger.new("#{Rails.root}/log/PPKremenchuk.log")
     begin
+      @current_date = Time.now.strftime("%d.%m.%Y")
       workbook = RubyXL::Parser.parse(Rails.root.join("1.xlsx").to_s)
-    rescue
-      return
-    end
+      worksheet = workbook[1]
+      @kol_row = worksheet[1][0].value.to_i
 
-    worksheet = workbook[1]
-    @kol_row = worksheet[1][0].value.to_i
-
-    if @kol_row == 0
-      write_row_to_excel(stillage, price)
-    else
-      worksheet = workbook[0]
-      @last_date = String(worksheet[@kol_row][5].value.gsub('.', ''))
-      if String(@last_date) == String(@current_date.gsub('.', ''))
+      if @kol_row == 0
         write_row_to_excel(stillage, price)
       else
-      #отправка файла на е-маил и отчистка строк
-        SendEmail.send_calculation_file.deliver_now
         worksheet = workbook[0]
-        @kol_row.times do |a|
-          worksheet.delete_row(1)
-        end
-        worksheet = workbook[1]
-        worksheet[1][0].change_contents("0")
-        workbook.write(Rails.root.join("1.xlsx").to_s)
-        write_row_to_excel(stillage, price)
+        @last_date = String(worksheet[@kol_row][5].value.gsub('.', ''))
+        if String(@last_date) == String(@current_date.gsub('.', ''))
+          write_row_to_excel(stillage, price)
+        else
+        #отправка файла на е-маил и отчистка строк
+          SendEmail.send_calculation_file.deliver_now
+          worksheet = workbook[0]
+          @kol_row.times do |a|
+            worksheet.delete_row(1)
+          end
+          worksheet = workbook[1]
+          worksheet[1][0].change_contents("0")
+          workbook.write(Rails.root.join("1.xlsx").to_s)
+          write_row_to_excel(stillage, price)
 
+        end
       end
+    rescue => e
+      @logger.warn("#{e.message}\nwrite_row_to_excel")
     end
+
 
   end
 
   def write_row_to_excel(stillage,price)
-    t=Time.now
+    begin
+      t=Time.now
 
-    workbook = RubyXL::Parser.parse("1.xlsx")
-    worksheet = workbook[0]
-    worksheet.insert_row(1)
-    if current_user == nil
-      loginvar = "Без логина"
-      emailvar = "Без логина"
-    else
-      if current_user.login.present?
-        loginvar = current_user.login
-      else
+      workbook = RubyXL::Parser.parse("1.xlsx")
+      worksheet = workbook[0]
+      worksheet.insert_row(1)
+      if current_user == nil
         loginvar = "Без логина"
-      end
-      if current_user.email.present?
-        emailvar = current_user.email
-      else
         emailvar = "Без логина"
+      else
+        if current_user.login.present?
+          loginvar = current_user.login
+        else
+          loginvar = "Без логина"
+        end
+        if current_user.email.present?
+          emailvar = current_user.email
+        else
+          emailvar = "Без логина"
+        end
       end
-    end
 
-    worksheet[1][0].change_contents("#{loginvar}")
-    worksheet[1][1].change_contents("#{emailvar}")
-    worksheet[1][2].change_contents("#{stillage}")
-    worksheet[1][3].change_contents("#{price}")
-    worksheet[1][4].change_contents("#{t.strftime("%H:%M")}")
-    worksheet[1][5].change_contents("#{@current_date}")
-    worksheet = workbook[1]
-    kol_row = worksheet[1][0].value.to_i
-    kol_row = kol_row + 1
-    worksheet[1][0].change_contents("#{kol_row}")
-    workbook.write(Rails.root.join("1.xlsx").to_s)
+      worksheet[1][0].change_contents("#{loginvar}")
+      worksheet[1][1].change_contents("#{emailvar}")
+      worksheet[1][2].change_contents("#{stillage}")
+      worksheet[1][3].change_contents("#{price}")
+      worksheet[1][4].change_contents("#{t.strftime("%H:%M")}")
+      worksheet[1][5].change_contents("#{@current_date}")
+      worksheet = workbook[1]
+      kol_row = worksheet[1][0].value.to_i
+      kol_row = kol_row + 1
+      worksheet[1][0].change_contents("#{kol_row}")
+      workbook.write(Rails.root.join("1.xlsx").to_s)
+    end
+  rescue => e
+    @logger.warn("#{e.message}\nwrite_row_to_excel")
   end
+
 end
