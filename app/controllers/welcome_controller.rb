@@ -7,4 +7,12 @@ class WelcomeController < ApplicationController
 
     button_const
   end
+
+  def set_locale
+    I18n.locale = params[:new_locale]
+    session[:locale] = I18n.locale
+    url_hash = Rails.application.routes.recognize_path URI(request.referer).path
+    url_hash[:locale] = params[:new_locale]
+    redirect_to url_hash
+  end
 end

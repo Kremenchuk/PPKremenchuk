@@ -1,4 +1,5 @@
-%h1 Стеллажи складские полочные сборно-разборные
+%h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
+  =t('page.stillage_warehouse.show.header')
 %p
 .container-fluid
   .row.style_p
@@ -6,30 +7,30 @@
       %p
         ="#{@name_stillage}"
       %p
-        ="Максимальная нагрузка на уровень #{@shelf_load_var} кг."
+        ="#{t('page.stillage_warehouse.show.max_load_ur')}: #{@shelf_load_var} #{t('page.all.kg')}"
       %p
-        ="Вес основной секции: #{@wei_osn}"
+        ="#{t('page.stillage_warehouse.show.weight_osn_sec')}: #{@wei_osn} #{t('page.all.kg')}"
       %p
-        ="Вес приставной секции: #{@wei_pris}"
+        ="#{t('page.stillage_warehouse.show.weight_pris_sec')}: #{@wei_pris} #{t('page.all.kg')}"
       %p
   .row
     .col-md-12.style_p
       %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
         %tr
           %th.header_table
-            Рама
+            =t('page.all.rama')
             %p
               ="#{@hight_var}x#{@depth_var}"
           %th.header_table
-            Уровень хранения
+            =t('page.all.uroven_hran')
           %th.header_table
-            Основная секция
+            =t('page.all.osn_sec')
             %p
-              ="2 рамы, #{@num_of_shelves_var} #{@text_var}"
+              ="#{t('page.all.2_ram')}, #{@num_of_shelves_var} #{@text_var}"
           %th.header_table
-            Приставная секция
+            =t('page.all.pris_sec')
             %p
-              ="1 рама, #{@num_of_shelves_var} #{@text_var}"
+              ="#{t('page.all.1_ram')}, #{@num_of_shelves_var} #{@text_var}"
           %tr{:align => "center"}
             %td
               ="#{@price_ram}"
@@ -40,7 +41,7 @@
             %td
               ="#{@price_stillage_prist}"
 %h2{:align =>"center"}
-  Основная секция
+  =t('page.all.osn_sec')
 .dimensions_stillage_warehouse
   .indent_left_stilage_warehouse
   .dimension_image_stilage_warehouse
@@ -57,7 +58,7 @@
 %div{:style => " width:100%; height:1px; clear:both;"}
 
 %h2{:align =>"center"}
-  Приставная секция
+  =t('page.all.pris_sec')
 .dimensions_stillage_warehouse
   .indent_left_stilage_warehouse
   .dimension_image_stilage_warehouse

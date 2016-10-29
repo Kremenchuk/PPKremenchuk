@@ -1,13 +1,13 @@
 %h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
-  Стеллаж архивный
+  =t('page.stillage.show.header')
 .style_p
   ="#{@name_stilage}"
 .style_p
-  ="Максимальная нагрузка на одну полку #{@shelf_load_var} кг."
+  ="#{t('page.all.max_load')}: #{@shelf_load_var} #{t('page.all.kg')}"
 .style_p
-  ="Вес: #{@wei_stilage} кг."
+  ="#{t('page.all.weight')}: #{@wei_stilage} #{t('page.all.kg')}"
 .style_p
-  ="Цена: #{@price_stillage} грн."
+  ="#{t('page.all.price')}: #{@price_stillage} #{t('page.all.uah')}"
 .dimensions_stillage
   .indent_left_stilage
   .dimension_image_stilage

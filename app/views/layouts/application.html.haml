@@ -3,7 +3,8 @@
   %head
     %meta{:content => "3ZGMYXXCBZBQNEZbdqB9TBw7nJ7IG609UeI7l3BJUXM", :name => "google-site-verification"}
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
-    %title Стеллажи от производителя (online расчет)
+    %title
+      =t('page.layout.title')
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -13,44 +14,57 @@
         .span_header
           .left1
         .fix
-          %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+          %table.layout_table
             %tr{:align => "center"}
               %td.col1
-                =link_to image_tag("design/all_parts/Header/Logo.gif", class: "logo", :title => "На главную"), "/"
-                %a{:href => "/"}
+                =link_to image_tag("design/all_parts/Header/Logo.gif", class: "logo", :title => t('to_root')), root_path
+                %a{:href => root_path}
                   .text_pp
-                    %span.colortext1 ЧП
-                    %span.colortext2 КРЕМЕНЧУК
+                    %span.colortext1
+                      =t('page.layout.pp')
+                    %span.colortext2
+                      =t('page.layout.kremenchuk')
               %td.col2
                 - if current_user
                   = current_user.email
                   %p
-                    =link_to "Выход", destroy_user_session_path
+                    =link_to t('page.layout.sign_out'), destroy_user_session_path
                 - else
                   .about_href
-                    = link_to "Войти", new_user_session_path
+                    = link_to t('page.layout.sign_in'), new_user_session_path
                     %p
-                      = link_to "Регистрация", new_user_registration_path
+                      = link_to t('page.layout.registration'), new_user_registration_path
               %td.col3
                 %ul.dropdown
-                  ПРОДУКЦИЯ
+                  =t('page.layout.production')
                   %li.dropdown-top
                     %ul.dropdown-inside
                       %li
-                        %a{:href => "/stillage/index"} Стеллажи архивные (on-line расчет)
+                        =link_to t('page.layout.drop_menu.stillage'), stillage_index_path
                       %li
-                        %a{:href => "/stillage_warehouse/index"} Стеллажи складские (on-line расчет)
+                        =link_to t('page.layout.drop_menu.warehouse'), stillage_warehouse_index_path
                       %li
-                        %a{:href => "/stillage_pallet/index"} Стеллажи паллетные (on-line расчет)
+                        =link_to t('page.layout.drop_menu.pallet'), stillage_pallet_index_path
                       %li
-                        %a{:href => "/trolleys/index"} Тележки грузовые (on-line расчет)
+                        =link_to t('page.layout.drop_menu.trolleys'), trolleys_index_path
                       %li
-                        %a{:href => "/mezzanine/index"} Мезонинные слеллажи
+                        =link_to t('page.layout.drop_menu.mezzanine'), mezzanine_index_path
                       %li
-                        %a{:href => "/gallery/index"} Галерея
+                        =link_to t('page.layout.drop_menu.gallery'), gallery_index_path
 
-              %td.col5{:onClick => "document.location='/contact/index'"}
-                КОНТАКТЫ
+              %td.col5{:onClick => "document.location='#{contact_index_path}'"}
+                = t('page.layout.contact')
+              %td.col3
+                .locale_view
+                  %ul.dropdown
+                    = t("languages.#{I18n.locale}").mb_chars.upcase.to_s
+                    %li.dropdown-top
+                      %ul.dropdown-inside
+                        -I18n.available_locales.each do |locale|
+                          -unless locale == :en
+                            %li
+                              = link_to t(locale), locale_path(:new_locale => locale), :method => :put
+                              /- link_to t(locale), change_locale_path(locale: locale)
         .span_header
           .right1
       .wrapper
@@ -61,8 +75,9 @@
       %table{:cellspacing => "5", :cellpadding => "5", :width => "100%"}
         %tr
           %td.footer_style{:align => "right"}
-            Сайт: Кременчук Артем
+            =t('page.layout.site')
         %tr
           %td.footer_style{:align => "right"}
-            Дизай: Чернышов Георгий
+            =t('page.layout.design')
+
 

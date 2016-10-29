@@ -137,10 +137,10 @@ class StillageController < ApplicationController
 
     #проверка выбора оцинкованный или окрашенный стеллаж
     if @okr_or_oc == "osinkovaniy"
-      @name_stilage = @name_stilage + " оцинкованный"
+      @name_stilage = @name_stilage + " " + t('page.all.osinkovaniy')
       @okraska=0
     else
-      @name_stilage = @name_stilage + " окрашенный"
+      @name_stilage = @name_stilage + " " + t('page.all.okrash')
 
       #считаем площадь
                 #площадь стоек + площадь полок + площадь усилителей

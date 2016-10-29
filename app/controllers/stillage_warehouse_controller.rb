@@ -180,7 +180,7 @@ class StillageWarehouseController < ApplicationController
     plosh_usil_styag = (@constant.area_profil_usil_warehouse * (@dlin_usil_styag/1000.0)).to_s(:rounded, :precision => 5).to_f
     plosh_usil_g = (@constant.area_profil_usil_warehouse * (@dlin_usil_g/1000.0)).to_s(:rounded, :precision => 5).to_f
 
-    type_stillage = "Металлическая полка"
+    type_stillage = t('page.stillage_warehouse.show.metall_pol')
     #Вычисляем стоимость усилителей
     @price_usil_styag = 0
     @price_usil_g     = 0
@@ -189,7 +189,7 @@ class StillageWarehouseController < ApplicationController
           plosh_usil_styag * @constant.job_okr_usil_sklad
       @price_usil_g = ((@dlin_usil_g/1000.0) * @constant.mat_profil_usil_warehouse) + @constant.job_usil_g +
           plosh_usil_g * @constant.job_okr_usil_sklad
-      type_stillage = "Каркас под ДСП"
+      type_stillage = t('page.stillage_warehouse.show.karkas_dsp')
     end
 
 
@@ -233,7 +233,7 @@ class StillageWarehouseController < ApplicationController
       @plosh_polki = 0
       if @pol_met_or_dsp == "metall"
         if @okr_or_oc_pol == "okrash"
-          type_stillage = "Окрашенная металлическая полка"
+          type_stillage = t('page.stillage_warehouse.show.okrash_matall')
           @plosh_polki = ((a_polki * b_polki * 2)/1000000.0).to_s(:rounded, :precision => 5).to_f
           @price_polki = @price_polki + @plosh_polki * @constant.job_ork_polki_sklad
         end
@@ -288,13 +288,13 @@ class StillageWarehouseController < ApplicationController
     @price_ram = @price_ram.to_s(:rounded, :precision => 2)
     @price_shelves = @price_shelves.to_s(:rounded, :precision => 2)
 
-    @text_var = "уровень"
+    @text_var = t('page.all.uroven')
 
     if @num_of_shelves_var>1
-      @text_var = "уровня"
+      @text_var = t('page.all.urovnya')
     end
     if @num_of_shelves_var>4
-      @text_var = "уровней"
+      @text_var = t('page.all.urovney')
     end
 
     @name_stillage="#{@hight_var}x#{@width_var}x#{@depth_var} #{@num_of_shelves_var} п. " + type_stillage

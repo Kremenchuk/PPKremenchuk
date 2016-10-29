@@ -1,0 +1,31 @@
+.row
+  .col-md-6
+    =label_tag(:q, t('page.all.lenght'))
+    %p
+      = "(600-1500 #{t('page.all.mm')})"
+    %p{:title => t('page.trolleys.index.length_title')}
+      %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
+                    :size => "10", :value => "", :type => "text"}
+  .col-md-6
+    =label_tag(:q, t('page.all.widht'))
+    %p
+      = "(500-1200 #{t('page.all.mm')})"
+      %p{:title => t('page.trolleys.index.width_title')}
+        %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
+                       :size => "10", :value => "", :type => "text"}
+.row
+  .col-md-6
+    =label_tag(:q, t('page.trolleys.index.handle_height'))
+    %p
+      = "(600-1200 #{t('page.all.mm')})"
+    %p{:title => t('page.trolleys.index.handle_height_title')}
+      %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+  .col-md-6
+    =label_tag(:q, t('page.trolleys.index.weight'))
+    %p
+      = "(50-400 #{t('page.all.kg')})"
+    %p{:title => t('page.trolleys.index.weight_title')}
+      %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
+                     :size => "10", :value => "", :type => "text"}
+

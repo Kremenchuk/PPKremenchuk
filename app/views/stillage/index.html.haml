@@ -1,5 +1,5 @@
 %h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
-  Стеллажи архивные
+  =t('page.stillage.index.header')
 .container-fluid
   .row
     .col-md-6
@@ -12,43 +12,43 @@
   .container-fluid
     .text_size{:onclick => "showHide('hiden_element_1','chg_img_1')" }
       %img{:id => "chg_img_1", :alt => "mater", :src => "/assets/plus.png", :name => "img_1", :width => "30", :height => "30"}
-      On-line расчет стеллажа
+      =t('page.all.on_line')
     .hiden_element_1
       -if @constant.on_off_calc_stillage==false
         .row
           .col-md-2
-            =label_tag(:q, "Высота")
+            =label_tag(:q, t('page.all.height'))
             %p
-              (500-3500 мм)
-            %p{:title => "Высота вашего стеллажа указаная в милиметрах"}
+              (500-3500 #{t('page.all.mm')})
+            %p{:title => t('page.all.height_title')}
               %input{:maxlength => "4", :name => "hight", :pattern => "^[ 0-9]+$",
                 :size => "10", :value => "", :type => "text"}
           .col-md-2
-            =label_tag(:q, "Ширина")
+            =label_tag(:q, t('page.all.widht'))
             %p
-              (400-1150 мм)
-            %p{:title => "Шрина полочки указаная в милиметрах"}
+              (400-1150 #{t('page.all.mm')})
+            %p{:title => t('page.all.widht_title')}
               %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
                 :size => "10", :value => "", :type => "text"}
           .col-md-2
-            =label_tag(:q, "Глубина")
+            =label_tag(:q, t('page.all.depth'))
             %p
-              (250-800 мм)
-            %p{:title => "Глубина полочки указаная в милиметрах"}
+              (250-800 #{t('page.all.mm')})
+            %p{:title => t('page.all.depth_title')}
               %input{:maxlength => "4", :name => "depth", :pattern => "^[ 0-9]+$",
                 :size => "10", :value => "", :type => "text"}
           .col-md-2
-            =label_tag(:q, "Количество полок")
+            =label_tag(:q, t('page.all.num_of_shelves'))
             %p
-              (2-15 шт.)
-            %p{:title => "Количество полок на один стеллаж"}
+              (2-15 #{t('page.all.unit')})
+            %p{:title => t('page.all.num_of_shelves_title')}
               %input{:maxlength => "2", :name => "num_of_shelves", :pattern => "^[ 0-9]+$",
                 :size => "10", :value => "", :type => "text"}
           .col-md-3
-            =label_tag(:q, "Нагрузка на полку")
+            =label_tag(:q, t('page.all.shelf_load'))
             %p
-              (20-100 кг)
-            %p{:title => "Максимальная распределенная нагрузка на одну полку стеллажа"}
+              (20-100 #{t('page.all.kg')})
+            %p{:title => t('page.stillage.index.shelf_load_title')}
               %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
                 :size => "10", :value => "", :type => "text"}
         .row
@@ -58,77 +58,55 @@
         .row
           .col-md-3
             .style_text_about_stillage_stillage_warehouse_stillage_pallet
-              %input{:name => "group1" , :type => "radio", :value => "osinkovaniy", :checked => "checked"}
-                Оцинкованый
+              %input{:id => "radio1", :name => "group1" , :type => "radio", :value => "osinkovaniy", :checked => "checked"}
+                =label_tag('radio1', t('page.all.osinkovaniy'), :class => 'radio_button_label')
               %p
-                %input{:name => "group1" , :type => "radio", :value => "okrash"}
-                  Окрашенный
+                %input{:id => "radio2", :name => "group1" , :type => "radio", :value => "okrash"}
+                  =label_tag('radio2', t('page.all.okrash'), :class => 'radio_button_label')
         .row
           .col-md-3
             %p
 
         .row
           .col-md-3
-            %input{:name => "send", :type => "submit", :value => "Рассчитать стеллаж", :class => "btn btn-success"}
+            %input{:name => "send", :type => "submit", :value => t('page.all.calculate_stillage'), :class => "btn btn-success"}
       -else
         .on_line_calculation_off
-          On-line расчет временно недоступен.
+          =t('page.all.on_line_off')
 %p
 
 .container-fluid
   .row
     .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet
-      Стеллаж состоит из: стоек, полок и усилителей (наличие усилителей зависит от нагрузки на полку).
-      %p
-        1. Стойка: гнутый уголок с продольными ребрами жесткости длинной 500-3500мм. из оцинкованной стали марки 08 КП толщиной 1,15 мм.
-        Зацепы для крепления полок пробиты по длине стойки с шагом  100-400 мм., что позволяет переставлять полки на требуемую высоту.
-      %p
-        2. Полка: гнутая коробчатая конструкция с продольными и поперечными ребрами жесткости. Длина полки 400-1150 мм. ,ширина 250-800 мм.  Высота ребер жесткости 30 мм.
-        Полка изготовлена из оцинкованной стали марки 08КП толщиной 0,55-1.00 мм. Клиновидные отверстия для зацепления за стойки, пробиты в ребрах жесткости по два с каждой стороны.
-      %p
-        3. Усилитель: гнутая профильная конструкция из оцинкованной стали 08КП толщиной 0,55-1.00 мм.
+      =raw t('page.stillage.index.about')
   .row
     .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet
       %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
         %tr
-          %th.header_table Фото
-          %th.header_table Название
-          %th.header_table Технические характеристики
+          %th.header_table
+            =t('page.all.table.header_photo')
+          %th.header_table
+            =t('page.all.table.header_name')
+          %th.header_table
+            =t('page.all.table.header_texn')
           %tr{:align => "center"}
             %td
               =image_tag("design/all_parts/stillage_arxiv/Paspor_stoyka.png", :width => "100", :height => "200")
             %td
-              Стойка
+              =t('page.stillage.index.table.name_1')
             %td
-              %p
-                Высота:  1000-3500 мм.
-              %p
-                Нагрузка – 500 кг
-              %p
-                Оцинкованная/Окрашенная (RAL5005, RAL7035)
+              =raw t('page.stillage.index.table.texn_1')
           %tr{:align => "center"}
             %td
               =image_tag("", :width => "200", :height => "200")
             %td
-              Полка
+              =t('page.stillage.index.table.name_2')
             %td
-              %p
-                Длина – 400-1150 мм
-              %p
-                Ширина 250-800 мм
-              %p
-                Нагрузка – до 100 кг
-              %p
-                Оцинкованная/Окрашенная (RAL5005, RAL7035)
+              =raw t('page.stillage.index.table.texn_2')
           %tr{:align => "center"}
             %td
               =image_tag("", :width => "200", :height => "200")
             %td
-              Усилитель
+              =t('page.stillage.index.table.name_3')
             %td
-              %p
-                Длина – 400-1150 мм
-              %p
-                Ширина 40 мм
-              %p
-                Оцинкованный/Окрашенный (RAL5005, RAL7035)
+              =raw t('page.stillage.index.table.texn_3')

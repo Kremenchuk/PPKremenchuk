@@ -1,23 +1,24 @@
-%h1 Тележка
+%h1
+  = t('page.trolleys.show.header')
 %p
 .container-fluid
   .row
     .col-md-10
       %p.style_p
-        ="Максимальная нагрузка на уровень #{@shelf_load_var} кг."
+        ="#{t('page.trolleys.show.max_load')}: #{@shelf_load_var} #{t('page.all.kg')}"
       %p.style_p
-        ="Вес тележки без колес: #{@wei_trol} кг."
+        ="#{t('page.trolleys.show.weight_without')}: #{@wei_trol} #{t('page.all.kg')}"
       %p
   .row
     .col-md-10.style_p
       %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
         %tr
           %th.header_table
-            Тип
+            = t('page.trolleys.show.type')
           %th.header_table
-            Параметры
+            = t('page.trolleys.show.parameters')
           %th.header_table
-            Цена
+            = t('page.all.price')
             %tr
               %td
                 ="#{@vid}"

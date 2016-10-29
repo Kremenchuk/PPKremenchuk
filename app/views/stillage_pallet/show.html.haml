@@ -1,35 +1,36 @@
-%h1 Стеллажи паллетные сборно-разборные
+%h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
+  =t('page.stillage_pallet.show.header')
 %p
 .container-fluid
   .row
     .col-md-10
       %p.style_p
-        ="Максимальная нагрузка на уровень #{@shelf_load_var} кг."
+        ="#{t('page.stillage_pallet.show.max_load_ur')}: #{@shelf_load_var} #{t('page.all.kg')}"
       %p.style_p
-        ="Вес рамы: #{@wei_ram}"
+        ="#{t('page.stillage_pallet.show.weight_ram')}: #{@wei_ram} #{t('page.all.kg')}"
       %p.style_p
-        ="Вес траверсы: #{@wei_traversi}"
+        ="#{t('page.stillage_pallet.show.weaight_trav')}: #{@wei_traversi} #{t('page.all.kg')}"
       %p
   .row
     .col-md-12.style_p
       %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
         %tr
           %th.header_table
-            Рама
+            =t('page.all.rama')
             %p
               ="#{@hight_var}x1100"
           %th.header_table
-            Траверса
+            =t('page.all.traversa')
             %p
               ="#{@width_var}x#{@hight_traversi}x#{@depth_traversi}x1.5"
           %th.header_table
-            Основная секция
+            =t('page.all.osn_sec')
             %p
-              ="2 рамы, #{@num_of_shelves_var} #{@text_var}"
+              ="#{t('page.all.2_ram')}, #{@num_of_shelves_var} #{@text_var}"
           %th.header_table
-            Приставная секция
+            =t('page.all.pris_sec')
             %p
-              ="1 рама, #{@num_of_shelves_var} #{@text_var}"
+              ="#{t('page.all.1_ram')}, #{@num_of_shelves_var} #{@text_var}"
           %tr{:align => "center"}
             %td
               ="#{@price_ram}"

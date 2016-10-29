@@ -1,97 +1,46 @@
 Rails.application.routes.draw do
-
-
-
-  get 'stillage_pallet/index'
-  get 'stillage_pallet/show'
-
-  get 'stillage_warehouse/index'
-  get 'stillage_warehouse/show'
-
-  get 'stillage/index'
-  get 'stillage/show'
+  # get '/:locale' => 'welcome#index'
+  # get 'change_locale' => 'application#setup_locale'
 
   root 'welcome#index'
-  get 'welcome/index'
 
-  get 'trolleys/index'
-  get 'trolleys/show'
+  match 'change_locale/:new_locale' => 'welcome#set_locale', :via => [:put, :patch], :as => :locale,  :constraints => { :new_locale => I18n.available_locales.join('|') }
 
-  get 'mezzanine/index'
+  scope '(/:locale)', :constraints => { :locale => I18n.available_locales.join('|') } do
+    get 'stillage_pallet/index'
+    get 'stillage_pallet/show'
 
-  get 'gallery/index'
+    get 'stillage_warehouse/index'
+    get 'stillage_warehouse/show'
 
-  get 'contact/index'
+    get 'stillage/index'
+    get 'stillage/show'
 
-  get 'admin_panel/index'
-  post 'constants/load_constant' => 'constants#load_constant'
+    get 'welcome/index'
 
-  resources :admin_panel do
-    get :change_diller, on: :member
-    get :change_admin, on: :member
+    get 'trolleys/index'
+    get 'trolleys/show'
+
+    get 'mezzanine/index'
+
+    get 'gallery/index'
+
+    get 'contact/index'
+
+    get 'admin_panel/index'
+
+    resources :admin_panel do
+      get :change_diller, on: :member
+      get :change_admin, on: :member
+    end
+
+
+
+    #get 'constants/:id/edit' => 'material_path'
+    resources :constants
+    devise_for :users, controllers: {registrations: 'registrations' }
+
   end
-
-  #root 'welcome#index'
-
-  #get 'constants/:id/edit' => 'material_path'
-  resources :constants
-  devise_for :users, controllers: {registrations: 'registrations' }
-  #devise_for :users
-
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
+  post 'constants/load_constant' => 'constants#load_constant'
 
 end

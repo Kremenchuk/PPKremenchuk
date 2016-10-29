@@ -4,6 +4,19 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
 
+  before_action :set_locale_a
+  #
+
+  def setup_locale
+    I18n.locale = params[:locale]
+    url_hash = Rails.application.routes.recognize_path URI(request.referer).path
+    url_hash[:locale] = params[:locale]
+    redirect_to url_hash
+  end
+
+  def default_url_options
+    { locale: I18n.locale }
+  end
 
   def check_if_admin
     if authenticate_user!
@@ -54,4 +67,9 @@ class ApplicationController < ActionController::Base
     render file: "public/404.html", ststus: 404
   end
 
+  protected
+  def set_locale_a
+    I18n.locale = params[:locale] || I18n.default_locale
+    session[:locale] = I18n.locale
+  end
 end
