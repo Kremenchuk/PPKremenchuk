@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729200805) do
+ActiveRecord::Schema.define(version: 20161031170638) do
 
   create_table "constants", force: :cascade do |t|
     t.float    "mat_list_2_1_055",                default: 0.0
@@ -209,6 +209,7 @@ ActiveRecord::Schema.define(version: 20160729200805) do
     t.string   "name",                   default: "",    null: false
     t.boolean  "admin",                  default: false
     t.integer  "diller",                 default: 4
+    t.string   "language",               default: "ru"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

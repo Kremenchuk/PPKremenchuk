@@ -4,6 +4,22 @@ ru:
   ru: 'Русский'
   uk: 'Українська'
 
+
+  errors:
+    messages:
+      not_saved: 'Аккаунт не создан!'
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: 'Пользователь с таким email уже существует'
+
+
+
+
   languages:
     en: 'languages'
     ru: 'Язык'

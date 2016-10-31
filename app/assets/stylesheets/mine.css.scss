@@ -1,5 +1,27 @@
 $theme_color: #FE7D14;
 
+.admin_panel_link a:visited{
+  color: #0076ff;
+  font-size: 18px;
+  font-weight: 500;
+}
+.admin_panel_link a{
+  color: #0076ff;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.admin_panel_link a:hover{
+  color: black;
+  font-size: 18px;
+  font-weight: 500;
+}
+.admin_panel_link a:active{
+  color: #0076ff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
 .layout_table {
   //cellspacing: 5px;
   //cellpadding: 5px;
@@ -52,23 +74,19 @@ html, body {
 }
 
 a {
-  color: white;
   text-decoration: none;
 }
 
 a:hover {
-  color: white;
   text-decoration: none;
 }
 
 a:visited {
-  color: white;
   text-decoration: none;
 }
 
 a:active
 {
-  color: white;
   text-decoration: none;
 }
 

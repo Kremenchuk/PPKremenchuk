@@ -42,7 +42,7 @@
               %option= "Класс №1"
               %option= "Класс №2"
               %option= "Класс №3"
-          %td
+          %td.admin_panel_link
             =link_to "Удалить", admin_panel_path(i.id), method: :delete, data: {confirm: "Точно удалить?"}
   %p
   %input{:type => "submit", :value => "Редактировать"}

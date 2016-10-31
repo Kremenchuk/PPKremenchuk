@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  match 'change_locale/:new_locale' => 'welcome#set_locale', :via => [:put, :patch], :as => :locale,  :constraints => { :new_locale => I18n.available_locales.join('|') }
+  match 'change_locale/:new_locale' => 'application#set_locale', :via => [:put, :patch], :as => :locale,  :constraints => { :new_locale => I18n.available_locales.join('|') }
 
   scope '(/:locale)', :constraints => { :locale => I18n.available_locales.join('|') } do
     get 'stillage_pallet/index'

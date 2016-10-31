@@ -10,8 +10,8 @@
     = submit_tag "Забрать значения констант из файла", {:class =>"btn btn-success"}
 %p
   %hr
-%p
-  =link_to "Панель администратора","/admin_panel/index"
+%p.admin_panel_link
+  =link_to "Панель администратора", admin_panel_path
 = simple_form_for @constant do |f|
   .col-md-12
     E-mail для отправки файла расчетов по сайту

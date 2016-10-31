@@ -7,10 +7,15 @@ class ApplicationController < ActionController::Base
   before_action :set_locale_a
   #
 
-  def setup_locale
-    I18n.locale = params[:locale]
+  def set_locale
+    I18n.locale = params[:new_locale]
+    session[:locale] = I18n.locale
     url_hash = Rails.application.routes.recognize_path URI(request.referer).path
-    url_hash[:locale] = params[:locale]
+    url_hash[:locale] = params[:new_locale]
+    if current_user.present?
+      current_user.language = params[:new_locale]
+      current_user.save!
+    end
     redirect_to url_hash
   end
 
@@ -69,7 +74,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def set_locale_a
-    I18n.locale = params[:locale] || I18n.default_locale
+    I18n.locale = params[:locale] || (current_user.language.to_sym if current_user.present?) ||I18n.default_locale
     session[:locale] = I18n.locale
   end
 end
