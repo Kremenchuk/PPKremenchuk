@@ -19,6 +19,7 @@ gem 'rubypython'
 # gem 'fcgi'
 #gem 'debugger'
 gem 'passenger'
+gem 'jquery-ui-rails'
 
 
 
