@@ -29,7 +29,7 @@ doc/
 
 
 #игнор файлов сред
-#/config/environments/development.rb
+/config/environments/development.rb
 #/config/environments/production.rb
 #/config/environments/test.rb
 #/config/environments/*
