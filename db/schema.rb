@@ -192,6 +192,42 @@ ActiveRecord::Schema.define(version: 20161031170638) do
     t.float    "area_usil_arx",                   default: 2.0
   end
 
+  create_table "counterparties", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "short_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_manufacturings", force: :cascade do |t|
+    t.string   "date"
+    t.integer  "counterparty_id"
+    t.string   "number",          null: false
+    t.string   "invoice"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "order_manufacturings_stillages", force: :cascade do |t|
+    t.integer  "order_manufacturing_id"
+    t.integer  "stillage_id"
+    t.string   "qty",                    null: false
+    t.string   "price",                  null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "stillages", force: :cascade do |t|
+    t.string   "height",        null: false
+    t.string   "width",         null: false
+    t.string   "depth",         null: false
+    t.string   "count_pol",     null: false
+    t.string   "stillage_type", null: false
+    t.string   "weight_on_pol", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false

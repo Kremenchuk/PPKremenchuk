@@ -72,7 +72,7 @@ class ConstantsController < ApplicationController
         end
 
 
-        # Проверка все ли поля найдены и не равні 0
+        # Перевірка всі поля знайдено і не дорівнують 0
         warnings = ''
         result.each do |key, value|
           if value == 0
@@ -123,10 +123,10 @@ class ConstantsController < ApplicationController
   end
 
 
-  def flash_message(type, mesage)
+  def flash_message(type, message)
     flash[:class] = "alert alert-#{type}"
     flash[:style] = "font-size:20px;"
-    flash[:message] = mesage
+    flash[:message] = message
   end
 
 
