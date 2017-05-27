@@ -65,7 +65,7 @@ class ConstantsController < ApplicationController
             col += 1
             row = col_excel.index(column_name)
             if row
-              result[column_name] = const_value_list.cell(col,row + 1).to_s.gsub(',', '.').to_f
+              result[column_name] = const_value_list.cell(col + 1,row + 1).to_s.gsub(',', '.').to_f
               break
             end
           end
