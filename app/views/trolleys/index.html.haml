@@ -34,18 +34,18 @@
                       = t('page.trolleys.index.laminar_dsp')
                     %li
                       = t('page.trolleys.index.powder_paint')
-      .text_size{:onclick => "showHide('hidenelement1a','chg_img_10')" }
-        %img{:id => "chg_img_10", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-        = "#{t('page.trolleys.index.on_line_model')} ТР-01"
-      .hidenelement1a
-        -if @constant.on_off_calc_TP01==false
+      -if @constant.on_off_calc_TP01==false
+        .text_size{:onclick => "showHide('hidenelement1a','chg_img_10')" }
+          %img{:id => "chg_img_10", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+          = "#{t('page.trolleys.index.on_line_model')} ТР-01"
+        .hidenelement1a
           = render 'on_line_section'
           .row
             .col-md-3
               %input{:name => "send", :type => "submit", :value => t('page.trolleys.index.calculate'), :class => "btn btn-success"}
-        -else
-          .on_line_calculation_off
-            = t('page.all.on_line_off')
+        -#-else
+        -#  .on_line_calculation_off
+        -#    = t('page.all.on_line_off')
       %p.distance_from_trolleys
 
 
@@ -74,18 +74,19 @@
                       = t('page.trolleys.index.laminar_dsp')
                     %li
                       = t('page.trolleys.index.powder_paint')
-      .text_size{:onclick => "showHide('hidenelement2','chg_img_11')" }
-        %img{:id => "chg_img_11", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-        = "#{t('page.trolleys.index.on_line_model')} ТР-02"
-      .hidenelement2
-        -if @constant.on_off_calc_TP02==false
+      -if @constant.on_off_calc_TP02==false
+        .text_size{:onclick => "showHide('hidenelement2','chg_img_11')" }
+          %img{:id => "chg_img_11", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+          = "#{t('page.trolleys.index.on_line_model')} ТР-02"
+        .hidenelement2
+
           = render 'on_line_section'
           .row
             .col-md-3
               %input{:name => "send", :type => "submit", :value => t('page.trolleys.index.calculate'), :class => "btn btn-success"}
-        -else
-          .on_line_calculation_off
-            = t('page.all.on_line_off')
+        -#-else
+        -#  .on_line_calculation_off
+        -#    = t('page.all.on_line_off')
       %p.distance_from_trolleys
   %div{:style => " width:5%; height:1px; clear:both;"}
 
@@ -120,18 +121,18 @@
                       = t('page.trolleys.index.laminar_dsp')
                     %li
                       = t('page.trolleys.index.powder_paint')
-      .text_size{:onclick => "showHide('hidenelement3','chg_img_12')" }
-        %img{:id => "chg_img_12", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-        = "#{t('page.trolleys.index.on_line_model')} ТР-03"
-      .hidenelement3
-        -if @constant.on_off_calc_TP03==false
+      -if @constant.on_off_calc_TP03==false
+        .text_size{:onclick => "showHide('hidenelement3','chg_img_12')" }
+          %img{:id => "chg_img_12", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+          = "#{t('page.trolleys.index.on_line_model')} ТР-03"
+        .hidenelement3
           = render 'on_line_section'
           .row
             .col-md-3
               %input{:name => "send", :type => "submit", :value => t('page.trolleys.index.calculate'), :class => "btn btn-success"}
-        -else
-          .on_line_calculation_off
-            = t('page.all.on_line_off')
+        -#-else
+        -#  .on_line_calculation_off
+        -#    = t('page.all.on_line_off')
       %p.distance_from_trolleys
 
 
@@ -166,18 +167,18 @@
                       = t('page.trolleys.index.laminar_dsp')
                     %li
                     = t('page.trolleys.index.powder_paint')
-      .text_size{:onclick => "showHide('hidenelement4','chg_img_13')" }
-        %img{:id => "chg_img_13", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-        = "#{t('page.trolleys.index.on_line_model')} ТР-04"
-      .hidenelement4
-        -if @constant.on_off_calc_TP04==false
+      -if @constant.on_off_calc_TP04==false
+        .text_size{:onclick => "showHide('hidenelement4','chg_img_13')" }
+          %img{:id => "chg_img_13", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+          = "#{t('page.trolleys.index.on_line_model')} ТР-04"
+        .hidenelement4
           = render 'on_line_section'
           .row
             .col-md-3
               %input{:name => "send", :type => "submit", :value => t('page.trolleys.index.calculate'), :class => "btn btn-success"}
-        -else
-          .on_line_calculation_off
-            = t('page.all.on_line_off')
+        -#-else
+        -#  .on_line_calculation_off
+        -#    = t('page.all.on_line_off')
       %p.distance_from_trolleys
   %div{:style => " width:5%; height:1px; clear:both;"}
 
@@ -209,18 +210,18 @@
                       = t('page.trolleys.index.laminar_dsp')
                     %li
                       = t('page.trolleys.index.powder_paint')
-      .text_size{:onclick => "showHide('hidenelement5','chg_img_14')" }
-        %img{:id => "chg_img_14", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-        = "#{t('page.trolleys.index.on_line_model')} ТР-05"
-      .hidenelement5
-        -if @constant.on_off_calc_TP05==false
+      -if @constant.on_off_calc_TP05==false
+        .text_size{:onclick => "showHide('hidenelement5','chg_img_14')" }
+          %img{:id => "chg_img_14", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+          = "#{t('page.trolleys.index.on_line_model')} ТР-05"
+        .hidenelement5
           = render 'on_line_section'
           .row
             .col-md-3
               %input{:name => "send", :type => "submit", :value => t('page.trolleys.index.calculate'), :class => "btn btn-success"}
-        -else
-          .on_line_calculation_off
-            = t('page.all.on_line_off')
+        -#-else
+        -#  .on_line_calculation_off
+        -#    = t('page.all.on_line_off')
       %p.distance_from_trolleys
 
 
@@ -251,18 +252,18 @@
                       = t('page.trolleys.index.list')
                     %li
                       = t('page.trolleys.index.powder_paint')
-      .text_size{:onclick => "showHide('hidenelement6','chg_img_15')" }
-        %img{:id => "chg_img_15", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-        = "#{t('page.trolleys.index.on_line_model')} ТР-06"
-      .hidenelement6
-        -if @constant.on_off_calc_TP06==false
+      -if @constant.on_off_calc_TP06==false
+        .text_size{:onclick => "showHide('hidenelement6','chg_img_15')" }
+          %img{:id => "chg_img_15", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+          = "#{t('page.trolleys.index.on_line_model')} ТР-06"
+        .hidenelement6
           = render 'on_line_section'
           .row
             .col-md-3
               %input{:name => "send", :type => "submit", :value => t('page.trolleys.index.calculate'), :class => "btn btn-success"}
-        -else
-          .on_line_calculation_off
-            = t('page.all.on_line_off')
+        -#-else
+        -#  .on_line_calculation_off
+        -#    = t('page.all.on_line_off')
       %p.distance_from_trolleys
 
 
@@ -293,18 +294,18 @@
                       = t('page.trolleys.index.list')
                     %li
                       = t('page.trolleys.index.powder_paint')
-      .text_size{:onclick => "showHide('hidenelement7','chg_img_16')" }
-        %img{:id => "chg_img_16", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-        = "#{t('page.trolleys.index.on_line_model')} ТР-07"
-      .hidenelement7
-        -if @constant.on_off_calc_TP07==false
+      -if @constant.on_off_calc_TP07==false
+        .text_size{:onclick => "showHide('hidenelement7','chg_img_16')" }
+          %img{:id => "chg_img_16", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+          = "#{t('page.trolleys.index.on_line_model')} ТР-07"
+        .hidenelement7
           = render 'on_line_section'
           .row
             .col-md-3
               %input{:name => "send", :type => "submit", :value => t('page.trolleys.index.calculate'), :class => "btn btn-success"}
-        -else
-          .on_line_calculation_off
-            = t('page.all.on_line_off')
+        -#-else
+        -#  .on_line_calculation_off
+        -#    = t('page.all.on_line_off')
       %p.distance_from_trolleys
   %div{:style => " width:100%; height:1px; clear:both;"}
 
@@ -339,11 +340,11 @@
                       = t('page.trolleys.index.setka')
                     %li
                       = t('page.trolleys.index.powder_paint')
-      .text_size{:onclick => "showHide('hidenelement8','chg_img_17')" }
-        %img{:id => "chg_img_17", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-        = "#{t('page.trolleys.index.on_line_model')} KS-01"
-      .hidenelement8
-        -if @constant.on_off_calc_KS01==false
+      -if @constant.on_off_calc_KS01==false
+        .text_size{:onclick => "showHide('hidenelement8','chg_img_17')" }
+          %img{:id => "chg_img_17", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+          = "#{t('page.trolleys.index.on_line_model')} KS-01"
+        .hidenelement8
           = render 'on_line_section'
           .row.pt_03
             .col-md-12
@@ -355,9 +356,9 @@
           .row
             .col-md-12
               %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-        -else
-          .on_line_calculation_off
-            = t('page.all.on_line_off')
+        -#-else
+        -#  .on_line_calculation_off
+        -#    = t('page.all.on_line_off')
       %p.distance_from_trolleys
 
 
@@ -390,11 +391,11 @@
                       = t('page.trolleys.index.setka')
                     %li
                       = t('page.trolleys.index.powder_paint')
-      .text_size{:onclick => "showHide('hidenelement9','chg_img_18')" }
-        %img{:id => "chg_img_18", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-        = "#{t('page.trolleys.index.on_line_model')} KS-02"
-      .hidenelement9
-        -if @constant.on_off_calc_KS02==false
+      -if @constant.on_off_calc_KS02==false
+        .text_size{:onclick => "showHide('hidenelement9','chg_img_18')" }
+          %img{:id => "chg_img_18", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+          = "#{t('page.trolleys.index.on_line_model')} KS-02"
+        .hidenelement9
           = render 'on_line_section'
           .row.pt_03
             .col-md-12
@@ -406,9 +407,9 @@
           .row
             .col-md-12
               %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-        -else
-          .on_line_calculation_off
-            = t('page.all.on_line_off')
+        -#-else
+        -#  .on_line_calculation_off
+        -#    = t('page.all.on_line_off')
       %p.distance_from_trolleys
   %div{:style => " width:5%; height:1px; clear:both;"}
 
@@ -439,11 +440,11 @@
                       = t('page.trolleys.index.setka')
                     %li
                       = t('page.trolleys.index.powder_paint')
-      .text_size{:onclick => "showHide('hidenelement10a','chg_img_19')" }
-        %img{:id => "chg_img_19", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-        = "#{t('page.trolleys.index.on_line_model')} KS-03"
-      .hidenelement10a
-        -if @constant.on_off_calc_KS03==false
+      -if @constant.on_off_calc_KS03==false
+        .text_size{:onclick => "showHide('hidenelement10a','chg_img_19')" }
+          %img{:id => "chg_img_19", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+          = "#{t('page.trolleys.index.on_line_model')} KS-03"
+        .hidenelement10a
           = render 'on_line_section'
           .row.pt_03
             .col-md-12
@@ -455,9 +456,9 @@
           .row
             .col-md-12
               %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-        -else
-          .on_line_calculation_off
-            = t('page.all.on_line_off')
+        -#-else
+        -#  .on_line_calculation_off
+        -#    = t('page.all.on_line_off')
       %p.distance_from_trolleys
 
 
@@ -489,11 +490,11 @@
                       = t('page.trolleys.index.setka')
                     %li
                       = t('page.trolleys.index.powder_paint')
-      .text_size{:onclick => "showHide('hidenelement11a','chg_img_20')" }
-        %img{:id => "chg_img_20", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-        = "#{t('page.trolleys.index.on_line_model')} KS-04"
-      .hidenelement11a
-        -if @constant.on_off_calc_KS04==false
+      -if @constant.on_off_calc_KS04==false
+        .text_size{:onclick => "showHide('hidenelement11a','chg_img_20')" }
+          %img{:id => "chg_img_20", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+          = "#{t('page.trolleys.index.on_line_model')} KS-04"
+        .hidenelement11a
           = render 'on_line_section'
           .row.pt_03
             .col-md-12
@@ -505,9 +506,9 @@
           .row
             .col-md-12
               %input{:name => "send", :type => "submit", :value => "Рассчитать", :class => "btn btn-success"}
-        -else
-          .on_line_calculation_off
-            = t('page.all.on_line_off')
+        -#-else
+        -#  .on_line_calculation_off
+        -#    = t('page.all.on_line_off')
       %p.distance_from_trolleys
   %div{:style => " width:5%; height:1px; clear:both;"}
 
@@ -540,19 +541,19 @@
                       = t('page.trolleys.index.setka')
                     %li
                       = t('page.trolleys.index.powder_paint')
-      .text_size{:onclick => "showHide('hidenelement12a','chg_img_21')" }
-        %img{:id => "chg_img_21", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-        = "#{t('page.trolleys.index.on_line_model')} PT-01"
-      .hidenelement12a
-        -if @constant.on_off_calc_PT01==false
+      -if @constant.on_off_calc_PT01==false
+        .text_size{:onclick => "showHide('hidenelement12a','chg_img_21')" }
+          %img{:id => "chg_img_21", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+          = "#{t('page.trolleys.index.on_line_model')} PT-01"
+        .hidenelement12a
           = render 'on_line_section'
           .row
             .col-md-3
               %input{:name => "send", :type => "submit", :value => t('page.trolleys.index.calculate'), :class => "btn btn-success"}
-        -else
-          .on_line_calculation_off
-            = t('page.all.on_line_off')
-            On-line расчет временно недоступен.
+        -#-else
+        -#  .on_line_calculation_off
+        -#    = t('page.all.on_line_off')
+        -#    On-line расчет временно недоступен.
       %p.distance_from_trolleys
 
 
@@ -580,18 +581,18 @@
                       = t('page.trolleys.index.list')
                     %li
                       = t('page.trolleys.index.powder_paint')
-      .text_size{:onclick => "showHide('hidenelement13a','chg_img_22')" }
-        %img{:id => "chg_img_22", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-        = "#{t('page.trolleys.index.on_line_model')} PT-02"
-      .hidenelement13a
-        -if @constant.on_off_calc_PT02==false
+      -if @constant.on_off_calc_PT02==false
+        .text_size{:onclick => "showHide('hidenelement13a','chg_img_22')" }
+          %img{:id => "chg_img_22", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+          = "#{t('page.trolleys.index.on_line_model')} PT-02"
+        .hidenelement13a
           = render 'on_line_section'
           .row
             .col-md-3
               %input{:name => "send", :type => "submit", :value => t('page.trolleys.index.calculate'), :class => "btn btn-success"}
-        -else
-          .on_line_calculation_off
-            = t('page.all.on_line_off')
+        -#-else
+        -#  .on_line_calculation_off
+        -#    = t('page.all.on_line_off')
       %p.distance_from_trolleys
   %div{:style => " width:100%; height:1px; clear:both;"}
 
@@ -621,18 +622,18 @@
                       = t('page.trolleys.index.laminar_dsp')
                     %li
                       = t('page.trolleys.index.powder_paint')
-      .text_size{:onclick => "showHide('hidenelement14a','chg_img_23')" }
-        %img{:id => "chg_img_23", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-        = "#{t('page.trolleys.index.on_line_model')} PT-03"
-      .hidenelement14a
-        -if @constant.on_off_calc_PT03==false
+      -if @constant.on_off_calc_PT03==false
+        .text_size{:onclick => "showHide('hidenelement14a','chg_img_23')" }
+          %img{:id => "chg_img_23", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+          = "#{t('page.trolleys.index.on_line_model')} PT-03"
+        .hidenelement14a
           = render 'on_line_section'
           .row
             .col-md-3
               %input{:name => "send", :type => "submit", :value => t('page.trolleys.index.calculate'), :class => "btn btn-success"}
-        -else
-          .on_line_calculation_off
-            = t('page.all.on_line_off')
+        -#-else
+        -#  .on_line_calculation_off
+        -#    = t('page.all.on_line_off')
       %p.distance_from_trolleys
 
 
@@ -665,18 +666,18 @@
                       = t('page.trolleys.index.laminar_dsp')
                     %li
                       = t('page.trolleys.index.powder_paint')
-      .text_size{:onclick => "showHide('hidenelement15a','chg_img_24')" }
-        %img{:id => "chg_img_24", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
-        = "#{t('page.trolleys.index.on_line_model')} PT-04"
-      .hidenelement15a
-        -if @constant.on_off_calc_PT04==false
+      -if @constant.on_off_calc_PT04==false
+        .text_size{:onclick => "showHide('hidenelement15a','chg_img_24')" }
+          %img{:id => "chg_img_24", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
+          = "#{t('page.trolleys.index.on_line_model')} PT-04"
+        .hidenelement15a
           = render 'on_line_section'
           .row
             .col-md-3
               %input{:name => "send", :type => "submit", :value => t('page.trolleys.index.calculate'), :class => "btn btn-success"}
-        -else
-          .on_line_calculation_off
-            = t('page.all.on_line_off')
+        -#-else
+        -#  .on_line_calculation_off
+        -#    = t('page.all.on_line_off')
       %p.distance_from_trolleys
   %div{:style => " width:100%; height:1px; clear:both;"}
 

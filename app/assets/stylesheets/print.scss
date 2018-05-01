@@ -1,0 +1,222 @@
+@media print {
+
+  .info, .layout_table, .print-button-section, .footer, .header-left-top, .a-right-bottom, .time-right-bottom {
+      display: none;
+  }
+
+  body {
+    background-image: none;
+  }
+
+  @page
+  {
+    size:  auto;   /* auto is the initial value */
+    margin: 0mm;  /* this affects the margin in the printer settings */
+    margin-top: -10mm;
+  }
+
+  .stillage .dimensions_stillage {
+      margin-left: -40mm;
+  }
+
+  .stillage .dimaension_image_size_stilage {
+      height: 180mm;
+      width: 120mm;
+  }
+
+  .stillage .height_size_stilage {
+     left: 53mm;
+     top: 52mm;
+     font-size: 5mm;
+   }
+  .stillage .widht_size_stilage{
+    left: 19mm;
+    top: 195mm;
+    font-size: 5mm;
+  }
+
+  .stillage .depth_size_stilage {
+    left: 59mm;
+    top: 148mm;
+    font-size: 5mm;
+  }
+
+
+  //Для складських стелажів
+
+  .stillage-warehouse .item-info {
+    width: 220mm;
+    margin-left: -15mm;
+
+  }
+
+  //.stillage-warehouse table {
+    //width: 220mm;
+    //margin-left: -20mm;
+  //}
+
+  .stillage-warehouse .dimensions_stillage_warehouse {
+    margin-left: -40mm;
+    margin-top: -27mm;
+  }
+
+  .stillage-warehouse .dimaension_image_size_stilage_warehouse {
+    height: 120mm;
+    width: 100mm;
+  }
+
+  .stillage-warehouse .height_size_stilage_warehouse_primery {
+    left: 45mm;
+    top: 40mm;
+    font-size: 5mm;
+  }
+
+  .stillage-warehouse .widht_size_stilage_warehouse_primery {
+    left: 26mm;
+    top: 127mm;
+    font-size: 5mm;
+  }
+
+  .stillage-warehouse .widht_section_size_stilage_warehouse_primery{
+    left: 26mm;
+    top: 130mm;
+    font-size: 5mm;
+  }
+
+  .stillage-warehouse .depth_size_stilage_warehouse_primery {
+    left: 66mm;
+    top: 81mm;
+    font-size: 5mm;
+  }
+
+  .stillage-warehouse .height_size_stilage_warehouse_addl {
+    left: 45mm;
+    top: 38mm;
+    font-size: 5mm;
+  }
+
+  .stillage-warehouse .widht_size_stilage_warehouse_addl {
+    left: 26mm;
+    top: 115mm;
+    font-size: 5mm;
+  }
+
+  .stillage-warehouse .widht_section_size_stilage_warehouse_addl {
+    left: 26mm;
+    top: 118mm;
+    font-size: 5mm;
+  }
+
+  .stillage-warehouse .depth_size_stilage_warehouse_addl {
+    left: 66mm;
+    top: 69mm;
+    font-size: 5mm;
+  }
+
+  //Для Firefox
+  @-moz-document url-prefix() {
+    @page
+    {
+      size:  auto;   /* auto is the initial value */
+      margin: 0;  /* this affects the margin in the printer settings */
+      margin-top: -4mm;
+    }
+
+    .header_stillage_stillage_warehouse_stillage_pallet_trolleys {
+      font-size: 8mm;
+    }
+
+    h2 {
+      font-size: 5mm;
+      margin-top: 1mm;
+    }
+
+    .stillage-warehouse {
+      margin-bottom: -10mm;
+    }
+
+    .stillage-warehouse .item-info {
+      width: 185mm;
+      margin-left: 15mm;
+
+    }
+
+    .stillage-warehouse .item-info .style_p {
+      font-size: 3.5mm;
+    }
+
+    .stillage-warehouse table {
+      width: 185mm;
+      margin-left: 0;
+      font-size: 3.5mm;
+    }
+
+    .stillage-warehouse .item-info .style_p table .header_table{
+      font-size: 3.5mm;
+    }
+
+    .stillage-warehouse .item-info .style_p table .header_table p {
+      margin:  0;
+    }
+
+    .stillage-warehouse .dimensions_stillage_warehouse {
+      margin-left: -20mm;
+      margin-top: -20mm;
+    }
+
+    .stillage-warehouse .dimaension_image_size_stilage_warehouse {
+      height: 110mm;
+      width: 90mm;
+    }
+
+    .stillage-warehouse .height_size_stilage_warehouse_primery {
+      left: 42mm;
+      top: 25mm;
+      font-size: 3mm;
+    }
+
+    .stillage-warehouse .widht_size_stilage_warehouse_primery {
+      left: 26mm;
+      top: 112mm;
+      font-size: 3mm;
+    }
+
+    .stillage-warehouse .widht_section_size_stilage_warehouse_primery{
+      left: 26mm;
+      top: 117mm;
+      font-size: 3mm;
+    }
+
+    .stillage-warehouse .depth_size_stilage_warehouse_primery {
+      left: 60mm;
+      top: 73mm;
+      font-size: 3mm;
+    }
+
+    .stillage-warehouse .height_size_stilage_warehouse_addl {
+      left: 42mm;
+      top: 15mm;
+      font-size: 3mm;
+    }
+
+    .stillage-warehouse .widht_size_stilage_warehouse_addl {
+      left: 26mm;
+      top: 100mm;
+      font-size: 3mm;
+    }
+
+    .stillage-warehouse .widht_section_size_stilage_warehouse_addl {
+      left: 26mm;
+      top: 106mm;
+      font-size: 3mm;
+    }
+
+    .stillage-warehouse .depth_size_stilage_warehouse_addl {
+      left: 60mm;
+      top: 61mm;
+      font-size: 3mm;
+    }
+
+  }
+
+}

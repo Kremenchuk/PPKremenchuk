@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
     session[:locale] = I18n.locale
     url_hash = Rails.application.routes.recognize_path URI(request.referer).path
     url_hash[:locale] = params[:new_locale]
+    url_hash = url_hash.merge(Rack::Utils.parse_query URI(request.referer).query)
     if current_user.present?
       current_user.language = params[:new_locale]
       current_user.save!

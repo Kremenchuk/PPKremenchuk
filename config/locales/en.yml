@@ -15,6 +15,7 @@ en:
 
   page:
     all:
+      print:       'Печать'
       on_line:     'On-line расчет стеллажа'
       on_line_off: 'On-line расчет временно недоступен.'
       mm:          'мм'

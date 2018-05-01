@@ -1,22 +1,30 @@
 %h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
   =t('page.stillage.show.header')
-.style_p
-  ="#{@name_stilage}"
-.style_p
-  ="#{t('page.all.max_load')}: #{@shelf_load_var} #{t('page.all.kg')}"
-.style_p
-  ="#{t('page.all.weight')}: #{@wei_stilage} #{t('page.all.kg')}"
-.style_p
-  ="#{t('page.all.price')}: #{@price_stillage} #{t('page.all.uah')}"
-.dimensions_stillage
-  .indent_left_stilage
-  .dimension_image_stilage
-    .height_size_stilage
-      ="#{@hight_var}"
-    .widht_size_stilage
-      ="#{@width_var}"
-    .depth_size_stilage
-      ="#{@depth_var}"
-    =image_tag("design/all_parts/stillage_arxiv/stillage_show_dimension 45.gif", class: "dimaension_image_size_stilage")
-  .indent_right_stilage
-%div{:style => "width:100%; height:1px; clear:both;"}
+
+.stillage
+
+  .col-xs-12
+    = button_to '', class: 'btn btn-default print-button', method: :get, remote: true, onclick: ' window.print()' do
+      %i.fa.fa-print
+
+  .item-info
+    .style_p
+      ="#{@name_stilage}"
+    .style_p
+      ="#{t('page.all.max_load')}: #{@shelf_load_var} #{t('page.all.kg')}"
+    .style_p
+      ="#{t('page.all.weight')}: #{@wei_stilage} #{t('page.all.kg')}"
+    .style_p
+      ="#{t('page.all.price')}: #{@price_stillage} #{t('page.all.uah')}"
+  .dimensions_stillage
+    .indent_left_stilage
+    .dimension_image_stilage
+      .height_size_stilage
+        ="#{@hight_var}"
+      .widht_size_stilage
+        ="#{@width_var}"
+      .depth_size_stilage
+        ="#{@depth_var}"
+      =image_tag("design/all_parts/stillage_arxiv/stillage_show_dimension 45.gif", class: "dimaension_image_size_stilage")
+    .indent_right_stilage
+  %div{:style => "width:100%; height:1px; clear:both;"}

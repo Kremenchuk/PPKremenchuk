@@ -9,13 +9,13 @@
       =image_tag("design/all_parts/stillage_pallet/Pasport.png", :class => "tytle_page_img_stillage_stillage_warehouse_stillage_pallet")
 
 %p
-%form{:action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_stilage_pallet ( );"}
-  .container-fluid
-    .text_size{:onclick => "showHide('hiden_element_1','chg_img_1')" }
-      %img{:id => "chg_img_1", :alt => "mater", :src => "/assets/plus.png", :name => "img_1", :width => "30", :height => "30"}
-      =t('page.all.on_line')
-    .hiden_element_1
-      -if @constant.on_off_calc_stillage_pallet==false
+-if @constant.on_off_calc_stillage_pallet==false
+  %form{:action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_stilage_pallet ( );"}
+    .container-fluid
+      .text_size{:onclick => "showHide('hiden_element_1','chg_img_1')" }
+        %img{:id => "chg_img_1", :alt => "mater", :src => "/assets/plus.png", :name => "img_1", :width => "30", :height => "30"}
+        =t('page.all.on_line')
+      .hiden_element_1
         .row
           .col-md-3
             =label_tag(:q, t('page.all.height'))
@@ -49,9 +49,9 @@
           .col-md-3
             %p
             %input{:name => "send", :type => "submit", :value => t('page.all.calculate_stillage'), :class => "btn btn-success"}
-      -else
-        .on_line_calculation_off
-          =t('page.all.on_line_off')
+      -#-else
+      -#  .on_line_calculation_off
+      -#    =t('page.all.on_line_off')
 
 %p
 .container-fluid

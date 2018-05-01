@@ -20,6 +20,8 @@ gem 'rubypython'
 #gem 'debugger'
 gem 'passenger'
 gem 'jquery-ui-rails'
+gem 'font-awesome-sass'
+
 
 
 

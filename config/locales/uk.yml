@@ -28,6 +28,7 @@ uk:
 
   page:
     all:
+      print:       'Друкувати'
       on_line:     'On-line розрахунок стелажа'
       on_line_off: 'On-line розрахунок тимчасово вимкнено'
       mm:          'мм'

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui/widgets/autocomplete
+//= require bootstrap.min.js
 //= require_tree .
 
 

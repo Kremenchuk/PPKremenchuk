@@ -1,75 +1,80 @@
 %h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
   =t('page.stillage_warehouse.show.header')
-%p
-.container-fluid
-  .row.style_p
-    .col-md-10
-      %p
-        ="#{@name_stillage}"
-      %p
-        ="#{t('page.stillage_warehouse.show.max_load_ur')}: #{@shelf_load_var} #{t('page.all.kg')}"
-      %p
-        ="#{t('page.stillage_warehouse.show.weight_osn_sec')}: #{@wei_osn} #{t('page.all.kg')}"
-      %p
-        ="#{t('page.stillage_warehouse.show.weight_pris_sec')}: #{@wei_pris} #{t('page.all.kg')}"
-      %p
-  .row
-    .col-md-12.style_p
-      %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-        %tr
-          %th.header_table
-            =t('page.all.rama')
-            %p
-              ="#{@hight_var}x#{@depth_var}"
-          %th.header_table
-            =t('page.all.uroven_hran')
-          %th.header_table
-            =t('page.all.osn_sec')
-            %p
-              ="#{t('page.all.2_ram')}, #{@num_of_shelves_var} #{@text_var}"
-          %th.header_table
-            =t('page.all.pris_sec')
-            %p
-              ="#{t('page.all.1_ram')}, #{@num_of_shelves_var} #{@text_var}"
-          %tr{:align => "center"}
-            %td
-              ="#{@price_ram}"
-            %td
-              ="#{@price_shelves}"
-            %td
-              ="#{@price_stillage_osn}"
-            %td
-              ="#{@price_stillage_prist}"
-%h2{:align =>"center"}
-  =t('page.all.osn_sec')
-.dimensions_stillage_warehouse
-  .indent_left_stilage_warehouse
-  .dimension_image_stilage_warehouse
-    .height_size_stilage_warehouse_primery
-      ="#{@hight_var}"
-    .widht_size_stilage_warehouse_primery
-      ="#{@width_var}"
-    .widht_section_size_stilage_warehouse_primery
-      ="#{@width_var + 100}"
-    .depth_size_stilage_warehouse_primery
-      ="#{@depth_var}"
-    =image_tag('design/all_parts/stillage_warehouse/Stilage_warehouse45_primary.gif', class: "dimaension_image_size_stilage_warehouse")
-  .indent_right_stilage_warehouse
-%div{:style => " width:100%; height:1px; clear:both;"}
+.stillage-warehouse
+  .col-xs-12.print-button-section
+    = button_to '', class: 'btn btn-default print-button', method: :get, remote: true, onclick: ' window.print()' do
+      %i.fa.fa-print
 
-%h2{:align =>"center"}
-  =t('page.all.pris_sec')
-.dimensions_stillage_warehouse
-  .indent_left_stilage_warehouse
-  .dimension_image_stilage_warehouse
-    .height_size_stilage_warehouse_addl
-      ="#{@hight_var}"
-    .widht_size_stilage_warehouse_addl
-      ="#{@width_var}"
-    .widht_section_size_stilage_warehouse_addl
-      ="#{@width_var + 50}"
-    .depth_size_stilage_warehouse_addl
-      ="#{@depth_var}"
-    =image_tag('design/all_parts/stillage_warehouse/Stilage_warehouse45_addl.gif', class: "dimaension_image_size_stilage_warehouse")
-  .indent_right_stilage_warehouse
-%div{:style => " width:100%; height:30px; clear:both;"}
+  .item-info
+    .container-fluid
+      .row.style_p
+        .col-md-10
+          .style_p
+            ="#{@name_stillage}"
+          .style_p
+            ="#{t('page.stillage_warehouse.show.max_load_ur')}: #{@shelf_load_var} #{t('page.all.kg')}"
+          .style_p
+            ="#{t('page.stillage_warehouse.show.weight_osn_sec')}: #{@wei_osn} #{t('page.all.kg')}"
+          .style_p
+            ="#{t('page.stillage_warehouse.show.weight_pris_sec')}: #{@wei_pris} #{t('page.all.kg')}"
+          .style_p
+      .row
+        .col-md-12.style_p
+          %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+            %tr
+              %th.header_table
+                =t('page.all.rama')
+                %p
+                  ="#{@hight_var}x#{@depth_var}"
+              %th.header_table
+                =t('page.all.uroven_hran')
+              %th.header_table
+                =t('page.all.osn_sec')
+                %p
+                  ="#{t('page.all.2_ram')}, #{@num_of_shelves_var} #{@text_var}"
+              %th.header_table
+                =t('page.all.pris_sec')
+                %p
+                  ="#{t('page.all.1_ram')}, #{@num_of_shelves_var} #{@text_var}"
+              %tr{:align => "center"}
+                %td
+                  ="#{@price_ram}"
+                %td
+                  ="#{@price_shelves}"
+                %td
+                  ="#{@price_stillage_osn}"
+                %td
+                  ="#{@price_stillage_prist}"
+  %h2{:align =>"center"}
+    =t('page.all.osn_sec')
+  .dimensions_stillage_warehouse
+    .indent_left_stilage_warehouse
+    .dimension_image_stilage_warehouse
+      .height_size_stilage_warehouse_primery
+        ="#{@hight_var}"
+      .widht_size_stilage_warehouse_primery
+        ="#{@width_var}"
+      .widht_section_size_stilage_warehouse_primery
+        ="#{@width_var + 100}"
+      .depth_size_stilage_warehouse_primery
+        ="#{@depth_var}"
+      =image_tag('design/all_parts/stillage_warehouse/Stilage_warehouse45_primary.gif', class: "dimaension_image_size_stilage_warehouse")
+    .indent_right_stilage_warehouse
+  %div{:style => " width:100%; height:1px; clear:both;"}
+
+  %h2{:align =>"center"}
+    =t('page.all.pris_sec')
+  .dimensions_stillage_warehouse
+    .indent_left_stilage_warehouse
+    .dimension_image_stilage_warehouse
+      .height_size_stilage_warehouse_addl
+        ="#{@hight_var}"
+      .widht_size_stilage_warehouse_addl
+        ="#{@width_var}"
+      .widht_section_size_stilage_warehouse_addl
+        ="#{@width_var + 50}"
+      .depth_size_stilage_warehouse_addl
+        ="#{@depth_var}"
+      =image_tag('design/all_parts/stillage_warehouse/Stilage_warehouse45_addl.gif', class: "dimaension_image_size_stilage_warehouse", style: 'margin-top: -12mm;')
+    .indent_right_stilage_warehouse
+  %div{:style => " width:100%; height:30px; clear:both;"}
