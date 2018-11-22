@@ -11,7 +11,7 @@
 
 .tp_01
   .col-md-6.table_position_trolleys
-    %form{:id => "id_el_1", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_1')"}
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_1', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_1')") do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-01", :type => "text"}
       .container-fluid
         .row
@@ -51,7 +51,7 @@
 
 .tp_02
   .col-md-6.table_position_trolleys
-    %form{:id => "id_el_2", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_2');"}
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_2', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_2')") do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-02", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -98,7 +98,7 @@
 
 .tp_03
   .col-md-6.table_position_trolleys
-    %form{:id => "id_el_3", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_3');"}
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_3', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_3')") do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-03", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -144,7 +144,7 @@
 
 .tp_04
   .col-md-6.table_position_trolleys
-    %form{:id => "id_el_4", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_4');"}
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_4', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_4')") do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-04", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -187,7 +187,7 @@
 
 .tp_05
   .col-md-6.table_position_trolleys
-    %form{:id => "id_el_5", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_5');"}
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_5', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_5')") do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-05", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -229,7 +229,7 @@
 
 .tp_06
   .col-md-6.table_position_trolleys
-    %form{:id => "id_el_6", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_6');"}
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_6', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_6')") do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-06", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -271,7 +271,7 @@
 
 .tp_07
   .col-md-6.table_position_trolleys
-    %form{:id => "id_el_7", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_7');"}
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_7', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_7')") do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-07", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -315,7 +315,7 @@
 
 .ks_01
   .col-md-6.table_position_trolleys
-    %form{:id => "id_el_8", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_8');"}
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_8', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_8')") do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "KS-01", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -366,7 +366,7 @@
 
 .ks_02
   .col-md-6.table_position_trolleys
-    %form{:id => "id_el_9", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_9');"}
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_9', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_9')") do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "KS-02", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -415,7 +415,7 @@
 
 .ks_03
   .col-md-6.table_position_trolleys
-    %form{:id => "id_el_10", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_10');"}
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_10', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_10')") do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "KS-03", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -465,7 +465,7 @@
 
 .ks_04
   .col-md-6.table_position_trolleys
-    %form{:id => "id_el_11", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_11');"}
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_11', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_11')") do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "KS-04", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -518,7 +518,7 @@
 
 .pt_01
   .col-md-6.table_position_trolleys
-    %form{:id => "id_el_12", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_12');"}
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_12', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_12')") do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "PT-01", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -560,7 +560,7 @@
 
 .pt_02
   .col-md-6.table_position_trolleys
-    %form{:id => "id_el_13", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_13');"}
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_13', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_13')") do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "PT-02", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -599,7 +599,7 @@
 
 .pt_03
   .col-md-6.table_position_trolleys
-    %form{:id => "id_el_14", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_14');"}
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_14', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_14')") do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "PT-03", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -641,7 +641,7 @@
 
 .pt_04
   .col-md-6.table_position_trolleys
-    %form{:id => "id_el_15", :action => "show", :method => "get", :name => "contact_form", :onsubmit => "return validate_form_trolleys ('id_el_15');"}
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_15', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_15')") do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "PT-04", :type => "text",:display => "false"}
       .container-fluid
         .row

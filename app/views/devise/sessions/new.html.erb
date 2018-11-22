@@ -14,12 +14,12 @@
     <% if devise_mapping.rememberable? -%>
         <div class="field">
           <%= f.check_box :remember_me %>
-          <%= f.label "Зпомнить меня" %>
+          <%= f.label t('page.login.remember_me') %>
         </div>
     <% end -%>
 
     <div class="actions">
-      <%= f.submit "Зайти" %>
+      <%= f.submit t('page.login.come_in'), class: 'btn btn-success'%>
     </div>
 <% end %>
 

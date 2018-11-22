@@ -1,0 +1,28 @@
+%h1 Изменение контактной информации
+%table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+  %tr
+    %th
+      Название
+    %th
+      Текст
+    %th{style: 'width: 25%'}
+
+  -@contacts.each do |contact|
+    = form_tag contacts_update_path, method: :put do
+      %tr
+        %td
+          = text_area_tag 'id', contact.id, hidden: 'true'
+          = text_area_tag 'name', contact.name, style: 'width: 100%'
+        %td
+          = text_area_tag 'text', contact.text, style: 'width: 100%'
+        %td
+          = submit_tag 'Редактировать', {:class =>"btn btn-success"}
+          = link_to 'Удалить', contact_destroy_path(id: contact.id), class: 'btn btn-danger', method: :delete
+  = form_tag contacts_new_path, method: :post do
+    %tr
+      %td
+        = text_area_tag 'name','' ,size: 50, style: 'width: 100%'
+      %td
+        = text_area_tag 'text', '',size: 50, style: 'width: 100%'
+      %td
+        = submit_tag "Добавить", {:class =>"btn btn-success", style: 'width: 100%'}

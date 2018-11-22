@@ -1,10 +1,6 @@
 class ContactController < ApplicationController
   def index
-    #Выдача админских прав юзеру
-    #@user = User.where("id = 3").first
-    #@user.admin = 1
-    #@user.save
-
+    @contacts = Contact.all
     button_const
   end
 end

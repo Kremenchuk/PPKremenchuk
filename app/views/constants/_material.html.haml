@@ -1,0 +1,390 @@
+.row
+  .col-md-10
+    .hiden_element_1
+      %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+        %tr
+          %th.header_table{:width => "50%"} Наименование
+          %th.header_table Вес
+          %th.header_table Цена
+          %th.header_table Площадь за м/п или шт.
+        %tr.color_head_constant
+          %td{:colspan => "3"} Общие
+        %tr
+          %td Лист 2000х1000х0,55
+          %td
+            .input_style_constant
+              =f.input :wei_list_2_1_055, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_list_2_1_055, label: false
+        %tr
+          %td Лист 2000х1000х0,7
+          %td
+            .input_style_constant
+              =f.input :wei_list_2_1_07, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_list_2_1_07, label: false
+        %tr
+          %td Лист 2500х1250х0,7
+          %td
+            .input_style_constant
+              =f.input :wei_list_25_125_07, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_list_25_125_07, label: false
+        %tr
+          %td Лист 2000х1000х1
+          %td
+            .input_style_constant
+              =f.input :wei_list_2_1_1, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_list_2_1_1, label: false
+        %tr
+          %td Лист 2000х1000х2 ХК
+          %td
+            .input_style_constant
+              =f.input :wei_list_2_1_2, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_list_2_1_2, label: false
+        %tr
+          %td Лист 2500х1250х2 ХК
+          %td
+            .input_style_constant
+              =f.input :wei_list_25_125_2, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_list_25_125_2, label: false
+        %tr
+          %td Лист 2000х1000х2,5 ХК
+          %td
+            .input_style_constant
+              =f.input :wei_list_2_1_25, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_list_2_1_25, label: false
+        %tr
+          %td Лист 2500х1250х2,5 ХК
+          %td
+            .input_style_constant
+              =f.input :wei_list_25_125_25, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_list_25_125_25, label: false
+        %tr
+          %td Кратность длины стойки
+          %td
+            .input_style_constant
+          %td
+            .input_style_constant
+              =f.input :rack_multiplicity, label: false
+        %tr
+          %td Труба 25х25х1,2
+          %td
+            .input_style_constant
+              =f.input :wei_truba_25_25_12, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_truba_25_25_12, label: false
+          %td
+            .input_style_constant
+              =f.input :area_truba_25_25_12, label: false
+        %tr
+          %td Труба 25х25х1,5
+          %td
+            .input_style_constant
+              =f.input :wei_truba_25_25_15, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_truba_25_25_15, label: false
+          %td
+            .input_style_constant
+              =f.input :area_truba_25_25_15, label: false
+
+
+        %tr.color_head_constant
+          %td{:colspan => "3"} Стеллаж ПК
+        %tr
+          %td Стойки ПК
+          %td
+            .input_style_constant
+              =f.input :wei_stoyki_arx, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_stoyki_arx, label: false
+          %td
+            .input_style_constant
+              =f.input :area_stoyki_arx, label: false
+        %tr
+          %td Подпятники ПК
+          %td
+            .input_style_constant
+              =f.input :wei_pyatki_arx, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_pyatki_arx, label: false
+          %td
+            .input_style_constant
+              =f.input :area_pyatki_arx, label: false
+        %tr
+          %td Усилитель ПК
+          %td
+            .input_style_constant
+          %td
+            .input_style_constant
+          %td
+            .input_style_constant
+              =f.input :area_usil_arx, label: false
+        %tr.color_head_constant
+          %td{:colspan => "3"} Складской стеллаж
+        %tr
+          %td Стойки складского
+          %td
+            .input_style_constant
+              =f.input :wei_stoyki_sklad, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_stoyki_sklad, label: false
+          %td
+            .input_style_constant
+              =f.input :area_stoyki_sklad, label: false
+        %tr
+          %td Траверса складского ПТ-50
+          %td
+            .input_style_constant
+              =f.input :wei_traversa_sklad, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_traversa_sklad, label: false
+          %td
+            .input_style_constant
+              =f.input :area_traversa_sklad, label: false
+        %tr
+          %td Подпятники складского
+          %td
+            .input_style_constant
+              =f.input :wei_pyatki_sklad, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_pyatki_sklad, label: false
+          %td
+            .input_style_constant
+              =f.input :area_pyatki_sklad, label: false
+        %tr
+          %td Метизы складского
+          %td
+            .input_style_constant
+              =f.input :wei_metizi_sklad, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_metizi_sklad, label: false
+        %tr
+          %td Укосы складского
+          %td
+            .input_style_constant
+              =f.input :wei_ukosi_sklad, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_ukosi_sklad, label: false
+          %td
+            .input_style_constant
+              =f.input :area_ukosi_sklad, label: false
+        %tr
+          %td Зацеп складского (крючек)
+          %td
+            .input_style_constant
+              =f.input :wei_zatsep_sklad, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_zatsep_sklad, label: false
+          %td
+            .input_style_constant
+              =f.input :area_zatsep_sklad, label: false
+        %tr
+          %td Профиль на усилители складского
+          %td
+            .input_style_constant
+              =f.input :wei_profil_usil_warehouse , label: false
+          %td
+            .input_style_constant
+              =f.input :mat_profil_usil_warehouse, label: false
+          %td
+            .input_style_constant
+              =f.input :area_profil_usil_warehouse, label: false
+        %tr
+          %td Скоба стяжного усил.
+          %td
+            .input_style_constant
+              =f.input :wei_skoba_styagnogo, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_skoba_styagnogo, label: false
+          %td
+            .input_style_constant
+              =f.input :area_skoba_styagnogo, label: false
+        %tr.color_head_constant
+          %td{:colspan => "3"} Паллетный стеллаж
+        %tr
+          %td Стойки паллетного
+          %td
+            .input_style_constant
+              =f.input :wei_stoyki_pallet, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_stoyki_pallet, label: false
+          %td
+            .input_style_constant
+              =f.input :area_stoyki_pallet, label: false
+        %tr
+          %td Подпятники паллетного
+          %td
+            .input_style_constant
+              =f.input :wei_pyatki_pallet, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_pyatki_pallet, label: false
+          %td
+            .input_style_constant
+              =f.input :area_pyatki_pallet, label: false
+        %tr
+          %td Укосы паллетного
+          %td
+            .input_style_constant
+              =f.input :wei_ukosi_pallet, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_ukosi_pallet, label: false
+          %td
+            .input_style_constant
+              =f.input :area_ukosi_pallet, label: false
+        %tr
+          %td Метизы для паллетных рам
+          %td
+            .input_style_constant
+              =f.input :wei_metizi_pallet_ram, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_metizi_pallet_ram, label: false
+        %tr
+          %td Метизы паллетных траверс
+          %td
+            .input_style_constant
+              =f.input :wei_metizi_pallet_travers, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_metizi_pallet_travers, label: false
+        %tr
+          %td Зацеп паллетной траверсы
+          %td
+            .input_style_constant
+              =f.input :wei_zatsep_pallet, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_zatsep_pallet, label: false
+          %td
+            .input_style_constant
+              =f.input :area_zatsep_pallet, label: false
+        %tr
+          %td Профиль 100х60х100 1,5мм
+          %td
+            .input_style_constant
+              =f.input :wei_100x60x100x15, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_100x60x100x15, label: false
+          %td
+            .input_style_constant
+              =f.input :area_100x60x100x15, label: false
+        %tr.color_head_constant
+          %td{:colspan => "3"} Тележки
+        %tr
+          %td Труба ДУ 20х2,5
+          %td
+            .input_style_constant
+              =f.input :wei_truba_du_20_25, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_truba_du_20_25, label: false
+          %td
+            .input_style_constant
+              =f.input :area_truba_du_20_25, label: false
+        %tr
+          %td Пластины под колеса
+          %td
+            .input_style_constant
+              =f.input :wei_plastini_teleg, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_plastini_teleg, label: false
+          %td
+            .input_style_constant
+              =f.input :area_plastini_teleg, label: false
+        %tr
+          %td Метизы для телег
+          %td
+            .input_style_constant
+              =f.input :wei_metizi_teleg, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_metizi_teleg, label: false
+        %tr
+          %td Труба 25х25х2
+          %td
+            .input_style_constant
+              =f.input :wei_truba_25_25_2, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_truba_25_25_2, label: false
+          %td
+            .input_style_constant
+              =f.input :area_truba_25_25_2, label: false
+        %tr
+          %td Сетка 50х50х3 за м2
+          %td
+            .input_style_constant
+              =f.input :wei_setka_50_50_3, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_setka_50_50_3, label: false
+        %tr
+          %td Уголок 25х25х3
+          %td
+            .input_style_constant
+              =f.input :wei_ugolok_20_20_3, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_ugolok_20_20_3, label: false
+          %td
+            .input_style_constant
+              =f.input :area_ugolok_20_20_3, label: false
+        %tr
+          %td Шпингалеты, навесы
+          %td
+            .input_style_constant
+              =f.input :wei_shpingalet_naves, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_shpingalet_naves, label: false
+          %td
+            .input_style_constant
+              =f.input :area_shpingalet_naves, label: false
+        %tr
+          %td ДСП ламинат 2800x2070x16
+          %td
+            .input_style_constant
+              =f.input :wei_dsp_laminat, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_dsp_laminat, label: false
+        %tr
+          %td ДСП шлифованое 3500х1750х16
+          %td
+            .input_style_constant
+              =f.input :wei_dsp_shlif, label: false
+          %td
+            .input_style_constant
+              =f.input :mat_dsp_shlif, label: false
+
+

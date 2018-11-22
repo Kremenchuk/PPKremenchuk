@@ -252,3 +252,16 @@ uk:
         address:          'Україна, м. Харків, вул.Морозова, 7.'
         tel:              'Телефон'
         map:              'Мапа проїзду'
+
+
+    registration:
+      header:         'Реєстрація'
+      login:          'Логін'
+      name:           "Ім'я"
+      password:       'Пароль'
+      password_conf:  'Підтвердження паролю'
+      submit_button:  'Реєстрація'
+
+    login:
+      remember_me: "Запам'ятати мене"
+      come_in: 'Увійти'

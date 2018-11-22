@@ -1,4 +1,4 @@
-class TrolleysController < ApplicationController
+class TrolleyController < ApplicationController
   before_filter :check_if_diller, only: [:index, :show]
 
   include Include_Module

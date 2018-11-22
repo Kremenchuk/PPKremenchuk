@@ -254,4 +254,16 @@ ru:
         address_title:    'Адреса'
         address:          'Украина, г. Харьков, ул.Морозова, 7.'
         tel:              'Телефон'
-        map:              'Мапа проїзду'
+        map:              'Карта проезда'
+
+    registration:
+      header:         'Регистрация'
+      login:          'Логин'
+      name:           'Имя'
+      password:       'Пароль'
+      password_conf:  'Повтор пароля'
+      submit_button:  'Регистрация'
+
+    login:
+      remember_me: 'Запомнить меня'
+      come_in:     'Войти'

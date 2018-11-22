@@ -7,27 +7,32 @@ Rails.application.routes.draw do
   match 'change_locale/:new_locale' => 'application#set_locale', :via => [:put, :patch], :as => :locale,  :constraints => { :new_locale => I18n.available_locales.join('|') }
 
   scope '(/:locale)', :constraints => { :locale => I18n.available_locales.join('|') } do
-    get 'stillage_pallet/index'
+    get 'stillage_pallet' => 'stillage_pallet#index', as: 'stillage_pallet_index'
     get 'stillage_pallet/show'
 
-    get 'stillage_warehouse/index'
+    get 'stillage_warehouse' => 'stillage_warehouse#index', as: 'stillage_warehouse_index'
     get 'stillage_warehouse/show'
 
-    get 'stillage/index'
+    get 'stillage' => 'stillage#index', as: 'stillage_index'
     get 'stillage/show'
 
-    get 'welcome/index'
+    get 'welcome' => 'welcome#index', as: 'welcome_index'
 
-    get 'trolleys/index'
-    get 'trolleys/show'
+    get 'trolley' => 'trolley#index', as: 'trolley_index'
+    get 'trolley/show'
 
-    get 'mezzanine/index'
+    get 'mezzanine' => 'mezzanine#index', as: 'mezzanine_index'
 
-    get 'gallery/index'
+    get 'gallery' => 'gallery#index', as: 'gallery_index'
 
-    get 'contact/index'
+    get 'contact' => 'contact#index', as: 'contact_index'
 
-    get 'admin_panel/index'
+    get 'admin_panel' => 'admin_panel#index', as: 'admin_panel_index'
+
+    get 'contacts_index' => 'admin_panel#contacts_index', as: 'contacts_index'
+    post 'contacts_new' => 'admin_panel#contacts_new', as: 'contacts_new'
+    put 'contacts_update' => 'admin_panel#contacts_update', as: 'contacts_update'
+    delete 'contact_destroy' => 'admin_panel#contact_destroy', as: 'contact_destroy'
 
     resources :admin_panel do
       get :change_diller, on: :member
