@@ -23,10 +23,10 @@ class GalleriesController < ApplicationController
     # :path_to_image, :path_to_thumb, :alt_to_image, :horizontal, :image_folder
     begin
       image_name = "stillage_#{params[:image_type]}_#{params[:image].original_filename}"
-      image_path = File.join(Rails.root,'app/assets/images/gallery', params[:image_type])
+      image_path = File.join(Rails.root,'public/assets/gallery', params[:image_type])
 
       thumb_image_name = "thumb_stillage_#{params[:image_type]}_#{params[:thumb_image].original_filename}"
-      thumb_image_path = File.join(Rails.root,'app/assets/images/gallery', params[:image_type], 'thumbs')
+      thumb_image_path = File.join(Rails.root,'public/assets/gallery', params[:image_type], 'thumbs')
 
       File.open(File.join(image_path, image_name),'wb') do |f|
         f.write(params[:image].read)
@@ -38,7 +38,7 @@ class GalleriesController < ApplicationController
 
       gallery = Gallery.new
       gallery.path_to_image = File.join('/assets/gallery',  params[:image_type],image_name)
-      gallery.path_to_thumb = File.join('gallery', params[:image_type], 'thumbs', thumb_image_name)
+      gallery.path_to_thumb = File.join('/assets/gallery', params[:image_type], 'thumbs', thumb_image_name)
       gallery.alt_to_image = params[:alt_image]
       gallery.image_folder = params[:image_type]
       gallery.horizontal = params[:horizontal] == 'Да' ? true : false
