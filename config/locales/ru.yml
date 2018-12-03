@@ -80,9 +80,13 @@ ru:
       registration:   'Регистрация'
       production:     'ПРОДУКЦИЯ'
       contact:        'КОНТАКТЫ'
+      company:        'О КОМПАНИИ'
       site:           'Сайт: Кременчук Артем'
       design:         'Дизайн: Чернышов Георгий'
       drop_menu:
+        news:           'Новости'
+        about_us:       'О компании'
+        contact:      'Контакти'
         stillage:  'Стеллажи архивные (on-line расчет)'
         warehouse: 'Стеллажи складские (on-line расчет)'
         pallet:    'Стеллажи паллетные (on-line расчет)'
@@ -267,3 +271,6 @@ ru:
     login:
       remember_me: 'Запомнить меня'
       come_in:     'Войти'
+
+    news:
+      header: 'Новости'

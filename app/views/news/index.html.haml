@@ -1,0 +1,16 @@
+%h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
+  =t('page.news.header')
+
+- @news.each do |news|
+  .col-md-12
+    .col-md-12
+      %h2.news_header
+        = link_to eval(news.news_header)[locale], news_path(news.id)
+    .col-md-2
+      = link_to news_path(news.id) do
+        = image_tag news.photo, style: 'width: 160px;'
+    .col-md-10
+      = eval(news.short_text)[locale]
+
+
+

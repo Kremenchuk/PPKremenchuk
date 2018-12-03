@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161031170638) do
+ActiveRecord::Schema.define(version: 20181203095416) do
 
   create_table "constants", force: :cascade do |t|
     t.float    "mat_list_2_1_055",                default: 0.0
@@ -192,11 +192,35 @@ ActiveRecord::Schema.define(version: 20161031170638) do
     t.float    "area_usil_arx",                   default: 2.0
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string "name"
+    t.string "text"
+  end
+
   create_table "counterparties", force: :cascade do |t|
     t.string   "name",       null: false
     t.string   "short_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "galleries", force: :cascade do |t|
+    t.string   "path_to_image"
+    t.string   "path_to_thumb"
+    t.string   "alt_to_image"
+    t.boolean  "horizontal"
+    t.string   "image_folder"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "news", force: :cascade do |t|
+    t.string   "news_header"
+    t.string   "short_text"
+    t.string   "text"
+    t.string   "photo"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "order_manufacturings", force: :cascade do |t|

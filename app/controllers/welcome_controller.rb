@@ -8,5 +8,7 @@ class WelcomeController < ApplicationController
     button_const
   end
 
+  def about_us
+  end
 
 end

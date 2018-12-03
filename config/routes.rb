@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   # get '/:locale' => 'welcome#index'
   # get 'change_locale' => 'application#setup_locale'
 
@@ -23,7 +25,7 @@ Rails.application.routes.draw do
 
     get 'mezzanine' => 'mezzanine#index', as: 'mezzanine_index'
 
-    get 'gallery' => 'gallery#index', as: 'gallery_index'
+    get 'galleries' => 'galleries#index', as: 'gallery_index'
 
     get 'contact' => 'contact#index', as: 'contact_index'
 
@@ -33,6 +35,16 @@ Rails.application.routes.draw do
     post 'contacts_new' => 'admin_panel#contacts_new', as: 'contacts_new'
     put 'contacts_update' => 'admin_panel#contacts_update', as: 'contacts_update'
     delete 'contact_destroy' => 'admin_panel#contact_destroy', as: 'contact_destroy'
+
+    get 'photo_browser_index' => 'galleries#photo_browser_index', as: 'photo_browser_index'
+    post 'photo_browser_new' => 'galleries#photo_browser_new', as: 'photo_browser_new'
+    delete 'photo_browser_destroy' => 'galleries#photo_browser_destroy', as: 'photo_browser_destroy'
+
+    get 'news_admin_index' => 'news#news_admin_index', as: 'news_admin_index'
+
+    get 'about_us' => 'welcome#about_us', as: 'about_us'
+
+    resources :news
 
     resources :admin_panel do
       get :change_diller, on: :member
@@ -44,7 +56,7 @@ Rails.application.routes.draw do
     #get 'constants/:id/edit' => 'material_path'
     resources :constants
     devise_for :users, controllers: {registrations: 'registrations' }
-
+    resources :galleries
   end
   post 'constants/load_constant' => 'constants#load_constant'
 

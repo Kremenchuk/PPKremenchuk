@@ -79,15 +79,19 @@ uk:
       registration:   'Реєстрація'
       production:     'ПРОДУКЦІЯ'
       contact:        'КОНТАКТИ'
+      company:        'ПРО КОМПАНІЮ'
       site:           'Сайт: Кременчук Артем'
       design:         'Дизайн: Чернишов Георгій'
       drop_menu:
-        stillage:  'Стелажі архівні (on-line розрахунок)'
-        warehouse: 'Стелажі складські (on-line розрахунок)'
-        pallet:    'Стелажі палетні (on-line розрахунок)'
-        trolleys:  'Візки вантажні (on-line розрахунок)'
-        mezzanine: 'Мезонінні стелажі'
-        gallery:   'Галерея'
+        news:         'Новини'
+        about_us:     'Про компанію'
+        contact:      'Контакти'
+        stillage:     'Стелажі архівні (on-line розрахунок)'
+        warehouse:    'Стелажі складські (on-line розрахунок)'
+        pallet:       'Стелажі палетні (on-line розрахунок)'
+        trolleys:     'Візки вантажні (on-line розрахунок)'
+        mezzanine:    'Мезонінні стелажі'
+        gallery:      'Галерея'
 
     welcome:
       about_as:           'Про нас'
@@ -265,3 +269,6 @@ uk:
     login:
       remember_me: "Запам'ятати мене"
       come_in: 'Увійти'
+
+    news:
+      header: 'Новини'

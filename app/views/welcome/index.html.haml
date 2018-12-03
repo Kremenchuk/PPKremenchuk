@@ -2,10 +2,10 @@
   - @visible_const = "display: block;"
 - else
   - @visible_const = "display: none;"
-  =image_tag("design/all_parts/localization/base_img_#{I18n.locale}.gif", class: "basis")
+  =image_tag("design/all_parts/localization/stillage_base_img_#{I18n.locale}.gif", class: "basis")
 
 #block_id{:style => "#{@visible_const}"}
-  =link_to image_tag("design/all_parts/localization/base_img_#{I18n.locale}.gif", class: "basis"), edit_constant_path(1)
+  =link_to image_tag("design/all_parts/localization/stillage_base_img_#{I18n.locale}.gif", class: "basis"), edit_constant_path(1)
 
 #myScroll_product
 %table{:cellspacing => "5", :cellpadding => "5", :width => "100%"}
@@ -15,7 +15,7 @@
     %td.tb1_col1_welcome
 
     %td.tb1_col2_welcome
-      = link_to image_tag('design/all_parts/stillage_arxiv.gif', class: "products_buttons_welcome"), stillage_index_path
+      = link_to image_tag('design/all_parts/stillage_arxivniy_bitovoy.gif', class: "products_buttons_welcome"), stillage_index_path
       .welcome_img_text
         =link_to t('page.welcome.stillage'), stillage_index_path
     %td.tb1_col3_welcome
@@ -38,7 +38,7 @@
     %td.tb1_col3_welcome
 
     %td.tb1_col2_welcome
-      =link_to image_tag('design/all_parts/troles.gif', class: "products_buttons_welcome"), trolley_index_path
+      =link_to image_tag('design/all_parts/troleys.gif', class: "products_buttons_welcome"), trolley_index_path
       .welcome_img_text
         =link_to t('page.welcome.troles'), trolley_index_path
     %td.tb1_col1_welcome
@@ -60,20 +60,3 @@
         =link_to t('page.welcome.gallery'), gallery_index_path
     %td.tb1_col1_welcome
 
-%table{:cellspacing => "5", :cellpadding => "5", :width => "100%"}
-  %tr.tb2_tr1_row1_welcome{:align => "center"}
-    %td
-
-  %tr.tb2_tr2_row2_welcome{:align => "left"}
-    %td.tb2_tr3_col1_welcome
-    %td.tb2_tr2_col1_welcome
-      #myScroll_about
-        =t('page.welcome.about_as')
-  %tr.tb2_tr3_row3_welcome{:align => "left"}
-    %td.tb2_tr3_col1_welcome
-    %td.tb2_tr3_col2_welcome
-      %p
-        =raw t('page.welcome.about_as_text')
-    %td.tb2_tr3_col3_welcome
-      =image_tag('design/all_parts/about.gif', class: "about_picture_welcome")
-    %td.tb2_tr3_col4_welcome

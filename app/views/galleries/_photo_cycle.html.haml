@@ -1,0 +1,7 @@
+.row_gallery
+  .col-md-12
+    -stillage_type.each do |photo|
+      .col-md-2
+        .col_horizon_arxiv_gallery
+          %a{"data-lightbox" => "roadtrip4", :href => photo.path_to_image}
+            =image_tag(photo.path_to_thumb, alt: photo.alt_to_image)

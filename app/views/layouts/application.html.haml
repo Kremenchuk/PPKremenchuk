@@ -52,8 +52,19 @@
                       %li
                         =link_to t('page.layout.drop_menu.gallery'), gallery_index_path
 
-              %td.col5{:onClick => "document.location='#{contact_index_path}'"}
-                = t('page.layout.contact')
+              %td.col4
+                .locale_view
+                  %ul.dropdown
+                    = t('page.layout.company')
+                    %li.dropdown-top
+                      %ul.dropdown-inside
+                        %li
+                          =link_to t('page.layout.drop_menu.contact'), contact_index_path
+                        %li
+                          =link_to t('page.layout.drop_menu.about_us'), about_us_path
+                        %li
+                          =link_to t('page.layout.drop_menu.news'), news_index_path
+
               %td.col4
                 .locale_view
                   %ul.dropdown
