@@ -29,8 +29,13 @@
     .col-md-12
       .col-md-6
         = link_to 'Работа с новостями', news_admin_index_path, class: 'btn btn-success', style: 'width: 100%'
-      .col-md-12
-        %hr
+    .col-md-12
+      %hr
+    .col-md-12
+      .col-md-6
+        = link_to 'Работа со статьями', articles_admin_index_path, class: 'btn btn-success', style: 'width: 100%'
+    .col-md-12
+      %hr
 
     = simple_form_for @constant do |f|
       .col-md-12

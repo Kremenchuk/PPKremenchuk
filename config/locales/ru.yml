@@ -93,6 +93,7 @@ ru:
         trolleys:  'Тележки грузовые (on-line расчет)'
         mezzanine: 'Мезонинные стеллажи'
         gallery:   'Галерея'
+        article:   'Статьи'
 
     welcome:
       about_as:           'О нас'
@@ -274,3 +275,6 @@ ru:
 
     news:
       header: 'Новости'
+
+    articles:
+      header: 'Статьи'

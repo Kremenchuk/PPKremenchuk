@@ -1,0 +1,34 @@
+%h1 Добавление и удаление статей
+.col-md-12
+  = form_tag article_new_path, method: :post, multipart: true do
+    .col-md-12
+      .col-md-12
+        Файл статьи
+      .col-md-12
+        = file_field_tag :article, accept: 'text/*'
+      .col-md-12
+        = submit_tag "Добавить", {:class =>"btn btn-success"}
+      .col-md-12
+        %hr
+
+.col-md-12
+  = form_tag image_to_article_path, method: :post, multipart: true do
+    .col-md-12
+      .col-md-12
+        Файл картинки
+      .col-md-12
+        = file_field_tag :image, accept: 'image/*'
+      .col-md-12
+        = submit_tag "Добавить", {:class =>"btn btn-success"}
+      .col-md-12
+        %hr
+
+.col-md-12
+  - @articles.each do |article|
+    = form_tag article_delete_path, method: :delete do
+      .col-md-8
+        = text_field_tag :article_name, article, style: 'width: 100%;'
+      .col-md-4
+        = submit_tag "Удалить", {:class =>"btn btn-danger"}
+      .col-md-12
+        %hr

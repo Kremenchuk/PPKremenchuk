@@ -1,10 +1,14 @@
 !!!
 %html
   %head
+
+
     %meta{:content => "3ZGMYXXCBZBQNEZbdqB9TBw7nJ7IG609UeI7l3BJUXM", :name => "google-site-verification"}
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
     %title
       =t('page.layout.title')
+
+    %script{:async => "", :src => "https://www.googletagmanager.com/gtag/js?id=UA-129364309-1"}
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -64,6 +68,8 @@
                           =link_to t('page.layout.drop_menu.about_us'), about_us_path
                         %li
                           =link_to t('page.layout.drop_menu.news'), news_index_path
+                        %li
+                          =link_to t('page.layout.drop_menu.article'), article_index_path
 
               %td.col4
                 .locale_view
@@ -82,13 +88,20 @@
         .sessionInfo
         =yield
         .boofer
-    .footer
-      %table{:cellspacing => "5", :cellpadding => "5", :width => "100%"}
-        %tr
-          %td.footer_style{:align => "right"}
-            =t('page.layout.site')
-        %tr
-          %td.footer_style{:align => "right"}
-            =t('page.layout.design')
+    %table{:cellspacing => "5", :cellpadding => "5", :width => "100%", class: "footer"}
+      %tr
+        %td.footer_style{:align => "right"}
+          =t('page.layout.site')
+      %tr
+        %td.footer_style{:align => "right"}
+          =t('page.layout.design')
 
 
+/ Global site tag (gtag.js) - Google Analytics
+
+:javascript
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129364309-1');

@@ -7,6 +7,10 @@
       .col-md-10
         = file_field_tag :photo
       .col-md-2
+        Дата
+      .col-md-10
+        = date_field_tag :news_date, DateTime.now.strftime('%d.%m.%Y'), style: 'width: 100%'
+      .col-md-2
         Заголовок
       .col-md-10
         = text_field_tag :news_header, '', style: 'width: 100%'
@@ -26,6 +30,8 @@
 .col-md-12
   - @news.each do |news|
     = form_tag news_path(news.id), method: :put, multipart: true do
+      .col-md-12
+        = date_field_tag :news_date, news.news_date, style: 'width: 100%;', disabled: true
       .col-md-6
         = text_field_tag :news_header, news.news_header, style: 'width: 100%;'
       .col-md-4

@@ -44,6 +44,13 @@ Rails.application.routes.draw do
 
     get 'about_us' => 'welcome#about_us', as: 'about_us'
 
+
+    get 'articles_admin_index' => 'article#articles_admin_index', as: 'articles_admin_index'
+    post 'article_new' => 'article#article_new', as: 'article_new'
+    delete 'article_delete' => 'article#article_delete', as: 'article_delete'
+    post 'image_to_article' => 'article#image_to_article', as: 'image_to_article'
+
+
     resources :news
 
     resources :admin_panel do
@@ -57,6 +64,7 @@ Rails.application.routes.draw do
     resources :constants
     devise_for :users, controllers: {registrations: 'registrations' }
     resources :galleries
+    resources :article
   end
   post 'constants/load_constant' => 'constants#load_constant'
 

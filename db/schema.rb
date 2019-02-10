@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181203095416) do
+ActiveRecord::Schema.define(version: 20190204151116) do
 
   create_table "constants", force: :cascade do |t|
     t.float    "mat_list_2_1_055",                default: 0.0
@@ -221,6 +221,7 @@ ActiveRecord::Schema.define(version: 20181203095416) do
     t.string   "photo"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.date     "news_date"
   end
 
   create_table "order_manufacturings", force: :cascade do |t|

@@ -92,6 +92,7 @@ uk:
         trolleys:     'Візки вантажні (on-line розрахунок)'
         mezzanine:    'Мезонінні стелажі'
         gallery:      'Галерея'
+        article:      'Статті'
 
     welcome:
       about_as:           'Про нас'
@@ -272,3 +273,6 @@ uk:
 
     news:
       header: 'Новини'
+
+    articles:
+      header: 'Статті'

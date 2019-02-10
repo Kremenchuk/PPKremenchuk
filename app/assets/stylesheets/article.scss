@@ -1,0 +1,31 @@
+// Place all the styles related to the news controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.article_header a {
+  color: black !important;
+  float: left;
+}
+
+.article_header {
+  text-align: center;
+}
+
+.article_image {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.article_image img{
+  width: 250px;
+}
+
+.article_h2 h2 {
+  text-align: center;
+}
+
+.article_padding_to_footer {
+  padding-bottom: 30px;
+}
