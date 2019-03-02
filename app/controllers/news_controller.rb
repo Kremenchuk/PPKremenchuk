@@ -32,7 +32,7 @@ class NewsController < ApplicationController
         f.write(params[:photo].read)
       end
 
-      news.photo = File.join('public/assets/news', image_name)
+      news.photo = File.join('/news', image_name)
 
       news.save!
     end
