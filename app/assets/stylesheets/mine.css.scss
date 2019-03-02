@@ -5,6 +5,20 @@ $theme_color: #FE7D14;
   height: 40px;
 }
 
+@media print {
+  body {
+    visibility: hidden;
+  }
+  #no_print, #contact_form, .container-fluid, .header_stillage_stillage_warehouse_stillage_pallet_trolleys{
+    display:none;
+  }
+  #actual_price {
+    visibility: visible;
+ }
+
+
+}
+
 .admin_panel_link a:visited{
   color: #0076ff;
   font-size: 18px;

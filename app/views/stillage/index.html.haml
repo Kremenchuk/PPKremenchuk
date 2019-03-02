@@ -71,46 +71,46 @@
           .col-md-3
             %input{:name => "send", :type => "submit", :value => t('page.all.calculate_stillage'), :class => "btn btn-success"}
 
-        #actual_price
-          .row
-            .col-md-12
+#actual_price
+  .row
+    .col-md-12
 -#-else
 -#  .on_line_calculation_off
 -#    =t('page.all.on_line_off')
 %p
-
-.container-fluid
-  .row
-    .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet
-      =raw t('page.stillage.index.about')
-  .row
-    .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet
-      %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-        %tr
-          %th.header_table
-            =t('page.all.table.header_photo')
-          %th.header_table
-            =t('page.all.table.header_name')
-          %th.header_table
-            =t('page.all.table.header_texn')
-          %tr{:align => "center"}
-            %td
-              =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_Paspor_stoyka.png", :width => "100", :height => "200")
-            %td
-              =t('page.stillage.index.table.name_1')
-            %td
-              =raw t('page.stillage.index.table.texn_1')
-          %tr{:align => "center"}
-            %td
-              =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_polka.png", :width => "200", :height => "133")
-            %td
-              =t('page.stillage.index.table.name_2')
-            %td
-              =raw t('page.stillage.index.table.texn_2')
-          %tr{:align => "center"}
-            %td
-              =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_usil.png", :width => "200", :height => "140")
-            %td
-              =t('page.stillage.index.table.name_3')
-            %td
-              =raw t('page.stillage.index.table.texn_3')
+#no_print
+  .container-fluid
+    .row
+      .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet
+        =raw t('page.stillage.index.about')
+    .row
+      .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet
+        %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+          %tr
+            %th.header_table
+              =t('page.all.table.header_photo')
+            %th.header_table
+              =t('page.all.table.header_name')
+            %th.header_table
+              =t('page.all.table.header_texn')
+            %tr{:align => "center"}
+              %td
+                =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_Paspor_stoyka.png", :width => "100", :height => "200")
+              %td
+                =t('page.stillage.index.table.name_1')
+              %td
+                =raw t('page.stillage.index.table.texn_1')
+            %tr{:align => "center"}
+              %td
+                =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_polka.png", :width => "200", :height => "133")
+              %td
+                =t('page.stillage.index.table.name_2')
+              %td
+                =raw t('page.stillage.index.table.texn_2')
+            %tr{:align => "center"}
+              %td
+                =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_usil.png", :width => "200", :height => "140")
+              %td
+                =t('page.stillage.index.table.name_3')
+              %td
+                =raw t('page.stillage.index.table.texn_3')
