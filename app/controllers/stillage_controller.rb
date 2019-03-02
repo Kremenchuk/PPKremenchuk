@@ -1,6 +1,6 @@
 class StillageController < ApplicationController
 
-  before_filter :check_if_diller, only: [:index, :show]
+  before_filter :check_if_diller, only: [:index, :calculate_actual_price]
   include Include_Module
 
   #before_filter :authenticate_user!, only: [:index] #Рабочее ограничение на юзара
@@ -25,7 +25,7 @@ class StillageController < ApplicationController
     end
   end
 
-  def show
+  def calculate_actual_price
     @hight_var      = Integer(params[:hight])
     @width_var      = Integer(params[:widthS])
     @depth_var      = Integer(params[:depth])

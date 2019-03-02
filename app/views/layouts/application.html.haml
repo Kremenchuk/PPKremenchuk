@@ -5,6 +5,8 @@
 
     %meta{:content => "3ZGMYXXCBZBQNEZbdqB9TBw7nJ7IG609UeI7l3BJUXM", :name => "google-site-verification"}
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+    %meta{:content => @meta_tags, :name => "description"}
+    %meta{:charset => "UTF-8"}
     %title
       =t('page.layout.title')
 
@@ -21,7 +23,7 @@
           %table.layout_table
             %tr{:align => "center"}
               %td.col1
-                =link_to image_tag("design/all_parts/Header/Logo.gif", class: "logo", :title => t('to_root')), root_path
+                =link_to image_tag("design/all_parts/Header/Logo.gif", class: "logo", :title => t('to_root')), welcome_index_path
                 %a{:href => root_path}
                   .text_pp
                     %span.colortext1

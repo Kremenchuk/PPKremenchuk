@@ -8,8 +8,8 @@
     .col-md-12.all_tytle_page_img_stillage_stillage_warehouse_stillage_pallet
       =image_tag("design/all_parts/stillage_warehouse/stillage_werehouse_tytle_page.gif", :class => "tytle_page_img_stillage_stillage_warehouse_stillage_pallet")
 %p
--if @constant.on_off_calc_stillage_warehouse==false
-  = form_tag(stillage_warehouse_show_path, method: :get, id: 'contact_form', name: 'contact_form', onsubmit: "return validate_form ( );") do
+-if !@constant.on_off_calc_stillage_warehouse
+  = form_tag(calculate_actual_price_stillage_warehouse_path, method: :get, id: 'contact_form', name: 'contact_form', remote: true, onsubmit: "return validate_form ( );") do
     .container-fluid
       .text_size{:onclick => "showHide('hiden_element_1','chg_img_1')" }
         %img{:id => "chg_img_1", :alt => "mater", :src => "/assets/plus.png", :name => "img_1", :width => "30", :height => "30"}
@@ -94,6 +94,9 @@
           .col-md-3
             %p
             %input{:name => "send", :type => "submit", :value => t('page.all.calculate_stillage'), :class => "btn btn-success"}
+        #actual_price
+          .row
+            .col-md-12
       -#-else
       -#  .on_line_calculation_off
       -#    =t('page.all.on_line_off')

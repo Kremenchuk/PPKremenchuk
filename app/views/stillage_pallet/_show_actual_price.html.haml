@@ -1,7 +1,7 @@
-%h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
-  =t('page.stillage_pallet.show.header')
-%p
 .container-fluid
+  .col-xs-12.print-button-section
+  = button_to '', class: 'btn btn-default print-button', method: :get, remote: true, onclick: ' window.print()' do
+    %i.fa.fa-print
   .row
     .col-md-10
       %p.style_p

@@ -4,8 +4,12 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
 
-  before_action :set_locale_a
+  before_action :set_locale_a, :set_meta_tags
   #
+
+  def set_meta_tags
+    @meta_tags = t("page.meta_tags.#{params[:controller]}", default: t('page.meta_tags.welcome'))
+  end
 
   def set_locale
     I18n.locale = params[:new_locale]

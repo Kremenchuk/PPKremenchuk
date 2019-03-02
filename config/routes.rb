@@ -10,13 +10,13 @@ Rails.application.routes.draw do
 
   scope '(/:locale)', :constraints => { :locale => I18n.available_locales.join('|') } do
     get 'stillage_pallet' => 'stillage_pallet#index', as: 'stillage_pallet_index'
-    get 'stillage_pallet/show'
+    get 'calculate_actual_price_stillage_pallet' => 'stillage_pallet#calculate_actual_price', as: 'calculate_actual_price_stillage_pallet'
 
     get 'stillage_warehouse' => 'stillage_warehouse#index', as: 'stillage_warehouse_index'
-    get 'stillage_warehouse/show'
+    get 'calculate_actual_price_stillage_warehouse' => 'stillage_warehouse#calculate_actual_price', as: 'calculate_actual_price_stillage_warehouse'
 
     get 'stillage' => 'stillage#index', as: 'stillage_index'
-    get 'stillage/show'
+    get 'calculate_actual_price_stillage' => 'stillage#calculate_actual_price', as: 'calculate_actual_price_stillage'
 
     get 'welcome' => 'welcome#index', as: 'welcome_index'
 
