@@ -26,13 +26,13 @@ class NewsController < ApplicationController
 
     begin
       image_name = "news_#{(Time.now).to_i}_#{params[:photo].original_filename}"
-      image_path = File.join(Rails.root,'assets/news')
+      image_path = File.join(Rails.root,'public/assets/articles')
 
       File.open(File.join(image_path, image_name),'wb') do |f|
         f.write(params[:photo].read)
       end
 
-      news.photo = File.join('assets/news', image_name)
+      news.photo = File.join('public/assets/articles', image_name)
 
       news.save!
     end
