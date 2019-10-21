@@ -27,7 +27,6 @@ doc/
 
 #игнор гитигнора
 
-/public
 
 #игнор файлов сред
 /config/environments/development.rb
