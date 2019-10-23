@@ -35,3 +35,10 @@
   = t('page.gallery.mezzanine')
 
 = render partial: 'photo_cycle', locals: {stillage_type: @mezanines}
+
+%hr
+
+%h2.head2{:align => "center"}
+  = t('page.gallery.platforms')
+
+= render partial: 'photo_cycle', locals: {stillage_type: @platforms}

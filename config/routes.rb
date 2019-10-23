@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
     get 'mezzanine' => 'mezzanine#index', as: 'mezzanine_index'
 
+    get 'platform' => 'platform#index', as: 'platform_index'
+
     get 'galleries' => 'galleries#index', as: 'gallery_index'
 
     get 'contact' => 'contact#index', as: 'contact_index'

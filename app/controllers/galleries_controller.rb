@@ -8,6 +8,7 @@ class GalleriesController < ApplicationController
     @pallets = Gallery.where(image_folder: 'pallet')
     @warehouses = Gallery.where(image_folder: 'werehouse')
     @trolleys = Gallery.where(image_folder: 'trolleys')
+    @platforms = Gallery.where(image_folder: 'platforms')
   end
 
   def photo_browser_index
@@ -28,8 +29,16 @@ class GalleriesController < ApplicationController
       thumb_image_name = "thumb_stillage_#{params[:image_type]}_#{params[:thumb_image].original_filename}"
       thumb_image_path = File.join(Rails.root,'public/assets/gallery', params[:image_type], 'thumbs')
 
+      if !File.exist?(File.join(image_path))
+        FileUtils.mkdir_p(image_path)
+      end
+
       File.open(File.join(image_path, image_name),'wb') do |f|
         f.write(params[:image].read)
+      end
+
+      if !File.exist?(File.join(thumb_image_path))
+        FileUtils.mkdir_p(thumb_image_path)
       end
 
       File.open(File.join(thumb_image_path, thumb_image_name),'wb') do |f|
