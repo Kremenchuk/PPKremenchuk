@@ -1,6 +1,6 @@
 class AdminPanelController < ApplicationController
   before_filter :check_if_admin, only: [:index]
-  before_filter :find_user, only: [:change_diller, :destroy]
+  before_filter :find_user, only: [:update, :destroy]
 
   before_action :find_contact, only: [:contacts_new, :contacts_update, :contact_destroy]
 
@@ -29,10 +29,10 @@ class AdminPanelController < ApplicationController
     redirect_to action: "index"
   end
 
-   def change_diller
-    @diller_type          = params[:select2]
-
-    case @diller_type
+   def update
+    diller_type = params[:dil]
+    admin_type = params[:adm]
+    case diller_type
       when "Розница"
         @user.diller = 4
       when "Класс №1"
@@ -41,6 +41,11 @@ class AdminPanelController < ApplicationController
         @user.diller = 2
       when "Класс №3"
         @user.diller = 3
+    end
+    if admin_type == "Нет"
+      @user.admin = false
+    else
+      @user.admin = true
     end
     @user.save!
     redirect_to action: "index"

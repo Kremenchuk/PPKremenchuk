@@ -23,12 +23,7 @@ class ArticleController < ApplicationController
   def article_new
     # :path_to_image, :path_to_thumb, :alt_to_image, :horizontal, :image_folder
     begin
-      articles = Dir.entries("public/articles").select {|f| !File.directory? f}
-      if articles.last == nil
-        article_name = "1.html"
-      else
-        article_name = (articles.last.split('.').first.to_i + 1).to_s + '.html'
-      end
+      article_name = params[:article].original_filename.split('.')[0] + '.html'
       article_path = File.join(Rails.root,'public/articles')
 
       File.open(File.join(article_path, article_name),'wb') do |f|

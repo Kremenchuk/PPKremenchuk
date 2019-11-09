@@ -1,15 +1,17 @@
-%form{:action => "show", :method => "get"}
-  %table{:border => "1", :cellpadding => "5", :cellspacing => "5", :width => "100%"}
-    %tr.table_header_admin_panel
-      %th №
-      %th Логин
-      %th e-mail
-      %th Имя
-      %th Админ
-      %th{:title => "Назначение диллеров"} Диллер
-      %th Удалить пользователя
-      -n=0
-      -@users.each do |i|
+
+%table{:border => "1", :cellpadding => "5", :cellspacing => "5", :width => "100%"}
+  %tr.table_header_admin_panel
+    %th №
+    %th Логин
+    %th e-mail
+    %th Имя
+    %th Админ
+    %th{:title => "Назначение диллеров"} Диллер
+    %th Удалить пользователя
+    %th Изменить
+    -n=0
+    -@users.each do |i|
+      = form_tag admin_panel_path(i.id), method: :put do
         -n+=1
         %tr.table_data_admin_panel
           %td= "#{n}"
@@ -17,7 +19,7 @@
           %td= i.email
           %td= i.name
           %td
-            %select{:name => "adm"+"#{n}"}
+            %select{:name => "adm"}
               %option{:selected => "selected"}
                 -case i.admin
                   -when true
@@ -27,7 +29,7 @@
               %option Да
               %option Нет
           %td{:title => "Назначение диллеров"}
-            %select{:name => "dil"+"#{n}"}
+            %select{:name => "dil"}
               %option{:selected => "selected"}
                 -case i.diller
                   -when 1
@@ -42,7 +44,7 @@
               %option= "Класс №1"
               %option= "Класс №2"
               %option= "Класс №3"
-          %td.admin_panel_link
-            =link_to "Удалить", admin_panel_path(i.id), method: :delete, data: {confirm: "Точно удалить?"}
-  %p
-  %input{:type => "submit", :value => "Редактировать"}
+          %td
+            =link_to "Удалить", admin_panel_path(i.id), method: :delete, class: 'btn btn-danger', data: {confirm: "Точно удалить?"}
+          %td
+            = submit_tag 'Изменить', {:class =>"btn btn-success"}

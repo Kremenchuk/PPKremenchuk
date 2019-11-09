@@ -55,11 +55,7 @@ Rails.application.routes.draw do
 
     resources :news
 
-    resources :admin_panel do
-      get :change_diller, on: :member
-      get :change_admin, on: :member
-    end
-
+    resources :admin_panel
 
 
     #get 'constants/:id/edit' => 'material_path'
