@@ -11,7 +11,7 @@ class ArticleController < ApplicationController
 
   def show
     begin
-      @article = File.open(File.join(Rails.root,'public/articles', params[:name]), "r") {|io| io.read}
+      @article = File.open(File.join(Rails.root,'public/articles', params[:id] + ".html"), "r") {|io| io.read}
     end
   end
 

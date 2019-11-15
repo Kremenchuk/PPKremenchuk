@@ -2,6 +2,6 @@
   - articles.each do |article|
     .col-md-12
       %h3.article_header
-        = link_to raw(eval(article[1].squish)[locale][:header]), article_path(id: article[0], name: article[0])
+        = link_to raw(eval(article[1].squish)[locale][:header]), article_path(id: article[0])
       .col-md-12
         = raw(eval(article[1].squish)[locale][:short_text])
