@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
 
-  before_action :set_locale_a, :set_meta_tags
+  before_action :set_locale_a, :set_meta_tags, :set_contacts
   #
 
   def set_meta_tags
@@ -78,6 +78,11 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def set_contacts
+    @contacts = Contact.all
+  end
+
   def set_locale_a
     I18n.locale = params[:locale] || (current_user.language.to_sym if current_user.present?) ||I18n.default_locale
     session[:locale] = I18n.locale

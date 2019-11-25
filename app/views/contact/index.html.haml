@@ -14,7 +14,7 @@
               %li
                 = "#{eval(contact.name)[locale]}:"
             .col-md-8
-              = eval(contact.text)[locale]
+              = raw(eval(contact.text)[locale])
 %hr
 .container-fluid
   .row

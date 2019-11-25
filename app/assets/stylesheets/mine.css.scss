@@ -92,26 +92,26 @@ html, body {
   //padding: 0;
 }
 
-a {
-  text-decoration: none;
-  color: white;
-}
-
-a:hover {
-  text-decoration: none;
-  color: white;
-}
-
-a:visited {
-  text-decoration: none;
-  color: white;
-}
-
-a:active
-{
-  text-decoration: none;
-  color: white;
-}
+//a {
+//  text-decoration: none;
+//  color: white;
+//}
+//
+//a:hover {
+//  text-decoration: none;
+//  color: white;
+//}
+//
+//a:visited {
+//  text-decoration: none;
+//  color: white;
+//}
+//
+//a:active
+//{
+//  text-decoration: none;
+//  color: white;
+//}
 
 
 .locales_list {
@@ -155,6 +155,13 @@ a:active
   padding-top: 65px;
 }
 
+h3{
+  font-size: 30px;
+}
+.welcome_link{
+  width: 100%;
+  margin: 2% 2%;
+}
 
   .col2 a
   {
@@ -545,8 +552,16 @@ a:active
     cursor: default;
   }
 
+  .footer_contacts{
+    font-size: 12px;
+    text-indent: 20px;
+    margin-left: -45px;
 
-
+  }
+  .footer_style{
+    font-size: 12px;
+    text-indent: 20px
+  }
 
   .style_text_about_stillage_stillage_warehouse_stillage_pallet
   {
@@ -647,16 +662,12 @@ a:active
   {
     width: 192px
   }
-  .tb1_col2_welcome
+
+  .welcome_tb_padding
   {
-    text-align: center;
-    font-size: 18px;
-    color: white;
-    font-weight: 800;
-    letter-spacing: 1px;
-    position: relative;
-    width: 302px
+    padding: 25px;
   }
+
   .tb1_col3_welcome
   {
     width: 36px
