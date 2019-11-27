@@ -101,7 +101,9 @@
           .container-fluid
             = t('page.contacts.index.header')
             .col-md-12.footer_contacts
-              - @contacts.each do |contact|
+              - @contacts.each_with_index do |contact, index|
+                - if index == 0
+                  - next
                 - if eval(contact.name)[locale] == 'map'
                   - contact_map = contact
                   - next
