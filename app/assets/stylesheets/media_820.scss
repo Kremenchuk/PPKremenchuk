@@ -1,0 +1,39 @@
+$theme_color: #FE7D14;
+@media (max-width : 820px) {
+  .welcome_tb_padding
+  {
+    padding: 25px;
+  }
+  .wrap1 {
+    width: 820px;
+  }
+  .wrapper {
+    width: 820px;
+  }
+  .fix {
+    width: 820px;
+    min-width: 820px;
+  }
+
+  .col1 {
+    width: 200px;
+  }
+  .col5 {
+    display: none;
+  }
+
+  .col2, .col3, .col4 {
+    width: 100px;
+  }
+  .basis {
+    width: 820px;
+    height: 358px;
+  }
+  .locale_view ul.dropdown-inside
+  {
+    width: 171px;
+  }
+  .tb1_col1_welcome {
+    width: 120px;
+  }
+}

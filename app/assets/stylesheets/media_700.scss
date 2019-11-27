@@ -1,0 +1,40 @@
+$theme_color: #FE7D14;
+$media_width_3w: 700px;
+@media (max-width : $media_width_3w) {
+  .welcome_tb_padding
+  {
+    padding: 25px;
+  }
+  .wrap1 {
+    width: $media_width_3w;
+  }
+  .wrapper {
+    width: $media_width_3w;
+  }
+  .fix {
+    width: $media_width_3w;
+    min-width: $media_width_3w;
+  }
+
+  .col1 {
+    width: 200px;
+  }
+  .col5, .col3 {
+    display: none;
+  }
+
+  .col2, .col4 {
+    width: 100px;
+  }
+  .basis {
+    width: $media_width_3w;
+    height: calc((#{$media_width_3w}/820)*358);
+  }
+  .locale_view ul.dropdown-inside
+  {
+    width: 150px;
+  }
+  .tb1_col1_welcome {
+    width: 120px;
+  }
+}

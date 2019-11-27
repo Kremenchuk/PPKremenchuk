@@ -7,21 +7,22 @@
 #block_id{:style => "#{@visible_const}"}
   =link_to image_tag("design/all_parts/localization/stillage_base_img_#{I18n.locale}.gif", class: "basis"), edit_constant_path(1)
 
-#myScroll_product
-.col-xs-12
-  .col-md-4.welcome_tb_padding
-    = link_to image_tag("design/all_parts/welcome/stillage_arxivniy_bitovoy_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_index_path
-  .col-md-4.welcome_tb_padding
-    = link_to image_tag("design/all_parts/welcome/stillage_warehouse_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_warehouse_index_path
-  .col-md-4.welcome_tb_padding
-    =link_to image_tag("design/all_parts/welcome/stillage_pallet_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_pallet_index_path
-.col-xs-12
-  .col-md-4.welcome_tb_padding
-    = link_to image_tag("design/all_parts/welcome/troleys_#{I18n.locale}.gif", class: "products_buttons_welcome"), trolley_index_path
-  .col-md-4.welcome_tb_padding
-    = link_to image_tag("design/all_parts/welcome/stillage_mezonin_#{I18n.locale}.gif", class: "products_buttons_welcome"), mezzanine_index_path
-  .col-md-4.welcome_tb_padding
-    = link_to image_tag("design/all_parts/welcome/gallery_#{I18n.locale}.gif", class: "products_buttons_welcome"), gallery_index_path
+
+.col-md-12.my_product
+  .col-md-12
+    .col-md-4.welcome_tb_padding.welcome_first_tb
+      = link_to image_tag("design/all_parts/welcome/stillage_arxivniy_bitovoy_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_index_path
+    .col-md-4.welcome_tb_padding
+      = link_to image_tag("design/all_parts/welcome/stillage_warehouse_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_warehouse_index_path
+    .col-md-4.welcome_tb_padding
+      =link_to image_tag("design/all_parts/welcome/stillage_pallet_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_pallet_index_path
+  .col-md-12
+    .col-md-4.welcome_tb_padding
+      = link_to image_tag("design/all_parts/welcome/troleys_#{I18n.locale}.gif", class: "products_buttons_welcome"), trolley_index_path
+    .col-md-4.welcome_tb_padding
+      = link_to image_tag("design/all_parts/welcome/stillage_mezonin_#{I18n.locale}.gif", class: "products_buttons_welcome"), mezzanine_index_path
+    .col-md-4.welcome_tb_padding
+      = link_to image_tag("design/all_parts/welcome/gallery_#{I18n.locale}.gif", class: "products_buttons_welcome"), gallery_index_path
 
 
 -#t('page.welcome.stillage')
@@ -32,29 +33,29 @@
 -#t('page.welcome.gallery')
 
 
-.col-xs-12
+.col-md-12
   %h1
     = t('page.welcome.h3_met_stel')
-  %p
+  %p.welcome_link
     = t('page.welcome.text_met_stel')
-.col-xs-12
+.col-md-12
   %h2
     = t('page.welcome.h3_we_create')
   %p.welcome_link
-    = link_to t('page.welcome.link_text_we_create_arxiv'), "https://k-sklad.com.ua/#{I18n.locale}/stillage"
+    = link_to t('page.welcome.link_text_we_create_arxiv'), stillage_index_path
     = t('page.welcome.text_we_create_arxiv')
   %p.welcome_link
-    = link_to t('page.welcome.link_text_we_create_wareh'), "https://k-sklad.com.ua/#{I18n.locale}/stillage_warehouse"
+    = link_to t('page.welcome.link_text_we_create_wareh'), stillage_warehouse_index_path
     = t('page.welcome.text_we_create_wareh')
   %p.welcome_link
-    = link_to t('page.welcome.link_text_we_create_pallet'), "https://k-sklad.com.ua/#{I18n.locale}/stillage_pallet"
+    = link_to t('page.welcome.link_text_we_create_pallet'), stillage_pallet_index_path
     = t('page.welcome.text_we_create_pallet')
   %p.welcome_link
-    = link_to t('page.welcome.link_text_we_create_troley'), "https://k-sklad.com.ua/#{I18n.locale}/trolley"
+    = link_to t('page.welcome.link_text_we_create_troley'), trolley_index_path
     = t('page.welcome.text_we_create_troley')
   %p.welcome_link
-    = link_to t('page.welcome.link_text_we_create_mez'), "https://k-sklad.com.ua/#{I18n.locale}/mezzanine"
+    = link_to t('page.welcome.link_text_we_create_mez'), mezzanine_index_path
     = t('page.welcome.text_we_create_mez')
   %p.welcome_link
-    = link_to t('page.welcome.link_text_we_create_plat'), "https://k-sklad.com.ua/#{I18n.locale}/platform"
+    = link_to t('page.welcome.link_text_we_create_plat'), platform_index_path
     = t('page.welcome.text_we_create_plat')

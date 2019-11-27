@@ -1,0 +1,35 @@
+$theme_color: #FE7D14;
+$media_width_3w: 570px;
+@media (max-width : $media_width_3w) {
+  .welcome_tb_padding
+  {
+    padding: 7px;
+  }
+  .welcome_first_tb{
+    padding-top: 18px;
+  }
+  .wrap1 {
+    width: $media_width_3w;
+  }
+  .wrapper {
+    width: $media_width_3w;
+  }
+  .fix {
+    width: $media_width_3w;
+    min-width: $media_width_3w;
+  }
+
+  .col1 {
+    width: 120px;
+  }
+
+  .col2, .col4 {
+    width: 100px;
+  }
+
+  .locale_view ul.dropdown-inside
+  {
+    width: 136px;
+  }
+
+}

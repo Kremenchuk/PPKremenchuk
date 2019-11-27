@@ -1,0 +1,207 @@
+$theme_color: #FE7D14;
+$media_width: 580px;
+@media (max-width : $media_width) {
+  .welcome_tb_padding
+  {
+    padding: 7px;
+  }
+  .welcome_first_tb{
+    padding-top: 18px;
+  }
+  .welcome_img_text {
+    top: 98px;
+    font-size: 15px;
+  }
+  .wrap1 {
+    width: $media_width;
+  }
+  .wrapper {
+    width: $media_width;
+  }
+  .locale_view ul.dropdown-inside
+  {
+    width: 140px;
+  }
+  .header_table {
+    font-size: 14px;
+    text-align: center;
+  }
+  .style_text_about_stillage_stillage_warehouse_stillage_pallet
+  {
+    font-size: 14px;
+    text-indent: 20px;
+  }
+  .header_stillage_stillage_warehouse_stillage_pallet_trolleys
+  {
+    text-align: center;
+    font-size: 25px;
+  }
+
+
+  .google_map
+  {
+    height: 250px;
+    width: 400px;
+    text-align: center;
+    padding: 10px 0 10px 0;
+    background: #FE7D14;
+  }
+
+  .fix
+  {
+    font-size: 14px;
+    width: $media_width;
+    min-width: $media_width;
+    max-width: $media_width;
+  }
+
+
+  ul.dropdown-inside > li
+  {
+    border: 1px solid #000000;
+  }
+
+  ul.dropdown .dropdown-inside a:hover
+  {
+    background: #9a2917;
+    text-decoration: none
+  }
+
+  .col3:hover
+  {
+    background: #FE7D14;// background: #59C113;
+  }
+
+
+  .tytle_page_img_stillage_stillage_warehouse_stillage_pallet
+  {
+    width: 300px;
+    height: 225px;
+    padding: 10px 0px 10px 0px;
+    background: #FE7D14;
+    //border-radius: 20px;
+  }
+
+
+  .table_data_admin_panel
+  {
+    font-size: 12px;
+  }
+  .table_header_admin_panel
+  {
+    font-size: 15px;
+  }
+  .update_picture
+  {
+    width: 20px;
+    height: 20px;
+    float: right;
+  }
+
+
+  .tb2_tr3_col3_welcome
+  {
+    display: none;
+    width: 362px;
+  }
+  .about_picture_welcome
+  {
+    display: none;
+    width: 362px;
+    height: 272px;
+  }
+
+  .tb1_col1_welcome
+  {
+    width: 59px
+  }
+
+  .tb1_col3_welcome
+  {
+    width: 15px
+  }
+
+  .products_buttons_welcome
+  {
+    //width: 201px;
+    //height: 123px;
+  }
+  .logo
+  {
+    display: none;
+  }
+  .basis
+  {
+    display: none;
+  }
+
+  .colortext1
+  {
+    font-weight: 500;
+    color: $theme_color;
+  }
+  .colortext2
+  {
+    font-weight: 500;
+    color: white;
+  }
+
+  .col1
+  {
+    width: 150px;
+  }
+  .col2
+  {
+    width: 150px;
+  }
+  .col3
+  {
+    display: none;
+  }
+  .col5
+  {
+    width: 150px;
+
+  }
+  .wrapper
+  {
+
+    display: table;
+    width: 560px; // 580px;
+    margin: auto;
+    min-height: 100%;
+    margin-bottom: -20px;
+  }
+  * html .wrapper {
+    height: 100%;
+  }
+  .footer
+  {
+    height: 80px;
+    background: rgb(254,125,20);
+    clear:both;
+  }
+
+  header {
+    padding: 20px 0;
+  }
+
+  .main
+  {
+    min-height: 100%;
+    padding-bottom: 50px;
+  }
+
+  .boofer
+  {
+    height: 20px;
+  }
+  .footer
+  {
+    width: 579px;
+    font-size: 10px;
+    background: #FE7D14;
+    height: 40px;
+    margin-top: -40px;
+  }
+}

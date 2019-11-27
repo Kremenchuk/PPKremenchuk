@@ -7,6 +7,7 @@
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
     %meta{:content => @meta_tags, :name => "description"}
     %meta{:charset => "UTF-8"}
+    -#%meta{:name => "viewport", content: "width=device-width, initial-scale=1"}
     %title
       =t('page.layout.title')
 
@@ -93,6 +94,7 @@
         .sessionInfo
         =yield
         .boofer
+
     %table{:cellspacing => "5", :cellpadding => "5", :width => "100%", class: "footer"}
       %tr
         %td.footer_style{align: 'left'}
@@ -104,12 +106,18 @@
                   - contact_map = contact
                   - next
                 - else
-                  .col-md-2
+                  .col-md-4
                     %li
                       = "#{eval(contact.name)[locale]}:"
-                  .col-md-10
-                    = raw(eval(contact.text)[locale])
+                  .col-md-8
 
+                    = raw(eval(contact.text)[locale])
+              .col-md-2
+                %li
+                  = link_to  t('page.contacts.index.map'), "#{contact_index_url}#contact_map"
+        %td.footer_style{align: 'left'}
+          .footer_text
+            = t('page.all.footer')
 
 
 
