@@ -1,4 +1,13 @@
+@user = User.new
+@user.email = "kremartem@gmail.com"
+@user.encrypted_password = "1440518"
 
+@user.login = "REM"
+@user.name = "REM"
+@user.admin = true
+@user.diller = 4
+@user.language = "uk"
+@user.save!
 
 
 
