@@ -21,3 +21,234 @@ $icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
 @import "jquery-ui";
 
 
+html, body {
+  background: url("design/all_parts/background.jpg"); // center; //no-repeat center center fixed //no-repeat center center fixed
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* html .main
+{ /* хак для ie6 */
+  height: 100%; /* для ие6, т.к. не понимает min-height */
+}
+
+.wrapper
+{
+  width: 1024px;
+  margin: auto;
+  padding-top: 65px;
+}
+
+
+.fix_header {
+  position: fixed;
+  font-size: 15px;
+  top: 0;
+  z-index: 999998;
+  color: white;
+  width: 100%;
+  background: #191208;
+}
+
+.layout_table {
+  border: 1px;
+  width: 100%;
+  text-align: center;
+}
+
+.col_header1
+{
+  height: 100%;
+  //text-align: center;
+  //width: 300px;
+  vertical-align: middle;
+}
+
+.col_header2
+{
+  height:100%;
+  //text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  //width: 181px;
+  padding-top: 11px;
+}
+
+.col_header3
+{
+  height: 100%;
+  //text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  //width: 181px;
+  padding-top: 22px;
+}
+
+.col_header4 {
+  height: 100%;
+  //text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  //width: 181px;
+  padding-top: 22px;
+}
+
+.col_header5
+{
+  height: 100%;
+  //text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  //width: 181px;
+  padding-top: 22px;
+}
+
+
+// блок випадаючого меню
+    ul.dropdown li
+    {
+      position: relative;
+      z-index: 1;
+    }
+    ul.dropdown-inside
+    {
+      position: absolute;
+      left: -9999px;
+      width: 320px;
+    }
+    .locale_view ul.dropdown-inside
+    {
+      position: absolute;
+      left: -9999px;
+      width: 181px;
+    }
+    ul.dropdown-inside > li
+    {
+      height: 50px;
+      line-height: 45px;
+      border: 1px solid #000000;
+    }
+    ul.dropdown li.dropdown-top
+    {
+      display: inline;
+      float: left;
+      top: 43px;
+    }
+    ul.dropdown li.dropdown-top a
+    {
+      padding: 3px 10px 4px;
+      display: block;
+      color: white;
+    }
+    ul.dropdown .dropdown-inside
+    {
+      background: #462501;
+    }
+    ul.dropdown .dropdown-inside a:hover
+    {
+      height: 50px;
+      line-height: 45px;
+      background: #9a2917;
+      text-decoration: none
+    }
+    .col_header3:hover ul {
+      display: inline;
+      left: 0;
+    }
+    .col_header3:hover
+    {
+      background: #FE7D14;
+      cursor: default;
+    }
+    .col_header3  ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    .col_header4  ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    .col_header4:hover ul {
+      display: inline;
+      left: 0;
+    }
+    .col_header4:hover
+    {
+      background: #FE7D14;
+      cursor: default;
+    }
+//---блок випадаючого меню---
+
+.footer_contacts{
+  font-size: 12px;
+  text-indent: 20px;
+  margin-left: -45px;
+
+}
+.footer_style{
+  padding-top: 5px;
+  font-size: 12px;
+  text-indent: 20px;
+  width: 50%;
+}
+.footer_text{
+  margin-top: -50px;
+}
+
+.main
+{
+  //min-height: 100%;
+  //padding-bottom: 20px;
+  //display: table;
+  //position: fixed;
+  //font-size: 15px;
+  //top: 0;
+  //z-index: 999998;
+  //color: white;
+  //width: 100%;
+  //background: #191208;
+}
+
+.boofer
+{
+  height: 40px;
+}
+.footer
+{
+  font-size: 10px;
+  background: #FE7D14;
+  height: 40px;
+  margin-top: -40px;
+}
+
+
+.logo
+{
+  width: 89px;
+  height: 55px;
+}
+
+.span_header
+{
+  display:table-cell;
+  height:100%;
+}
+
+.span_header:nth-child(odd)
+{
+  width: 30%;
+}
+
+.left1
+{
+  float: left;
+
+}
+
+.right1
+{
+  float: right;
+}

@@ -1,0 +1,132 @@
+!!!
+%html
+  %head
+
+
+    %meta{:content => "3ZGMYXXCBZBQNEZbdqB9TBw7nJ7IG609UeI7l3BJUXM", :name => "google-site-verification"}
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+    %meta{:content => @meta_tags, :name => "description"}
+    %meta{:charset => "UTF-8"}
+    -#%meta{:name => "viewport", content: "width=device-width, initial-scale=1"}
+    %title
+      =t('page.layout.title')
+
+    %script{:async => "", :src => "https://www.googletagmanager.com/gtag/js?id=UA-129364309-1"}
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .main
+      .wrap1
+        .span_header
+          .left1
+        .fix
+          %table.layout_table
+            %tr{:align => "center"}
+              %td.col1
+                =link_to image_tag("design/all_parts/Header/Logo.gif", class: "logo", :title => t('to_root')), welcome_index_path
+                %a{:href => root_path}
+                  .text_pp
+                    %span.colortext1
+                      =t('page.layout.pp')
+                    %span.colortext2
+                      =t('page.layout.kremenchuk')
+              %td.col2
+                - if current_user
+                  = current_user.email
+                  %p
+                    =link_to t('page.layout.sign_out'), destroy_user_session_path
+                - else
+                  .about_href
+                    = link_to t('page.layout.sign_in'), new_user_session_path
+                    %p
+                      = link_to t('page.layout.registration'), new_user_registration_path
+              %td.col3
+                %ul.dropdown
+                  =t('page.layout.production')
+                  %li.dropdown-top
+                    %ul.dropdown-inside
+                      %li
+                        =link_to t('page.layout.drop_menu.stillage'), stillage_index_path
+                      %li
+                        =link_to t('page.layout.drop_menu.warehouse'), stillage_warehouse_index_path
+                      %li
+                        =link_to t('page.layout.drop_menu.pallet'), stillage_pallet_index_path
+                      %li
+                        =link_to t('page.layout.drop_menu.trolleys'), trolley_index_path
+                      %li
+                        =link_to t('page.layout.drop_menu.mezzanine'), mezzanine_index_path
+                      %li
+                        =link_to t('page.layout.drop_menu.platform'), platform_index_path
+                      %li
+                        =link_to t('page.layout.drop_menu.gallery'), gallery_index_path
+
+              %td.col4
+                .locale_view
+                  %ul.dropdown
+                    = t('page.layout.company')
+                    %li.dropdown-top
+                      %ul.dropdown-inside
+                        %li
+                          =link_to t('page.layout.drop_menu.contact'), contact_index_path
+                        %li
+                          =link_to t('page.layout.drop_menu.about_us'), about_us_path
+                        %li
+                          =link_to t('page.layout.drop_menu.news'), news_index_path
+                        %li
+                          =link_to t('page.layout.drop_menu.article'), article_index_path
+
+              %td.col4
+                .locale_view
+                  %ul.dropdown
+                    = t("languages.#{I18n.locale}").mb_chars.upcase.to_s
+                    %li.dropdown-top
+                      %ul.dropdown-inside
+                        -I18n.available_locales.each do |locale|
+                          -unless locale == :en
+                            %li
+                              = link_to t(locale), locale_path(:new_locale => locale), :method => :put
+                              /- link_to t(locale), change_locale_path(locale: locale)
+        .span_header
+          .right1
+      .wrapper
+        .sessionInfo
+        =yield
+        .boofer
+
+    %table{:cellspacing => "5", :cellpadding => "5", :width => "100%", class: "footer"}
+      %tr
+        %td.footer_style{align: 'left'}
+          .container-fluid
+            = t('page.contacts.index.header')
+            .col-md-12.footer_contacts
+              - @contacts.each_with_index do |contact, index|
+                - if index == 0
+                  - next
+                - if eval(contact.name)[locale] == 'map'
+                  - contact_map = contact
+                  - next
+                - else
+                  .col-md-4
+                    %li
+                      = "#{eval(contact.name)[locale]}:"
+                  .col-md-8
+
+                    = raw(eval(contact.text)[locale])
+              .col-md-2
+                %li
+                  = link_to  t('page.contacts.index.map'), "#{contact_index_url}#contact_map"
+        %td.footer_style{align: 'left'}
+          .footer_text
+            = t('page.all.footer')
+
+
+
+/ Global site tag (gtag.js) - Google Analytics
+
+:javascript
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129364309-1');

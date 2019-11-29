@@ -1,12 +1,24 @@
+.print-button {
+  float: right;
+  height: 40px;
+}
+
 @media print {
 
-  .info, .layout_table, .print-button-section, .footer, .header-left-top, .a-right-bottom, .time-right-bottom {
+
+  .info, .layout_table, .print-button-section, .footer, .header-left-top, .a-right-bottom, .time-right-bottom,
+  #no_print, #contact_form, .container-fluid, .header_stillage_stillage_warehouse_stillage_pallet_trolleys{
       display: none;
   }
 
   body {
     background-image: none;
+    visibility: hidden;
   }
+  #actual_price {
+    visibility: visible;
+  }
+
 
   @page
   {

@@ -17,82 +17,88 @@
     = csrf_meta_tags
   %body
     .main
-      .wrap1
-        .span_header
-          .left1
-        .fix
-          %table.layout_table
-            %tr{:align => "center"}
-              %td.col1
-                =link_to image_tag("design/all_parts/Header/Logo.gif", class: "logo", :title => t('to_root')), welcome_index_path
-                %a{:href => root_path}
-                  .text_pp
-                    %span.colortext1
-                      =t('page.layout.pp')
-                    %span.colortext2
-                      =t('page.layout.kremenchuk')
-              %td.col2
-                - if current_user
-                  = current_user.email
-                  %p
-                    =link_to t('page.layout.sign_out'), destroy_user_session_path
-                - else
-                  .about_href
-                    = link_to t('page.layout.sign_in'), new_user_session_path
-                    %p
-                      = link_to t('page.layout.registration'), new_user_registration_path
-              %td.col3
-                %ul.dropdown
-                  =t('page.layout.production')
-                  %li.dropdown-top
-                    %ul.dropdown-inside
-                      %li
-                        =link_to t('page.layout.drop_menu.stillage'), stillage_index_path
-                      %li
-                        =link_to t('page.layout.drop_menu.warehouse'), stillage_warehouse_index_path
-                      %li
-                        =link_to t('page.layout.drop_menu.pallet'), stillage_pallet_index_path
-                      %li
-                        =link_to t('page.layout.drop_menu.trolleys'), trolley_index_path
-                      %li
-                        =link_to t('page.layout.drop_menu.mezzanine'), mezzanine_index_path
-                      %li
-                        =link_to t('page.layout.drop_menu.platform'), platform_index_path
-                      %li
-                        =link_to t('page.layout.drop_menu.gallery'), gallery_index_path
-
-
-              %td.col4
-                .locale_view
-                  %ul.dropdown
-                    = t('page.layout.company')
-                    %li.dropdown-top
-                      %ul.dropdown-inside
-                        %li
-                          =link_to t('page.layout.drop_menu.contact'), contact_index_path
-                        %li
-                          =link_to t('page.layout.drop_menu.about_us'), about_us_path
-                        %li
-                          =link_to t('page.layout.drop_menu.news'), news_index_path
-                        %li
-                          =link_to t('page.layout.drop_menu.article'), article_index_path
-
-              %td.col4
-                .locale_view
-                  %ul.dropdown
-                    = t("languages.#{I18n.locale}").mb_chars.upcase.to_s
-                    %li.dropdown-top
-                      %ul.dropdown-inside
-                        -I18n.available_locales.each do |locale|
-                          -unless locale == :en
+      .container-fluid
+        .row
+          .fix_header
+            .col-xs-2
+            .col-xs-8
+              .container-fluid
+                .row.layout_table
+                  .col-xs-3
+                    .col_header1
+                      =link_to image_tag("design/all_parts/Header/Logo.gif", class: "logo", :title => t('to_root')), welcome_index_path
+                      %a{:href => root_path}
+                        .text_pp
+                          %span.colortext1
+                            =t('page.layout.pp')
+                          %span.colortext2
+                            =t('page.layout.kremenchuk')
+                  .col-xs-2
+                    .col_header2
+                      - if current_user
+                        = current_user.email
+                        %p
+                          =link_to t('page.layout.sign_out'), destroy_user_session_path
+                      - else
+                        .about_href
+                          = link_to t('page.layout.sign_in'), new_user_session_path
+                          %p
+                            = link_to t('page.layout.registration'), new_user_registration_path
+                  .col-xs-2
+                    .col_header3
+                      %ul.dropdown
+                        =t('page.layout.production')
+                        %li.dropdown-top
+                          %ul.dropdown-inside
                             %li
-                              = link_to t(locale), locale_path(:new_locale => locale), :method => :put
-                              /- link_to t(locale), change_locale_path(locale: locale)
-        .span_header
-          .right1
+                              =link_to t('page.layout.drop_menu.stillage'), stillage_index_path
+                            %li
+                              =link_to t('page.layout.drop_menu.warehouse'), stillage_warehouse_index_path
+                            %li
+                              =link_to t('page.layout.drop_menu.pallet'), stillage_pallet_index_path
+                            %li
+                              =link_to t('page.layout.drop_menu.trolleys'), trolley_index_path
+                            %li
+                              =link_to t('page.layout.drop_menu.mezzanine'), mezzanine_index_path
+                            %li
+                              =link_to t('page.layout.drop_menu.platform'), platform_index_path
+                            %li
+                              =link_to t('page.layout.drop_menu.gallery'), gallery_index_path
+
+                  .col-xs-2
+                    .col_header4
+                      .locale_view
+                        %ul.dropdown
+                          = t('page.layout.company')
+                          %li.dropdown-top
+                            %ul.dropdown-inside
+                              %li
+                                =link_to t('page.layout.drop_menu.contact'), contact_index_path
+                              %li
+                                =link_to t('page.layout.drop_menu.about_us'), about_us_path
+                              %li
+                                =link_to t('page.layout.drop_menu.news'), news_index_path
+                              %li
+                                =link_to t('page.layout.drop_menu.article'), article_index_path
+                  .col-xs-1
+                    .col_header5
+                      .locale_view
+                        %ul.dropdown
+                          = t("languages.#{I18n.locale}").mb_chars.upcase.to_s
+                          %li.dropdown-top
+                            %ul.dropdown-inside
+                              -I18n.available_locales.each do |locale|
+                                -unless locale == :en
+                                  %li
+                                    = link_to t(locale), locale_path(:new_locale => locale), :method => :put
+          .col-xs-2
+
+
+
+
       .wrapper
         .sessionInfo
-        =yield
+          =yield
         .boofer
 
     %table{:cellspacing => "5", :cellpadding => "5", :width => "100%", class: "footer"}
