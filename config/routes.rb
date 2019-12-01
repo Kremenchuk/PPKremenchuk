@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+
+
   # get '/:locale' => 'welcome#index'
   # get 'change_locale' => 'application#setup_locale'
 
@@ -63,6 +65,7 @@ Rails.application.routes.draw do
     devise_for :users, controllers: {registrations: 'registrations' }
     resources :galleries
     resources :article
+    resources :lofts
   end
   post 'constants/load_constant' => 'constants#load_constant'
 

@@ -9,6 +9,7 @@ class GalleriesController < ApplicationController
     @warehouses = Gallery.where(image_folder: 'werehouse')
     @trolleys = Gallery.where(image_folder: 'trolleys')
     @platforms = Gallery.where(image_folder: 'platforms')
+    @lofts = Gallery.where(image_folder: 'lofts')
   end
 
   def photo_browser_index
