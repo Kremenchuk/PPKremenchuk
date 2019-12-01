@@ -92,27 +92,10 @@ $theme_color: #FE7D14;
 h3{
   font-size: 30px;
 }
-.welcome_link{
-  width: 100%;
-  //margin: 2% 2%;
-  padding-left: 15px;
-  font-size: 18px;
 
-}
-.my_product {
-  text-align: center;
-}
 
-  .col2 a
-  {
-    color: white;
-  }
 
-  .col2 a:hover
-  {
-    color: white;
-    text-decoration: underline;
-  }
+
   .text_in_trolleys
   {
     font-size: 18px;
@@ -348,11 +331,7 @@ h3{
     width: 120px;
   }
 
-  .col5:hover
-  {
-    background: #FE7D14;
-    cursor: default;
-  }
+
   .google_map
   {
     height: 450px;
@@ -496,10 +475,7 @@ h3{
     width: 192px
   }
 
-  .welcome_tb_padding
-  {
-    padding: 25px;
-  }
+
 
   .tb1_col3_welcome
   {
@@ -513,26 +489,19 @@ h3{
   {
     height: 34px;
   }
-  .products_buttons_welcome
-  {
-    width: 302px;
-    height: 184px;
-  }
 
-  .basis
-  {
-    width: 1024px;
-    height: 447px;
-    padding: 2px 0 0 0;
-  }
+
+
   .colortext1
   {
+    margin-left: -25px;
     font-size: 18px;
     font-weight: 700;
     color: $theme_color;
   }
   .colortext2
   {
+    //margin-left: -5px;
     font-size: 18px;
     font-weight: 700;
     color: white;

@@ -2,3 +2,64 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.my_product {
+  text-align: center;
+  margin-left: -15px;
+}
+
+.welcome_link {
+  width: 100%;
+  padding-left: 15px;
+  font-size: 18px;
+  padding-bottom: 20px;
+
+}
+
+.basis
+{
+  width: 100%;
+  padding: 2px 0 0 0;
+}
+
+.welcome_tb_padding
+{
+  padding: 25px;
+}
+
+.products_buttons_welcome
+{
+  width: 302px;
+  height: 184px;
+}
+
+
+/* скрываем чекбоксы и блоки с содержанием */
+.hide {
+  display: none;
+}
+.hide + label ~ div{
+  display: none;
+}
+/* оформляем текст label *//* вид текста label при активном переключателе */
+.hide + label,
+.hide:checked + label {
+  padding: 0;
+  cursor: pointer;
+}
+
+.hide:checked + label {
+  color: red;
+}
+
+/* когда чекбокс активен показываем блоки с содержанием  */
+.hide:checked + label + div {
+  display: block;
+}
+
+/* demo контейнер */
+.demo {
+  float: right;
+  padding-bottom: 20px;
+}
+
+

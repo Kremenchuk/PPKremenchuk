@@ -2,60 +2,141 @@
   - @visible_const = "display: block;"
 - else
   - @visible_const = "display: none;"
-  =image_tag("design/all_parts/localization/stillage_base_img_#{I18n.locale}.gif", class: "basis")
+  .container-fluid
+    .row
+      .col-md-12
+        =image_tag("design/all_parts/localization/stillage_base_img_#{I18n.locale}.gif", class: "basis")
 
 #block_id{:style => "#{@visible_const}"}
-  =link_to image_tag("design/all_parts/localization/stillage_base_img_#{I18n.locale}.gif", class: "basis"), edit_constant_path(1)
+  .container-fluid
+    .row
+      .col-md-12
+        =link_to image_tag("design/all_parts/localization/stillage_base_img_#{I18n.locale}.gif", class: "basis"), edit_constant_path(1)
 
 
 .col-md-12.my_product
   .col-md-12
-    .col-md-4.welcome_tb_padding.welcome_first_tb
+    .col-md-4.welcome_tb_padding.welcome_1_tb
       = link_to image_tag("design/all_parts/welcome/stillage_arxivniy_bitovoy_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_index_path
-    .col-md-4.welcome_tb_padding
+    .col-md-4.welcome_tb_padding.welcome_2_tb
       = link_to image_tag("design/all_parts/welcome/stillage_warehouse_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_warehouse_index_path
-    .col-md-4.welcome_tb_padding
+    .col-md-4.welcome_tb_padding.welcome_3_tb
       =link_to image_tag("design/all_parts/welcome/stillage_pallet_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_pallet_index_path
   .col-md-12
-    .col-md-4.welcome_tb_padding
+    .col-md-4.welcome_tb_padding.welcome_4_tb
       = link_to image_tag("design/all_parts/welcome/troleys_#{I18n.locale}.gif", class: "products_buttons_welcome"), trolley_index_path
-    .col-md-4.welcome_tb_padding
+    .col-md-4.welcome_tb_padding.welcome_5_tb
       = link_to image_tag("design/all_parts/welcome/stillage_mezonin_#{I18n.locale}.gif", class: "products_buttons_welcome"), mezzanine_index_path
-    .col-md-4.welcome_tb_padding
+    .col-md-4.welcome_tb_padding.welcome_6_tb
       = link_to image_tag("design/all_parts/welcome/gallery_#{I18n.locale}.gif", class: "products_buttons_welcome"), gallery_index_path
 
 
--#t('page.welcome.stillage')
--#t('page.welcome.stillage_pallet')
--#t('page.welcome.stillage_warehouse')
--#t('page.welcome.troles')
--#t('page.welcome.stillage_mezonin')
--#t('page.welcome.gallery')
-
-
-.col-md-12
+.col-md-12.block_without_reduction
   %h1
     = t('page.welcome.h3_met_stel')
   %p.welcome_link
-    = t('page.welcome.text_met_stel')
-.col-md-12
+    = t('page.welcome.text_met_stel_anons')
+    = t('page.welcome.text_met_stel_block')
+.col-md-12.block_without_reduction
   %h2
     = t('page.welcome.h3_we_create')
   %p.welcome_link
     = link_to t('page.welcome.link_text_we_create_arxiv'), stillage_index_path
-    = t('page.welcome.text_we_create_arxiv')
+    = t('page.welcome.text_we_create_arxiv_anons')
+    = t('page.welcome.text_we_create_arxiv_block')
   %p.welcome_link
     = link_to t('page.welcome.link_text_we_create_wareh'), stillage_warehouse_index_path
-    = t('page.welcome.text_we_create_wareh')
+    = t('page.welcome.text_we_create_wareh_anons')
+    = t('page.welcome.text_we_create_wareh_block')
   %p.welcome_link
     = link_to t('page.welcome.link_text_we_create_pallet'), stillage_pallet_index_path
-    = t('page.welcome.text_we_create_pallet')
+    = t('page.welcome.text_we_create_pallet_anons')
+    = t('page.welcome.text_we_create_pallet_block')
   %p.welcome_link
     = link_to t('page.welcome.link_text_we_create_troley'), trolley_index_path
-    = t('page.welcome.text_we_create_troley')
+    = t('page.welcome.text_we_create_troley_anons')
+    = t('page.welcome.text_we_create_troley_block')
   %p.welcome_link
     = link_to t('page.welcome.link_text_we_create_mez'), mezzanine_index_path
-    = t('page.welcome.text_we_create_mez')
+    = t('page.welcome.text_we_create_mez_anons')
+    = t('page.welcome.text_we_create_mez_block')
   %p.welcome_link
     = link_to t('page.welcome.link_text_we_create_plat'), platform_index_path
-    = t('page.welcome.text_we_create_plat')
+    = t('page.welcome.text_we_create_plat_anons')
+    = t('page.welcome.text_we_create_plat_block')
+
+
+.col-md-12.block_with_reduction
+  %h1
+    = t('page.welcome.h3_met_stel')
+  .welcome_link
+    = t('page.welcome.text_met_stel_anons')
+    .demo
+      %input#hd-1.hide{:type => "checkbox"}/
+      %label{:for => "hd-1"}
+        = t('page.all.read_next')
+      %div
+        = t('page.welcome.text_met_stel_block')
+
+.col-md-12.block_with_reduction
+  %h2
+    = t('page.welcome.h3_we_create')
+  .welcome_link
+    = link_to t('page.welcome.link_text_we_create_arxiv'), stillage_index_path
+    = t('page.welcome.text_we_create_arxiv_anons')
+    .demo
+      %input#hd-2.hide{:type => "checkbox"}
+      %label{:for => "hd-2"}
+        = t('page.all.read_next')
+      %div
+        = t('page.welcome.text_we_create_arxiv_block')
+
+  .welcome_link
+    = link_to t('page.welcome.link_text_we_create_wareh'), stillage_warehouse_index_path
+    = t('page.welcome.text_we_create_wareh_anons')
+    .demo
+      %input#hd-3.hide{:type => "checkbox"}
+      %label{:for => "hd-3"}
+        = t('page.all.read_next')
+      %div
+        = t('page.welcome.text_we_create_wareh_block')
+
+  .welcome_link
+    = link_to t('page.welcome.link_text_we_create_pallet'), stillage_pallet_index_path
+    = t('page.welcome.text_we_create_pallet_anons')
+    .demo
+      %input#hd-4.hide{:type => "checkbox"}
+      %label{:for => "hd-4"}
+        = t('page.all.read_next')
+      %div
+        = t('page.welcome.text_we_create_pallet_block')
+
+  .welcome_link
+    = link_to t('page.welcome.link_text_we_create_troley'), trolley_index_path
+    = t('page.welcome.text_we_create_troley_anons')
+    .demo
+      %input#hd-5.hide{:type => "checkbox"}
+      %label{:for => "hd-5"}
+        = t('page.all.read_next')
+      %div
+        = t('page.welcome.text_we_create_troley_block')
+
+  .welcome_link
+    = link_to t('page.welcome.link_text_we_create_mez'), mezzanine_index_path
+    = t('page.welcome.text_we_create_mez_anons')
+    .demo
+      %input#hd-6.hide{:type => "checkbox"}
+      %label{:for => "hd-6"}
+        = t('page.all.read_next')
+      %div
+        = t('page.welcome.text_we_create_mez_block')
+
+  .welcome_link
+    = link_to t('page.welcome.link_text_we_create_plat'), platform_index_path
+    = t('page.welcome.text_we_create_plat_anons')
+    .demo
+      %input#hd-7.hide{:type => "checkbox"}
+      %label{:for => "hd-7"}
+        = t('page.all.read_next')
+      %div
+        = t('page.welcome.text_we_create_plat_block')

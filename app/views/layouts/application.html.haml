@@ -20,113 +20,106 @@
       .container-fluid
         .row
           .fix_header
-            .col-xs-2
-            .col-xs-8
-              .container-fluid
-                .row.layout_table
-                  .col-xs-3
-                    .col_header1
-                      =link_to image_tag("design/all_parts/Header/Logo.gif", class: "logo", :title => t('to_root')), welcome_index_path
-                      %a{:href => root_path}
-                        .text_pp
-                          %span.colortext1
-                            =t('page.layout.pp')
-                          %span.colortext2
-                            =t('page.layout.kremenchuk')
-                  .col-xs-2
-                    .col_header2
-                      - if current_user
-                        = current_user.email
-                        %p
-                          =link_to t('page.layout.sign_out'), destroy_user_session_path
-                      - else
-                        .about_href
-                          = link_to t('page.layout.sign_in'), new_user_session_path
-                          %p
-                            = link_to t('page.layout.registration'), new_user_registration_path
-                  .col-xs-2
-                    .col_header3
-                      %ul.dropdown
-                        =t('page.layout.production')
-                        %li.dropdown-top
-                          %ul.dropdown-inside
-                            %li
-                              =link_to t('page.layout.drop_menu.stillage'), stillage_index_path
-                            %li
-                              =link_to t('page.layout.drop_menu.warehouse'), stillage_warehouse_index_path
-                            %li
-                              =link_to t('page.layout.drop_menu.pallet'), stillage_pallet_index_path
-                            %li
-                              =link_to t('page.layout.drop_menu.trolleys'), trolley_index_path
-                            %li
-                              =link_to t('page.layout.drop_menu.mezzanine'), mezzanine_index_path
-                            %li
-                              =link_to t('page.layout.drop_menu.platform'), platform_index_path
-                            %li
-                              =link_to t('page.layout.drop_menu.gallery'), gallery_index_path
+            .container
+              .row.layout_table
+                .col-xs-4.col_header1
+                  =link_to image_tag("design/all_parts/Header/Logo.gif", class: "logo", :title => t('to_root')), welcome_index_path
+                  %a{:href => root_path}
+                    .text_pp
+                      %span.colortext1
+                        =t('page.layout.pp')
+                      %span.colortext2
+                        =t('page.layout.kremenchuk')
+                .col-xs-2.col_header2
 
-                  .col-xs-2
-                    .col_header4
-                      .locale_view
-                        %ul.dropdown
-                          = t('page.layout.company')
-                          %li.dropdown-top
-                            %ul.dropdown-inside
-                              %li
-                                =link_to t('page.layout.drop_menu.contact'), contact_index_path
-                              %li
-                                =link_to t('page.layout.drop_menu.about_us'), about_us_path
-                              %li
-                                =link_to t('page.layout.drop_menu.news'), news_index_path
-                              %li
-                                =link_to t('page.layout.drop_menu.article'), article_index_path
-                  .col-xs-1
-                    .col_header5
-                      .locale_view
-                        %ul.dropdown
-                          = t("languages.#{I18n.locale}").mb_chars.upcase.to_s
-                          %li.dropdown-top
-                            %ul.dropdown-inside
-                              -I18n.available_locales.each do |locale|
-                                -unless locale == :en
-                                  %li
-                                    = link_to t(locale), locale_path(:new_locale => locale), :method => :put
-          .col-xs-2
+                  - if current_user
+                    = current_user.email
+                    %p
+                      =link_to t('page.layout.sign_out'), destroy_user_session_path
+                  - else
+                    .about_href
+                      = link_to t('page.layout.sign_in'), new_user_session_path
+                      %p
+                        = link_to t('page.layout.registration'), new_user_registration_path
+                .col-xs-2.col_header3
+
+                  %ul.dropdown
+                    =t('page.layout.production')
+                    %li.dropdown-top
+                      %ul.dropdown-inside
+                        %li
+                          =link_to t('page.layout.drop_menu.stillage'), stillage_index_path
+                        %li
+                          =link_to t('page.layout.drop_menu.warehouse'), stillage_warehouse_index_path
+                        %li
+                          =link_to t('page.layout.drop_menu.pallet'), stillage_pallet_index_path
+                        %li
+                          =link_to t('page.layout.drop_menu.trolleys'), trolley_index_path
+                        %li
+                          =link_to t('page.layout.drop_menu.mezzanine'), mezzanine_index_path
+                        %li
+                          =link_to t('page.layout.drop_menu.platform'), platform_index_path
+                        %li
+                          =link_to t('page.layout.drop_menu.gallery'), gallery_index_path
+
+                .col-xs-2.col_header4
 
 
+                  %ul.dropdown
+                    = t('page.layout.company')
+                    %li.dropdown-top
+                      %ul.dropdown-inside
+                        %li
+                          =link_to t('page.layout.drop_menu.contact'), contact_index_path
+                        %li
+                          =link_to t('page.layout.drop_menu.about_us'), about_us_path
+                        %li
+                          =link_to t('page.layout.drop_menu.news'), news_index_path
+                        %li
+                          =link_to t('page.layout.drop_menu.article'), article_index_path
+                .col-xs-2.col_header5
 
-
+                  %ul.dropdown
+                    = t("languages.#{I18n.locale}").mb_chars.upcase.to_s
+                    %li.dropdown-top
+                      %ul.dropdown-inside
+                        -I18n.available_locales.each do |locale|
+                          -unless locale == :en
+                            %li
+                              = link_to t(locale), locale_path(:new_locale => locale), :method => :put
       .wrapper
         .sessionInfo
           =yield
         .boofer
+      .fix_footer
+        .container-fluid
+          .row
+            .col-xs-12
+              .container-fluid
+                .row
+                  .col-xs-7
+                    .col-xs-12
+                      = t('page.contacts.index.header')
+                    .col-md-12.footer_contacts
+                      - @contacts.each_with_index do |contact, index|
+                        - if index == 0
+                          - next
+                        - if eval(contact.name)[locale] == 'map'
+                          - contact_map = contact
+                          - next
+                        - else
+                          .col-md-4
+                            %li
+                              = "#{eval(contact.name)[locale]}:"
+                          .col-md-8
 
-    %table{:cellspacing => "5", :cellpadding => "5", :width => "100%", class: "footer"}
-      %tr
-        %td.footer_style{align: 'left'}
-          .container-fluid
-            = t('page.contacts.index.header')
-            .col-md-12.footer_contacts
-              - @contacts.each_with_index do |contact, index|
-                - if index == 0
-                  - next
-                - if eval(contact.name)[locale] == 'map'
-                  - contact_map = contact
-                  - next
-                - else
-                  .col-md-4
-                    %li
-                      = "#{eval(contact.name)[locale]}:"
-                  .col-md-8
-
-                    = raw(eval(contact.text)[locale])
-              .col-md-2
-                %li
-                  = link_to  t('page.contacts.index.map'), "#{contact_index_url}#contact_map"
-        %td.footer_style{align: 'left'}
-          .footer_text
-            = t('page.all.footer')
-
+                            = raw(eval(contact.text)[locale])
+                      .col-md-12
+                        %li
+                          = link_to  t('page.contacts.index.map'), "#{contact_index_url}#contact_map"
+                  .col-xs-5
+                    .footer_text
+                      = t('page.all.footer')
 
 
 / Global site tag (gtag.js) - Google Analytics
