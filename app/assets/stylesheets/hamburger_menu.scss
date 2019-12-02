@@ -1,0 +1,112 @@
+/* скрываем чекбокс */
+
+#menu__toggle {
+  opacity: 0;
+}
+
+/* стилизуем кнопку */
+
+.menu__btn {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  z-index: 9999999;
+  background-color: #000000;
+
+  > span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #FFFFFF;
+
+    &::before, &::after {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: #FFFFFF;
+    }
+
+    &::before {
+      content: '';
+      top: -8px;
+    }
+
+    &::after {
+      content: '';
+      top: 8px;
+    }
+  }
+}
+
+/* добавляем "гамбургер" */
+
+/* контейнер меню */
+
+.menu__box {
+  display: block;
+  position: absolute;
+  visibility: hidden;
+  right: 0;
+  top: 0;
+  width: 300px;
+  margin: 0;
+  padding-top: 60px;
+  list-style: none;
+  text-align: center;
+  background-color: #ECEFF1;
+  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.2);
+  z-index: 999999;
+
+}
+
+.menu__box__name {
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: left;
+  padding-left: 10px;
+  background-color: #dcdcb7;
+}
+
+/* элементы меню */
+
+.menu__item {
+  display: block;
+  padding: 6px 0 6px 20px;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none !important;
+  text-align: left;
+  &:hover {
+    background-color: #CFD8DC;
+  }
+}
+
+#menu__toggle:checked ~ {
+  .menu__btn > span {
+    transform: rotate(45deg);
+
+    &::before {
+      top: 0;
+      transform: rotate(0);
+    }
+
+    &::after {
+      top: 0;
+      transform: rotate(90deg);
+    }
+  }
+
+  .menu__box {
+    visibility: visible;
+  }
+}

@@ -22,6 +22,44 @@
           .fix_header
             .container
               .row.layout_table
+                .hamburger-menu
+                  %input#menu__toggle{:type => "checkbox"}
+                  %label.menu__btn{:for => "menu__toggle"}
+                    %span
+                  %ul.menu__box
+                    %li
+                      =link_to t('to_root'), root_path, class: 'menu__item'
+                    %li
+                      .menu__box__name
+                        = t('page.layout.production')
+                    %li
+                      =link_to t('page.welcome.stillage'), stillage_index_path, class: 'menu__item'
+                    %li
+                      =link_to t('page.welcome.stillage_warehouse'), stillage_warehouse_index_path, class: 'menu__item'
+                    %li
+                      =link_to t('page.welcome.stillage_pallet'), stillage_pallet_index_path, class: 'menu__item'
+                    %li
+                      =link_to t('page.welcome.troles'), trolley_index_path, class: 'menu__item'
+                    %li
+                      =link_to t('page.welcome.stillage_mezonin'), mezzanine_index_path, class: 'menu__item'
+                    %li
+                      =link_to t('page.welcome.platform'), platform_index_path, class: 'menu__item'
+                    %li
+                      =link_to t('page.welcome.loft'), lofts_path, class: 'menu__item'
+                    %li
+                      =link_to t('page.welcome.gallery'), gallery_index_path, class: 'menu__item'
+                    %li
+                      .menu__box__name
+                        = t('page.layout.company')
+                    %li
+                      =link_to t('page.layout.drop_menu.contact'), contact_index_path, class: 'menu__item'
+                    %li
+                      =link_to t('page.layout.drop_menu.about_us'), about_us_path, class: 'menu__item'
+                    %li
+                      =link_to t('page.layout.drop_menu.news'), news_index_path, class: 'menu__item'
+                    %li
+                      =link_to t('page.layout.drop_menu.article'), article_index_path, class: 'menu__item'
+
                 .col-xs-4.col_header1
                   =link_to image_tag("design/all_parts/Header/Logo.gif", class: "logo", :title => t('to_root')), welcome_index_path
                   %a{:href => root_path}
@@ -30,8 +68,8 @@
                         =t('page.layout.pp')
                       %span.colortext2
                         =t('page.layout.kremenchuk')
-                .col-xs-2.col_header2
 
+                .col-xs-2.col_header2
                   - if current_user
                     = current_user.email
                     %p
@@ -41,12 +79,12 @@
                       = link_to t('page.layout.sign_in'), new_user_session_path
                       %p
                         = link_to t('page.layout.registration'), new_user_registration_path
-                .col-xs-2.col_header3
 
+                .col-xs-2.col_header3
                   %ul.dropdown
                     =t('page.layout.production')
                     %li.dropdown-top
-                      %ul.dropdown-inside
+                      %ul.dropdown-inside.appl_prod_ul
                         %li
                           =link_to t('page.layout.drop_menu.stillage'), stillage_index_path
                         %li
@@ -60,15 +98,15 @@
                         %li
                           =link_to t('page.layout.drop_menu.platform'), platform_index_path
                         %li
+                          =link_to t('page.layout.drop_menu.loft'), lofts_path
+                        %li
                           =link_to t('page.layout.drop_menu.gallery'), gallery_index_path
 
                 .col-xs-2.col_header4
-
-
                   %ul.dropdown
                     = t('page.layout.company')
                     %li.dropdown-top
-                      %ul.dropdown-inside
+                      %ul.dropdown-inside.appl_about_ul
                         %li
                           =link_to t('page.layout.drop_menu.contact'), contact_index_path
                         %li
@@ -77,12 +115,12 @@
                           =link_to t('page.layout.drop_menu.news'), news_index_path
                         %li
                           =link_to t('page.layout.drop_menu.article'), article_index_path
-                .col-xs-2.col_header5
 
+                .col-xs-2.col_header5
                   %ul.dropdown
                     = t("languages.#{I18n.locale}").mb_chars.upcase.to_s
                     %li.dropdown-top
-                      %ul.dropdown-inside
+                      %ul.dropdown-inside.appl_lang_ul
                         -I18n.available_locales.each do |locale|
                           -unless locale == :en
                             %li
@@ -98,7 +136,7 @@
               .container-fluid
                 .row
                   .col-xs-7
-                    .col-xs-12
+                    .col-xs-12.footer_contacts
                       = t('page.contacts.index.header')
                     .col-md-12.footer_contacts
                       - @contacts.each_with_index do |contact, index|

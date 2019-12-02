@@ -15,20 +15,21 @@
 
 
 .col-md-12.my_product
-  .col-md-12
-    .col-md-4.welcome_tb_padding.welcome_1_tb
-      = link_to image_tag("design/all_parts/welcome/stillage_arxivniy_bitovoy_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_index_path
-    .col-md-4.welcome_tb_padding.welcome_2_tb
-      = link_to image_tag("design/all_parts/welcome/stillage_warehouse_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_warehouse_index_path
-    .col-md-4.welcome_tb_padding.welcome_3_tb
-      =link_to image_tag("design/all_parts/welcome/stillage_pallet_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_pallet_index_path
-  .col-md-12
-    .col-md-4.welcome_tb_padding.welcome_4_tb
-      = link_to image_tag("design/all_parts/welcome/troleys_#{I18n.locale}.gif", class: "products_buttons_welcome"), trolley_index_path
-    .col-md-4.welcome_tb_padding.welcome_5_tb
-      = link_to image_tag("design/all_parts/welcome/stillage_mezonin_#{I18n.locale}.gif", class: "products_buttons_welcome"), mezzanine_index_path
-    .col-md-4.welcome_tb_padding.welcome_6_tb
-      = link_to image_tag("design/all_parts/welcome/gallery_#{I18n.locale}.gif", class: "products_buttons_welcome"), gallery_index_path
+  .no-gutter
+    .col-md-12
+      .col-md-4.welcome_tb_padding.welcome_1_tb
+        = link_to image_tag("design/all_parts/welcome/stillage_arxivniy_bitovoy_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_index_path
+      .col-md-4.welcome_tb_padding.welcome_2_tb
+        = link_to image_tag("design/all_parts/welcome/stillage_warehouse_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_warehouse_index_path
+      .col-md-4.welcome_tb_padding.welcome_3_tb
+        =link_to image_tag("design/all_parts/welcome/stillage_pallet_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_pallet_index_path
+    .col-md-12
+      .col-md-4.welcome_tb_padding.welcome_4_tb
+        = link_to image_tag("design/all_parts/welcome/troleys_#{I18n.locale}.gif", class: "products_buttons_welcome"), trolley_index_path
+      .col-md-4.welcome_tb_padding.welcome_5_tb
+        = link_to image_tag("design/all_parts/welcome/stillage_mezonin_#{I18n.locale}.gif", class: "products_buttons_welcome"), mezzanine_index_path
+      .col-md-4.welcome_tb_padding.welcome_6_tb
+        = link_to image_tag("design/all_parts/welcome/gallery_#{I18n.locale}.gif", class: "products_buttons_welcome"), gallery_index_path
 
 
 .col-md-12.block_without_reduction
@@ -154,3 +155,4 @@
         = t('page.all.read_next')
       %div
         = t('page.welcome.text_we_create_loft_block')
+
