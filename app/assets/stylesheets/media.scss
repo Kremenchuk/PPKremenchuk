@@ -135,6 +135,11 @@ $theme_color: #FE7D14;
 
 $theme_color: #FE7D14;
 @media (max-width : 520px) {
+  .google_map
+  {
+    width: 400px;
+    height: 300px;
+  }
   .welcome_tb_padding
   {
     padding: 25px;
@@ -155,7 +160,11 @@ $theme_color: #FE7D14;
 
 
 @media (max-width : 395px) {  // смартфон новий portrait
-
+  .google_map
+  {
+    width: 320px;
+    height: 240px;
+  }
 
 }
 

@@ -31,34 +31,47 @@
   height: 184px;
 }
 
+//кнопки Читать далее
+  /* скрываем чекбоксы и блоки с содержанием */
+  .hide {
+    display: none;
+  }
+  .hide + label ~ div{
+    display: none;
+  }
+  /* оформляем текст label *//* вид текста label при активном переключателе */
+  .hide + label,
+  .hide:checked + label {
+    padding: 0;
+    cursor: pointer;
+  }
 
-/* скрываем чекбоксы и блоки с содержанием */
-.hide {
-  display: none;
-}
-.hide + label ~ div{
-  display: none;
-}
-/* оформляем текст label *//* вид текста label при активном переключателе */
-.hide + label,
-.hide:checked + label {
-  padding: 0;
-  cursor: pointer;
+  .hide:checked + label {
+    color: red;
+  }
+
+  /* когда чекбокс активен показываем блоки с содержанием  */
+  .hide:checked + label + div {
+    display: block;
+  }
+
+  /* demo контейнер */
+  .demo {
+    float: right;
+    padding-bottom: 20px;
+  }
+//---кнопки Читать далее---
+
+.about_us_text {
+  font-size: 18px;
 }
 
-.hide:checked + label {
-  color: red;
+.about_picture_welcome
+{
+  width: 362px;
+  height: 272px;
 }
 
-/* когда чекбокс активен показываем блоки с содержанием  */
-.hide:checked + label + div {
-  display: block;
+.about_picture_container {
+  text-align: center;
 }
-
-/* demo контейнер */
-.demo {
-  float: right;
-  padding-bottom: 20px;
-}
-
-

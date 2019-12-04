@@ -1,17 +1,10 @@
 %h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
   = t('page.welcome.about_as')
-%table{:cellspacing => "5", :cellpadding => "5", :width => "100%"}
-  %tr.tb2_tr1_row1_welcome{:align => "center"}
-    %td
-
-  %tr.tb2_tr2_row2_welcome{:align => "left"}
-    %td.tb2_tr3_col1_welcome
-    %td.tb2_tr2_col1_welcome
-  %tr.tb2_tr3_row3_welcome{:align => "left"}
-    %td.tb2_tr3_col1_welcome
-    %td.tb2_tr3_col2_welcome
+.container-fluid
+  .row
+    .col-md-12.about_us_text
       %p
         =raw t('page.welcome.about_as_text')
-    %td.tb2_tr3_col3_welcome
+    .col-md-12.about_picture_container
       =image_tag('design/all_parts/about.gif', class: "about_picture_welcome", alt: 'Стеллажи')
-    %td.tb2_tr3_col4_welcome
+

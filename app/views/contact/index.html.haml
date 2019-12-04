@@ -3,7 +3,7 @@
   =t('page.contacts.index.header')
 .container-fluid
   .row
-    .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet
+    .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet.contact_text
       - @contacts.each do |contact|
         - if eval(contact.name)[locale] == 'map'
           - contact_map = contact
