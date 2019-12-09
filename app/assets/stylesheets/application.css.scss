@@ -51,7 +51,7 @@ body {
   display: table;
   width: 1024px;
   margin: auto;
-  min-height: 100%;
+  min-height: 81.9vh;
   padding-top: 65px;
 }
 
@@ -223,6 +223,7 @@ body {
   font-size: 12px;
   text-indent: 20px;
   margin-left: -60px;
+  padding-top: 10px;
 
 }
 .footer_style{
@@ -232,7 +233,8 @@ body {
   width: 50%;
 }
 .footer_text{
-  //margin-top: -50px;
+  padding-top: 10px;
+  font-size: 12px;
 }
 
 .boofer
@@ -279,5 +281,7 @@ body {
   padding-left:0;
 }
 
-
+h1, h2 {
+  text-align: center;
+}
 
