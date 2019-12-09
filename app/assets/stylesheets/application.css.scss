@@ -21,6 +21,10 @@ $icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
 @import "jquery-ui";
 
 
+p {
+  text-indent: 20px; /* Отступ первой строки в пикселах */
+}
+
 html, body {
   background: url("design/all_parts/background.jpg"); // center; //no-repeat center center fixed //no-repeat center center fixed
   min-height: 100%;
