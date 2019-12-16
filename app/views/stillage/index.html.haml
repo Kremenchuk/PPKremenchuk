@@ -74,9 +74,7 @@
 #actual_price
   .row
     .col-md-12
--#-else
--#  .on_line_calculation_off
--#    =t('page.all.on_line_off')
+
 %p
 #no_print
   .container-fluid
@@ -95,21 +93,21 @@
               =t('page.all.table.header_texn')
             %tr{:align => "center"}
               %td
-                =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_Paspor_stoyka.png", :width => "100", :height => "200")
+                =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_Paspor_stoyka.png", class: 'stillage_table_images_stoyka')
               %td
                 =t('page.stillage.index.table.name_1')
               %td
                 =raw t('page.stillage.index.table.texn_1')
             %tr{:align => "center"}
               %td
-                =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_polka.png", :width => "200", :height => "133")
+                =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_polka.png", class: 'stillage_table_images_polka')
               %td
                 =t('page.stillage.index.table.name_2')
               %td
                 =raw t('page.stillage.index.table.texn_2')
             %tr{:align => "center"}
               %td
-                =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_usil.png", :width => "200", :height => "140")
+                =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_usil.png", class: 'stillage_table_images_usilok')
               %td
                 =t('page.stillage.index.table.name_3')
               %td

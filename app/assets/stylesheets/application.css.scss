@@ -260,8 +260,9 @@ body {
 
 .logo
 {
-  width: 89px;
-  height: 55px;
+  width: 130px;
+  height: 72px;
+  margin-top: -3px;
 }
 
 .span_header
@@ -285,3 +286,10 @@ h1, h2 {
   text-align: center;
 }
 
+.about_href > p {
+  text-indent:0 !important;
+}
+
+.col_header2 > p {
+  text-indent:0 !important;
+}

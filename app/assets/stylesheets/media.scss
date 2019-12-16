@@ -1,5 +1,8 @@
 
 @media (max-width : 1980px) {
+  .layout_table {
+    padding-left: 90px;
+  }
   .block_without_reduction {
     display: block;
   }
@@ -11,16 +14,39 @@
     display: none;
   }
   .appl_about_ul {
-    width: 190px !important;
+    width: 176px !important;
   }
 
   .appl_lang_ul {
-    width: 190px !important;
+    width: 176px !important;
+  }
+
+  .stillage_table_images_stoyka {
+    width: 100px;
+    height: 200px;
+  }
+  .stillage_table_images_polka {
+    width: 200px;
+    height: 133px;
+  }
+  .stillage_table_images_usilok {
+    width: 200px;
+    height: 140px;
+  }
+
+  .tytle_page_img_stillage_loft {
+    height: 650px;
+    width: 450px;
+    padding: 10px 0 10px 0;
+    background: #FE7D14;
   }
 }
 
 $theme_color: #FE7D14;
 @media (max-width : 980px) {
+  .layout_table {
+    padding-left: 0;
+  }
   .wrapper {
     width: 100vw;
   }
@@ -102,11 +128,11 @@ $theme_color: #FE7D14;
 
   .col_header1
   {
-    display: none;
+    width: 30vw;
   }
 
   .col_header2 {
-    width: 40vw;
+    width: 30vw;
   }
 
   .col_header3
@@ -119,7 +145,7 @@ $theme_color: #FE7D14;
   }
 
   .col_header5 {
-    width: 40vw;
+    width: 30vw;
   }
 
   .block_without_reduction {
@@ -131,8 +157,34 @@ $theme_color: #FE7D14;
   }
 
   .tytle_page_img_stillage_stillage_warehouse_stillage_pallet {
-    width: 500px !important;
-    height: 376px !important;
+    width: 450px !important;
+    height: 339px !important; //1.329
+  }
+
+  .tytle_page_img_stillage_loft {
+    height: 450px;
+    width: 339px; //1.329
+  }
+
+  .appl_about_ul {
+    width: 30vw !important;
+  }
+
+  .appl_lang_ul {
+    width: 30vw !important;
+  }
+
+  .stillage_table_images_stoyka {
+    width: 60px;
+    height: 120px;
+  }
+  .stillage_table_images_polka {
+    width: 120px;
+    height: 80px;
+  }
+  .stillage_table_images_usilok {
+    width: 120px;
+    height: 85px;
   }
 
 }
@@ -158,6 +210,15 @@ $theme_color: #FE7D14;
     height: 100%;
   }
 
+  .tytle_page_img_stillage_stillage_warehouse_stillage_pallet {
+    width: 345px !important;
+    height: 260px !important;
+  }
+
+  .tytle_page_img_stillage_loft {
+    height: 345px;
+    width: 260px; //1.329
+  }
 
 
 }
@@ -173,259 +234,22 @@ $theme_color: #FE7D14;
 }
 
 @media (max-width : 360px) {  // my smartphone portrait
+  .col_header1 > a
+  {
+    margin-left: -22px;
+  }
 
+  .col_header1
+  {
+    width: 32vw;
+  }
+
+  .col_header2 {
+    width: 18vw;
+  }
+
+  .col_header5 {
+    width: 20vw;
+  }
 
 }
-
-
-
-//
-//$theme_color: #FE7D14;
-//$media_width_3w: 700px;
-//@media (max-width : $media_width_3w) {
-//  .welcome_tb_padding
-//  {
-//    padding: 25px;
-//  }
-//  .wrap1 {
-//    width: $media_width_3w;
-//  }
-//  .wrapper {
-//    width: $media_width_3w;
-//  }
-//  .fix {
-//    width: $media_width_3w;
-//    min-width: $media_width_3w;
-//  }
-//
-//  .col1 {
-//    width: 200px;
-//  }
-//  .col5, .col3 {
-//    display: none;
-//  }
-//
-//  .col2, .col4 {
-//    width: 100px;
-//  }
-//  .basis {
-//    width: $media_width_3w;
-//    height: calc((#{$media_width_3w}/820)*358);
-//  }
-//  .locale_view ul.dropdown-inside
-//  {
-//    width: 150px;
-//  }
-//  .tb1_col1_welcome {
-//    width: 120px;
-//  }
-//}
-//
-//
-//$theme_color: #FE7D14;
-//$media_width: 580px;
-//@media (max-width : $media_width) {
-//  .welcome_tb_padding
-//  {
-//    padding: 7px;
-//  }
-//  .welcome_first_tb{
-//    padding-top: 18px;
-//  }
-//  .welcome_img_text {
-//    top: 98px;
-//    font-size: 15px;
-//  }
-//  .wrap1 {
-//    width: $media_width;
-//  }
-//  .wrapper {
-//    width: $media_width;
-//  }
-//  .locale_view ul.dropdown-inside
-//  {
-//    width: 140px;
-//  }
-//  .header_table {
-//    font-size: 14px;
-//    text-align: center;
-//  }
-//  .style_text_about_stillage_stillage_warehouse_stillage_pallet
-//  {
-//    font-size: 14px;
-//    text-indent: 20px;
-//  }
-//  .header_stillage_stillage_warehouse_stillage_pallet_trolleys
-//  {
-//    text-align: center;
-//    font-size: 25px;
-//  }
-//
-//
-//  .google_map
-//  {
-//    height: 250px;
-//    width: 400px;
-//    text-align: center;
-//    padding: 10px 0 10px 0;
-//    background: #FE7D14;
-//  }
-//
-//  .fix
-//  {
-//    font-size: 14px;
-//    width: $media_width;
-//    min-width: $media_width;
-//    max-width: $media_width;
-//  }
-//
-//
-//  ul.dropdown-inside > li
-//  {
-//    border: 1px solid #000000;
-//  }
-//
-//  ul.dropdown .dropdown-inside a:hover
-//  {
-//    background: #9a2917;
-//    text-decoration: none
-//  }
-//
-//  .col3:hover
-//  {
-//    background: #FE7D14;// background: #59C113;
-//  }
-//
-//
-//  .tytle_page_img_stillage_stillage_warehouse_stillage_pallet
-//  {
-//    width: 300px;
-//    height: 225px;
-//    padding: 10px 0px 10px 0px;
-//    background: #FE7D14;
-//    //border-radius: 20px;
-//  }
-//
-//
-//  .table_data_admin_panel
-//  {
-//    font-size: 12px;
-//  }
-//  .table_header_admin_panel
-//  {
-//    font-size: 15px;
-//  }
-//  .update_picture
-//  {
-//    width: 20px;
-//    height: 20px;
-//    float: right;
-//  }
-//
-//
-//  .tb2_tr3_col3_welcome
-//  {
-//    display: none;
-//    width: 362px;
-//  }
-//  .about_picture_welcome
-//  {
-//    display: none;
-//    width: 362px;
-//    height: 272px;
-//  }
-//
-//  .tb1_col1_welcome
-//  {
-//    width: 59px
-//  }
-//
-//  .tb1_col3_welcome
-//  {
-//    width: 15px
-//  }
-//
-//  .products_buttons_welcome
-//  {
-//    //width: 201px;
-//    //height: 123px;
-//  }
-//  .logo
-//  {
-//    display: none;
-//  }
-//  .basis
-//  {
-//    display: none;
-//  }
-//
-//  .colortext1
-//  {
-//    font-weight: 500;
-//    color: $theme_color;
-//  }
-//  .colortext2
-//  {
-//    font-weight: 500;
-//    color: white;
-//  }
-//
-//  .col1
-//  {
-//    width: 150px;
-//  }
-//  .col2
-//  {
-//    width: 150px;
-//  }
-//  .col3
-//  {
-//    display: none;
-//  }
-//  .col5
-//  {
-//    width: 150px;
-//
-//  }
-//  .wrapper
-//  {
-//
-//    display: table;
-//    width: 560px; // 580px;
-//    margin: auto;
-//    min-height: 100%;
-//    margin-bottom: -20px;
-//  }
-//  * html .wrapper {
-//    height: 100%;
-//  }
-//  .footer
-//  {
-//    height: 80px;
-//    background: rgb(254,125,20);
-//    clear:both;
-//  }
-//
-//  header {
-//    padding: 20px 0;
-//  }
-//
-//  .main
-//  {
-//    min-height: 100%;
-//    padding-bottom: 50px;
-//  }
-//
-//  .boofer
-//  {
-//    height: 20px;
-//  }
-//  .footer
-//  {
-//    width: 579px;
-//    font-size: 10px;
-//    background: #FE7D14;
-//    height: 40px;
-//    margin-top: -40px;
-//  }
-//}

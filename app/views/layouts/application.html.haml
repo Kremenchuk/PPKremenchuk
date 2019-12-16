@@ -60,27 +60,18 @@
                     %li
                       =link_to t('page.layout.drop_menu.article'), article_index_path, class: 'menu__item'
 
-                .col-xs-4.col_header1
-                  =link_to image_tag("design/all_parts/Header/Logo.gif", class: "logo", :title => t('to_root')), welcome_index_path
-                  %a{:href => root_path}
-                    .text_pp
-                      %span.colortext1
-                        =t('page.layout.pp')
-                      %span.colortext2
-                        =t('page.layout.kremenchuk')
+                .col-xs-2.col_header1
+                  =link_to image_tag("design/all_parts/Header/stm_industry_white_logo_350.png", class: "logo", :title => t('to_root')), welcome_index_path
+                  -#%a{:href => root_path}
+                  -#  .text_pp
+                  -#    %span.colortext1
+                  -#      =t('page.layout.pp')
+                  -#    %span.colortext2
+                  -#      =t('page.layout.kremenchuk')
 
-                .col-xs-2.col_header2
-                  - if current_user
-                    = current_user.email
-                    %p
-                      =link_to t('page.layout.sign_out'), destroy_user_session_path
-                  - else
-                    .about_href
-                      = link_to t('page.layout.sign_in'), new_user_session_path
-                      %p
-                        = link_to t('page.layout.registration'), new_user_registration_path
 
-                .col-xs-2.col_header3
+
+                .col-xs-3.col_header3
                   %ul.dropdown
                     =t('page.layout.production')
                     %li.dropdown-top
@@ -125,6 +116,16 @@
                           -unless locale == :en
                             %li
                               = link_to t(locale), locale_path(:new_locale => locale), :method => :put
+                .col-xs-2.col_header2
+                  - if current_user
+                    = current_user.email
+                    %p
+                      =link_to t('page.layout.sign_out'), destroy_user_session_path
+                  - else
+                    .about_href
+                      = link_to t('page.layout.sign_in'), new_user_session_path
+                      %p
+                        = link_to t('page.layout.registration'), new_user_registration_path
       .wrapper
         .sessionInfo
           =yield
