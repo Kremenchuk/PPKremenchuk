@@ -156,6 +156,9 @@
                       .col-md-12
                         %li
                           = link_to  t('page.contacts.index.map'), "#{contact_index_url}#contact_map"
+                      .col-md-12
+                        %li
+                          = link_to  'Карта сайту', site_map_path
                   .col-xs-5
                     .footer_text
                       = t('page.all.footer')
@@ -167,5 +170,4 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'UA-129364309-1');

@@ -21,6 +21,7 @@ gem 'rubypython'
 gem 'passenger'
 gem 'jquery-ui-rails'
 gem 'font-awesome-sass'
+gem 'sitemap_generator'
 
 
 

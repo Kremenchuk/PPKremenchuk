@@ -11,15 +11,19 @@ class WelcomeController < ApplicationController
   def about_us
   end
 
-  def sitemap
-    respond_to do |format|
-      format.xml { render file: 'public/sitemaps/sitemap.xml' }
-      format.html { redirect_to root_url }
-    end
+  # def sitemap
+  #   respond_to do |format|
+  #     format.xml { render file: 'public/sitemaps/sitemap.xml' }
+  #     format.html { redirect_to root_url }
+  #   end
+  # end
+
+  def site_map
+
   end
 
-  def robots
-
-  end
+  # def robots
+  #
+  # end
 
 end
