@@ -6,7 +6,7 @@
 @user.name = "REM"
 @user.admin = true
 @user.diller = 4
-@user.language = "uk"
+# @user.language = "ru"
 @user.save!
 
 
