@@ -69,4 +69,6 @@ Rails.application.routes.draw do
   end
   post 'constants/load_constant' => 'constants#load_constant'
 
+  get "sitemap.xml" => "welcome#sitemap", format: :xml, as: :sitemap
+  get "robots.txt" => "welcome#robots", format: :text, as: :robots
 end
