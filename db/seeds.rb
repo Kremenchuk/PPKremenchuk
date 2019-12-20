@@ -1,5 +1,4 @@
 
-
 #
 @constants = Constant.new
 
