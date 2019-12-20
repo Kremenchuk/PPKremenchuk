@@ -69,6 +69,7 @@ group :development, :test do
 
   group :production do
       #gem 'unicorn', '~> 3.6.2', :require => nil
+      gem 'sqlite3'
   end
 end
 
