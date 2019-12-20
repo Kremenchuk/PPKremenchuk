@@ -10,6 +10,7 @@
 # Игнорирование дефолтной базы данных SQLite.
 /db/*.sqlite3
 /db/*.sqlite3-journal
+/config/secrets.yml
 
 #/Gemfile.lock
 
