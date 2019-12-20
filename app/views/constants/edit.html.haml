@@ -45,7 +45,7 @@
       .row
         .col-md-12
           .text_size{:onclick => "showHide('hiden_element_1','chg_img_1')" }
-            =image_tag("plus.png", :id => "chg_img_1", :alt => "mater",  :width => "30", :height => "30")
+            %img{:id => "chg_img_1", :alt => "mater", :src => "/assets/plus.png", :name => "img_1", :width => "30", :height => "30"}
               Материалы
       = render partial: 'material', locals: {f: f}
 
@@ -53,7 +53,7 @@
       .row
         .col-md-12
           .text_size{:onclick => "showHide('hiden_element_2','chg_img_2')" }
-            =image_tag("plus.png", :id => "chg_img_2", :alt => "mater",  :width => "30", :height => "30")
+            %img{:id => "chg_img_2",:alt => "mater", :src => "/assets/plus.png", :name => "chg_img_2", :width => "30", :height => "30"}
               Работы
       = render partial: 'job', locals: {f: f}
 
