@@ -2,7 +2,7 @@ class ArticleController < ApplicationController
 
   def index
     @articles = Array.new
-    file_list = Dir.entries("public/articles").select {|f| !File.directory? f}
+    file_list = Dir.entries(File.join(Rails.root,'public/articles')).select {|f| !File.directory? f}
     file_list.each do |file|
       @articles << [file, File.open(File.join(Rails.root,'public/articles', file), "r") {|io| io.read}]
     end
@@ -13,10 +13,11 @@ class ArticleController < ApplicationController
     begin
       @article = File.open(File.join(Rails.root,'public/articles', params[:id] + ".html"), "r") {|io| io.read}
     end
+    a=2
   end
 
   def articles_admin_index
-    @articles = Dir.entries("public/articles").select {|f| !File.directory? f}
+    @articles = Dir.entries(File.join(Rails.root,'public/articles')).select {|f| !File.directory? f}
   end
 
 
