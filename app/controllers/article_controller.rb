@@ -2,9 +2,6 @@ class ArticleController < ApplicationController
 
   def index
     @articles = Array.new
-    if !File.exist?(File.join(Dir.entries("public/articles")))
-      FileUtils.mkdir_p(Dir.entries("public/articles"))
-    end
     file_list = Dir.entries("public/articles").select {|f| !File.directory? f}
     file_list.each do |file|
       @articles << [file, File.open(File.join(Rails.root,'public/articles', file), "r") {|io| io.read}]
