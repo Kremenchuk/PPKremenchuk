@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    a=2
     I18n.locale = params[:new_locale]
     session[:locale] = I18n.locale
     url_hash = Rails.application.routes.recognize_path URI(request.referer).path
