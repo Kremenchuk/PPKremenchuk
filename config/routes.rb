@@ -66,7 +66,8 @@ Rails.application.routes.draw do
     resources :galleries
     resources :article
     resources :lofts
+    get 'sitemap' => 'welcome#site_map'
   end
   post 'constants/load_constant' => 'constants#load_constant'
-  get 'site_map' => 'welcome#site_map'
+  get 'sitemap' => 'welcome#site_map'
 end

@@ -2,18 +2,37 @@
 SitemapGenerator::Sitemap.default_host = "https://stm-industry.com.ua"
 
 SitemapGenerator::Sitemap.create do
-  add site_map_path, :priority => 0.5, :changefreq => 'daily'
-  add stillage_pallet_index_path, :priority => 0.5, :changefreq => 'daily'
-  add stillage_warehouse_index_path, :priority => 0.5, :changefreq => 'daily'
-  add stillage_index_path, :priority => 0.5, :changefreq => 'daily'
-  add trolley_index_path, :priority => 0.5, :changefreq => 'daily'
-  add mezzanine_index_path, :priority => 0.5, :changefreq => 'daily'
-  add platform_index_path, :priority => 0.5, :changefreq => 'daily'
-  add about_us_path, :priority => 0.5, :changefreq => 'daily'
-  add news_index_path, :priority => 0.5, :changefreq => 'daily'
-  add galleries_path, :priority => 0.5, :changefreq => 'daily'
-  add article_index_path, :priority => 0.5, :changefreq => 'daily'
-  add lofts_path, :priority => 0.5, :changefreq => 'daily'
+  add '/ru/stillage',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/stillage_warehouse',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/stillage_pallet',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/trolley',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/mezzanine',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/platform',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/lofts',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/galleries',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/contact',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/about_us',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/news',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/article',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/users/sign_in',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/welcome',  :priority => 0.5, :changefreq => 'weekly'
+
+  add '/uk/stillage',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/stillage_warehouse',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/stillage_pallet',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/trolley',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/mezzanine',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/platform',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/lofts',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/galleries',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/contact',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/about_us',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/news',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/article',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/users/sign_in',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/welcome',  :priority => 0.5, :changefreq => 'weekly'
+
+
 
   # Put links creation logic here.
   #
