@@ -1,6 +1,6 @@
 class ConstantsController < ApplicationController
   before_filter :find_item, only: [:edit, :update, :show, :load_constant]
-  before_filter :check_if_admin, only: [:index, :show, :edit, :update]
+  before_filter :check_if_admin
 
 
   def edit

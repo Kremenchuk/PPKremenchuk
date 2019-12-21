@@ -1,5 +1,5 @@
 class AdminPanelController < ApplicationController
-  before_filter :check_if_admin, only: [:index]
+  before_filter :check_if_admin
   before_filter :find_user, only: [:update, :destroy]
 
   before_action :find_contact, only: [:contacts_new, :contacts_update, :contact_destroy]

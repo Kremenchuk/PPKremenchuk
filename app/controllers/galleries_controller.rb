@@ -1,5 +1,5 @@
 class GalleriesController < ApplicationController
-
+  before_filter :check_if_admin, except: [:index]
   before_action :find_photo, only: [:photo_browser_destroy]
 
   def index

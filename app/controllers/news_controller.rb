@@ -1,4 +1,5 @@
 class NewsController < ApplicationController
+  before_filter :check_if_admin, except: [:index, :show]
   before_action :find_news, only: [:show, :edit, :update, :destroy]
 
   def index

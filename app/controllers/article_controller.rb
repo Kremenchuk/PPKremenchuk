@@ -1,4 +1,5 @@
 class ArticleController < ApplicationController
+  before_filter :check_if_admin, except: [:index, :show]
 
   def index
     @articles = Array.new
