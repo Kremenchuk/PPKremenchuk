@@ -13,7 +13,6 @@ class ArticleController < ApplicationController
     begin
       @article = File.open(File.join(Rails.root,'public/articles', params[:id] + ".html"), "r") {|io| io.read}
     end
-    a=2
   end
 
   def articles_admin_index

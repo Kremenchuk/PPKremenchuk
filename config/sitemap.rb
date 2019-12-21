@@ -16,6 +16,8 @@ SitemapGenerator::Sitemap.create do
   add '/ru/article',  :priority => 0.5, :changefreq => 'weekly'
   add '/ru/users/sign_in',  :priority => 0.5, :changefreq => 'weekly'
   add '/ru/welcome',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/article/1-Osnovnie_ponyatiya_stellagi.html',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/article/2-mezonini_platformi.html',  :priority => 0.5, :changefreq => 'weekly'
 
   add '/uk/stillage',  :priority => 0.5, :changefreq => 'weekly'
   add '/uk/stillage_warehouse',  :priority => 0.5, :changefreq => 'weekly'
@@ -31,6 +33,8 @@ SitemapGenerator::Sitemap.create do
   add '/uk/article',  :priority => 0.5, :changefreq => 'weekly'
   add '/uk/users/sign_in',  :priority => 0.5, :changefreq => 'weekly'
   add '/uk/welcome',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/article/1-Osnovnie_ponyatiya_stellagi.html',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/article/2-mezonini_platformi.html',  :priority => 0.5, :changefreq => 'weekly'
 
 
 
