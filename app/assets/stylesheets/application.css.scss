@@ -20,6 +20,7 @@ $icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
 @import "font-awesome";
 @import "jquery-ui";
 
+$scroll-bar: 15px;
 
 p {
   text-indent: 20px; /* Отступ первой строки в пикселах */
@@ -243,7 +244,7 @@ body {
 }
 .fix_footer
 {
-  width: 100vw;
+  //width: calc(100vw - #{$scroll-bar});
   font-size: 10px;
   background: #FE7D14;
   color: #191208;
