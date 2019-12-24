@@ -13,4 +13,4 @@ Disallow: /uk/news_admin_index/
 Disallow: /ru/articles_admin_index/
 Disallow: /uk/articles_admin_index/
 
-Sitemap: https://stm-industry.com.ua/sitemap.xml.gz
+Sitemap: https://stm-industry.com.ua/sitemap.xml
