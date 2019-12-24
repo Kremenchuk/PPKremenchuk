@@ -36,7 +36,22 @@ SitemapGenerator::Sitemap.create do
   add '/uk/article/1-Osnovnie_ponyatiya_stellagi.html',  :priority => 0.5, :changefreq => 'weekly'
   add '/uk/article/2-mezonini_platformi.html',  :priority => 0.5, :changefreq => 'weekly'
 
-
+  add '/stillage',  :priority => 0.5, :changefreq => 'weekly'
+  add '/stillage_warehouse',  :priority => 0.5, :changefreq => 'weekly'
+  add '/stillage_pallet',  :priority => 0.5, :changefreq => 'weekly'
+  add '/trolley',  :priority => 0.5, :changefreq => 'weekly'
+  add '/mezzanine',  :priority => 0.5, :changefreq => 'weekly'
+  add '/platform',  :priority => 0.5, :changefreq => 'weekly'
+  add '/lofts',  :priority => 0.5, :changefreq => 'weekly'
+  add '/galleries',  :priority => 0.5, :changefreq => 'weekly'
+  add '/contact',  :priority => 0.5, :changefreq => 'weekly'
+  add '/about_us',  :priority => 0.5, :changefreq => 'weekly'
+  add '/news',  :priority => 0.5, :changefreq => 'weekly'
+  add '/article',  :priority => 0.5, :changefreq => 'weekly'
+  add '/users/sign_in',  :priority => 0.5, :changefreq => 'weekly'
+  add '/welcome',  :priority => 0.5, :changefreq => 'weekly'
+  add '/article/1-Osnovnie_ponyatiya_stellagi.html',  :priority => 0.5, :changefreq => 'weekly'
+  add '/article/2-mezonini_platformi.html',  :priority => 0.5, :changefreq => 'weekly'
 
   # Put links creation logic here.
   #
