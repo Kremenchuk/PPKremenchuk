@@ -18,6 +18,7 @@ SitemapGenerator::Sitemap.create do
   add '/ru/welcome',  :priority => 0.5, :changefreq => 'weekly'
   add '/ru/article/1-Osnovnie_ponyatiya_stellagi.html',  :priority => 0.5, :changefreq => 'weekly'
   add '/ru/article/2-mezonini_platformi.html',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/article/3_rack_placement.html',  :priority => 0.5, :changefreq => 'weekly'
 
   add '/uk/stillage',  :priority => 0.5, :changefreq => 'weekly'
   add '/uk/stillage_warehouse',  :priority => 0.5, :changefreq => 'weekly'
@@ -35,6 +36,7 @@ SitemapGenerator::Sitemap.create do
   add '/uk/welcome',  :priority => 0.5, :changefreq => 'weekly'
   add '/uk/article/1-Osnovnie_ponyatiya_stellagi.html',  :priority => 0.5, :changefreq => 'weekly'
   add '/uk/article/2-mezonini_platformi.html',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/article/3_rack_placement.html',  :priority => 0.5, :changefreq => 'weekly'
 
   add '/stillage',  :priority => 0.5, :changefreq => 'weekly'
   add '/stillage_warehouse',  :priority => 0.5, :changefreq => 'weekly'
@@ -52,6 +54,7 @@ SitemapGenerator::Sitemap.create do
   add '/welcome',  :priority => 0.5, :changefreq => 'weekly'
   add '/article/1-Osnovnie_ponyatiya_stellagi.html',  :priority => 0.5, :changefreq => 'weekly'
   add '/article/2-mezonini_platformi.html',  :priority => 0.5, :changefreq => 'weekly'
+  add '/article/3_rack_placement.html',  :priority => 0.5, :changefreq => 'weekly'
 
   # Put links creation logic here.
   #

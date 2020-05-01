@@ -56,14 +56,28 @@
             %p
 
         .row
-          .col-md-3
+          .col-md-8
             .style_text_about_stillage_stillage_warehouse_stillage_pallet
-              %input{:id => "radio1", :name => "group1" , :type => "radio", :value => "osinkovaniy", :checked => "checked"}
-                =label_tag('radio1', t('page.all.osinkovaniy'), :class => 'radio_button_label')
-              %p
-                %input{:id => "radio2", :name => "group1" , :type => "radio", :value => "okrash"}
-                  =label_tag('radio2', t('page.all.okrash'), :class => 'radio_button_label')
-        .row
+              %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+                %tr
+                  %td
+                    =t('page.stillage.index.tip_polki')
+                  %td
+                    %input{:id => "radio1", :name => "group1" , :type => "radio", :value => "metall", :checked => "checked"}
+                      =label_tag('radio1', t('page.stillage.index.metall_shelf_type'), :class => 'radio_button_label')
+                    %p
+                      %input{:id => "radio2", :name => "group1" , :type => "radio", :value => "dsp"}
+                        =label_tag('radio2', t('page.stillage.index.dsp_shelf_type'), :class => 'radio_button_label')
+                %tr
+                  %td
+                    =t('page.all.stillage')
+                  %td
+                    %input{:id => "radio3", :name => "group2" , :type => "radio", :value => "osinkovaniy", :checked => "checked"}
+                      =label_tag('radio3', t('page.all.osinkovaniy'), :class => 'radio_button_label')
+                    %p
+                      %input{:id => "radio4", :name => "group2" , :type => "radio", :value => "okrash"}
+                        =label_tag('radio4', t('page.all.okrash'), :class => 'radio_button_label')
+                .row
           .col-md-3
             %p
 

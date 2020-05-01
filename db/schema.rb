@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190204151116) do
+ActiveRecord::Schema.define(version: 20190204151117) do
 
   create_table "constants", force: :cascade do |t|
     t.float    "mat_list_2_1_055",                default: 0.0
@@ -190,6 +190,12 @@ ActiveRecord::Schema.define(version: 20190204151116) do
     t.float    "area_100x60x100x15",              default: 2.0
     t.float    "area_shpingalet_naves",           default: 2.0
     t.float    "area_usil_arx",                   default: 2.0
+    t.float    "job_tb_tf_traversa",              default: 2.0
+    t.float    "mat_list_25_125_08",              default: 2.0
+    t.float    "mat_list_2_1_08",                 default: 2.0
+    t.float    "wei_list_25_125_08",              default: 2.0
+    t.float    "wei_list_2_1_08",                 default: 2.0
+    t.float    "area_tb_tf",                      default: 2.0
   end
 
   create_table "contacts", force: :cascade do |t|
