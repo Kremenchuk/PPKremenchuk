@@ -170,7 +170,7 @@ class StillageController < ApplicationController
   def dsp_shelf()
     a_tf = @width_var
     a_tb = @depth_var
-    b_tf_tb = @constant.area_tb_tf/2
+    b_tf_tb = Integer((@constant.area_tb_tf/2) * 1000)
 
 
     if @width_var > 1000

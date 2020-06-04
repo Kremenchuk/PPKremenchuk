@@ -39,7 +39,8 @@ class Constant < ActiveRecord::Base
                   :area_zatsep_sklad, :area_truba_25_25_12, :area_truba_25_25_15, :area_truba_25_25_2, :area_shina_30_4,
                   :area_skoba_styagnogo, :area_stoyki_pallet, :area_pyatki_pallet, :area_zatsep_pallet, :area_ukosi_pallet,
                   :area_truba_du_20_25, :area_plastini_teleg, :area_ugolok_20_20_3, :area_100x60x100x15, :area_usil_arx,
-                  :area_shpingalet_naves, :job_tb_tf_traversa, :mat_list_25_125_08, :mat_list_2_1_08, :wei_list_25_125_08, :wei_list_2_1_08,:area_tb_tf
+                  :area_shpingalet_naves, :job_tb_tf_traversa, :mat_list_25_125_08, :mat_list_2_1_08, :wei_list_25_125_08, :wei_list_2_1_08,:area_tb_tf,
+                  :mat_list_2_1_045, :wei_list_2_1_045
 
 
 
@@ -81,6 +82,7 @@ class Constant < ActiveRecord::Base
             :area_skoba_styagnogo, :area_stoyki_pallet, :area_pyatki_pallet, :area_zatsep_pallet, :area_ukosi_pallet,
             :area_truba_du_20_25, :area_plastini_teleg, :area_ugolok_20_20_3, :area_100x60x100x15,
             :area_shpingalet_naves, :area_usil_arx, :job_tb_tf_traversa, :mat_list_25_125_08, :mat_list_2_1_08, :wei_list_25_125_08, :wei_list_2_1_08, :area_tb_tf,
+            :mat_list_2_1_045, :wei_list_2_1_045,
             numericality: {greater_than: 0}, presence: true
 
 end
