@@ -83,7 +83,9 @@ uk:
       urovney:         'рівнів'
       uroven_hran:     'Рівень зберігання'
       osn_sec:         'Основна секція'
+      osn_sec_rash:    'Основна секція (схематичне зобаження)'
       pris_sec:        'Приставна секція'
+      pris_sec_rash:   'Приставна секція (схематичне зобаження)'
       table:
         header_photo: 'Фото'
         header_name:  'Назва'
