@@ -19,16 +19,18 @@ class ArticleController < ApplicationController
 
   def articles_admin_index
     begin
+      if !File.directory?(File.join(Rails.root,'public/articles'))
+        Dir.mkdir(File.join(Rails.root,'public/articles'))
+      end
+      if !File.directory?(File.join(Rails.root,'public/assets/articles'))
+        if !File.directory?(File.join(Rails.root,'public/assets'))
+          Dir.mkdir(File.join(Rails.root,'public/assets'))
+        end
+        Dir.mkdir(File.join(Rails.root,'public/assets/articles'))
+      end
       @articles = Dir.entries(File.join(Rails.root,'public/articles')).select {|f| !File.directory? f}
       @images = Array.new
       @images = Dir.entries(File.join(Rails.root,'public/assets/articles')).select {|f| !File.directory? f}
-      # file_list = Dir.entries(File.join(Rails.root,'public/assets/articles')).select {|f| !File.directory? f}
-      # file_list.each do |file|
-      #   @images << [file, File.open(File.join(Rails.root,'public/assets/articles', file), "r") {|io| io.read}]
-      # end
-      # a=2
-    rescue
-      Dir.mkdir(File.join(Rails.root,'public/articles'))
     end
 
   end
