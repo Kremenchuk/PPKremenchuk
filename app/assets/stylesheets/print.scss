@@ -58,17 +58,32 @@
 
   .stillage-warehouse .item-info {
     width: 220mm;
-    margin-left: -15mm;
+    margin-left: 15mm;
 
   }
 
-  //.stillage-warehouse table {
-    //width: 220mm;
-    //margin-left: -20mm;
-  //}
+  .prist_section {
+    display: none;
+  }
+
+  .stillage-warehouse .table_ram_width{
+    width: 15mm;
+  }
+
+  .stillage-warehouse .table_shelves{
+    width: 15mm;
+  }
+
+  .stillage-warehouse .table_osn{
+    width: 15mm;
+  }
+
+  .stillage-warehouse .table_pris{
+    width: 15mm;
+  }
 
   .stillage-warehouse .dimensions_stillage_warehouse {
-    margin-left: -40mm;
+    margin-left: 40mm;
     margin-top: -27mm;
   }
 

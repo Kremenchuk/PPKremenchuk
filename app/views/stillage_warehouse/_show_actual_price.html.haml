@@ -4,33 +4,30 @@
       %i.fa.fa-print
 
   .item-info
-    .container-fluid
-      .row.style_p
-        .col-md-10
-          .style_p
-            ="#{@name_stillage}"
-          .style_p
-            ="#{t('page.stillage_warehouse.show.max_load_ur')}: #{@shelf_load_var} #{t('page.all.kg')}"
-          .style_p
-            ="#{t('page.stillage_warehouse.show.weight_osn_sec')}: #{@wei_osn} #{t('page.all.kg')}"
-          .style_p
-            ="#{t('page.stillage_warehouse.show.weight_pris_sec')}: #{@wei_pris} #{t('page.all.kg')}"
-          .style_p
+    .style_p
+      ="#{@name_stillage}"
+    .style_p
+      ="#{t('page.stillage_warehouse.show.max_load_ur')}: #{@shelf_load_var} #{t('page.all.kg')}"
+    .style_p
+      ="#{t('page.stillage_warehouse.show.weight_osn_sec')}: #{@wei_osn} #{t('page.all.kg')}"
+    .style_p
+      ="#{t('page.stillage_warehouse.show.weight_pris_sec')}: #{@wei_pris} #{t('page.all.kg')}"
+    .style_p
       .row
         .col-md-12.style_p
           %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
             %tr
-              %th.header_table
+              %th.header_table.table_ram_width
                 =t('page.all.rama')
                 %p
                   ="#{@hight_var}x#{@depth_var}"
-              %th.header_table
+              %th.header_table.table_shelves
                 =t('page.all.uroven_hran')
-              %th.header_table
+              %th.header_table.table_osn
                 =t('page.all.osn_sec')
                 %p
                   ="#{t('page.all.2_ram')}, #{@num_of_shelves_var} #{@text_var}"
-              %th.header_table
+              %th.header_table.table_pris
                 =t('page.all.pris_sec')
                 %p
                   ="#{t('page.all.1_ram')}, #{@num_of_shelves_var} #{@text_var}"
@@ -63,23 +60,24 @@
         .indent_right_stilage_warehouse
       %div{:style => " width:100%; height:1px; clear:both;"}
     .col-md-2
-  %h2{:align =>"center"}
-    =t('page.all.pris_sec_rash')
-  .col-md-12
-    .col-md-3
-    .col-md-7
-      .dimensions_stillage_warehouse
-        .indent_left_stilage_warehouse
-        .dimension_image_stilage_warehouse
-          .height_size_stilage_warehouse_addl
-            ="#{@hight_var}"
-          .widht_size_stilage_warehouse_addl
-            ="#{@width_var}"
-          .widht_section_size_stilage_warehouse_addl
-            ="#{@width_var + 50}"
-          .depth_size_stilage_warehouse_addl
-            ="#{@depth_var}"
-          =image_tag('design/all_parts/stillage_warehouse/Stilage_warehouse45_addl.gif', class: "dimaension_image_size_stilage_warehouse", style: 'margin-top: -12mm;')
-        .indent_right_stilage_warehouse
-      %div{:style => " width:100%; height:30px; clear:both;"}
-    .col-md-2
+  .prist_section
+    %h2{:align =>"center"}
+      =t('page.all.pris_sec_rash')
+    .col-md-12
+      .col-md-3
+      .col-md-7
+        .dimensions_stillage_warehouse
+          .indent_left_stilage_warehouse
+          .dimension_image_stilage_warehouse
+            .height_size_stilage_warehouse_addl
+              ="#{@hight_var}"
+            .widht_size_stilage_warehouse_addl
+              ="#{@width_var}"
+            .widht_section_size_stilage_warehouse_addl
+              ="#{@width_var + 50}"
+            .depth_size_stilage_warehouse_addl
+              ="#{@depth_var}"
+            =image_tag('design/all_parts/stillage_warehouse/Stilage_warehouse45_addl.gif', class: "dimaension_image_size_stilage_warehouse", style: 'margin-top: -12mm;')
+          .indent_right_stilage_warehouse
+        %div{:style => " width:100%; height:30px; clear:both;"}
+      .col-md-2
