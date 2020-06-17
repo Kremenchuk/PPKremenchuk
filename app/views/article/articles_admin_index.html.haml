@@ -40,11 +40,10 @@
         = form_tag image_delete_path, method: :delete do
           .col-md-12
             = image_tag "/assets/articles/#{image}", style: 'width: 250px'
-            = text_area_tag :full_path, File.join("#{request.protocol}#{request.host}", "/assets/articles/#{image}"), style: 'width: 400px'
           .col-md-8
             = text_field_tag :image_name, image, style: 'width: 100%;'
           .col-md-4
             = submit_tag "Удалить", {:class =>"btn btn-danger"}
-          .col-md-12
+
 
 

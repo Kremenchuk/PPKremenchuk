@@ -8,8 +8,9 @@
 -if @images.present?
   - @images.each do |image|
     = form_tag image_delete_path, method: :delete do
-      .col-md-3
-        = image_tag "/assets/articles/#{image}", style: 'width: 250px'
-      .col-md-9
-        = text_area_tag :full_path, File.join("#{request.protocol}#{request.host}", "/assets/articles/#{image}"), style: 'width: 100%'
+      .col-md-12
+        .col-md-3
+          = image_tag "/assets/articles/#{image}", style: 'width: 250px'
+        .col-md-9
+          = text_area_tag :full_path, File.join("#{request.protocol}#{request.host}", "/assets/articles/#{image}"), style: 'width: 100%'
 
