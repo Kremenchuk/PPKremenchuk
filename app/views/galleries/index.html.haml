@@ -3,49 +3,49 @@
 
 %hr
 
-%h2.head2{:align => "center"}
+%h2#stillages.head2{:align => "center"}
   = t('page.gallery.arxiv')
 
 = render partial: 'photo_cycle', locals: {stillage_type: @stillages}
 
 %hr
 
-%h2.head2{:align => "center"}
+%h2#warehouses.head2{:align => "center"}
   = t('page.gallery.warehouse')
 
 = render partial: 'photo_cycle', locals: {stillage_type: @warehouses}
 
 %hr
 
-%h2.head2{:align => "center"}
+%h2#pallets.head2{:align => "center"}
   = t('page.gallery.pallet')
 
 = render partial: 'photo_cycle', locals: {stillage_type: @pallets}
 
 %hr
 
-%h2.head2{:align => "center"}
+%h2#trolleys.head2{:align => "center"}
   = t('page.gallery.trolley')
 
 = render partial: 'photo_cycle', locals: {stillage_type: @trolleys}
 
 %hr
 
-%h2.head2{:align => "center"}
+%h2#mezanines.head2{:align => "center"}
   = t('page.gallery.mezzanine')
 
 = render partial: 'photo_cycle', locals: {stillage_type: @mezanines}
 
 %hr
 
-%h2.head2{:align => "center"}
+%h2#platforms.head2{:align => "center"}
   = t('page.gallery.platforms')
 
 = render partial: 'photo_cycle', locals: {stillage_type: @platforms}
 
 %hr
 
-%h2.head2{:align => "center"}
+%h2#lofts.head2{:align => "center"}
   = t('page.gallery.lofts')
 
 = render partial: 'photo_cycle', locals: {stillage_type: @lofts}

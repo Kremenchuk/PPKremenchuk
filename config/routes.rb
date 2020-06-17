@@ -50,6 +50,8 @@ Rails.application.routes.draw do
 
 
     get 'articles_admin_index' => 'article#articles_admin_index', as: 'articles_admin_index'
+    get 'article_admin_show(:article_name)' => 'article#article_admin_show', as: 'article_admin_show'
+    put 'article_admin_edit' => 'article#article_admin_edit', as: 'article_admin_edit'
     post 'article_new' => 'article#article_new', as: 'article_new'
     delete 'article_delete' => 'article#article_delete', as: 'article_delete'
     post 'image_to_article' => 'article#image_to_article', as: 'image_to_article'

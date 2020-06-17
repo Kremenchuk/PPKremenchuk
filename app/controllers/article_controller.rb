@@ -28,11 +28,37 @@ class ArticleController < ApplicationController
         end
         Dir.mkdir(File.join(Rails.root,'public/assets/articles'))
       end
-      @articles = Dir.entries(File.join(Rails.root,'public/articles')).select {|f| !File.directory? f}
+      @articles = Array.new
+      file_list = Dir.entries(File.join(Rails.root,'public/articles')).select {|f| !File.directory? f}
+      file_list.each do |file|
+        @articles << [file, File.open(File.join(Rails.root,'public/articles', file), "r") {|io| io.read}]
+      end
+      @articles.sort!
       @images = Array.new
       @images = Dir.entries(File.join(Rails.root,'public/assets/articles')).select {|f| !File.directory? f}
     end
+  end
 
+  def article_admin_show
+    @article = Array.new
+    article_name = params[:article_name] + '.html'
+    article_path = File.join(Rails.root,'public/articles')
+    @article[0] = article_name
+    @article[1] = File.open(File.join(article_path, article_name)){ |file| file.read }
+    @images = Array.new
+    @images = Dir.entries(File.join(Rails.root,'public/assets/articles')).select {|f| !File.directory? f}
+  end
+
+
+  def article_admin_edit
+    begin
+      article_name = params[:article_name]
+      article_path = File.join(Rails.root,'public/articles')
+      File.open(File.join(article_path, article_name),'wb') do |f|
+        f.write(params[:article_text])
+      end
+    end
+    redirect_to articles_admin_index_path
   end
 
 
