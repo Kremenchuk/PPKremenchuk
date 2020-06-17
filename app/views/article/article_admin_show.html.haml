@@ -11,6 +11,6 @@
       .col-md-12
         .col-md-3
           = image_tag "/assets/articles/#{image}", style: 'width: 250px'
+          %p
         .col-md-9
           = text_area_tag :full_path, File.join("#{request.protocol}#{request.host}", "/assets/articles/#{image}"), style: 'width: 100%'
-
