@@ -53,6 +53,8 @@ Rails.application.routes.draw do
     post 'article_new' => 'article#article_new', as: 'article_new'
     delete 'article_delete' => 'article#article_delete', as: 'article_delete'
     post 'image_to_article' => 'article#image_to_article', as: 'image_to_article'
+    delete 'image_delete' => 'article#image_delete', as: 'image_delete'
+
 
 
     resources :news

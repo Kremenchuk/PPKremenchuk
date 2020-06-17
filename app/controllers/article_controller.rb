@@ -7,6 +7,7 @@ class ArticleController < ApplicationController
     file_list.each do |file|
       @articles << [file, File.open(File.join(Rails.root,'public/articles', file), "r") {|io| io.read}]
     end
+    @articles.sort!
   end
 
 
@@ -17,7 +18,19 @@ class ArticleController < ApplicationController
   end
 
   def articles_admin_index
-    @articles = Dir.entries(File.join(Rails.root,'public/articles')).select {|f| !File.directory? f}
+    begin
+      @articles = Dir.entries(File.join(Rails.root,'public/articles')).select {|f| !File.directory? f}
+      @images = Array.new
+      @images = Dir.entries(File.join(Rails.root,'public/assets/articles')).select {|f| !File.directory? f}
+      # file_list = Dir.entries(File.join(Rails.root,'public/assets/articles')).select {|f| !File.directory? f}
+      # file_list.each do |file|
+      #   @images << [file, File.open(File.join(Rails.root,'public/assets/articles', file), "r") {|io| io.read}]
+      # end
+      # a=2
+    rescue
+      Dir.mkdir(File.join(Rails.root,'public/articles'))
+    end
+
   end
 
 
@@ -37,9 +50,15 @@ class ArticleController < ApplicationController
 
   def image_to_article
     begin
-      image_name = "stillage_images_to_article_#{params[:image].original_filename}"
+      image_name = "#{params[:image].original_filename}"
       image_path = File.join(Rails.root,'public/assets/articles')
 
+      File.open(File.join(image_path, image_name),'wb') do |f|
+        f.write(params[:image].read)
+      end
+    rescue
+      Dir.mkdir(File.join(Rails.root,'public/assets'))
+      Dir.mkdir(File.join(Rails.root,'public/assets/articles'))
       File.open(File.join(image_path, image_name),'wb') do |f|
         f.write(params[:image].read)
       end
@@ -52,6 +71,14 @@ class ArticleController < ApplicationController
     begin
       article_path = File.join(Rails.root,'public/articles')
       File.delete(File.join(article_path, params[:article_name])) if File.exist?(File.join(article_path, params[:article_name]))
+    end
+    redirect_to articles_admin_index_path
+  end
+
+  def image_delete
+    begin
+      image_path = File.join(Rails.root,'public/assets/articles')
+      File.delete(File.join(image_path, params[:image_name])) if File.exist?(File.join(image_path, params[:image_name]))
     end
     redirect_to articles_admin_index_path
   end
