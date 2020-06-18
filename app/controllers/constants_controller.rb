@@ -122,12 +122,4 @@ class ConstantsController < ApplicationController
     @constant = Constant.where(id: 1).first
   end
 
-
-  def flash_message(type, message)
-    flash[:class] = "alert alert-#{type}"
-    flash[:style] = "font-size:20px;"
-    flash[:message] = message
-  end
-
-
 end

@@ -3,4 +3,4 @@
 .col-md-3
   = image_tag @news.photo, style: 'width: 190px;'
 .col-md-7
-  = eval(@news.text)[locale]
+  = raw(eval(@news.text)[locale])

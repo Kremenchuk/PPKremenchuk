@@ -1,5 +1,6 @@
 %h1 Добавление и удаление новостей
 .col-md-12
+  %p{:class => "#{flash[:class]}", :style => "#{flash[:style]}"}= flash[:message]
   = form_tag @new_news, method: :post, multipart: true do
     .col-md-12
       .col-md-2
@@ -21,7 +22,7 @@
       .col-md-2
         Текст
       .col-md-10
-        = text_area_tag :text, '', style: 'width: 100%'
+        = text_area_tag :text, '',class: 'news_text_area'
       .col-md-12
         = submit_tag "Добавить", {:class =>"btn btn-success"}
       .col-md-12
@@ -31,19 +32,16 @@
   - @news.each do |news|
     = form_tag news_path(news.id), method: :put, multipart: true do
       .col-md-12
-        = date_field_tag :news_date, news.news_date, style: 'width: 100%;', disabled: true
-      .col-md-6
-        = text_field_tag :news_header, news.news_header, style: 'width: 100%;'
-      .col-md-4
+        = date_field_tag :news_date, news.news_date, class: 'news_data_field_class', disabled: true
+      .col-md-2
         = image_tag news.photo, style: 'width: 160px;'
-      .col-md-1
+      .col-md-8
+        = text_field_tag :news_header, news.news_header, style: 'width: 100%;'
         = link_to 'Удалить', news_path(id: news.id), class: 'btn btn-danger', method: :delete
-      .col-md-1
         = submit_tag 'Редактировать', {:class =>"btn btn-success"}
       .col-md-12
         = text_field_tag :short_text, news.short_text, style: 'width: 100%;'
       .col-md-12
-        = text_area_tag :text, news.text, style: 'width: 100%;'
-
+        = text_area_tag :text, news.text, class: 'news_text_area'
       .col-md-12
         %hr

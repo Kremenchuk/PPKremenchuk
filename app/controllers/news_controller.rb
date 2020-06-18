@@ -23,19 +23,28 @@ class NewsController < ApplicationController
   end
 
   def create
-    news = News.new(news_params)
-
     begin
-      image_name = "news_#{(Time.now).to_i}_#{params[:photo].original_filename}"
-      image_path = File.join(Rails.root,'/public/assets/news')
+      news = News.new(news_params)
 
-      File.open(File.join(image_path, image_name),'wb') do |f|
-        f.write(params[:photo].read)
+      if params[:photo].present?
+        image_name = "news_#{(Time.now).to_i}_#{params[:photo].original_filename}"
+        image_path = File.join(Rails.root,'/public/assets/news')
+        if !File.directory?(File.join(Rails.root,'public/assets/news'))
+          if !File.directory?(File.join(Rails.root,'public/assets'))
+            Dir.mkdir(File.join(Rails.root,'public/assets'))
+          end
+          Dir.mkdir(File.join(Rails.root,'public/assets/news'))
+        end
+        File.open(File.join(image_path, image_name),'wb') do |f|
+          f.write(params[:photo].read)
+        end
+
+        news.photo = File.join('/assets/news', image_name)
       end
-
-      news.photo = File.join('/assets/news', image_name)
-
       news.save!
+
+    rescue => error
+      flash_message("danger", "Невозможно создать новость. #{error.message}")
     end
     redirect_to news_admin_index_path
   end

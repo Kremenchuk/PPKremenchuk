@@ -87,4 +87,10 @@ class ApplicationController < ActionController::Base
     I18n.locale = params[:locale] || (current_user.language.to_sym if current_user.present?) ||I18n.default_locale
     session[:locale] = I18n.locale
   end
+
+  def flash_message(type, message)
+    flash[:class] = "alert alert-#{type}"
+    flash[:style] = "font-size:20px;"
+    flash[:message] = message
+  end
 end
