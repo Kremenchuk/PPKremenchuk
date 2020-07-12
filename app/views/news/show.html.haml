@@ -2,5 +2,5 @@
   = eval(@news.news_header)[locale]
 .col-md-3
   = image_tag @news.photo, style: 'width: 190px;'
-.col-md-7
+.col-md-7.news_text
   = raw(eval(@news.text)[locale])
