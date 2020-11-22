@@ -94,6 +94,7 @@ ru:
         header_photo: 'Фото'
         header_name:  'Название'
         header_texn:  'Технические характеристики'
+      triomet:            'Триметалл Сервис'
 
     layout:
       title:          'Стеллажи от производителя (online расчет)'

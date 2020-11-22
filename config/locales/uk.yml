@@ -90,6 +90,7 @@ uk:
         header_photo: 'Фото'
         header_name:  'Назва'
         header_texn:  'Технічні характеристики'
+      triomet:            'Тріметал Сервіс'
 
     layout:
       title:          'Стелажі від виробника (online розрахунок)'
