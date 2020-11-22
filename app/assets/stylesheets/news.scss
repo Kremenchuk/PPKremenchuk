@@ -7,6 +7,10 @@
   color: black !important;
 }
 
+.news_header {
+  text-align: left;
+}
+
 .news_short_text{
   padding-left: 35px;
 }
@@ -19,4 +23,8 @@
   width: 100%;
   background-color: #666666;
   color: white;
+}
+
+.news_text{
+  font-size: 18px;
 }
