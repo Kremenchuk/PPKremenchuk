@@ -141,19 +141,19 @@
                     .col-xs-12.footer_contacts
                       = t('page.contacts.index.header')
                     .col-md-12.footer_contacts
-                      -#- @contacts.each_with_index do |contact, index|
-                      -#  - if index == 0
-                      -#    - next
-                      -#  - if eval(contact.name)[locale] == 'map'
-                      -#    - contact_map = contact
-                      -#    - next
-                      -#  - else
-                      -#    .col-md-4
-                      -#      %li
-                      -#        = "#{eval(contact.name)[locale]}:"
-                      -#    .col-md-8
-                      -#
-                      -#      = raw(eval(contact.text)[locale])
+                      - @contacts.each_with_index do |contact, index|
+                        - if index == 0
+                          - next
+                        - if eval(contact.name)[locale] == 'map'
+                          - contact_map = contact
+                          - next
+                        - else
+                          .col-md-4
+                            %li
+                              = "#{eval(contact.name)[locale]}:"
+                          .col-md-8
+
+                            = raw(eval(contact.text)[locale])
                       .col-md-12
                         %li
                           = link_to  t('page.contacts.index.map'), "#{contact_index_url}#contact_map"
