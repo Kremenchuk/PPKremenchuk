@@ -131,7 +131,7 @@ class StillageController < ApplicationController
 
     @sebest = @price_stoyka * 4 + @price_polki * @num_of_shelves_var +
         @price_usil * @num_of_shelves_var * @kol_usil + @constant.mat_pyatki_arx * 4 +
-        @constant.job_upakovka_arx
+        @constant.job_upakovka_arx * 1.22
 
     @sebest = @sebest * (@constant.otxod_pk/100 +1)
     @kostven = @sebest * @constant.job_kostven_arx
@@ -161,7 +161,7 @@ class StillageController < ApplicationController
       #площадь стоек + площадь полок + площадь усилителей
       @plosh_st = (@constant.area_stoyki_arx * (Float(@hight_var))/1000 * 4)
       @plosh_pol= Float(((((@width_var + 90) * (@depth_var + 90) * 2.0)/1000000.0) + ((@constant.area_usil_arx / 2.0) * @usil) * (@width_var/1000.0)) * @num_of_shelves_var)
-      @okraska = @plosh_st * @constant.job_okr_stoyki_arx + @plosh_pol * @constant.job_okr_polki_arx
+      @okraska = @plosh_st * @constant.job_okr_stoyki_arx + @plosh_pol * @constant.job_okr_polki_arx * 1.22
     end
     @price_stillage = @price_stillage + @okraska
 
@@ -218,17 +218,17 @@ class StillageController < ApplicationController
       price_list = @constant.mat_list_25_125_08
       wei_tb = ((@constant.wei_list_2_1_08 * (a_tb/1000.0)*(b_tf_tb/1000.0))/2)
     end
-    price_tf += @constant.job_tb_tf_traversa
-    price_tb += @constant.job_tb_tf_traversa
+    price_tf += @constant.job_tb_tf_traversa * 1.22
+    price_tb += @constant.job_tb_tf_traversa * 1.22
 
     #Вес стеллажа
     @wei_stilage = (@hight_var/1000.0) * 4 * @constant.wei_stoyki_arx + wei_tf * @num_of_shelves_var * 2 + wei_tb * @num_of_shelves_var * 2 + @constant.wei_pyatki_arx * 4
     @wei_stilage = @wei_stilage.to_s(:rounded, :precision => 2)
 
 
-    price_stoyka = (leng_stoyki(@hight_var, @constant.rack_multiplicity)/1000.0) * @constant.mat_stoyki_arx + @constant.job_stoyki_arx
+    price_stoyka = (leng_stoyki(@hight_var, @constant.rack_multiplicity)/1000.0) * @constant.mat_stoyki_arx + @constant.job_stoyki_arx * 1.22
 
-    sebest = price_stoyka * 4 + price_tf * @num_of_shelves_var * 2 + price_tb * @num_of_shelves_var * 2 + @constant.mat_pyatki_arx * 4 + @constant.job_upakovka_arx
+    sebest = price_stoyka * 4 + price_tf * @num_of_shelves_var * 2 + price_tb * @num_of_shelves_var * 2 + @constant.mat_pyatki_arx * 4 + @constant.job_upakovka_arx * 1.22
 
     sebest = sebest * (@constant.otxod_pk/100 +1)
     kostven = sebest * @constant.job_kostven_arx
