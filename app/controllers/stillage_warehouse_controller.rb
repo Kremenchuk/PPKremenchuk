@@ -86,7 +86,7 @@ class StillageWarehouseController < ApplicationController
     @wei_pris = @wei_pris.to_s(:rounded, :precision => 2)
 
     @price_shelves = price_traversa * 2 + price_usil + price_polok
-    @price_stillage_osn = @price_ram * 2 + @price_shelves * @num_of_shelves_var + @constant.job_upakovka_sklad
+    @price_stillage_osn = @price_ram * 2 + @price_shelves * @num_of_shelves_var + @constant.job_upakovka_sklad * 1.22
     @price_stillage_prist = @price_stillage_osn - @price_ram
 
     # подготовка к выводу инфы
@@ -216,7 +216,7 @@ class StillageWarehouseController < ApplicationController
     plosh_travera = (@constant.area_traversa_sklad * (@width_var/1000.0) + @constant.area_zatsep_sklad * 2).round(2)
 
     price_traversa = ((Float(@width_var)/1000.0) * @constant.mat_traversa_sklad + @constant.job_traversi_sklad * 1.22 +
-        @constant.mat_zatsep_sklad * 2 + plosh_travera * @constant.job_okr_traversi_sklad).round(2)
+        @constant.mat_zatsep_sklad * 2 + plosh_travera * @constant.job_okr_traversi_sklad * 1.22).round(2)
     wei_traversa = (@width_var/1000.0) * @constant.wei_traversa_sklad + @constant.wei_zatsep_sklad * 2
     price_traversa = price_traversa   * (@constant.otxod_sk/100 + 1)
     price_traversa = price_traversa   + price_traversa   * @constant.job_kostven_sklad
