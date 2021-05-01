@@ -180,9 +180,9 @@ class StillageWarehouseController < ApplicationController
     dlin_ukos_g = Float(@depth_var-48)
     dlin_ukos_b = ((Math.sqrt(Float((@depth_var-64) * (@depth_var-64) + shag**2))+16).to_s(:rounded, :precision => 0)).to_f
 
-    #Определение стоимости укосов
-    ukos_g = ((dlin_ukos_g/1000.0) * @constant.mat_ukosi_sklad + @constant.job_ukosi_sklad).round(2) #металл+работа
-    ukos_b = ((dlin_ukos_b/1000.0) * @constant.mat_ukosi_sklad + @constant.job_ukosi_sklad).round(2) #металл+работа
+    #Определение стоимости укосов + 22%
+    ukos_g = ((dlin_ukos_g/1000.0) * @constant.mat_ukosi_sklad + @constant.job_ukosi_sklad * 1.22).round(2) #металл+работа
+    ukos_b = ((dlin_ukos_b/1000.0) * @constant.mat_ukosi_sklad + @constant.job_ukosi_sklad * 1.22).round(2) #металл+работа
 
     #Площадь рам
     plosh_ram = 0
@@ -193,7 +193,7 @@ class StillageWarehouseController < ApplicationController
     end
 
     #Стоимость стойки
-    price_stoyka = ((leng_stoyki(@hight_var, @constant.rack_multiplicity)/1000.0) * @constant.mat_stoyki_sklad + @constant.job_stoyki_sklad).round(2)
+    price_stoyka = ((leng_stoyki(@hight_var, @constant.rack_multiplicity)/1000.0) * @constant.mat_stoyki_sklad + @constant.job_stoyki_sklad * 1.22).round(2)
 
     #стоимость рамы
     price_ram = (price_stoyka * 2 + ukos_g * ukos_g_kol + ukos_b * ukos_b_kol + plosh_ram *
@@ -215,7 +215,7 @@ class StillageWarehouseController < ApplicationController
     #стоимость траверсы
     plosh_travera = (@constant.area_traversa_sklad * (@width_var/1000.0) + @constant.area_zatsep_sklad * 2).round(2)
 
-    price_traversa = ((Float(@width_var)/1000.0) * @constant.mat_traversa_sklad + @constant.job_traversi_sklad +
+    price_traversa = ((Float(@width_var)/1000.0) * @constant.mat_traversa_sklad + @constant.job_traversi_sklad * 1.22 +
         @constant.mat_zatsep_sklad * 2 + plosh_travera * @constant.job_okr_traversi_sklad).round(2)
     wei_traversa = (@width_var/1000.0) * @constant.wei_traversa_sklad + @constant.wei_zatsep_sklad * 2
     price_traversa = price_traversa   * (@constant.otxod_sk/100 + 1)
@@ -253,7 +253,7 @@ class StillageWarehouseController < ApplicationController
 
     #Вычисляем стоимость усилителей
 
-    price_usil_styag = ((dlin_usil_styag/1000.0) * @constant.mat_profil_usil_warehouse) + @constant.job_usil_styagnoy +
+    price_usil_styag = ((dlin_usil_styag/1000.0) * @constant.mat_profil_usil_warehouse) + @constant.job_usil_styagnoy * 1.22 +
         plosh_usil_styag * @constant.job_okr_usil_sklad
     price_usil_g = ((dlin_usil_g/1000.0) * @constant.mat_profil_usil_warehouse) + @constant.job_usil_g +
         plosh_usil_g * @constant.job_okr_usil_sklad
@@ -302,7 +302,7 @@ class StillageWarehouseController < ApplicationController
     wei_polki_dodelki = (@constant.wei_list_2_1_045 * (a_polki/1000.0)*(b_polki/1000.0))/2
     plosh_polki_045_dodelki = ((a_polki * b_polki * 2)/1000000.0).round(2)
 
-    uroven_045 = (price_polki_045 + @constant.job_polki_sklad) * kol_polok_045 + (price_polki_045_dodelki + @constant.job_polki_sklad) * kol_polok_045_dodelki
+    uroven_045 = (price_polki_045 + @constant.job_polki_sklad * 1.22) * kol_polok_045 + (price_polki_045_dodelki + @constant.job_polki_sklad * 1.22) * kol_polok_045_dodelki
 
 
 
@@ -341,7 +341,7 @@ class StillageWarehouseController < ApplicationController
       price_polki_065 = price_polki_bolsh
       wei_polki_065 = (@constant.wei_list_25_125_07 / 3.125) * (a_polki/1000.0)*(b_polki/1000.0)
     end
-    uroven_065 = (price_polki_065 + @constant.job_polki_sklad) * kol_polok_065
+    uroven_065 = (price_polki_065 + @constant.job_polki_sklad * 1.22) * kol_polok_065
     plosh_polki_065 = ((a_polki * b_polki * 2)/1000000.0).round(2)
 
 
@@ -350,14 +350,14 @@ class StillageWarehouseController < ApplicationController
       wei_polok = wei_polki_065 * kol_polok_065
       if @okr_or_oc_pol == "okrash"
         plosh_polok = plosh_polki_065 * kol_polok_065
-        price_polok += plosh_polok * @constant.job_ork_polki_sklad
+        price_polok += plosh_polok * @constant.job_ork_polki_sklad * 1.22
       end
     else
       price_polok = uroven_045
       wei_polok = wei_polki_045 * kol_polok_045 +  wei_polki_dodelki * kol_polok_045_dodelki
       if @okr_or_oc_pol == "okrash"
         plosh_polok = plosh_polki_045 * kol_polok_045 + plosh_polki_045_dodelki * kol_polok_045_dodelki
-        price_polok += plosh_polok * @constant.job_ork_polki_sklad
+        price_polok += plosh_polok * @constant.job_ork_polki_sklad * 1.22
       end
     end
 
