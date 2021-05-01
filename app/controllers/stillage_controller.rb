@@ -99,7 +99,8 @@ class StillageController < ApplicationController
       @wei_polki = ((@constant.wei_list_25_125_07 * (a_polki/1000.0)*(b_polki/1000.0))/3.125) +
           ((@constant.wei_list_25_125_07 * (@usil * (@constant.area_usil_arx/2) * (@width_var/1000.0)))/3.125)
     end
-    @price_polki += @constant.job_polki_arx     #((H5*(F4*(J8/2)*(B3/1000)))/3.125)
+    # Работа за полочку + 22%
+    @price_polki += @constant.job_polki_arx * 1.22    #((H5*(F4*(J8/2)*(B3/1000)))/3.125)
 
     @kol_usil=0
     #Вычисляем количество усилителей на одну полку в зависимости от количества усилителей вырубаных с остатка от листа по длине
@@ -112,11 +113,11 @@ class StillageController < ApplicationController
     end
 
 
-    #стоимость усилителей при заготовке 120 мм
+    #стоимость усилителей при заготовке 120 мм + 22%
     if @width_var > 1000
-      @price_usil   = (@constant.mat_list_25_125_07/(Integer(2500/((@constant.area_usil_arx/2))/1000))) + @constant.job_usil_arx
+      @price_usil   = (@constant.mat_list_25_125_07/(Integer(2500/((@constant.area_usil_arx/2))/1000))) + @constant.job_usil_arx * 1.22
     else
-      @price_usil   = (@constant.mat_list_2_1_07/(Integer(2000/((@constant.area_usil_arx/2))/1000))) + @constant.job_usil_arx
+      @price_usil   = (@constant.mat_list_2_1_07/(Integer(2000/((@constant.area_usil_arx/2))/1000))) + @constant.job_usil_arx * 1.22
     end
 
 
@@ -125,8 +126,8 @@ class StillageController < ApplicationController
         @constant.wei_pyatki_arx * 4
     @wei_stilage = @wei_stilage.to_s(:rounded, :precision => 2)
 
-
-    @price_stoyka = (leng_stoyki(@hight_var, @constant.rack_multiplicity)/1000.0) * @constant.mat_stoyki_arx + @constant.job_stoyki_arx
+    # cnjbvjcnm cnjqrb + 22%
+    @price_stoyka = (leng_stoyki(@hight_var, @constant.rack_multiplicity)/1000.0) * @constant.mat_stoyki_arx + @constant.job_stoyki_arx * 1.22
 
     @sebest = @price_stoyka * 4 + @price_polki * @num_of_shelves_var +
         @price_usil * @num_of_shelves_var * @kol_usil + @constant.mat_pyatki_arx * 4 +
