@@ -197,7 +197,7 @@ class StillageWarehouseController < ApplicationController
 
     #стоимость рамы
     price_ram = (price_stoyka * 2 + ukos_g * ukos_g_kol + ukos_b * ukos_b_kol + plosh_ram *
-        @constant.job_okr_stoyki_sklad + @constant.mat_pyatki_sklad * 2 + (@constant.mat_metizi_sklad *
+        @constant.job_okr_stoyki_sklad + @constant.mat_pyatki_sklad * 2 * 1.22 + (@constant.mat_metizi_sklad *
         (ukos_g_kol + ukos_b_kol + 2) * 2)).round(2)
 
     #Вес рамы и уровня
