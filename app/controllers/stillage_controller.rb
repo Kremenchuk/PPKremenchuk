@@ -130,7 +130,7 @@ class StillageController < ApplicationController
     @price_stoyka = (leng_stoyki(@hight_var, @constant.rack_multiplicity)/1000.0) * @constant.mat_stoyki_arx + @constant.job_stoyki_arx * 1.22
 
     @sebest = @price_stoyka * 4 + @price_polki * @num_of_shelves_var +
-        @price_usil * @num_of_shelves_var * @kol_usil + @constant.mat_pyatki_arx * 4 +
+        @price_usil * @num_of_shelves_var * @kol_usil + (@constant.mat_pyatki_arx * 4 * 1.22) +
         @constant.job_upakovka_arx * 1.22
 
     @sebest = @sebest * (@constant.otxod_pk/100 +1)
