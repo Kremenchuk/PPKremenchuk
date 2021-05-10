@@ -23,6 +23,8 @@ SitemapGenerator::Sitemap.create do
   add '/ru/news/1',  :priority => 0.5, :changefreq => 'weekly'
   add '/ru/news/2',  :priority => 0.5, :changefreq => 'weekly'
   add '/ru/news/3',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/news/4',  :priority => 0.5, :changefreq => 'weekly'
+  add '/ru/news/5',  :priority => 0.5, :changefreq => 'weekly'
 
   add '/uk/stillage',  :priority => 0.5, :changefreq => 'weekly'
   add '/uk/stillage_warehouse',  :priority => 0.5, :changefreq => 'weekly'
@@ -45,6 +47,8 @@ SitemapGenerator::Sitemap.create do
   add '/uk/news/1',  :priority => 0.5, :changefreq => 'weekly'
   add '/uk/news/2',  :priority => 0.5, :changefreq => 'weekly'
   add '/uk/news/3',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/news/4',  :priority => 0.5, :changefreq => 'weekly'
+  add '/uk/news/5',  :priority => 0.5, :changefreq => 'weekly'
 
   add '/stillage',  :priority => 0.5, :changefreq => 'weekly'
   add '/stillage_warehouse',  :priority => 0.5, :changefreq => 'weekly'
@@ -67,6 +71,8 @@ SitemapGenerator::Sitemap.create do
   add 'news/1',  :priority => 0.5, :changefreq => 'weekly'
   add 'news/2',  :priority => 0.5, :changefreq => 'weekly'
   add 'news/3',  :priority => 0.5, :changefreq => 'weekly'
+  add 'news/4',  :priority => 0.5, :changefreq => 'weekly'
+  add 'news/5',  :priority => 0.5, :changefreq => 'weekly'
 
   # Put links creation logic here.
   #
