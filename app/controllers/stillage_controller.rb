@@ -20,7 +20,7 @@ class StillageController < ApplicationController
     if @num_of_shelves_var>15 or @num_of_shelves_var<2
       redirect_to "/stillage/index"
     end
-    if @shelf_load_var>100 or @shelf_load_var<20
+    if @shelf_load_var > 200 or @shelf_load_var<20
       redirect_to "/stillage/index"
     end
   end
