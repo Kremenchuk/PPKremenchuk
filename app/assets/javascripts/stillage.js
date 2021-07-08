@@ -79,9 +79,9 @@ function validate_form_stilage ( )
         }
 
     //проверка поля Нагрузка на полку
-        if ( Number(document.contact_form.shelf_load.value) > 100 )
+        if ( Number(document.contact_form.shelf_load.value) > 200 )
         {
-            alert ( "Нагрузка на полку не должна превышать 100 кг." );
+            alert ( "Нагрузка на полку не должна превышать 200 кг." );
             valid = false;
         }
         if ( Number(document.contact_form.shelf_load.value) < 20 )
