@@ -14,8 +14,6 @@ class ConstantsController < ApplicationController
 
   def load_constant
     # Завантаження файлу з константами
-
-
     uploaded_io = params[:constant_file]
     if uploaded_io != nil
       begin
