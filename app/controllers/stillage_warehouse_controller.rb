@@ -1,6 +1,6 @@
 class StillageWarehouseController < ApplicationController
-  before_filter :check_if_diller, only: [:index, :calculate_actual_price]
-  include Include_Module
+  before_action :check_if_diller, only: [:index, :calculate_actual_price]
+  include IncludeModule
 
   def index
   end
@@ -82,17 +82,17 @@ class StillageWarehouseController < ApplicationController
 
     @wei_osn = wei_ram * 2 + (wei_traversa * 2 + wei_usil + wei_polok) * @num_of_shelves_var
     @wei_pris = @wei_osn - wei_ram
-    @wei_osn = @wei_osn.to_s(:rounded, :precision => 2)
-    @wei_pris = @wei_pris.to_s(:rounded, :precision => 2)
+    @wei_osn = @wei_osn.round(2).to_s
+    @wei_pris = @wei_pris.round(2).to_s
 
     @price_shelves = price_traversa * 2 + price_usil + price_polok
     @price_stillage_osn = @price_ram * 2 + @price_shelves * @num_of_shelves_var + @constant.job_upakovka_sklad * 1.22
     @price_stillage_prist = @price_stillage_osn - @price_ram
 
     # подготовка к выводу инфы
-    @price_stillage_osn = @price_stillage_osn.to_s(:rounded, :precision => 2)
-    @price_stillage_prist = @price_stillage_prist.to_s(:rounded, :precision => 2)
-    @price_shelves = @price_shelves.to_s(:rounded, :precision => 2)
+    @price_stillage_osn = @price_stillage_osn.round(2).to_s
+    @price_stillage_prist = @price_stillage_prist.round(2).to_s
+    @price_shelves = @price_shelves.round(2).to_s
 
     @text_var = t('page.all.uroven')
 
@@ -105,6 +105,8 @@ class StillageWarehouseController < ApplicationController
 
     @name_stillage="#{@hight_var}x#{@width_var}x#{@depth_var} #{@num_of_shelves_var} п. " + type_stillage
     enter_row_to_excel(@name_stillage, @price_stillage_osn) #внесение в ексель файл данных о расчете стеллажа.
+
+    render 'index'
   end
 
   private
@@ -178,7 +180,7 @@ class StillageWarehouseController < ApplicationController
 
     #Определение длины укосов
     dlin_ukos_g = Float(@depth_var-48)
-    dlin_ukos_b = ((Math.sqrt(Float((@depth_var-64) * (@depth_var-64) + shag**2))+16).to_s(:rounded, :precision => 0)).to_f
+    dlin_ukos_b = ((Math.sqrt(Float((@depth_var-64) * (@depth_var-64) + shag**2))+16).round(0).to_s).to_f
 
     #Определение стоимости укосов + 22%
     ukos_g = ((dlin_ukos_g/1000.0) * @constant.mat_ukosi_sklad + @constant.job_ukosi_sklad * 1.22).round(2) #металл+работа

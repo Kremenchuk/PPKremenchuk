@@ -15,11 +15,12 @@
                 = "#{eval(contact.name)[locale]}:"
             .col-md-8
               = raw(eval(contact.text)[locale])
-%hr
-#contact_map.container-fluid
-  .row
-    .col-md-12
-      %p.style_text_about_stillage_stillage_warehouse_stillage_pallet{:align => "center"}
-        =t('page.contacts.index.map')
-      %p{:align => "center"}
-        %iframe{:class => "google_map", :allowfullscreen => "", :frameborder => "20", :src => "#{eval(contact_map.text)[locale]}", :style => "border:0"}
+- if contact_map.present?
+  %hr
+  #contact_map.container-fluid
+    .row
+      .col-md-12
+        %p.style_text_about_stillage_stillage_warehouse_stillage_pallet{:align => "center"}
+          =t('page.contacts.index.map')
+        %p{:align => "center"}
+          %iframe{:class => "google_map", :allowfullscreen => "", :frameborder => "20", :src => "#{eval(contact_map.text)[locale]}", :style => "border:0"}

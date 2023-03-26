@@ -1,6 +1,11 @@
 class GalleriesController < ApplicationController
-  before_filter :check_if_admin, except: [:index]
-  before_action :find_photo, only: [:photo_browser_destroy]
+  before_action :check_if_admin, except: [
+    :index, :galleries_view_photo, :galleries_previous_view_photo, :galleries_next_view_photo,
+    :gallery_view_photo_close
+  ]
+  before_action :find_photo, only: [
+    :photo_browser_destroy, :galleries_view_photo, :galleries_previous_view_photo, :galleries_next_view_photo
+  ]
 
   def index
     @mezanines = Gallery.where(image_folder: 'mezzanine')
@@ -12,8 +17,25 @@ class GalleriesController < ApplicationController
     @lofts = Gallery.where(image_folder: 'lofts')
   end
 
+  def galleries_view_photo
+  end
+
+  def galleries_previous_view_photo
+    previous_photo = @photo.previous
+    redirect_to galleries_view_photo_path(id: previous_photo&.id.present? ? previous_photo.id : @photo.id)
+  end
+
+  def galleries_next_view_photo
+    photo_next = @photo.next
+    redirect_to galleries_view_photo_path(id: photo_next&.id.present? ? photo_next.id : @photo.id)
+  end
+
   def photo_browser_index
     @galleries = Gallery.all
+  end
+
+  def gallery_view_photo_close
+    redirect_to galleries_path
   end
 
   def photo_browser_destroy

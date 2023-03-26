@@ -1,7 +1,7 @@
 class TrolleyController < ApplicationController
-  before_filter :check_if_diller, only: [:index, :show]
+  before_action :check_if_diller, only: [:index, :show]
 
-  include Include_Module
+  include IncludeModule
 
   def index
   end
@@ -116,7 +116,7 @@ class TrolleyController < ApplicationController
     prise_upakovki = prise_upakovki * (@constant.otxod_trol/100 +1)
     prise_upakovki = (prise_upakovki + prise_upakovki * @constant.job_kostven_telegi) * ((@natsenka/100)+1)
     @price_trol = @price_trol + prise_upakovki
-    @price_trol = @price_trol.to_s(:rounded, :precision => 2)
+    @price_trol = @price_trol.round(2).to_s
 
     @name_stillage="Тип: #{@vid} #{@lengthT_var}x#{@width_var} высота ручки: #{@hight_ruch}"
     enter_row_to_excel(@name_stillage, @price_trol) #внесение в ексель файл данных о расчете стеллажа.
@@ -178,7 +178,7 @@ class TrolleyController < ApplicationController
                   (((@width_var + 300)/1000.0) * kol_ruchek) * @constant.area_truba_du_20_25 +
                   ((@lengthT_var * 2.0 + @width_var * 2.0)/1000.0) * kol_shelf * @constant.area_ugolok_20_20_3 + (plosh_shelf * 2) * kol_shelf +
                   @constant.area_plastini_teleg * 2
-    @wei_trol = @wei_trol.to_s(:rounded, :precision => 2)
+    @wei_trol = @wei_trol.round(2).to_s
     price_trol = price_ugolok + @price_shelf_layer_var * kol_shelf + price_kvadr + price_round + plosh_trol * @constant.job_okr_telegek +
                   price_svarka + @constant.mat_plastini_teleg * 4 + @constant.mat_metizi_teleg * 16
 
@@ -252,7 +252,7 @@ class TrolleyController < ApplicationController
     end
 
 
-    @wei_trol = @wei_trol.to_s(:rounded, :precision => 2)
+    @wei_trol = @wei_trol.round(2).to_s
 
     price_trol = price_trol * (@constant.otxod_trol/100 +1)
 
@@ -332,7 +332,7 @@ class TrolleyController < ApplicationController
         @wei_trol += ((@width_var - 52 )/ 1000.0) * @constant.wei_truba_du_20_25
     end
 
-    @wei_trol = @wei_trol.to_s(:rounded, :precision => 2)
+    @wei_trol = @wei_trol.round(2).to_s
 
     price_trol = price_trol * (@constant.otxod_trol/100 +1)
 

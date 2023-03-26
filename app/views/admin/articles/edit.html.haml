@@ -1,0 +1,7 @@
+%h1 Edit article
+.col-md-12
+  %p{:class => "#{flash[:class]}", :style => "#{flash[:style]}"}= flash[:message]
+  = form_for @article, url: admin_article_path(@article.id), method: :put do
+    = render partial: 'new_edit'
+    .col-md-12
+      = submit_tag "Save", {:class =>"btn btn-success"}

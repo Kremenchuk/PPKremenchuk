@@ -15,7 +15,7 @@
       .text_size{:onclick => "showHide('hiden_element_1','chg_img_1')" }
         =image_tag("plus.png", :id => "chg_img_1", :alt => "mater", :name => "img_1", :width => "30", :height => "30")
         =t('page.all.on_line')
-      .hiden_element_1
+      #hiden_element_1
         .row
           .col-md-3
             =label_tag(:q, t('page.all.height'))
@@ -52,6 +52,8 @@
 #actual_price
   .row
     .col-md-12
+      - if @name_stillage.present?
+        = render partial: 'show_actual_price'
       -#-else
       -#  .on_line_calculation_off
       -#    =t('page.all.on_line_off')
@@ -86,3 +88,25 @@
             %td
               =raw t('page.stillage_pallet.index.table.texn_2')
 
+- if @name_stillage.present?
+  :coffee
+    document.location.hash="#actual_price";
+
+:javascript
+  function showHide(element1, element2)
+  {
+    document.querySelector("#" + element1).classList.toggle(element2);
+    const hiden_element = document.getElementById(element1);
+    const obj = document.getElementById(element2);
+    if (obj.src.includes('minus')) {
+      obj.src = '/assets/plus.png';
+      hiden_element.style.display = "none";
+      return
+    }
+    if (obj.src.includes('plus')) {
+      obj.src = '/assets/minus.png';
+      hiden_element.style.display = "block";
+      return
+    }
+
+  }

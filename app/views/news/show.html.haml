@@ -1,6 +1,6 @@
 %h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
-  = eval(@news.news_header)[locale]
+  = @news.title[locale.to_s]
 .col-md-3
   = image_tag @news.photo, style: 'width: 190px;'
 .col-md-7.news_text
-  = raw(eval(@news.text)[locale])
+  = raw(@news.text[locale.to_s])

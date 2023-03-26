@@ -1,0 +1,12 @@
+%h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
+  = t('page.articles.header')
+
+%hr
+.col-md-12
+  - @articles.each do |article|
+    .col-md-12
+      %h3.article_header
+        = link_to raw(article.title[locale.to_s]), article_path(id: article.id)
+      .col-md-12
+        = raw(article.short_body[locale.to_s])
+

@@ -1,5 +1,5 @@
 class NewsController < ApplicationController
-  before_filter :check_if_admin, except: [:index, :show]
+  before_action :check_if_admin, except: [:index, :show]
   before_action :find_news, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -12,7 +12,6 @@ class NewsController < ApplicationController
   end
 
   def show
-
   end
 
   def new
@@ -69,6 +68,9 @@ class NewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def news_params
-      params.permit(:news_header, :short_text, :text, :news_date)
+      params.permit(:news_date,
+                    title: {},
+                    short_text: {},
+                    text: {} )
     end
 end

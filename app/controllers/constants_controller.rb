@@ -1,6 +1,6 @@
 class ConstantsController < ApplicationController
-  before_filter :find_item, only: [:edit, :update, :show, :load_constant]
-  before_filter :check_if_admin
+  before_action :find_constant, only: [:edit, :update, :show, :load_constant]
+  before_action :check_if_admin
 
 
   def edit
@@ -45,14 +45,12 @@ class ConstantsController < ApplicationController
         result = {}
 
         # Видалення непотрібних полів
-        no_use_fields =
-        [
-            "id", "created_at", "updated_at", "email_to_send", "on_off_calc_stillage", "on_off_calc_stillage_warehouse",
-         "on_off_calc_stillage_pallet", "on_off_calc_TP01", "on_off_calc_TP02", "on_off_calc_TP03", "on_off_calc_TP04",
-         "on_off_calc_TP05", "on_off_calc_TP06", "on_off_calc_TP07", "on_off_calc_KS01", "on_off_calc_KS02", "on_off_calc_KS03",
-         "on_off_calc_KS04", "on_off_calc_PT01", "on_off_calc_PT02", "on_off_calc_PT03", "on_off_calc_PT04", "mat_shina_30_4",
-         "wei_shina_30_4", "area_shina_30_4"
-        ]
+        no_use_fields = %w(id created_at updated_at email_to_send on_off_calc_stillage on_off_calc_stillage_warehouse",
+          on_off_calc_stillage_pallet on_off_calc_TP01 on_off_calc_TP02 on_off_calc_TP03 on_off_calc_TP04",
+         on_off_calc_TP05 on_off_calc_TP06 on_off_calc_TP07 on_off_calc_KS01 on_off_calc_KS02 on_off_calc_KS03",
+         on_off_calc_KS04 on_off_calc_PT01 on_off_calc_PT02 on_off_calc_PT03 on_off_calc_PT04 mat_shina_30_4",
+         wei_shina_30_4 area_shina_30_4")
+
         column_names = column_names.compact
         no_use_fields.each do |no_use_field|
           column_names.delete(no_use_field)
@@ -87,7 +85,7 @@ class ConstantsController < ApplicationController
           flash_message("danger", warnings)
         else
           if column_names.count == 0
-            @constant.update_attributes(result)
+            @constant.update(result)
             flash_message("success", "Константы загружены")
           else
             flash_message("danger", "Поля #{column_names.inspect} не найдены. Константы не обновлены")
@@ -102,7 +100,8 @@ class ConstantsController < ApplicationController
 
 
   def update
-    @constant.update_attributes(params[:constant])
+    params.permit!
+    @constant.update(params[:constant])
     if @constant.errors.empty?
       flash_message("success", "Отредактировано")
       redirect_to constant_path(@constant)
@@ -117,8 +116,8 @@ class ConstantsController < ApplicationController
 
   private
 
-  def find_item
-    @constant = Constant.where(id: 1).first
+  def find_constant
+    @constant = Constant.find(1)
   end
 
 end

@@ -13,12 +13,12 @@
   .col-md-12
     .col-md-12
       .col-md-6
-        = link_to 'Панель администратора', admin_panel_path, class: 'btn btn-success', style: 'width: 100%'
+        = link_to 'Панель администратора', users_path, class: 'btn btn-success', style: 'width: 100%'
     .col-md-12
       %hr
     .col-md-12
       .col-md-6
-        = link_to 'Список информации на странице Контактов', contacts_index_path, class: 'btn btn-success', style: 'width: 100%'
+        = link_to 'Список информации на странице Контактов', admin_contacts_path, class: 'btn btn-success', style: 'width: 100%'
     .col-md-12
       %hr
     .col-md-12
@@ -33,7 +33,7 @@
       %hr
     .col-md-12
       .col-md-6
-        = link_to 'Работа со статьями', articles_admin_index_path, class: 'btn btn-success', style: 'width: 100%'
+        = link_to 'Работа со статьями', admin_articles_path, class: 'btn btn-success', style: 'width: 100%'
     .col-md-12
       %hr
 
@@ -44,18 +44,25 @@
         =f.input :email_to_send, label: false
       .row
         .col-md-12
-          .text_size{:onclick => "showHide('hiden_element_1','chg_img_1')" }
-            %img{:id => "chg_img_1", :alt => "mater", :src => "/assets/plus.png", :name => "img_1", :width => "30", :height => "30"}
-              Материалы
-      = render partial: 'material', locals: {f: f}
+          %input#btnControl_1{:type => "checkbox"}
+          %label.btn{:for => "btnControl_1"}
+            .row
+              .col-md-12
+                .text_size
+                  %img{:id => "chg_img_1", :alt => "mater", :src => "/assets/plus.png", :name => "img_1", :width => "30", :height => "30"}
+                    Материалы
+            = render partial: 'material', locals: {f: f}
 
-
-      .row
         .col-md-12
-          .text_size{:onclick => "showHide('hiden_element_2','chg_img_2')" }
-            %img{:id => "chg_img_2",:alt => "mater", :src => "/assets/plus.png", :name => "chg_img_2", :width => "30", :height => "30"}
-              Работы
-      = render partial: 'job', locals: {f: f}
+          %input#btnControl_2{:type => "checkbox"}
+          %label.btn{:for => "btnControl_2"}
+            .row
+              .col-md-12
+                .text_size
+                  %img{:id => "chg_img_2",:alt => "mater", :src => "/assets/plus.png", :name => "chg_img_2", :width => "30", :height => "30"}
+                    Работы
+            = render partial: 'job', locals: {f: f}
+
 
       .col-md-12.alert_in_site
         Поставленная "галочка" означает ВЫКЛЮЧЕНИЕ on-line расчета
@@ -100,5 +107,3 @@
         %p
           = f.submit "Редактировать константы", class: "btn btn-success"
     %div{:style => " width:100%; height:1px; clear:both;"}
-
-

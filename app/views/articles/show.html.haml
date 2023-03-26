@@ -1,0 +1,5 @@
+%h1.article_header
+  = raw(@article.title[locale.to_s])
+.col-md-12.article_padding_to_footer
+  = raw(@article.body[locale.to_s])
+
