@@ -1,0 +1,24 @@
+.col_md_12
+  %table{:border => "1", :cellpadding => "5", :cellspacing => "5", :width => "100%"}
+    %tr.table_header_admin_panel
+      %th №
+      %th Логин
+      %th e-mail
+      %th Имя
+      %th Админ
+      %th{:title => "Назначение диллеров"} Диллер
+      %th Удалить пользователя
+    -n=0
+
+    -@users.each do |user|
+      -n+=1
+      -admin_view = user.admin? ? 'Да' : 'Нет'
+      %tr.table_data_admin_panel
+        %td= "#{n}"
+        %td= link_to user.login, user_path(user.id)
+        %td= link_to user.email, user_path(user.id)
+        %td= link_to user.name, user_path(user.id)
+        %td= link_to admin_view, user_path(user.id)
+        %td= link_to user.diller, user_path(user.id)
+        %td
+          = button_to "Удалить", user_path(user.id), class: 'btn btn-danger', method: :delete, confirm: "Are you sure?"

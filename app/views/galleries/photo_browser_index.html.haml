@@ -71,5 +71,5 @@
       %td
         = label_tag 'image_folder', gallery.image_folder, style: 'width: 100%'
       %td
-        = link_to 'Удалить', photo_browser_destroy_path(id: gallery.id), class: 'btn btn-danger', method: :delete
+        = button_to 'Удалить', photo_browser_destroy_path(id: gallery.id), class: 'btn btn-danger', method: :delete
 

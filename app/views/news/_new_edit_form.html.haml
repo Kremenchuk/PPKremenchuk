@@ -1,0 +1,67 @@
+.col-md-12
+  %p{:class => "#{flash[:class]}", :style => "#{flash[:style]}"}= flash[:message]
+  = form_tag @new_news || @find_news, method: :post, multipart: true do
+    .col-md-12
+      .col-md-12
+        %h5 Картинка
+      .col-md-12
+        = file_field_tag :photo
+      .col-md-12
+        %h5 Дата
+      .col-md-12
+        = date_field_tag :news_date, DateTime.now.strftime('%d.%m.%Y'), style: 'width: 100%'
+      .col-md-12
+        %h5 Заголовок
+      .col-md-12
+        .col-md-12
+          %h7 uk
+        .col-md-12
+          = text_field_tag 'title[uk]', '', style: 'width: 100%'
+      .col-md-12
+        .col-md-12
+          %h7 en
+        .col-md-12
+          = text_field_tag 'title[en]', '', style: 'width: 100%'
+      .col-md-12
+        .col-md-12
+          %h7 ru
+        .col-md-12
+          = text_field_tag 'title[ru]', '', style: 'width: 100%'
+      .col-md-12
+        %h5 Короткое описание
+      .col-md-12
+        .col-md-12
+          %h7 uk
+        .col-md-12
+          = text_field_tag 'short_text[uk]', '', style: 'width: 100%'
+      .col-md-12
+        .col-md-12
+          %h7 en
+        .col-md-12
+          = text_field_tag 'short_text[en]', '', style: 'width: 100%'
+      .col-md-12
+        .col-md-12
+          %h7 ru
+        .col-md-12
+          = text_field_tag 'short_text[ru]', '', style: 'width: 100%'
+      .col-md-12
+        %h5 Текст
+      .col-md-12
+        .col-md-12
+          %h7 uk
+        .col-md-12
+          = text_area_tag 'text[uk]', '',class: 'news_text_area'
+      .col-md-12
+        .col-md-12
+          %h7 en
+        .col-md-12
+          = text_area_tag 'text[en]', '',class: 'news_text_area'
+      .col-md-12
+        .col-md-12
+          %h7 ru
+        .col-md-12
+          = text_area_tag 'text[ru]', '',class: 'news_text_area'
+      .col-md-12
+        = submit_tag "Добавить", {:class =>"btn btn-success"}
+      .col-md-12
+        %hr

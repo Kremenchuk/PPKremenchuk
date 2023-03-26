@@ -1,0 +1,51 @@
+.col-md-12
+  %h5 Заголовок
+.col-md-12
+  .col-md-12
+    %h7 uk
+  .col-md-12
+    = text_field_tag 'title[uk]', @article.title['uk'], style: 'width: 100%'
+.col-md-12
+  .col-md-12
+    %h7 en
+  .col-md-12
+    = text_field_tag 'title[en]', @article.title['en'], style: 'width: 100%'
+.col-md-12
+  .col-md-12
+    %h7 ru
+  .col-md-12
+    = text_field_tag 'title[ru]', @article.title['ru'], style: 'width: 100%'
+.col-md-12
+  %h5 Короткое описание
+.col-md-12
+  .col-md-12
+    %h7 uk
+  .col-md-12
+    = text_field_tag 'short_body[uk]', @article.short_body['uk'], style: 'width: 100%'
+.col-md-12
+  .col-md-12
+    %h7 en
+  .col-md-12
+    = text_field_tag 'short_body[en]', @article.short_body['en'], style: 'width: 100%'
+.col-md-12
+  .col-md-12
+    %h7 ru
+  .col-md-12
+    = text_field_tag 'short_body[ru]', @article.short_body['ru'], style: 'width: 100%'
+.col-md-12
+  %h5 Текст
+.col-md-12
+  .col-md-12
+    %h7 uk
+  .col-md-12
+    = text_area_tag 'body[uk]', @article.body['uk'],class: 'news_text_area'
+.col-md-12
+  .col-md-12
+    %h7 en
+  .col-md-12
+    = text_area_tag 'body[en]', @article.body['en'],class: 'news_text_area'
+.col-md-12
+  .col-md-12
+    %h7 ru
+  .col-md-12
+    = text_area_tag 'body[ru]', @article.body['ru'],class: 'news_text_area'

@@ -13,9 +13,15 @@
       =t('page.layout.title')
 
     %script{:async => "", :src => "https://www.googletagmanager.com/gtag/js?id=UA-129364309-2"}
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    -# = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    -# = javascript_include_tag "turbo", type: "module", "data-turbo-track": true
+    -# = javascript_include_tag "turbo", "data-turbo-track": true
+    -# = javascript_include_tag "application", "data-turbolinks-track": "reload"
     = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
+
     = favicon_link_tag 'stm_industry_black_100_50.jpg'
   %body
     .main
@@ -60,7 +66,7 @@
                     %li
                       =link_to t('page.layout.drop_menu.news'), news_index_path, class: 'menu__item'
                     %li
-                      =link_to t('page.layout.drop_menu.article'), article_index_path, class: 'menu__item'
+                      =link_to t('page.layout.drop_menu.article'), articles_path, class: 'menu__item'
 
                 .col-xs-2.col_header1
                   =link_to image_tag("design/all_parts/Header/stm_industry_white_logo_350.png", class: "logo", :title => t('to_root')), welcome_index_path
@@ -107,7 +113,7 @@
                         %li
                           =link_to t('page.layout.drop_menu.news'), news_index_path
                         %li
-                          =link_to t('page.layout.drop_menu.article'), article_index_path
+                          =link_to t('page.layout.drop_menu.article'), articles_path
 
                 .col-xs-2.col_header5
                   %ul.dropdown
@@ -117,20 +123,20 @@
                         -I18n.available_locales.each do |locale|
                           -unless locale == :en
                             %li
-                              = link_to t(locale), locale_path(:new_locale => locale), :method => :put
+                              = link_to t(locale), locale_path(:new_locale => locale), data: {"turbo-method": :put}
                 .col-xs-2.col_header2
                   - if current_user
                     = current_user.email
                     %p
-                      =link_to t('page.layout.sign_out'), destroy_user_session_path
+                      .button_to_link
+                        = button_to t('page.layout.sign_out'), destroy_user_session_path, method: :delete
                   - else
                     .about_href
                       = link_to t('page.layout.sign_in'), new_user_session_path
                       %p
                         = link_to t('page.layout.registration'), new_user_registration_path
       .wrapper
-        .sessionInfo
-          =yield
+        =yield
       .fix_footer
         .container-fluid
           .row

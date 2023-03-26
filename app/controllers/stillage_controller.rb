@@ -1,50 +1,52 @@
 class StillageController < ApplicationController
 
-  before_filter :check_if_diller, only: [:index, :calculate_actual_price]
-  include Include_Module
+  before_action :check_if_diller, only: [:index, :calculate_actual_price]
+  include IncludeModule
 
-  #before_filter :authenticate_user!, only: [:index] #Рабочее ограничение на юзара
+  #before_action :authenticate_user!, only: [:index] #Рабочее ограничение на юзара
   def index
   end
 
-  def control_parameters
+  def control_parameters(params)
     if @hight_var>3500 or @hight_var<500
-      redirect_to "/stillage/index"
+      return false
     end
     if @width_var>1150 or @width_var<400
-      redirect_to "/stillage/index"
+      return false
     end
     if @depth_var>800 or @depth_var<250
-      redirect_to "/stillage/index"
+      return false
     end
     if @num_of_shelves_var>15 or @num_of_shelves_var<2
-      redirect_to "/stillage/index"
+      return false
     end
     if @shelf_load_var > 200 or @shelf_load_var<20
-      redirect_to "/stillage/index"
+      return false
     end
+    return true
   end
 
   def calculate_actual_price
-    @hight_var      = Integer(params[:hight])
-    @width_var      = Integer(params[:widthS])
-    @depth_var      = Integer(params[:depth])
-    @num_of_shelves_var = Integer(params[:num_of_shelves])
-    @shelf_load_var     = Integer(params[:shelf_load])
+    @hight_var      = params[:hight].present? ? params[:hight].to_i : 0
+    @width_var      = params[:widthS].present? ? params[:widthS].to_i : 0
+    @depth_var      = params[:depth].present? ? params[:depth].to_i : 0
+    @num_of_shelves_var = params[:num_of_shelves].present? ? params[:num_of_shelves].to_i : 0
+    @shelf_load_var     = params[:shelf_load].present? ? params[:shelf_load].to_i : 0
     @metall_or_dsp      = params[:group1]
     @okr_or_oc          = params[:group2]
 
-    control_parameters
+    if control_parameters(params)
+      @constant = Constant.where("id = 1").first
 
-    @constant = Constant.where("id = 1").first
+      if @metall_or_dsp == "metall"
+        metall_shelf
+      else
+        dsp_shelf
+      end
 
-    if @metall_or_dsp == "metall"
-      metall_shelf
-    else
-      dsp_shelf
+      enter_row_to_excel(@name_stilage, @price_stillage) #внесение в ексель файл данных о расчете стеллажа.
     end
-
-    enter_row_to_excel(@name_stilage, @price_stillage) #внесение в ексель файл данных о расчете стеллажа.
+    render 'index'
   end
 
   private
@@ -124,7 +126,7 @@ class StillageController < ApplicationController
     #Вес стеллажа
     @wei_stilage = (@hight_var/1000.0) * 4 * @constant.wei_stoyki_arx + @wei_polki * @num_of_shelves_var +
         @constant.wei_pyatki_arx * 4
-    @wei_stilage = @wei_stilage.to_s(:rounded, :precision => 2)
+    @wei_stilage = @wei_stilage.round(2).to_s
 
     # cnjbvjcnm cnjqrb + 22%
     @price_stoyka = (leng_stoyki(@hight_var, @constant.rack_multiplicity)/1000.0) * @constant.mat_stoyki_arx + @constant.job_stoyki_arx * 1.22
@@ -165,7 +167,7 @@ class StillageController < ApplicationController
     end
     @price_stillage = @price_stillage + @okraska
 
-    @price_stillage = @price_stillage.to_s(:rounded, :precision => 2)
+    @price_stillage = @price_stillage.round(2).to_s
   end
 
   def dsp_shelf()
@@ -223,7 +225,7 @@ class StillageController < ApplicationController
 
     #Вес стеллажа
     @wei_stilage = (@hight_var/1000.0) * 4 * @constant.wei_stoyki_arx + wei_tf * @num_of_shelves_var * 2 + wei_tb * @num_of_shelves_var * 2 + @constant.wei_pyatki_arx * 4
-    @wei_stilage = @wei_stilage.to_s(:rounded, :precision => 2)
+    @wei_stilage = @wei_stilage.round(2).to_s
 
 
     price_stoyka = (leng_stoyki(@hight_var, @constant.rack_multiplicity)/1000.0) * @constant.mat_stoyki_arx + @constant.job_stoyki_arx * 1.22
@@ -256,7 +258,7 @@ class StillageController < ApplicationController
     end
     @price_stillage = @price_stillage + okraska
 
-    @price_stillage = @price_stillage.to_s(:rounded, :precision => 2)
+    @price_stillage = @price_stillage.round(2).to_s
 
   end
 

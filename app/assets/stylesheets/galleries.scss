@@ -2,10 +2,30 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$color: #FE7D14;
 
 .head2{
-  background-color: #FE7D14;
+  background-color: $color;
 }
-.photo_box {
+
+.row_gallery_view {
+  height: 74vh;
+  width: 100%;
+  text-align:center;
+  display: flex;
+  align-items: center;
+}
+
+.photo_box > img {
+  width: 65%;
   margin-left: -15px;
+}
+
+.fa-circle-arrow-left, .fa-circle-arrow-right, .fa-circle-xmark {
+  color: $color;
+  font-size: 70px;
+}
+
+.row_gallery_view_close > a {
+  float: right;
 }

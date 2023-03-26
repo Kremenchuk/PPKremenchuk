@@ -47,18 +47,44 @@ $theme_color: #FE7D14;
   width: 100%;
 }
 
-.hiden_element_1 {
+#hiden_element_1 {
   display: none;
 }
-.hiden_element_2 {
+#hiden_element_2 {
   display: none;
 }
-.hiden_element_3 {
+//.hiden_element_3 {
+//  display: none;
+//}
+//.hiden_element_4 {
+//  display: none;
+//}
+
+
+
+#btnControl_1 {
   display: none;
 }
-.hiden_element_4 {
+#btnControl_1:checked + label .text_size{
+  float: left;
+}
+
+#btnControl_1:checked + label #hiden_element_1 {
+  display: block;
+}
+
+
+#btnControl_2 {
   display: none;
 }
+#btnControl_2:checked + label .text_size{
+  float: left;
+}
+
+#btnControl_2:checked + label #hiden_element_2 {
+  display: block;
+}
+
 
 
 

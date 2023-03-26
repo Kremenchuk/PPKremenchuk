@@ -9,12 +9,12 @@
       =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_tytle_page.gif", :class => "tytle_page_img_stillage_stillage_warehouse_stillage_pallet")
 %p
 -if !@constant.on_off_calc_stillage
-  = form_tag(calculate_actual_price_stillage_path, method: :get, id: 'contact_form', name: 'contact_form', remote: true, onsubmit: "return validate_form_stilage ( );") do
+  = form_tag(calculate_actual_price_stillage_path, method: :get, id: 'contact_form', name: 'contact_form', remote: true, onsubmit: "return validate_form_stilage();") do
     .container-fluid
       .text_size{:onclick => "showHide('hiden_element_1','chg_img_1')" }
         =image_tag("plus.png", :id => "chg_img_1", :alt => "mater", :name => "img_1", :width => "30", :height => "30")
         =t('page.all.on_line')
-      .hiden_element_1
+      #hiden_element_1
         .row
           .col-md-2
             =label_tag(:q, t('page.all.height'))
@@ -63,17 +63,20 @@
                   %td
                     =t('page.stillage.index.tip_polki')
                   %td
-                    %input{:id => "radio1", :name => "group1" , :type => "radio", :value => "metall", :checked => "checked"}
-                      =label_tag('radio1', t('page.stillage.index.metall_shelf_type'), :class => 'radio_button_label')
-                    %input{:id => "radio2", :name => "group1" , :type => "radio", :value => "dsp"}
-                      =label_tag('radio2', t('page.stillage.index.dsp_shelf_type'), :class => 'radio_button_label')
+                    .col-md-12
+                      %input{:id => "radio1", :name => "group1" , :type => "radio", :value => "metall", :checked => "checked"}
+                        =label_tag('radio1', t('page.stillage.index.metall_shelf_type'), :class => 'radio_button_label')
+                    .col-md-12
+                      %input{:id => "radio2", :name => "group1" , :type => "radio", :value => "dsp"}
+                        =label_tag('radio2', t('page.stillage.index.dsp_shelf_type'), :class => 'radio_button_label')
                 %tr
                   %td
                     =t('page.all.stillage')
                   %td
-                    %input{:id => "radio3", :name => "group2" , :type => "radio", :value => "osinkovaniy", :checked => "checked"}
-                      =label_tag('radio3', t('page.all.osinkovaniy'), :class => 'radio_button_label')
-                    %p
+                    .col-md-12
+                      %input{:id => "radio3", :name => "group2" , :type => "radio", :value => "osinkovaniy", :checked => "checked"}
+                        =label_tag('radio3', t('page.all.osinkovaniy'), :class => 'radio_button_label')
+                    .col-md-12
                       %input{:id => "radio4", :name => "group2" , :type => "radio", :value => "okrash"}
                         =label_tag('radio4', t('page.all.okrash'), :class => 'radio_button_label')
                 .row
@@ -87,6 +90,8 @@
 #actual_price
   .row
     .col-md-12
+      - if @price_stillage.present?
+        = render partial: 'show_actual_price'
 
 %p
 #no_print
@@ -125,3 +130,27 @@
                 =t('page.stillage.index.table.name_3')
               %td
                 =raw t('page.stillage.index.table.texn_3')
+
+- if @price_stillage.present?
+  :coffee
+    document.location.hash="#actual_price";
+
+
+:javascript
+  function showHide(element1, element2)
+  {
+    document.querySelector("#" + element1).classList.toggle(element2);
+    const hiden_element = document.getElementById(element1);
+    const obj = document.getElementById(element2);
+    if (obj.src.includes('minus')) {
+      obj.src = '/assets/plus.png';
+      hiden_element.style.display = "none";
+      return
+    }
+    if (obj.src.includes('plus')) {
+      obj.src = '/assets/minus.png';
+      hiden_element.style.display = "block";
+      return
+    }
+
+  }

@@ -7,7 +7,7 @@
     .col-md-12
       .col-md-10
         %h2.news_header
-          = link_to eval(news.news_header)[locale], news_path(news.id)
+          = link_to news.title[locale.to_s], news_path(news.id)
       .col-md-2
         = news.news_date.strftime('%d.%m.%Y')
     .col-md-12
@@ -15,7 +15,7 @@
         = link_to news_path(news.id) do
           = image_tag news.photo, style: 'width: 160px;'
       .col-md-10.news_short_text
-        = eval(news.short_text)[locale]
+        = news.short_text[locale.to_s]
 
 
 

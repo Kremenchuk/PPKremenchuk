@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  #protect_from_forgery with: :exception
-  protect_from_forgery with: :null_session
+  protect_from_forgery with: :exception
+  # protect_from_forgery with: :null_session
 
   before_action :set_locale_a, :set_meta_tags, :set_contacts
   #
@@ -30,10 +30,11 @@ class ApplicationController < ActionController::Base
 
   def check_if_admin
     if authenticate_user!
-      if current_user.admin?
-      else
-        render_403
+      unless current_user.admin?
+        redirect_to root_path
       end
+    else
+      redirect_to root_path
     end
   end
 
@@ -42,7 +43,7 @@ class ApplicationController < ActionController::Base
     @diller_in = false
     #SendEmail.login_from_site(current_user.email).deliver_now
     if current_user != nil
-      case current_user.diller
+      case User.dillers[current_user.diller]
         when 4
           @natsenka = @constant.job_natsenka
         when 1
@@ -69,12 +70,13 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def render_403 #Нет прав на просмотр данной страницы
-    render file: "public/403.html.haml", status: 403
+  def render_422_error #Нет прав на просмотр данной страницы
+    render file: "public/422.html", status: 422
   end
 
-  def render_404 #Нет страницы
-    render file: "public/404.html", ststus: 404
+  def render_404_error #Нет страницы
+    # render file: "public/404.html", status: 404
+    render status: 404
   end
 
   protected
@@ -84,7 +86,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale_a
-    I18n.locale = params[:locale] || (current_user.language.to_sym if current_user.present?) ||I18n.default_locale
+    I18n.locale = params[:locale] || (current_user.language.to_sym if current_user.present?) || I18n.default_locale
     session[:locale] = I18n.locale
   end
 

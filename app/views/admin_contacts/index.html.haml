@@ -1,0 +1,38 @@
+%h1 Изменение контактной информации
+.col-md-12
+  .col-md-4
+    Название
+  .col-md-4
+    Текст
+.col-md-12
+  .col-md-9
+    -@contacts.each do |contact|
+      = form_tag admin_contact_path(contact.id), method: :put do
+        .col-md-12
+          .col-md-4
+            = text_area_tag 'name', contact.name, style: 'width: 100%'
+          .col-md-4
+            = text_area_tag 'text', contact.text, style: 'width: 100%'
+          .col-md-4
+            = submit_tag 'Редактировать', {:class =>"btn btn-success"}
+  .col-md-3
+    -@contacts.each do |contact|
+      .col-md-12{style: "padding-bottom: 17px;"}
+        = button_to 'Удалить', admin_contact_path(id: contact.id), class: 'btn btn-danger', method: :delete
+
+.col-md-12
+  %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+    %tr
+      %th
+        Название
+      %th
+        Текст
+      %th{style: 'width: 25%'}
+    = form_tag admin_contacts_path, method: :post do
+      %tr
+        %td
+          = text_area_tag 'name','' ,size: 50, style: 'width: 100%'
+        %td
+          = text_area_tag 'text', '',size: 50, style: 'width: 100%'
+        %td
+          = submit_tag "Добавить", {:class =>"btn btn-success", style: 'width: 100%'}

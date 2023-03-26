@@ -1,4 +1,4 @@
-module Include_Module
+module IncludeModule
   private
   def leng_stoyki(true_leng, kratn)
     result = true_leng.to_f/kratn.to_f

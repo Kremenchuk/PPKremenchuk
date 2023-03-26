@@ -1,0 +1,21 @@
+.col_md_12
+  %table{:border => "1", :cellpadding => "5", :cellspacing => "5", :width => "100%"}
+    %tr.table_header_admin_panel
+      %th Логин
+      %th e-mail
+      %th Имя
+      %th Админ
+      %th{:title => "Назначение диллеров"} Диллер
+      %th Изменить
+
+    %tr.table_data_admin_panel
+      = form_for @user, html: { name: "user_#{@user.id}"} do |f|
+        %td= @user.login
+        %td= @user.email
+        %td= @user.name
+        %td
+          = f.select :admin, [['Да', true], ['Нет', false]], selected: @user.admin
+        %td{:title => "Назначение диллеров"}
+          = f.select :diller, User::DILLER_TYPES.keys
+        %td
+          = f.submit 'Изменить', :class =>"btn btn-success"

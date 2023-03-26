@@ -1,6 +1,6 @@
 class StillagePalletController < ApplicationController
-  before_filter :check_if_diller, only: [:index, :calculate_actual_price]
-  include Include_Module
+  before_action :check_if_diller, only: [:index, :calculate_actual_price]
+  include IncludeModule
 
   def index
   end
@@ -73,8 +73,8 @@ class StillagePalletController < ApplicationController
       wei_ukosi = @constant.wei_ukosi_pallet * (((dlin_ukos_g/1000.0) + (dlin_ukos_b/1000.0)) *
                 (ukos_g_kol + ukos_b_kol)) + @constant.wei_metizi_pallet_ram * (ukos_g_kol + ukos_b_kol)*2
 
-    @ukos_g = @ukos_g.to_s(:rounded, :precision => 2).to_f
-    @ukos_b = @ukos_b.to_s(:rounded, :precision => 2).to_f
+    @ukos_g = @ukos_g.round(2).to_s.to_f
+    @ukos_b = @ukos_b.round(2).to_s.to_f
 
 
     #Стоимость и вес стойки
@@ -144,8 +144,8 @@ class StillagePalletController < ApplicationController
                        @constant.wei_zatsep_pallet * 2 + @constant.wei_metizi_pallet_travers * 4
 
 
-      @wei_traversi = @wei_traversi.to_s(:rounded, :precision => 2)
-      @wei_ram = @wei_ram.to_s(:rounded, :precision => 2)
+      @wei_traversi = @wei_traversi.round(2).to_s
+      @wei_ram = @wei_ram.round(2).to_s
 
     @price_traversa *=  (@constant.otxod_pl/100 +1)
     @price_ram *=  (@constant.otxod_pl/100 +1)
@@ -159,11 +159,11 @@ class StillagePalletController < ApplicationController
     @price_stillage_osn   = @price_ram * 2 + @price_traversa * @num_of_shelves_var
     @price_stillage_prist = @price_stillage_osn - @price_ram
 
-    @price_traversa = @price_traversa.to_s(:rounded, :precision => 2)
-    @price_ram = @price_ram.to_s(:rounded, :precision => 2)
+    @price_traversa = @price_traversa.round(2).to_s
+    @price_ram = @price_ram.round(2).to_s
 
-    @price_stillage_osn = @price_stillage_osn.to_s(:rounded, :precision => 2)
-    @price_stillage_prist = @price_stillage_prist.to_s(:rounded, :precision => 2)
+    @price_stillage_osn = @price_stillage_osn.round(2).to_s
+    @price_stillage_prist = @price_stillage_prist.round(2).to_s
 
 
     @text_var = t('page.all.uroven')
@@ -177,6 +177,7 @@ class StillagePalletController < ApplicationController
     @name_stillage="#{@hight_var}x#{@width_var} #{t('page.all.traversa_lit')}: #{@width_var}x#{@hight_traversi}x#{@depth_traversi}x1.5 #{t('page.all.urovney')}: #{@num_of_shelves_var} п. "
     enter_row_to_excel(@name_stillage, @price_stillage_osn) #внесение в ексель файл данных о расчете стеллажа.
 
+    render 'index'
   end
 
 

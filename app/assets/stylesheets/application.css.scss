@@ -16,11 +16,29 @@
 $icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
 //@import "bootstrap-sprockets";
 @import "bootstrap";
-@import "font-awesome-sprockets";
+//@import "~bootstrap/scss/bootstrap";
+//@import "font-awesome-sprockets";
 @import "font-awesome";
 @import "jquery-ui";
+@import 'lightbox';
 
 $scroll-bar: 15px;
+
+.button_to_link {
+  margin-top: -8px !important;
+  button {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    ///*optional*/
+    font-family: arial, sans-serif;
+  }
+}
+
+.button_to_link button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 p {
   text-indent: 20px; /* Отступ первой строки в пикселах */
@@ -293,4 +311,10 @@ h1, h2 {
 
 .col_header2 > p {
   text-indent:0 !important;
+}
+
+#hidenelement1a, #hidenelement2, #hidenelement3, #hidenelement3, #hidenelement4, #hidenelement5,
+#hidenelement6, #hidenelement7, #hidenelement8, #hidenelement9, #hidenelement10a, #hidenelement11a,
+#hidenelement12a,#hidenelement13a, #hidenelement14a, #hidenelement15a {
+  display: none;
 }
