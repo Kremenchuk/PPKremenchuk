@@ -1,24 +1,15 @@
 # README
+Rename '.env_local' to '.env' before deploying
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+`docker-compose build`
 
-Things you may want to cover:
+`docker-compose run --rm stm_industry_dev bundle exec rails db:create`
 
-* Ruby version
+`docker-compose run --rm stm_industry_dev bundle exec rake db:migrate`
 
-* System dependencies
+`docker-compose run --rm stm_industry_dev bundle exec rake db:seed`
 
-* Configuration
+`docker-compose run --rm stm_industry_dev bundle exec rails assets:precompile --trace`
 
-* Database creation
+`docker-compose up`
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
