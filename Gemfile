@@ -22,6 +22,7 @@ gem 'dotenv'
 gem 'jquery-rails'
 gem "turbo-rails", '~> 1.0.0'
 gem 'coffee-rails'
+gem 'rack-cors'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
