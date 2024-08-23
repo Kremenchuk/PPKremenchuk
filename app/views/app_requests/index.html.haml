@@ -1,0 +1,25 @@
+
+%hr
+.col-md-12
+  %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
+    %tr
+      %th.header_table id
+      %th.header_table request_params
+      %th.header_table request_type
+      %th.header_table request_url
+      %th.header_table response_status
+      %th.header_table created_at
+    - @app_requests.each do |app_request|
+      %tr
+        %td
+          = app_request.id
+        %td
+          = app_request.request_params
+        %td
+          = app_request.request_type
+        %td
+          = app_request.request_url
+        %td
+          = app_request.response_status
+        %td
+          = app_request.created_at

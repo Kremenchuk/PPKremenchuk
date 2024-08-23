@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :admin_contacts
+  resources :app_requests, only: [:index]
 
   post 'constants/load_constant' => 'constants#load_constant'
   get 'sitemap' => 'welcome#site_map'
