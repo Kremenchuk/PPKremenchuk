@@ -123,7 +123,7 @@
                         -I18n.available_locales.each do |locale|
                           -unless locale == :en
                             %li
-                              = link_to t(locale), locale_path(:new_locale => locale), data: {"turbo-method": :put}
+                              = link_to t(locale), locale_path(:new_locale => locale), method: :put
                 .col-xs-2.col_header2
                   - if current_user
                     = current_user.email
