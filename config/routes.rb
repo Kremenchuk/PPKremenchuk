@@ -40,8 +40,6 @@ Rails.application.routes.draw do
 
     get 'galleries' => 'galleries#index', as: 'gallery_index'
     get :galleries_view_photo, controller: :galleries, action: :galleries_view_photo
-    get :galleries_previous_view_photo, controller: :galleries, action: :galleries_previous_view_photo
-    get :galleries_next_view_photo, controller: :galleries, action: :galleries_next_view_photo
     get :gallery_view_photo_close, controller: :galleries, action: :gallery_view_photo_close
 
     get 'contact' => 'contact#index', as: 'contact_index'

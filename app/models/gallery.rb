@@ -1,33 +1,36 @@
 class Gallery < ActiveRecord::Base
   default_scope { order(horizontal: :desc) }
 
-  def next
-    Gallery.where("created_at < ?", self.created_at).where("image_folder = ?", self.image_folder).order(:time).first
+  mount_uploader :image, GalleryImageUploader
+  serialize :image, JSON
+  before_save :set_orientation
+
+  def self.next(params)
+    current_gallery = find_gallery(params)
+
+    return nil if current_gallery.nil?
+
+    Gallery.unscoped.where("id > ?", current_gallery.id).order(id: :asc).first
   end
 
-  def previous
-    Gallery.where("created_at > ?", self.created_at).where("image_folder = ?", self.image_folder).order(time: :desc).first
-  end
+  def self.previous(params)
+    current_gallery = find_gallery(params)
 
-  def self.next_present?(id)
-    Gallery.where("created_at < ?", image(id).created_at)
-           .where("image_folder = ?", image(id).image_folder)
-           .order(:time)
-           .first
-           .present?
-  end
+    return nil if current_gallery.nil?
 
-  def self.previous_present?(id)
-    Gallery.where("created_at > ?", image(id).created_at)
-           .where("image_folder = ?", image(id).image_folder)
-           .order(time: :desc)
-           .first
-           .present?
+    Gallery.unscoped.where("id < ?", current_gallery.id).order(id: :desc).first
   end
 
   private
 
-  def self.image(id)
-    Gallery.find(id)
+  def set_orientation
+    return unless image.present? && image.file.present?
+
+    img = MiniMagick::Image.open(image.path)
+    self.horizontal = img[:width] > img[:height]
+  end
+
+  def self.find_gallery(params)
+    Gallery.find_by(id: params[:id], image_folder: params[:image_folder])
   end
 end

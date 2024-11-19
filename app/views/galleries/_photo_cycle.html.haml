@@ -3,9 +3,5 @@
     -stillage_type.each do |photo|
       .col-md-2
         .col_horizon_arxiv_gallery
-          .col-md-12
-            -# = link_to do
-            -#   = image_tag(photo.path_to_image, alt: photo.alt_to_image), photo.path_to_image, :class => "lightbox", :id => "img1"
-          .col-md-12
-            = link_to galleries_view_photo_path(id: photo.id) do
-              = image_tag(photo.path_to_thumb, alt: photo.alt_to_image)
+          = link_to galleries_view_photo_path(id: photo.id) do
+            = image_tag(photo.image.thumb.url, alt: photo.alt_to_image)

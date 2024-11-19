@@ -4,8 +4,6 @@
     .col-md-12
       .col-md-3
         Тип картинки
-      .col-md-3
-        Горизонтальность
     .col-md-12
       .col-md-3
         %select{:name => 'image_type'}
@@ -24,18 +22,9 @@
           %option
             = 'lofts'
         %p
-      .col-md-3
-        %select{:name => 'horizontal'}
-          %option
-            = 'Да'
-          %option
-            = 'Нет'
-        %p
     .col-md-12
       .col-md-3
         Картинка
-      .col-md-3
-        Мини-картинка
       .col-md-4
         Описание
       .col-md-2
@@ -43,9 +32,6 @@
     .col-md-12
       .col-md-3
         = file_field_tag :image
-        -#, accept: 'image/png,image/gif,image/jpeg'
-      .col-md-3
-        = file_field_tag :thumb_image
       .col-md-4
         = text_area_tag :alt_image, '', style: 'width: 100%'
       .col-md-2
@@ -65,7 +51,7 @@
   -@galleries.each do |gallery|
     %tr
       %td
-        = image_tag gallery.path_to_thumb
+        = image_tag gallery.image.thumb.url
       %td
         = text_area_tag 'alt', gallery.alt_to_image, style: 'width: 100%'
       %td

@@ -2,13 +2,18 @@
   = link_to gallery_view_photo_close_path do
     %i.fa-sharp.fa-solid.fa-circle-xmark
 .row_gallery_view
-  - if previous_image_in_gallery_present?(@photo.id)
-    .col-md-1.previous_button
-      = link_to galleries_previous_view_photo_path(id: @photo.id) do
+  - previous_image_in_gallery = previous_image_in_gallery(id: @photo.id, image_folder: @photo.image_folder)
+  - next_image_in_gallery = next_image_in_gallery(id: @photo.id, image_folder: @photo.image_folder)
+
+  .col-md-1
+    - if previous_image_in_gallery.present?
+      = link_to galleries_view_photo_path(id: previous_image_in_gallery.id, image_folder: previous_image_in_gallery.image_folder) do
         %i.fa-solid.fa-circle-arrow-left
+    -else
+      .previous_button
   .col-md-10.photo_box
-    = image_tag(@photo.path_to_image, alt: @photo.alt_to_image)
-  - if next_image_in_gallery_present?(@photo.id)
-    .col-md-1.next_button
-      = link_to galleries_next_view_photo_path(id: @photo.id) do
+    = image_tag(@photo.image.url, alt: @photo.alt_to_image)
+  .col-md-1.next_button
+    - if next_image_in_gallery.present?
+      = link_to galleries_view_photo_path(id: next_image_in_gallery.id, image_folder: next_image_in_gallery.image_folder) do
         %i.fa-solid.fa-circle-arrow-right
