@@ -30,12 +30,16 @@ class GalleriesController < ApplicationController
   end
 
   def photo_browser_new
-    if params[:image].present?
-      gallery = Gallery.new
-      gallery.image = params[:image]
-      gallery.alt_to_image = params[:alt_image]
-      gallery.image_folder = params[:image_type]
-      gallery.save!
+    if params[:images].present?
+      Array(params[:images]).each do |image|
+        if image.is_a?(ActionDispatch::Http::UploadedFile)
+          gallery = Gallery.new
+          gallery.image = image
+          gallery.alt_to_image = params[:alt_image]
+          gallery.image_folder = params[:image_type]
+          gallery.save!
+        end
+      end
     end
 
     redirect_to photo_browser_index_path

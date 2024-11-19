@@ -1,7 +1,12 @@
 .row_gallery
-  .col-md-12.photo_box
+  .col-md-12
     -stillage_type.each do |photo|
       .col-md-2
-        .col_horizon_arxiv_gallery
-          = link_to galleries_view_photo_path(id: photo.id) do
-            = image_tag(photo.image.thumb.url, alt: photo.alt_to_image)
+        -if photo.horizontal
+          .col_horizon_arxiv_gallery
+            = link_to galleries_view_photo_path(id: photo.id) do
+              = image_tag(photo.image.thumb.url, alt: photo.alt_to_image)
+        -else
+          .col_vertical_arxiv_gallery
+            = link_to galleries_view_photo_path(id: photo.id) do
+              = image_tag(photo.image.thumb.url, alt: photo.alt_to_image)
