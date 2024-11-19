@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_17_094604) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_19_082410) do
   create_table "articles", force: :cascade do |t|
     t.json "title", default: {"uk"=>"", "en"=>"", "ru"=>""}, null: false
     t.json "short_body", default: {"uk"=>"", "en"=>"", "ru"=>""}, null: false
