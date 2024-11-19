@@ -17,7 +17,7 @@ $color: #FE7D14;
 }
 
 .photo_box > img {
-  width: 65%;
+  height: 80vh;
   margin-left: -15px;
 }
 
@@ -29,3 +29,8 @@ $color: #FE7D14;
 .row_gallery_view_close > a {
   float: right;
 }
+
+.previous_button {
+  width: 90px;
+}
+

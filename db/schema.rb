@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_24_082524) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_17_094604) do
   create_table "articles", force: :cascade do |t|
     t.json "title", default: {"uk"=>"", "en"=>"", "ru"=>""}, null: false
     t.json "short_body", default: {"uk"=>"", "en"=>"", "ru"=>""}, null: false
@@ -212,13 +212,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_082524) do
   end
 
   create_table "galleries", force: :cascade do |t|
-    t.string "path_to_image"
-    t.string "path_to_thumb"
     t.string "alt_to_image"
-    t.boolean "horizontal"
     t.string "image_folder"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "horizontal"
+    t.string "image"
   end
 
   create_table "images", force: :cascade do |t|
