@@ -31,7 +31,7 @@
 
     .col-md-12
       .col-md-3
-        = file_field_tag :image
+        = file_field_tag 'images[]', multiple: true
       .col-md-4
         = text_area_tag :alt_image, '', style: 'width: 100%'
       .col-md-2
