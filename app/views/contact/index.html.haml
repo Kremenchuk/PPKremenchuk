@@ -1,21 +1,20 @@
-- contact_map = ''
 %h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
   =t('page.contacts.index.header')
 .container-fluid
   .row
     .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet.contact_text
-      - @contacts.each do |contact|
-        - if eval(contact.name)[locale] == 'map'
-          - contact_map = contact
-          - next
-        - else
-          .col-md-12
-            .col-md-4
-              %li
-                = "#{eval(contact.name)[locale]}:"
-            .col-md-8
-              = raw(eval(contact.text)[locale])
-- if contact_map.present?
+      .col-md-12
+        .col-md-4
+          %li
+            = t('page.contacts.index.address_title')
+        .col-md-8
+          = t('page.contacts.index.address')
+      .col-md-12
+        .col-md-4
+          %li
+            = t('page.contacts.index.tel_title')
+        .col-md-8
+          = t('page.contacts.index.tel_number')
   %hr
   #contact_map.container-fluid
     .row
@@ -23,4 +22,10 @@
         %p.style_text_about_stillage_stillage_warehouse_stillage_pallet{:align => "center"}
           =t('page.contacts.index.map')
         %p{:align => "center"}
-          %iframe{:class => "google_map", :allowfullscreen => "", :frameborder => "20", :src => "#{eval(contact_map.text)[locale]}", :style => "border:0"}
+          %iframe{
+          :class => "google_map",
+          :allowfullscreen => "",
+          :frameborder => "20",
+          :src => "https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d160.39021507071612!2d36.237211828781696!3d49.969293031146414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e0!4m0!4m3!3m2!1d49.9692534!2d36.2371595!5e0!3m2!1suk!2sua!4v1749364649269!5m2!1suk!2sua",
+          :style => "border:0"
+          }
