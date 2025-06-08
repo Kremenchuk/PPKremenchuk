@@ -378,6 +378,8 @@ uk:
         tel_title:        'Телефон'
         tel_number:       '-'
         map:              'Мапа проїзду'
+        email_title:      'Email'
+        email:            'stm_industry@ukr.net'
 
     registration:
       header:         'Реєстрація'
