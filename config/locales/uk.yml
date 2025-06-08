@@ -374,10 +374,10 @@ uk:
       index:
         header:           'Контакти'
         address_title:    'Адреса'
-        address:          'Україна, м. Харків, вул.Морозова, 7.'
-        tel:              'Телефон'
+        address:          'Україна, м. Харків, вул. Аравійська, 22'
+        tel_title:        'Телефон'
+        tel_number:       '-'
         map:              'Мапа проїзду'
-
 
     registration:
       header:         'Реєстрація'
