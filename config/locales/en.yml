@@ -144,6 +144,23 @@ en:
       loft:               'Дизайнерські стелажі'
       welcome_text:       'Виготовляємо будь-які види стелажів. По найкращім цінам і найліпшої якості. Доставка в будь-яку точку України.'
 
+      delivery_eyebrow:      'Logistics'
+      delivery_title_pre:    'We deliver across'
+      delivery_title_accent: 'Ukraine'
+      delivery_cities:
+        - Zaporizhzhia
+        - Kyiv
+        - Lviv
+        - Kharkiv
+        - Dnipro
+        - Odesa
+        - Vinnytsia
+        - Poltava
+        - Sumy
+        - Ternopil
+        - Cherkasy
+        - Mykolaiv
+
       h3_met_stel:        'Металічні стелажі від українського виробника'
       text_met_stel_anons:      'Наша фірма займається проектуванням та виготовленням стелажного обладнання з 2002 року. Накопичений нами досвід дозволяє нам виконувати проекти будь-якої складності за найнижчими цінами на ринку.
       Ми можемо виготовити практично будь-які розміри стелажів, мезонінів і платформ, з огляду на всі норми протипожежних і будівельних ДСТУ. '
@@ -196,6 +213,101 @@ en:
 
 
 
+
+    home:
+      topbar:
+        est:      '2002 — Trimetal Service'
+        address:  'Kharkiv, 22 Araviiska St.'
+        email:    'stm_industry@ukr.net'
+      nav:
+        products:   'Products'
+        production: 'Production'
+        delivery:   'Delivery'
+        gallery:    'Gallery'
+        contacts:   'Contacts'
+      cta: 'Request a quote'
+      hero:
+        eyebrow:       'Ukrainian manufacturer of metal racking'
+        title_1:       'Efficient'
+        title_2:       'storage'
+        title_accent:  'systems'
+        lead:          'We design and manufacture racking, mezzanines, platforms and load trolleys for warehouses, archives and production sites. In-house manufacturing, delivery and installation across Ukraine.'
+        cta_primary:   'Find a solution'
+        cta_secondary: 'About production'
+        scroll:        'scroll'
+        chips:
+          - 'up to 1500 kg/m²'
+          - 'CNC production'
+          - 'DSTU'
+          - 'powder coating'
+      stats:
+        - { num: '2002', label: 'year founded' }
+        - { num: '22', suffix: '+', label: 'years on the market' }
+        - { num: '1500', suffix: ' kg/m²', label: 'max load' }
+        - { num: '10', suffix: '+', label: 'delivery cities' }
+      products:
+        eyebrow:      '01 / Products'
+        title_pre:    'What we'
+        title_accent: 'manufacture'
+        sub:          'A full cycle — from design to installation. Every structure is engineered for your load and space.'
+      products_items:
+        stillage:  { desc: 'For documents, archives and household storage.', spec: 'up to 200 kg / shelf' }
+        warehouse: { desc: 'Reinforced structures for warehouses and production.', spec: 'up to 400 kg / shelf' }
+        pallet:    { desc: 'Front systems for storage on pallets.', spec: '25 mm pitch' }
+        trolley:   { desc: 'Platform and shelf trolleys for moving loads.', spec: 'up to 1000 kg' }
+        mezzanine: { desc: 'Multi-tier systems that double the usable area.', spec: 'up to 1000 kg/m²' }
+        platform:  { desc: 'Warehouse platforms to individual design.', spec: 'up to 1500 kg/m²' }
+        loft:      { desc: 'Designer loft shelving in metal and wood.', spec: 'made to order' }
+        gallery:   { desc: 'Completed projects and examples of our work.', spec: 'photo gallery' }
+      why:
+        eyebrow:      '02 / Advantages'
+        title_pre:    'Why'
+        title_accent: 'STM Industry'
+        sub:          'Over 20 years manufacturing complex equipment at competitive prices — and standing behind the result at every stage.'
+        feats:
+          - { title: 'In-house production',  text: 'Modern CNC equipment and quality control at every joint.' }
+          - { title: 'European coating',     text: 'Powder coating to European standard — corrosion resistant.' }
+          - { title: 'DSTU compliance',      text: 'Structures to fire-safety and building code standards.' }
+          - { title: 'Custom dimensions',    text: 'Made to your dimensions, load and tasks.' }
+          - { title: 'Delivery across Ukraine', text: 'Shipping to all regions via own and partner logistics.' }
+          - { title: 'Turnkey installation', text: 'Professional installation by our own assembly crews.' }
+      showcase:
+        eyebrow:      '03 / Production'
+        title_pre:    'Complex projects —'
+        title_accent: 'our specialty'
+        text:         'Since 2002 we have equipped warehouses, archives, production shops and retail spaces. We take on non-standard tasks and deliver them at a competitive price — from a single rack to a complete storage complex.'
+        cta:          'Discuss a project'
+        metrics:
+          - { value: '22+',   label: 'years of experience' }
+          - { value: '1000+', label: 'completed projects' }
+          - { value: '100%',  label: 'in-house production' }
+      delivery_eyebrow: '04 / Logistics'
+      seo_eyebrow: '05 / About the maker'
+      contact:
+        eyebrow:       '06 / Contacts'
+        title_pre:     'Let us cost your'
+        title_accent:  'storage project'
+        lead:          'Leave a request — an engineer will contact you, clarify the dimensions and load and prepare a commercial offer.'
+        email_label:   'Email'
+        address_label: 'Address'
+        address_value: 'Kharkiv, 22 Araviiska St.'
+        company_label: 'Company'
+        company_value: 'STM-Industry LLC'
+        form:
+          name:     'Your name'
+          name_ph:  'e.g. Oleksandr'
+          phone:    'Phone'
+          phone_ph: '+380 __ ___ __ __'
+          msg:      'What do you need?'
+          msg_ph:   'Rack type, dimensions, quantity, delivery city…'
+          submit:   'Send request'
+          note:     'Thank you! Your email app will open — send the message and we will get back to you.'
+      footer:
+        about:          'Ukrainian manufacturer of metal racking and storage systems since 2002.'
+        products_title: 'Products'
+        company_title:  'Company'
+        contacts_title: 'Contacts'
+        rights:         'STM Industry'
 
     stillage:
       index:

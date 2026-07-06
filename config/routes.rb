@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  get '/change_locale/:new_locale', to: 'application#set_locale', as: 'locale', constraints: lambda { |req| I18n.available_locales.include? req['locale'].to_sym }
+  get '/change_locale/:new_locale', to: 'application#set_locale', as: 'locale', constraints: lambda { |req| req.params['new_locale'].present? && I18n.available_locales.include?(req.params['new_locale'].to_sym) }
 
   resources :users
   resources :admin_contacts

@@ -11,7 +11,7 @@
 
 .tp_01
   .col-md-6.table_position_trolleys
-    = form_tag(trolley_show_path, method: :get, id: 'id_el_1', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_1')") do
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_1', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-01", :type => "text"}
       .container-fluid
         .row
@@ -35,10 +35,10 @@
                     %li
                       = t('page.trolleys.index.powder_paint')
       -if @constant.on_off_calc_TP01==false
-        .text_size{:onclick => "showHide('hidenelement1a','chg_img_10')" }
-          =image_tag("plus.png", :id => "chg_img_10", :alt => "mater",  :width => "30", :height => "30")
+        .text_size{ data: { action: 'click->product-form#toggle' } }
+          =image_tag("plus.png", :id => "chg_img_10", :alt => "mater", :width => "30", :height => "30", data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
           = "#{t('page.trolleys.index.on_line_model')} ТР-01"
-        #hidenelement1a
+        #hidenelement1a{ data: { 'product-form-target': 'panel' } }
           = render 'on_line_section'
           .row
             .col-md-3
@@ -51,7 +51,7 @@
 
 .tp_02
   .col-md-6.table_position_trolleys
-    = form_tag(trolley_show_path, method: :get, id: 'id_el_2', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_2')") do
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_2', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-02", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -75,11 +75,10 @@
                     %li
                       = t('page.trolleys.index.powder_paint')
       -if @constant.on_off_calc_TP02==false
-        .text_size{:onclick => "showHide('hidenelement2','chg_img_11')" }
-          =image_tag("plus.png", :id => "chg_img_11", :alt => "mater",  :width => "30", :height => "30")
+        .text_size{ data: { action: 'click->product-form#toggle' } }
+          =image_tag("plus.png", :id => "chg_img_11", :alt => "mater", :width => "30", :height => "30", data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
           = "#{t('page.trolleys.index.on_line_model')} ТР-02"
-        #hidenelement2
-
+        #hidenelement2{ data: { 'product-form-target': 'panel' } }
           = render 'on_line_section'
           .row
             .col-md-3
@@ -98,7 +97,7 @@
 
 .tp_03
   .col-md-6.table_position_trolleys
-    = form_tag(trolley_show_path, method: :get, id: 'id_el_3', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_3')") do
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_3', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-03", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -122,10 +121,10 @@
                     %li
                       = t('page.trolleys.index.powder_paint')
       -if @constant.on_off_calc_TP03==false
-        .text_size{:onclick => "showHide('hidenelement3','chg_img_12')" }
-          =image_tag("plus.png", :id => "chg_img_12", :alt => "mater",  :width => "30", :height => "30")
+        .text_size{ data: { action: 'click->product-form#toggle' } }
+          =image_tag("plus.png", :id => "chg_img_12", :alt => "mater", :width => "30", :height => "30", data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
           = "#{t('page.trolleys.index.on_line_model')} ТР-03"
-        #hidenelement3
+        #hidenelement3{ data: { 'product-form-target': 'panel' } }
           = render 'on_line_section'
           .row
             .col-md-3
@@ -144,7 +143,7 @@
 
 .tp_04
   .col-md-6.table_position_trolleys
-    = form_tag(trolley_show_path, method: :get, id: 'id_el_4', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_4')") do
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_4', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-04", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -168,10 +167,10 @@
                     %li
                     = t('page.trolleys.index.powder_paint')
       -if @constant.on_off_calc_TP04==false
-        .text_size{:onclick => "showHide('hidenelement4','chg_img_13')" }
-          =image_tag("plus.png", :id => "chg_img_13", :alt => "mater",  :width => "30", :height => "30")
+        .text_size{ data: { action: 'click->product-form#toggle' } }
+          =image_tag("plus.png", :id => "chg_img_13", :alt => "mater", :width => "30", :height => "30", data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
           = "#{t('page.trolleys.index.on_line_model')} ТР-04"
-        #hidenelement4
+        #hidenelement4{ data: { 'product-form-target': 'panel' } }
           = render 'on_line_section'
           .row
             .col-md-3
@@ -187,7 +186,7 @@
 
 .tp_05
   .col-md-6.table_position_trolleys
-    = form_tag(trolley_show_path, method: :get, id: 'id_el_5', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_5')") do
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_5', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-05", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -211,10 +210,10 @@
                     %li
                       = t('page.trolleys.index.powder_paint')
       -if @constant.on_off_calc_TP05==false
-        .text_size{:onclick => "showHide('hidenelement5','chg_img_14')" }
-          =image_tag("plus.png", :id => "chg_img_14", :alt => "mater",  :width => "30", :height => "30")
+        .text_size{ data: { action: 'click->product-form#toggle' } }
+          =image_tag("plus.png", :id => "chg_img_14", :alt => "mater", :width => "30", :height => "30", data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
           = "#{t('page.trolleys.index.on_line_model')} ТР-05"
-        #hidenelement5
+        #hidenelement5{ data: { 'product-form-target': 'panel' } }
           = render 'on_line_section'
           .row
             .col-md-3
@@ -229,7 +228,7 @@
 
 .tp_06
   .col-md-6.table_position_trolleys
-    = form_tag(trolley_show_path, method: :get, id: 'id_el_6', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_6')") do
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_6', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-06", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -253,11 +252,11 @@
                     %li
                       = t('page.trolleys.index.powder_paint')
       -if @constant.on_off_calc_TP06==false
-        .text_size{:onclick => "showHide('hidenelement6','chg_img_15')" }
-          =image_tag("plus.png", :id => "chg_img_15", :alt => "mater",  :width => "30", :height => "30")
+        .text_size{ data: { action: 'click->product-form#toggle' } }
+          =image_tag("plus.png", :id => "chg_img_15", :alt => "mater", :width => "30", :height => "30", data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
           -#%img{:id => "chg_img_15", :alt => "mater", :src => "/assets/plus.png", :width => "30", :height => "30"}
           = "#{t('page.trolleys.index.on_line_model')} ТР-06"
-        #hidenelement6
+        #hidenelement6{ data: { 'product-form-target': 'panel' } }
           = render 'on_line_section'
           .row
             .col-md-3
@@ -272,7 +271,7 @@
 
 .tp_07
   .col-md-6.table_position_trolleys
-    = form_tag(trolley_show_path, method: :get, id: 'id_el_7', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_7')") do
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_7', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "TP-07", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -296,10 +295,10 @@
                     %li
                       = t('page.trolleys.index.powder_paint')
       -if @constant.on_off_calc_TP07==false
-        .text_size{:onclick => "showHide('hidenelement7','chg_img_16')" }
-          =image_tag("plus.png", :id => "chg_img_16", :alt => "mater",  :width => "30", :height => "30")
+        .text_size{ data: { action: 'click->product-form#toggle' } }
+          =image_tag("plus.png", :id => "chg_img_16", :alt => "mater", :width => "30", :height => "30", data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
           = "#{t('page.trolleys.index.on_line_model')} ТР-07"
-        #hidenelement7
+        #hidenelement7{ data: { 'product-form-target': 'panel' } }
           = render 'on_line_section'
           .row
             .col-md-3
@@ -316,7 +315,7 @@
 
 .ks_01
   .col-md-6.table_position_trolleys
-    = form_tag(trolley_show_path, method: :get, id: 'id_el_8', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_8')") do
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_8', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "KS-01", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -342,10 +341,10 @@
                     %li
                       = t('page.trolleys.index.powder_paint')
       -if @constant.on_off_calc_KS01==false
-        .text_size{:onclick => "showHide('hidenelement8','chg_img_17')" }
-          =image_tag("plus.png", :id => "chg_img_17", :alt => "mater",  :width => "30", :height => "30")
+        .text_size{ data: { action: 'click->product-form#toggle' } }
+          =image_tag("plus.png", :id => "chg_img_17", :alt => "mater", :width => "30", :height => "30", data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
           = "#{t('page.trolleys.index.on_line_model')} KS-01"
-        #hidenelement8
+        #hidenelement8{ data: { 'product-form-target': 'panel' } }
           = render 'on_line_section'
           .row.pt_03
             .col-md-12
@@ -367,7 +366,7 @@
 
 .ks_02
   .col-md-6.table_position_trolleys
-    = form_tag(trolley_show_path, method: :get, id: 'id_el_9', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_9')") do
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_9', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "KS-02", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -393,10 +392,10 @@
                     %li
                       = t('page.trolleys.index.powder_paint')
       -if @constant.on_off_calc_KS02==false
-        .text_size{:onclick => "showHide('hidenelement9','chg_img_18')" }
-          =image_tag("plus.png", :id => "chg_img_18", :alt => "mater",  :width => "30", :height => "30")
+        .text_size{ data: { action: 'click->product-form#toggle' } }
+          =image_tag("plus.png", :id => "chg_img_18", :alt => "mater", :width => "30", :height => "30", data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
           = "#{t('page.trolleys.index.on_line_model')} KS-02"
-        #hidenelement9
+        #hidenelement9{ data: { 'product-form-target': 'panel' } }
           = render 'on_line_section'
           .row.pt_03
             .col-md-12
@@ -416,7 +415,7 @@
 
 .ks_03
   .col-md-6.table_position_trolleys
-    = form_tag(trolley_show_path, method: :get, id: 'id_el_10', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_10')") do
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_10', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "KS-03", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -442,10 +441,10 @@
                     %li
                       = t('page.trolleys.index.powder_paint')
       -if @constant.on_off_calc_KS03==false
-        .text_size{:onclick => "showHide('hidenelement10a','chg_img_19')" }
-          =image_tag("plus.png", :id => "chg_img_19", :alt => "mater",  :width => "30", :height => "30")
+        .text_size{ data: { action: 'click->product-form#toggle' } }
+          =image_tag("plus.png", :id => "chg_img_19", :alt => "mater", :width => "30", :height => "30", data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
           = "#{t('page.trolleys.index.on_line_model')} KS-03"
-        #hidenelement10a
+        #hidenelement10a{ data: { 'product-form-target': 'panel' } }
           = render 'on_line_section'
           .row.pt_03
             .col-md-12
@@ -466,7 +465,7 @@
 
 .ks_04
   .col-md-6.table_position_trolleys
-    = form_tag(trolley_show_path, method: :get, id: 'id_el_11', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_11')") do
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_11', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "KS-04", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -492,10 +491,10 @@
                     %li
                       = t('page.trolleys.index.powder_paint')
       -if @constant.on_off_calc_KS04==false
-        .text_size{:onclick => "showHide('hidenelement11a','chg_img_20')" }
-          =image_tag("plus.png", :id => "chg_img_20", :alt => "mater",  :width => "30", :height => "30")
+        .text_size{ data: { action: 'click->product-form#toggle' } }
+          =image_tag("plus.png", :id => "chg_img_20", :alt => "mater", :width => "30", :height => "30", data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
           = "#{t('page.trolleys.index.on_line_model')} KS-04"
-        #hidenelement11a
+        #hidenelement11a{ data: { 'product-form-target': 'panel' } }
           = render 'on_line_section'
           .row.pt_03
             .col-md-12
@@ -519,7 +518,7 @@
 
 .pt_01
   .col-md-6.table_position_trolleys
-    = form_tag(trolley_show_path, method: :get, id: 'id_el_12', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_12')") do
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_12', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "PT-01", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -543,10 +542,10 @@
                     %li
                       = t('page.trolleys.index.powder_paint')
       -if @constant.on_off_calc_PT01==false
-        .text_size{:onclick => "showHide('hidenelement12a','chg_img_21')" }
-          =image_tag("plus.png", :id => "chg_img_21", :alt => "mater",  :width => "30", :height => "30")
+        .text_size{ data: { action: 'click->product-form#toggle' } }
+          =image_tag("plus.png", :id => "chg_img_21", :alt => "mater", :width => "30", :height => "30", data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
           = "#{t('page.trolleys.index.on_line_model')} PT-01"
-        #hidenelement12a
+        #hidenelement12a{ data: { 'product-form-target': 'panel' } }
           = render 'on_line_section'
           .row
             .col-md-3
@@ -561,7 +560,7 @@
 
 .pt_02
   .col-md-6.table_position_trolleys
-    = form_tag(trolley_show_path, method: :get, id: 'id_el_13', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_13')") do
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_13', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "PT-02", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -583,10 +582,10 @@
                     %li
                       = t('page.trolleys.index.powder_paint')
       -if @constant.on_off_calc_PT02==false
-        .text_size{:onclick => "showHide('hidenelement13a','chg_img_22')" }
-          =image_tag("plus.png", :id => "chg_img_22", :alt => "mater",  :width => "30", :height => "30")
+        .text_size{ data: { action: 'click->product-form#toggle' } }
+          =image_tag("plus.png", :id => "chg_img_22", :alt => "mater", :width => "30", :height => "30", data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
           = "#{t('page.trolleys.index.on_line_model')} PT-02"
-        #hidenelement13a
+        #hidenelement13a{ data: { 'product-form-target': 'panel' } }
           = render 'on_line_section'
           .row
             .col-md-3
@@ -600,7 +599,7 @@
 
 .pt_03
   .col-md-6.table_position_trolleys
-    = form_tag(trolley_show_path, method: :get, id: 'id_el_14', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_14')") do
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_14', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "PT-03", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -624,10 +623,10 @@
                     %li
                       = t('page.trolleys.index.powder_paint')
       -if @constant.on_off_calc_PT03==false
-        .text_size{:onclick => "showHide('hidenelement14a','chg_img_23')" }
-          =image_tag("plus.png", :id => "chg_img_23", :alt => "mater",  :width => "30", :height => "30")
+        .text_size{ data: { action: 'click->product-form#toggle' } }
+          =image_tag("plus.png", :id => "chg_img_23", :alt => "mater", :width => "30", :height => "30", data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
           = "#{t('page.trolleys.index.on_line_model')} PT-03"
-        #hidenelement14a
+        #hidenelement14a{ data: { 'product-form-target': 'panel' } }
           = render 'on_line_section'
           .row
             .col-md-3
@@ -642,7 +641,7 @@
 
 .pt_04
   .col-md-6.table_position_trolleys
-    = form_tag(trolley_show_path, method: :get, id: 'id_el_15', name: 'contact_form', onsubmit: "return validate_form_trolleys ('id_el_15')") do
+    = form_tag(trolley_show_path, method: :get, id: 'id_el_15', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
       %input.hiden_input_trolleys{:name => "vid",:size => "10", :value => "PT-04", :type => "text",:display => "false"}
       .container-fluid
         .row
@@ -668,10 +667,10 @@
                     %li
                       = t('page.trolleys.index.powder_paint')
       -if @constant.on_off_calc_PT04==false
-        .text_size{:onclick => "showHide('hidenelement15a','chg_img_24')" }
-          =image_tag("plus.png", :id => "chg_img_24", :alt => "mater",  :width => "30", :height => "30")
+        .text_size{ data: { action: 'click->product-form#toggle' } }
+          =image_tag("plus.png", :id => "chg_img_24", :alt => "mater", :width => "30", :height => "30", data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
           = "#{t('page.trolleys.index.on_line_model')} PT-04"
-        #hidenelement15a
+        #hidenelement15a{ data: { 'product-form-target': 'panel' } }
           = render 'on_line_section'
           .row
             .col-md-3
@@ -683,21 +682,3 @@
   %div{:style => " width:100%; height:1px; clear:both;"}
 
 
-:javascript
-  function showHide(element1, element2)
-  {
-    document.querySelector("#" + element1).classList.toggle(element2);
-    const hiden_element = document.getElementById(element1);
-    const obj = document.getElementById(element2);
-    if (obj.src.includes('minus')) {
-      obj.src = '/assets/plus.png';
-      hiden_element.style.display = "none";
-      return
-    }
-    if (obj.src.includes('plus')) {
-      obj.src = '/assets/minus.png';
-      hiden_element.style.display = "block";
-      return
-    }
-
-  }

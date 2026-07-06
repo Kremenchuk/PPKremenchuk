@@ -1,47 +1,106 @@
-// Place all the styles related to the galleries controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// =====================================================================
+//  Gallery — modern responsive card grid (dark industrial)
+// =====================================================================
 
-$color: #FE7D14;
+// ---- section headers (were solid orange bars) -----------------------
+.head2 {
+  background-color: transparent !important;
+  color: var(--stm-text);
+  text-align: left !important;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  padding: 0 0 10px;
+  margin: 34px 0 18px;
+  border-bottom: 2px solid var(--stm-border);
+  position: relative;
 
-.head2{
-  background-color: $color;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 64px;
+    height: 2px;
+    background: var(--stm-accent);
+  }
 }
 
+// ---- thumbnail grid -------------------------------------------------
+.row_gallery {
+  margin-bottom: 8px;
+
+  > .col-md-12 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 14px;
+    float: none;
+    width: 100%;
+  }
+
+  .col-md-2 {
+    width: 100%;
+    float: none;
+    padding: 0;
+  }
+}
+
+.col_horizon_arxiv_gallery,
+.col_vertical_arxiv_gallery {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  background: #fff;
+  border: 1px solid var(--stm-border);
+  border-radius: var(--stm-radius-sm);
+  overflow: hidden;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+
+  a { display: block; width: 100%; height: 100%; }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: var(--stm-accent);
+    box-shadow: var(--stm-shadow);
+  }
+}
+
+// =====================================================================
+//  Single-photo viewer
+// =====================================================================
 .row_gallery_view {
   height: 74vh;
   width: 100%;
-  text-align:center;
+  text-align: center;
   display: flex;
   align-items: center;
 }
 
 .photo_box > img {
-  height: 80vh;
-  margin-left: -15px;
+  max-height: 80vh;
+  width: auto;
+  border-radius: var(--stm-radius);
+  box-shadow: var(--stm-shadow);
 }
 
-.fa-circle-arrow-left, .fa-circle-arrow-right, .fa-circle-xmark {
-  color: $color;
-  font-size: 70px;
+.fa-circle-arrow-left,
+.fa-circle-arrow-right,
+.fa-circle-xmark {
+  color: var(--stm-accent);
+  font-size: 64px;
+  transition: color .18s ease, transform .18s ease;
+
+  &:hover { color: var(--stm-accent-600); transform: scale(1.08); }
 }
 
-.row_gallery_view_close > a {
-  float: right;
-}
+.row_gallery_view_close > a { float: right; }
 
-.previous_button {
-  width: 90px;
-}
+.previous_button { width: 90px; }
 
-.col_horizon_arxiv_gallery
-{
-  height: 120px;
-  width: 150px;
-}
-
-.col_vertical_arxiv_gallery
-{
-  height: 157px;
-  width: 120px;
-}

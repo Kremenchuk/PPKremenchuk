@@ -1,77 +1,393 @@
-// Place all the styles related to the welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// =====================================================================
+//  Welcome page — modern "dark industrial" refresh
+//  Scoped under .welcome-modern. Design tokens live in ui_refresh.scss.
+// =====================================================================
 
-.my_product {
-  text-align: center;
-}
 
-.welcome_link {
-  width: 100%;
-  padding-left: 15px;
-  font-size: 18px;
-  padding-bottom: 20px;
+.welcome-modern {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--stm-text);
+  background:
+    radial-gradient(1200px 500px at 80% -10%, rgba(254, 125, 20, .10), transparent 60%),
+    var(--stm-bg);
+  border: 1px solid var(--stm-border);
+  border-radius: var(--stm-radius);
+  box-shadow: var(--stm-shadow);
+  padding: clamp(20px, 4vw, 48px);
+  margin: 8px 0 32px;
+  overflow: hidden;
 
-}
+  // neutralise a couple of aggressive global rules
+  p { text-indent: 0; }
+  h1, h2 { text-align: left; }
+  a { color: var(--stm-accent); }
 
-.basis
-{
-  width: 100%;
-  padding: 2px 0 0 0;
-}
-
-.welcome_tb_padding
-{
-  padding: 25px 0 0 0;;
-}
-
-.products_buttons_welcome
-{
-  width: 302px;
-  height: 184px;
-}
-
-//кнопки Читать далее
-  /* скрываем чекбоксы и блоки с содержанием */
-  .hide {
-    display: none;
+  // ---- promo banner (localized base image) ------------------------
+  .basis {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--stm-radius);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .4);
+    margin-bottom: clamp(20px, 3vw, 36px);
+    padding: 0;
   }
-  .hide + label ~ div{
-    display: none;
+
+  // ---- hero -------------------------------------------------------
+  .hero {
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto clamp(28px, 5vw, 56px);
   }
-  /* оформляем текст label *//* вид текста label при активном переключателе */
+  .hero__eyebrow {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--stm-accent);
+    background: var(--stm-accent-050);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+  }
+  .hero__title {
+    font-size: clamp(1.9rem, 4.4vw, 3.1rem);
+    line-height: 1.08;
+    font-weight: 800;
+    letter-spacing: -.02em;
+    margin: 0 0 16px;
+    text-align: center;
+  }
+  .hero__lead {
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    line-height: 1.6;
+    color: var(--stm-muted);
+    margin: 0 auto 28px;
+    max-width: 620px;
+  }
+  .hero__cta {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  // ---- buttons ----------------------------------------------------
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 24px;
+    border-radius: var(--stm-radius-sm);
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform .15s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:focus-visible { outline: none; box-shadow: var(--stm-ring); }
+
+  .btn--primary {
+    background: var(--stm-accent);
+    color: #1a1205;
+  }
+  .btn--primary:hover { background: var(--stm-accent-600); color: #1a1205; }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--stm-text);
+    border-color: var(--stm-border);
+  }
+  .btn--ghost:hover { border-color: var(--stm-accent); color: var(--stm-accent); }
+
+  // ---- section title ---------------------------------------------
+  .section-title {
+    font-size: clamp(1.4rem, 2.6vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -.01em;
+    margin: 0 0 24px;
+    text-align: left;
+  }
+
+  // ---- product cards grid ----------------------------------------
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 18px;
+    margin-bottom: clamp(32px, 5vw, 56px);
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 22px;
+    min-height: 168px;
+    background: var(--stm-surface);
+    border: 1px solid var(--stm-border);
+    border-radius: var(--stm-radius);
+    color: var(--stm-text);
+    text-decoration: none;
+    transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    background: var(--stm-surface-2);
+    border-color: var(--stm-accent);
+    box-shadow: var(--stm-shadow);
+  }
+  .card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: var(--stm-accent-050);
+    color: var(--stm-accent);
+    font-size: 1.4rem;
+  }
+  .card__title {
+    font-size: 1.12rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-top: auto;
+  }
+  .card__arrow {
+    color: var(--stm-muted);
+    font-size: .9rem;
+    transition: transform .18s ease, color .18s ease;
+  }
+  .card:hover .card__arrow {
+    color: var(--stm-accent);
+    transform: translateX(4px);
+  }
+
+  // ---- editorial text blocks (kept from the original view) --------
+  .prose { max-width: 820px; }
+  .welcome_link {
+    width: 100%;
+    padding: 0 0 18px;
+    font-size: 1.02rem;
+    line-height: 1.65;
+    color: var(--stm-muted);
+
+    a {
+      color: var(--stm-accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+  }
+
+  // "read more" toggle (checkbox hack, restyled)
+  .hide { display: none; }
+  .hide + label ~ div { display: none; }
   .hide + label,
   .hide:checked + label {
-    padding: 0;
+    display: inline-block;
+    margin-top: 6px;
+    padding: 4px 0;
     cursor: pointer;
+    color: var(--stm-accent);
+    font-weight: 600;
   }
-
-  .hide:checked + label {
-    color: red;
-  }
-
-  /* когда чекбокс активен показываем блоки с содержанием  */
-  .hide:checked + label + div {
-    display: block;
-  }
-
-  /* demo контейнер */
-  .demo {
-    float: right;
-    padding-bottom: 20px;
-  }
-//---кнопки Читать далее---
-
-.about_us_text {
-  font-size: 18px;
+  .hide:checked + label { color: var(--stm-accent-600); }
+  .hide:checked + label + div { display: block; }
+  .demo { padding-bottom: 18px; }
 }
 
-.about_picture_welcome
-{
-  width: 362px;
-  height: 272px;
+// =====================================================================
+//  Premium redesign layer — additive polish on top of the base above.
+//  CSS-only, scoped to .welcome-modern (no HTML / i18n changes needed).
+// =====================================================================
+.welcome-modern {
+  position: relative;
+  isolation: isolate;
+
+  // subtle engineering "blueprint" grid behind the content
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, .025) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, .025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(1000px 600px at 50% 0%, #000 30%, transparent 75%);
+    pointer-events: none;
+  }
+
+  // ---- hero: gradient accent + glow -------------------------------
+  .hero__title {
+    background: linear-gradient(180deg, var(--stm-text) 55%, var(--stm-muted));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero__eyebrow {
+    box-shadow: inset 0 0 0 1px rgba(254, 125, 20, .35);
+  }
+  .hero {
+    animation: stm-rise .6s cubic-bezier(.22, 1, .36, 1) both;
+  }
+
+  // ---- buttons: sheen sweep on hover ------------------------------
+  .btn--primary {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 22px rgba(254, 125, 20, .28);
+  }
+  .btn--primary::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, .35) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform .6s ease;
+  }
+  .btn--primary:hover::after { transform: translateX(120%); }
+
+  // ---- cards: gradient hover border + staggered reveal ------------
+  .card {
+    position: relative;
+    animation: stm-rise .5s cubic-bezier(.22, 1, .36, 1) both;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--stm-accent), transparent 45%);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    opacity: 0;
+    transition: opacity .2s ease;
+    pointer-events: none;
+  }
+  .card:hover::before { opacity: 1; }
+
+  // stagger the first several cards
+  .cards .card:nth-child(1) { animation-delay: .05s; }
+  .cards .card:nth-child(2) { animation-delay: .10s; }
+  .cards .card:nth-child(3) { animation-delay: .15s; }
+  .cards .card:nth-child(4) { animation-delay: .20s; }
+  .cards .card:nth-child(5) { animation-delay: .25s; }
+  .cards .card:nth-child(6) { animation-delay: .30s; }
+  .cards .card:nth-child(7) { animation-delay: .35s; }
+  .cards .card:nth-child(8) { animation-delay: .40s; }
+
+  // ---- section titles: accent tick --------------------------------
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::before {
+    content: "";
+    width: 4px;
+    height: 1.1em;
+    border-radius: 4px;
+    background: linear-gradient(180deg, var(--stm-accent), var(--stm-accent-600));
+    flex: none;
+  }
 }
 
-.about_picture_container {
-  text-align: center;
+@keyframes stm-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+
+// =====================================================================
+//  Delivery marquee — infinite moving ticker of cities
+// =====================================================================
+.welcome-modern {
+  $pad: clamp(20px, 4vw, 48px);
+
+  .delivery {
+    margin: clamp(32px, 5vw, 56px) 0;
+  }
+  .delivery__eyebrow { margin-bottom: 18px; }
+  .delivery__title {
+    font-size: clamp(1.6rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    line-height: 1.05;
+    text-transform: uppercase;
+    margin: 0 0 clamp(20px, 3vw, 32px);
+  }
+  .delivery__accent { color: var(--stm-accent); }
+
+  // full-bleed band that breaks out of the card padding
+  .marquee {
+    position: relative;
+    margin-inline: calc(-1 * #{$pad});
+    padding-block: clamp(16px, 2.4vw, 26px);
+    border-top: 1px solid var(--stm-border);
+    border-bottom: 1px solid var(--stm-border);
+    background: var(--stm-surface);
+    overflow: hidden;
+    // fade the edges
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    animation: stm-marquee 32s linear infinite;
+  }
+  .marquee:hover .marquee__track { animation-play-state: paused; }
+
+  .marquee__group {
+    display: flex;
+    align-items: center;
+    gap: clamp(28px, 4vw, 56px);
+    margin: 0;
+    padding: 0 clamp(14px, 2vw, 28px) 0 0;
+    list-style: none;
+    flex: none;
+  }
+  .marquee__item {
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(28px, 4vw, 56px);
+    white-space: nowrap;
+  }
+  .marquee__sep {
+    color: var(--stm-accent);
+    font-weight: 700;
+    font-size: clamp(1.2rem, 2.4vw, 1.9rem);
+  }
+  .marquee__city {
+    font-size: clamp(1.2rem, 2.6vw, 2rem);
+    font-weight: 800;
+    letter-spacing: .01em;
+    text-transform: uppercase;
+    color: var(--stm-text);
+  }
+}
+
+@keyframes stm-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+// respect users who prefer reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .welcome-modern .hero,
+  .welcome-modern .card { animation: none; }
+  .welcome-modern .btn--primary::after { transition: none; }
+  .welcome-modern .marquee__track { animation: none; }
+}
+
+// ---- legacy classes kept for other welcome-related views ------------
+.about_us_text { font-size: 18px; }
+.about_picture_welcome { width: 362px; height: 272px; }
+.about_picture_container { text-align: center; }

@@ -1,5 +1,5 @@
 # Dockerfile.rails
-FROM ruby:3.1.2 as stm_industry_toolbox
+FROM ruby:3.4.8 as stm_industry_toolbox
 
 LABEL maintainer="stm-industry"
 

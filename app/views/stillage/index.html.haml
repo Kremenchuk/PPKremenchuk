@@ -9,12 +9,12 @@
       =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_tytle_page.gif", :class => "tytle_page_img_stillage_stillage_warehouse_stillage_pallet")
 %p
 -if !@constant.on_off_calc_stillage
-  = form_tag(calculate_actual_price_stillage_path, method: :get, id: 'contact_form', name: 'contact_form', remote: true, onsubmit: "return validate_form_stilage();") do
+  = form_tag(calculate_actual_price_stillage_path, method: :get, id: 'contact_form', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
     .container-fluid
-      .text_size{:onclick => "showHide('hiden_element_1','chg_img_1')" }
-        =image_tag("plus.png", :id => "chg_img_1", :alt => "mater", :name => "img_1", :width => "30", :height => "30")
+      .text_size{ data: { action: 'click->product-form#toggle' } }
+        =image_tag("plus.png", :id => "chg_img_1", :alt => "mater", :name => "img_1", :width => "30", :height => "30", data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
         =t('page.all.on_line')
-      #hiden_element_1
+      #hiden_element_1{ data: { 'product-form-target': 'panel' } }
         .row
           .col-md-2
             =label_tag(:q, t('page.all.height'))
@@ -22,35 +22,40 @@
               (500-3500 #{t('page.all.mm')})
             %p{:title => t('page.all.height_title')}
               %input{:maxlength => "4", :name => "hight", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
+                :size => "10", :value => "", :type => "text",
+                data: { 'product-form-target': 'field', label: 'Высота', min: 500, max: 3500 }}
           .col-md-2
             =label_tag(:q, t('page.all.widht'))
             %p
               (400-1150 #{t('page.all.mm')})
             %p{:title => t('page.all.widht_title')}
               %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
+                :size => "10", :value => "", :type => "text",
+                data: { 'product-form-target': 'field', label: 'Ширина', min: 400, max: 1150 }}
           .col-md-2
             =label_tag(:q, t('page.all.depth'))
             %p
               (250-800 #{t('page.all.mm')})
             %p{:title => t('page.all.depth_title')}
               %input{:maxlength => "4", :name => "depth", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
+                :size => "10", :value => "", :type => "text",
+                data: { 'product-form-target': 'field', label: 'Глубина', min: 250, max: 800 }}
           .col-md-2
             =label_tag(:q, t('page.all.num_of_shelves'))
             %p
               (2-15 #{t('page.all.unit')})
             %p{:title => t('page.all.num_of_shelves_title')}
               %input{:maxlength => "2", :name => "num_of_shelves", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
+                :size => "10", :value => "", :type => "text",
+                data: { 'product-form-target': 'field', label: 'Количество полок', min: 2, max: 15 }}
           .col-md-3
             =label_tag(:q, t('page.all.shelf_load'))
             %p
               (20-200 #{t('page.all.kg')})
             %p{:title => t('page.stillage.index.shelf_load_title')}
               %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
+                :size => "10", :value => "", :type => "text",
+                data: { 'product-form-target': 'field', label: 'Нагрузка на полку', min: 20, max: 200 }}
         .row
           .col-md-3
             %p
@@ -132,25 +137,7 @@
                 =raw t('page.stillage.index.table.texn_3')
 
 - if @price_stillage.present?
-  :coffee
-    document.location.hash="#actual_price";
+  :javascript
+    document.location.hash = "#actual_price";
 
 
-:javascript
-  function showHide(element1, element2)
-  {
-    document.querySelector("#" + element1).classList.toggle(element2);
-    const hiden_element = document.getElementById(element1);
-    const obj = document.getElementById(element2);
-    if (obj.src.includes('minus')) {
-      obj.src = '/assets/plus.png';
-      hiden_element.style.display = "none";
-      return
-    }
-    if (obj.src.includes('plus')) {
-      obj.src = '/assets/minus.png';
-      hiden_element.style.display = "block";
-      return
-    }
-
-  }

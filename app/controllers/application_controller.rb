@@ -16,14 +16,23 @@ class ApplicationController < ActionController::Base
   def set_locale
     I18n.locale = params[:new_locale]
     session[:locale] = I18n.locale
-    url_hash = Rails.application.routes.recognize_path URI(request.referer).path
-    url_hash[:locale] = params[:new_locale]
-    url_hash = url_hash.merge(Rack::Utils.parse_query URI(request.referer).query)
     if current_user.present?
       current_user.language = params[:new_locale]
       current_user.save!
     end
-    redirect_to url_hash
+
+    referer = request.referer
+    if referer.present?
+      uri = URI(referer)
+      url_hash = Rails.application.routes.recognize_path(uri.path)
+      url_hash[:locale] = params[:new_locale]
+      url_hash.merge!(Rack::Utils.parse_query(uri.query)) if uri.query.present?
+      redirect_to url_hash
+    else
+      redirect_to root_path
+    end
+  rescue ActionController::RoutingError, URI::InvalidURIError
+    redirect_to root_path
   end
 
   def default_url_options

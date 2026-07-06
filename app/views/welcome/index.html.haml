@@ -1,158 +1,190 @@
-- if @admin_in
-  - @visible_const = "display: block;"
-- else
-  - @visible_const = "display: none;"
-  .container-fluid
-    .row
-      .col-md-12
-        =image_tag("design/all_parts/localization/stillage_base_img_#{I18n.locale}.gif", class: "basis")
+.home
+  -# ░░ HERO ░░
+  %section.hero
+    .hero__bg{"aria-hidden" => "true"}
+      = image_tag "design/all_parts/background.jpg", alt: "", "data-site-target" => "heroImg"
+      .hero__veil
+      .hero__grid
+    .hero__glow{"aria-hidden" => "true"}
+    %span.hero__side{"aria-hidden" => "true"} EST · 2002 · KHARKIV · UA
+    .wrap.hero__in
+      %p.eyebrow.reveal
+        %span.eyebrow__tick
+        = t('page.home.hero.eyebrow')
+      %h1.hero__title
+        %span.reveal{:style => "--d:.05s"}= t('page.home.hero.title_1')
+        %span.reveal{:style => "--d:.13s"}= t('page.home.hero.title_2')
+        %span.reveal.hero__title--accent{:style => "--d:.21s"}= t('page.home.hero.title_accent')
+      %p.hero__lead.reveal{:style => "--d:.3s"}= t('page.home.hero.lead')
+      .hero__actions.reveal{:style => "--d:.4s"}
+        = link_to "#{root_path}#products", class: 'btn btn--lg' do
+          = t('page.home.hero.cta_primary')
+          %i.arr →
+        = link_to t('page.home.hero.cta_secondary'), "#{root_path}#why", class: 'btn btn--ghost btn--lg'
+      %ul.hero__chips.reveal{:style => "--d:.5s"}
+        - Array(t('page.home.hero.chips')).each do |chip|
+          %li= chip
 
-#block_id{:style => "#{@visible_const}"}
-  .container-fluid
-    .row
-      .col-md-12
-        =link_to image_tag("design/all_parts/localization/stillage_base_img_#{I18n.locale}.gif", class: "basis"), edit_constant_path(1)
+  -# ░░ STATS ░░
+  %section.stats#stats
+    .wrap.stats__grid
+      - Array(t('page.home.stats')).each_with_index do |stat, i|
+        .stat.reveal{:style => "--d:#{i * 0.08}s"}
+          .stat__num
+            %span= stat[:num]
+            - if stat[:suffix].present?
+              %i= stat[:suffix]
+          .stat__label= stat[:label]
 
+  -# ░░ PRODUCTS ░░
+  %section.section.products#products
+    .wrap
+      %header.sec-head
+        %p.eyebrow
+          %span.eyebrow__tick
+          = t('page.home.products.eyebrow')
+        %h2.sec-title
+          = t('page.home.products.title_pre')
+          %em= t('page.home.products.title_accent')
+        %p.sec-sub= t('page.home.products.sub')
+      .cards
+        - welcome_products.each_with_index do |p, i|
+          - idx = format('%02d', i + 1)
+          - if p[:image]
+            = link_to p[:path], class: 'card reveal', style: "--d:#{i * 0.06}s" do
+              .card__media= image_tag p[:image], alt: p[:title], loading: 'lazy'
+              .card__body
+                %span.card__idx= idx
+                %h3= p[:title]
+                %p= t("page.home.products_items.#{p[:key]}.desc")
+                .card__foot
+                  %span.spec= t("page.home.products_items.#{p[:key]}.spec")
+                  %i.arr →
+          - else
+            = link_to p[:path], class: 'card card--feature reveal', style: "--d:#{i * 0.06}s" do
+              %span.card__icon
+                %i.fa{:class => p[:icon]}
+              .card__body
+                %span.card__idx= idx
+                %h3= p[:title]
+                %p= t("page.home.products_items.#{p[:key]}.desc")
+                .card__foot
+                  %span.spec= t("page.home.products_items.#{p[:key]}.spec")
+                  %i.arr →
 
-.col-md-12.my_product
-  .no-gutter
-    .col-md-12
-      .col-md-4.welcome_tb_padding.welcome_1_tb
-        = link_to image_tag("design/all_parts/welcome/stillage_arxivniy_bitovoy_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_index_path
-      .col-md-4.welcome_tb_padding.welcome_2_tb
-        = link_to image_tag("design/all_parts/welcome/stillage_warehouse_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_warehouse_index_path
-      .col-md-4.welcome_tb_padding.welcome_3_tb
-        =link_to image_tag("design/all_parts/welcome/stillage_pallet_#{I18n.locale}.gif", class: "products_buttons_welcome"), stillage_pallet_index_path
-    .col-md-12
-      .col-md-4.welcome_tb_padding.welcome_4_tb
-        = link_to image_tag("design/all_parts/welcome/troleys_#{I18n.locale}.gif", class: "products_buttons_welcome"), trolley_index_path
-      .col-md-4.welcome_tb_padding.welcome_5_tb
-        = link_to image_tag("design/all_parts/welcome/stillage_mezonin_#{I18n.locale}.gif", class: "products_buttons_welcome"), mezzanine_index_path
-      .col-md-4.welcome_tb_padding.welcome_6_tb
-        = link_to image_tag("design/all_parts/welcome/gallery_#{I18n.locale}.gif", class: "products_buttons_welcome"), gallery_index_path
+  -# ░░ WHY / PRODUCTION ░░
+  %section.section.why#why
+    .why__rule{"aria-hidden" => "true"}
+    .wrap
+      %header.sec-head.sec-head--split
+        %div
+          %p.eyebrow
+            %span.eyebrow__tick
+            = t('page.home.why.eyebrow')
+          %h2.sec-title
+            = t('page.home.why.title_pre')
+            %em= t('page.home.why.title_accent')
+        %p.sec-sub= t('page.home.why.sub')
+      .feats
+        - feat_icons = %w[fa-industry fa-spray-can fa-shield-alt fa-ruler-combined fa-truck fa-tools]
+        - Array(t('page.home.why.feats')).each_with_index do |feat, i|
+          .feat.reveal{:style => "--d:#{i * 0.06}s"}
+            %span.feat__ico
+              %i.fa{:class => feat_icons[i] || 'fa-check'}
+            %h4= feat[:title]
+            %p= feat[:text]
 
+  -# ░░ SHOWCASE ░░
+  %section.showcase#gallery
+    .showcase__media
+      = image_tag "design/all_parts/background.jpg", alt: t('page.home.showcase.title_accent'), loading: 'lazy'
+      .showcase__shade
+    .wrap.showcase__in
+      .showcase__card.reveal
+        %p.eyebrow
+          %span.eyebrow__tick
+          = t('page.home.showcase.eyebrow')
+        %h2.sec-title
+          = t('page.home.showcase.title_pre')
+          %br
+          %em= t('page.home.showcase.title_accent')
+        %p= t('page.home.showcase.text')
+        .showcase__metrics
+          - Array(t('page.home.showcase.metrics')).each do |m|
+            %div
+              %b= m[:value]
+              %span= m[:label]
+        = link_to gallery_index_path, class: 'btn btn--lg' do
+          = t('page.home.showcase.cta')
+          %i.arr →
 
-.col-md-12.block_without_reduction
-  %h1
-    = t('page.welcome.h3_met_stel')
-  %p.welcome_link
-    = t('page.welcome.text_met_stel_anons')
-    = t('page.welcome.text_met_stel_block')
-.col-md-12.block_without_reduction
-  %h2
-    = t('page.welcome.h3_we_create')
-  %p.welcome_link
-    = link_to t('page.welcome.link_text_we_create_arxiv'), stillage_index_path
-    = t('page.welcome.text_we_create_arxiv_anons')
-    = t('page.welcome.text_we_create_arxiv_block')
-  %p.welcome_link
-    = link_to t('page.welcome.link_text_we_create_wareh'), stillage_warehouse_index_path
-    = t('page.welcome.text_we_create_wareh_anons')
-    = t('page.welcome.text_we_create_wareh_block')
-  %p.welcome_link
-    = link_to t('page.welcome.link_text_we_create_pallet'), stillage_pallet_index_path
-    = t('page.welcome.text_we_create_pallet_anons')
-    = t('page.welcome.text_we_create_pallet_block')
-  %p.welcome_link
-    = link_to t('page.welcome.link_text_we_create_troley'), trolley_index_path
-    = t('page.welcome.text_we_create_troley_anons')
-    = t('page.welcome.text_we_create_troley_block')
-  %p.welcome_link
-    = link_to t('page.welcome.link_text_we_create_mez'), mezzanine_index_path
-    = t('page.welcome.text_we_create_mez_anons')
-    = t('page.welcome.text_we_create_mez_block')
-  %p.welcome_link
-    = link_to t('page.welcome.link_text_we_create_plat'), platform_index_path
-    = t('page.welcome.text_we_create_plat_anons')
-    = t('page.welcome.text_we_create_plat_block')
-  %p.welcome_link
-    = link_to t('page.welcome.link_text_we_create_loft'), lofts_path
-    = t('page.welcome.text_we_create_loft_anons')
-    = t('page.welcome.text_we_create_loft_block')
+  -# ░░ DELIVERY MARQUEE ░░
+  %section.delivery#delivery
+    .wrap.delivery__head
+      %p.eyebrow.eyebrow--center
+        %span.eyebrow__tick
+        = t('page.home.delivery_eyebrow')
+      %h2.sec-title.sec-title--center
+        = t('page.welcome.delivery_title_pre')
+        %em= t('page.welcome.delivery_title_accent')
+    .marquee{"aria-hidden" => "true"}
+      .marquee__track
+        - 2.times do
+          - Array(t('page.welcome.delivery_cities')).each do |city|
+            %span= city
+            %span.dot /
 
+  -# ░░ SEO / EDITORIAL (kept for search engines & internal linking) ░░
+  %section.section.prose-seo
+    .wrap
+      %header.sec-head.sec-head--center
+        %p.eyebrow
+          %span.eyebrow__tick
+          = t('page.home.seo_eyebrow')
+        %h2.sec-title.sec-title--center= t('page.welcome.h3_met_stel')
+      .prose.prose--center
+        %p= "#{t('page.welcome.text_met_stel_anons')} #{t('page.welcome.text_met_stel_block')}"
+        %h3= t('page.welcome.h3_we_create')
+        - welcome_reductions.each do |id, link_key, path, anons_key, _block_key|
+          %p
+            = link_to t("page.welcome.#{link_key}"), path
+            = t("page.welcome.#{anons_key}")
 
-.col-md-12.block_with_reduction
-  %h1
-    = t('page.welcome.h3_met_stel')
-  .welcome_link
-    = t('page.welcome.text_met_stel_anons')
-    .demo
-      %input#hd-1.hide{:type => "checkbox"}/
-      %label{:for => "hd-1"}
-        = t('page.all.read_next')
-      %div
-        = t('page.welcome.text_met_stel_block')
-
-.col-md-12.block_with_reduction
-  %h2
-    = t('page.welcome.h3_we_create')
-  .welcome_link
-    = link_to t('page.welcome.link_text_we_create_arxiv'), stillage_index_path
-    = t('page.welcome.text_we_create_arxiv_anons')
-    .demo
-      %input#hd-2.hide{:type => "checkbox"}
-      %label{:for => "hd-2"}
-        = t('page.all.read_next')
-      %div
-        = t('page.welcome.text_we_create_arxiv_block')
-
-  .welcome_link
-    = link_to t('page.welcome.link_text_we_create_wareh'), stillage_warehouse_index_path
-    = t('page.welcome.text_we_create_wareh_anons')
-    .demo
-      %input#hd-3.hide{:type => "checkbox"}
-      %label{:for => "hd-3"}
-        = t('page.all.read_next')
-      %div
-        = t('page.welcome.text_we_create_wareh_block')
-
-  .welcome_link
-    = link_to t('page.welcome.link_text_we_create_pallet'), stillage_pallet_index_path
-    = t('page.welcome.text_we_create_pallet_anons')
-    .demo
-      %input#hd-4.hide{:type => "checkbox"}
-      %label{:for => "hd-4"}
-        = t('page.all.read_next')
-      %div
-        = t('page.welcome.text_we_create_pallet_block')
-
-  .welcome_link
-    = link_to t('page.welcome.link_text_we_create_troley'), trolley_index_path
-    = t('page.welcome.text_we_create_troley_anons')
-    .demo
-      %input#hd-5.hide{:type => "checkbox"}
-      %label{:for => "hd-5"}
-        = t('page.all.read_next')
-      %div
-        = t('page.welcome.text_we_create_troley_block')
-
-  .welcome_link
-    = link_to t('page.welcome.link_text_we_create_mez'), mezzanine_index_path
-    = t('page.welcome.text_we_create_mez_anons')
-    .demo
-      %input#hd-6.hide{:type => "checkbox"}
-      %label{:for => "hd-6"}
-        = t('page.all.read_next')
-      %div
-        = t('page.welcome.text_we_create_mez_block')
-
-  .welcome_link
-    = link_to t('page.welcome.link_text_we_create_plat'), platform_index_path
-    = t('page.welcome.text_we_create_plat_anons')
-    .demo
-      %input#hd-7.hide{:type => "checkbox"}
-      %label{:for => "hd-7"}
-        = t('page.all.read_next')
-      %div
-        = t('page.welcome.text_we_create_plat_block')
-
-  .welcome_link
-    = link_to t('page.welcome.link_text_we_create_loft'), lofts_path
-    = t('page.welcome.text_we_create_loft_anons')
-    .demo
-      %input#hd-8.hide{:type => "checkbox"}
-      %label{:for => "hd-8"}
-        = t('page.all.read_next')
-      %div
-        = t('page.welcome.text_we_create_loft_block')
-
+  -# ░░ CONTACT / CTA ░░
+  %section.section.contact#contact
+    .contact__glow{"aria-hidden" => "true"}
+    .wrap.contact__grid
+      .contact__left.reveal
+        %p.eyebrow
+          %span.eyebrow__tick
+          = t('page.home.contact.eyebrow')
+        %h2.sec-title
+          = t('page.home.contact.title_pre')
+          %br
+          %em= t('page.home.contact.title_accent')
+        %p.contact__lead= t('page.home.contact.lead')
+        %ul.contact__list
+          %li
+            %span= t('page.home.contact.email_label')
+            = link_to t('page.home.topbar.email'), "mailto:#{t('page.home.topbar.email')}"
+          %li
+            %span= t('page.home.contact.address_label')
+            = link_to t('page.home.contact.address_value'), contact_index_path
+          %li
+            %span= t('page.home.contact.company_label')
+            %span= t('page.home.contact.company_value')
+      %form.form.reveal{:style => "--d:.1s", "data-action" => "submit->site#sendMail"}
+        .form__row
+          %label
+            = t('page.home.contact.form.name')
+            %input{:type => "text", :name => "name", :required => true, :placeholder => t('page.home.contact.form.name_ph')}
+          %label
+            = t('page.home.contact.form.phone')
+            %input{:type => "tel", :name => "phone", :required => true, :placeholder => t('page.home.contact.form.phone_ph')}
+        %label
+          = t('page.home.contact.form.msg')
+          %textarea{:name => "msg", :rows => "3", :placeholder => t('page.home.contact.form.msg_ph')}
+        %button.btn.btn--lg.btn--block{:type => "submit"}
+          = t('page.home.contact.form.submit')
+          %i.arr →
+        %p.form__note{"data-site-target" => "note", :hidden => true}= t('page.home.contact.form.note')
