@@ -11,12 +11,14 @@ export default class extends Controller {
 
     this.initHeaderShadow()
     this.initReveal()
+    this.initAnchorScroll()
     this.closeNavOnClick()
   }
 
   disconnect() {
     if (this._onScroll) window.removeEventListener("scroll", this._onScroll)
     if (this._revealObserver) this._revealObserver.disconnect()
+    if (this._onAnchorClick) this.element.removeEventListener("click", this._onAnchorClick)
   }
 
   // ---- mobile nav ----------------------------------------------------
@@ -47,6 +49,44 @@ export default class extends Controller {
     window.addEventListener("scroll", this._onScroll, { passive: true })
   }
 
+  // ---- in-page anchor scrolling -------------------------------------
+  // Header/footer links point at "<root>#section" so they also work from
+  // sub-pages. When the target section exists on the *current* page we handle
+  // the click ourselves: this avoids a full page reload (which would jump to
+  // the anchor before lazy images/reveal settle and land mid-section) and
+  // performs a reliable smooth scroll that respects `scroll-margin-top`.
+  initAnchorScroll() {
+    this._onAnchorClick = (event) => {
+      const link = event.target.closest('a[href*="#"]')
+      if (!link) return
+      const url = new URL(link.href, window.location.href)
+      if (url.pathname !== window.location.pathname && url.hash === "") return
+      const id = url.hash.slice(1)
+      if (!id) return
+      const target = document.getElementById(id)
+      if (!target) return // not on this page — let the browser navigate
+
+      event.preventDefault()
+      target.scrollIntoView({
+        behavior: this.reduceMotion ? "auto" : "smooth",
+        block: "start"
+      })
+      history.replaceState(null, "", `#${id}`)
+    }
+    this.element.addEventListener("click", this._onAnchorClick)
+
+    // Handle a hash present on initial load (arriving from another page):
+    // wait a tick so images/fonts lay out, then align the section correctly.
+    if (window.location.hash.length > 1) {
+      const el = document.getElementById(window.location.hash.slice(1))
+      if (el) {
+        window.requestAnimationFrame(() =>
+          setTimeout(() => el.scrollIntoView({ behavior: "auto", block: "start" }), 60)
+        )
+      }
+    }
+  }
+
   // ---- reveal on scroll ---------------------------------------------
   initReveal() {
     const reveals = this.element.querySelectorAll(".reveal")
@@ -67,26 +107,49 @@ export default class extends Controller {
 
 
 
-  // ---- contact form → mail client -----------------------------------
+  // ---- contact form → sends email server-side (SendEmail mailer) ----
   sendMail(event) {
     event.preventDefault()
     const form = event.target
     const data = new FormData(form)
-    const name = (data.get("name") || "").toString().trim()
-    const phone = (data.get("phone") || "").toString().trim()
-    const msg = (data.get("msg") || "").toString().trim()
 
-    const subject = `Заявка з сайту STM Industry${name ? ` — ${name}` : ""}`
-    const body = [
-      name ? `Ім'я: ${name}` : null,
-      phone ? `Телефон: ${phone}` : null,
-      msg ? `\n${msg}` : null
-    ].filter(Boolean).join("\n")
+    const submitBtn = form.querySelector('[type="submit"]')
+    if (submitBtn) submitBtn.disabled = true
 
-    window.location.href =
-      `mailto:stm_industry@ukr.net?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    const token =
+      document.querySelector('meta[name="csrf-token"]')?.content || ""
 
-    if (this.hasNoteTarget) this.noteTarget.hidden = false
+    fetch(form.action, {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": token,
+        "Accept": "application/json",
+        "X-Requested-With": "XMLHttpRequest"
+      },
+      body: data
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("request failed")
+        return res.json()
+      })
+      .then(() => {
+        form.reset()
+        if (this.hasNoteTarget) {
+          this.noteTarget.classList.remove("form__note--error")
+          this.noteTarget.hidden = false
+        }
+      })
+      .catch(() => {
+        if (this.hasNoteTarget) {
+          this.noteTarget.textContent = this.noteTarget.dataset.errorText ||
+            "Не вдалося надіслати заявку. Спробуйте пізніше або зателефонуйте нам."
+          this.noteTarget.classList.add("form__note--error")
+          this.noteTarget.hidden = false
+        }
+      })
+      .finally(() => {
+        if (submitBtn) submitBtn.disabled = false
+      })
   }
 }
 

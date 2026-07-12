@@ -38,6 +38,8 @@
           %span.topbar__sep{"aria-hidden" => "true"}
           %span.topbar__auth
             - if current_user
+              - if current_user.admin?
+                = link_to t('page.layout.admin_constants'), edit_constant_path(1), class: 'topbar__admin'
               = link_to current_user.email, edit_user_registration_path
               = button_to t('page.layout.sign_out'), destroy_user_session_path, method: :delete
             - else
@@ -52,9 +54,9 @@
             = image_tag "design/all_parts/Header/stm_industry_white_logo_350.png", class: 'brand__logo', alt: 'STM Industry'
           %nav.nav{"data-site-target" => "nav"}
             = link_to t('page.home.nav.products'),   "#{root_path}#products"
-            = link_to t('page.home.nav.production'), "#{root_path}#why"
+            = link_to t('page.home.nav.production'), "#{root_path}#gallery"
             = link_to t('page.home.nav.delivery'),   "#{root_path}#delivery"
-            = link_to t('page.home.nav.gallery'),    "#{root_path}#gallery"
+            = link_to t('page.home.nav.gallery'),    gallery_index_path
             = link_to t('page.home.nav.contacts'),   "#{root_path}#contact"
           .header__cta
             = link_to t('page.home.cta'), "#{root_path}#contact", class: 'btn btn--sm'
@@ -95,14 +97,14 @@
           .footer__col
             %h5= t('page.home.footer.contacts_title')
             = link_to t('page.home.topbar.email'), "mailto:#{t('page.home.topbar.email')}"
-            = link_to t('page.home.contact.address_value'), contact_index_path
+            = link_to t('page.home.contact.address_value'), "#{root_path}#contact"
             = link_to 'Sitemap', sitemap_path
         .wrap.footer__bottom
           %span
             ©
             %span#year= Date.current.year
             = t('page.home.footer.rights')
-          = link_to t('page.contacts.index.map'), "#{contact_index_url}#contact_map", class: 'footer__made'
+          = link_to t('page.contacts.index.map'), 'https://www.google.com/maps/search/?api=1&query=49.9692534%2C36.2371595', target: '_blank', rel: 'noopener', class: 'footer__made'
 
 
 / Global site tag (gtag.js) - Google Analytics

@@ -6,7 +6,7 @@ en:
 
   errors:
     messages:
-      not_saved: 'Акаунт не створено!'
+      not_saved: 'Account was not created!'
 
   activerecord:
     errors:
@@ -14,135 +14,137 @@ en:
         user:
           attributes:
             email:
-              taken: 'Користувач з таким email вже існує'
+              taken: 'A user with this email already exists'
 
 
   languages:
-    en: 'languages'
-    ru: 'Язык'
-    uk: 'Мова'
+    en: 'Language'
+    ru: 'Language'
+    uk: 'Language'
 
-  to_root:     'На головну'
+  to_root:     'Home'
 
 
   page:
     meta_tags:
-      welcome:     'Стелажі від виробника. Архівні, складські, палетні стелажі. Мезоніни і платформи. Індивідуальні рішення. Самі низькі ціни.'
-      stillage:           'Архівні/битові стелажі від виробника. Актуальна ціна. Онлайн розрахунок.'
-      stillage_warehouse: 'Стелажі для складу, магазину. Актуальна ціна. Онлайн розрахунок.'
-      stillage_pallet:    'Палетні стелажі. Актуальна ціна. Онлайн розрахунок.'
-      trolley:            'Візки для складу. Актуальна ціна. Онлайн розрахунок.'
-      mezzanine:          'Мезоніни. Індивідуальні мезоніни під Ваш склад.'
-      galleries:          'Фото наших виробів. Стелажі, полички, складські стелажі, стелажі під шини, візки, мезоніни і платформи'
-      contact:            'Контакти ношої компанії'
-      news:               'Актуальні новини нашої компанії. Історія нашої компанії'
-      platforms:          'Платформи'
-      lofts:              'Дизайнерські стелажі (меблі Loft)'
-      article:            'Корисні статі по стелажам і стелажним системам'
+      welcome:     'Racking from the manufacturer. Archive, warehouse and pallet racking. Mezzanines and platforms. Custom solutions. Lowest prices.'
+      stillage:           'Archive/household racking from the manufacturer. Up-to-date pricing. Online calculation.'
+      stillage_warehouse: 'Racking for warehouses and shops. Up-to-date pricing. Online calculation.'
+      stillage_pallet:    'Pallet racking. Up-to-date pricing. Online calculation.'
+      trolley:            'Warehouse trolleys. Up-to-date pricing. Online calculation.'
+      mezzanine:          'Mezzanines. Custom mezzanines for your warehouse.'
+      galleries:          'Photos of our products. Racking, shelving, warehouse racking, tyre racking, trolleys, mezzanines and platforms'
+      contact:            'Contacts of our company'
+      news:               'Latest news of our company. The history of our company'
+      platforms:          'Platforms'
+      lofts:              'Designer racking (Loft furniture)'
+      article:            'Useful articles about racking and racking systems'
 
     all:
-      stillage:   'Стелаж'
-      read_next: 'Читати далі'
-      footer: 'Краще стелажне обладнання тільки у нас. Виготовляємо будь-який типорозмір стелажів і візків. Фарбування деталей стелажів якісними порошковими фарбами.
-      Найкраще співвідношення ціна / якість на ринку!. Швидке виготовлення і доставка. Доставка в Київ, Львів, Харків, Дніпро, Одеса, Вінниця, Суми, Полтава, Тернопіль, Запоріжжя та інщі міста України.
-      Стислі терміни виробництва. Виїзд на заміри та монтаж стелажних систем.'
-      print:       'Друкувати'
-      on_line:     'On-line розрахунок стелажа'
-      on_line_off: 'On-line розрахунок тимчасово вимкнено'
-      mm:          'мм'
-      unit:        'шт'
-      kg:          'кг'
-      uah:         'грн'
-      max_load:     'Максимальне навантаження на одну полицю'
-      weight:       'Вага'
-      price:        'Ціна'
-      lenght:       'Довжина'
-      height:               'Висота'
-      height_title:         'Висота вашого стелажа в міліметрах'
-      widht:                'Ширина'
-      widht_title:          'Ширина полички в міліметрах'
-      depth:                'Глибина'
-      depth_title:          'Глибина полички в міліметрах'
-      num_of_shelves:       'Кількість поличок'
-      num_of_shelves_title: 'Кількість поличок на один стелаж'
-      num_of_ur:            'Кількість рівнів'
-      num_of_ur_title:      'Кулькість рівнів на одну секцію стелажа'
-      shelf_load:           'Навантаження на поличку'
-      ur_load:              'Навантаження на рівень'
-      osinkovaniy:          'Оцинкований'
-      okrash:               'Фарбований'
-      calculate_stillage:   'Розрахувати стелаж'
-      rama:                 'Рама'
-      traversa:             'Траверса'
-      traversa_lit:         'траверса'
-      2_ram:           '2 рами'
-      1_ram:           '1 рама'
-      uroven:          'рівень'
-      urovnya:         'рівня'
-      urovney:         'рівнів'
-      uroven_hran:     'Рівень зберігання'
-      osn_sec:         'Основна секція'
-      osn_sec_rash:    'Основна секція (схематичне зобаження)'
-      pris_sec:        'Приставна секція'
-      pris_sec_rash:   'Приставна секція (схематичне зобаження)'
+      stillage:   'Rack'
+      home:       'Home'
+      read_next: 'Read more'
+      footer: 'The best racking equipment is only here. We manufacture any size of racking and trolleys. Rack parts are painted with high-quality powder coatings.
+      The best price/quality ratio on the market! Fast manufacturing and delivery. Delivery to Kyiv, Lviv, Kharkiv, Dnipro, Odesa, Vinnytsia, Sumy, Poltava, Ternopil, Zaporizhzhia and other cities of Ukraine.
+      Short production lead times. On-site measurement and installation of racking systems.'
+      print:       'Print'
+      on_line:     'On-line rack calculation'
+      on_line_off: 'On-line calculation is temporarily disabled'
+      mm:          'mm'
+      unit:        'pcs'
+      kg:          'kg'
+      uah:         'UAH'
+      max_load:     'Maximum load per shelf'
+      weight:       'Weight'
+      price:        'Price'
+      lenght:       'Length'
+      height:               'Height'
+      height_title:         'The height of your rack in millimetres'
+      widht:                'Width'
+      widht_title:          'The width of the shelf in millimetres'
+      depth:                'Depth'
+      depth_title:          'The depth of the shelf in millimetres'
+      num_of_shelves:       'Number of shelves'
+      num_of_shelves_title: 'Number of shelves per rack'
+      num_of_ur:            'Number of levels'
+      num_of_ur_title:      'Number of levels per rack section'
+      shelf_load:           'Load per shelf'
+      ur_load:              'Load per level'
+      osinkovaniy:          'Galvanised'
+      okrash:               'Painted'
+      calculate_stillage:   'Calculate rack'
+      rama:                 'Frame'
+      traversa:             'Beam'
+      traversa_lit:         'beam'
+      2_ram:           '2 frames'
+      1_ram:           '1 frame'
+      uroven:          'level'
+      urovnya:         'levels'
+      urovney:         'levels'
+      uroven_hran:     'Storage level'
+      osn_sec:         'Main section'
+      osn_sec_rash:    'Main section (schematic view)'
+      pris_sec:        'Add-on section'
+      pris_sec_rash:   'Add-on section (schematic view)'
       table:
-        header_photo: 'Фото'
-        header_name:  'Назва'
-        header_texn:  'Технічні характеристики'
-      triomet:            'Тріметал Сервіс'
+        header_photo: 'Photo'
+        header_name:  'Name'
+        header_texn:  'Technical specifications'
+      triomet:            'Trimetal Service'
 
     layout:
-      title:          'Стелажі від виробника (online розрахунок)'
-      pp:             'ПП'
-      kremenchuk:     'КРЕМЕНЧУК'
-      sign_out:       'Вихід'
-      sign_in:        'Вхід'
-      registration:   'Реєстрація'
-      production:     'ПРОДУКЦІЯ'
-      contact:        'КОНТАКТИ'
-      company:        'ПРО КОМПАНІЮ'
-      site:           'Сайт: Кременчук Артем'
-      design:         'Дизайн: Чернишов Георгій'
+      title:          'Racking from the manufacturer (online calculation)'
+      pp:             'PE'
+      kremenchuk:     'KREMENCHUK'
+      sign_out:       'Sign out'
+      sign_in:        'Sign in'
+      registration:   'Register'
+      admin_constants: 'Admin panel'
+      production:     'PRODUCTS'
+      contact:        'CONTACTS'
+      company:        'ABOUT THE COMPANY'
+      site:           'Site: Kremenchuk Artem'
+      design:         'Design: Chernyshov Heorhii'
       drop_menu:
-        news:         'Новини'
-        about_us:     'Про компанію'
-        contact:      'Контакти'
-        stillage:     'Стелажі архівні (on-line розрахунок)'
-        warehouse:    'Стелажі складські (on-line розрахунок)'
-        pallet:       'Стелажі палетні (on-line розрахунок)'
-        trolleys:     'Візки вантажні (on-line розрахунок)'
-        mezzanine:    'Мезонінні стелажі'
-        gallery:      'Галерея'
-        platform:     'Платформи'
-        loft:         'Дизайнерські стелажі (меблі Loft)'
-        article:      'Статті'
+        news:         'News'
+        about_us:     'About the company'
+        contact:      'Contacts'
+        stillage:     'Archive racking (on-line calculation)'
+        warehouse:    'Warehouse racking (on-line calculation)'
+        pallet:       'Pallet racking (on-line calculation)'
+        trolleys:     'Load trolleys (on-line calculation)'
+        mezzanine:    'Mezzanine racking'
+        gallery:      'Gallery'
+        platform:     'Platforms'
+        loft:         'Designer racking (Loft furniture)'
+        article:      'Articles'
 
     welcome:
-      about_as:           'Про нас'
-      about_as_text:      "Наша компанія починає свою історію з 2002 року з продажу італійських стелажів. Починаючи як звичайні дилери, ми пройшли шлях становлення виробництва і тепер забезпечуємо
-      повний цикл виготовлення стелажів. Будучи сімейною компанією, ми гарантуємо нашим клієнтам незмінну якість продукції протягом довгих років. З 2002 по 2019 рік Ви знали нас як ПП Кременчук,
-      тепер же ми провели ребрендинг і продовжимо випускати якісні та недорогі стелажні системи під брендом STM Industry.
+      about_as:           'About us'
+      about_as_text:      "Our company traces its history back to 2002, starting with the sale of Italian racking. Beginning as ordinary dealers, we went through the process of setting up our own production and now provide
+      a full manufacturing cycle for racking. As a family company, we guarantee our clients consistent product quality over many years. From 2002 to 2019 you knew us as PE Kremenchuk,
+      and now we have rebranded and continue to produce quality, affordable racking systems under the STM Industry brand.
 
-      <p>STM Industry - є виробником архівних (поличкових), палетних, складських стелажів, платформених візків, мезонінів і платформ. Ми здійснюємо повний
-      комплекс послуг з проектування, постачання і монтажу складських, промислових і побутових стелажних систем. Великий досвід наших фахівців допомагає нам виготовляти стелажні конструкції
-      будь-якої складності, знаходити оптимальні рішення для зберігання будь-якого товару, як з застосуванням вантажної техніки так і з ручним складуванням. Основною перевагою нашої компанії є можливість
-      виготовляти будь-які розміри стелажних системи. Всі конструкції підбираються і розраховуються індивідуально, для кожного клієнта, з урахуванням всіх норм протипожежних і будівельних ДСТУ.
-      STM Industry надає вам краще співвідношення ціни і якості на ринку стелажів і стелажних систем.</p>
+      <p>STM Industry is a manufacturer of archive (shelf), pallet and warehouse racking, platform trolleys, mezzanines and platforms. We provide a full
+      range of services for the design, supply and installation of warehouse, industrial and household racking systems. The extensive experience of our specialists helps us manufacture racking structures
+      of any complexity, and find optimal solutions for storing any goods, both with the use of handling equipment and with manual stacking. The main advantage of our company is the ability
+      to manufacture any size of racking system. All structures are selected and calculated individually for each client, taking into account all fire-safety and building DSTU standards.
+      STM Industry offers you the best price/quality ratio on the market for racking and racking systems.</p>
 
-      <p> Великий верстатний парк дозволяє нам виготовляти не тільки стелажні системи, а й інші індивідуальні і масові вироби. Прокатні стани дозволяють виробляти складні профіля товщиною до 2 мм.
-      Ми можемо випускати столи, навіси, маршові сходи, малі архітектурні форми, каркаси будь-якої складності, ворота. Повний цикл робіт від проектування до монтажу. Виготовляємо вироби з нержавіючої
-      стали будь-яких марок (AISI 200, AISI 304, AISI 316, AISI 430). Також пропонуємо послуги по механічній обробці металу - токарні, фрезерні роботи. Термічна обробка заготовок. Згибання прутка з
-      нагріванням. Виготовлення штампів для холодної штамповки металу.</p>"
+      <p>A large machine park allows us to manufacture not only racking systems but also other custom and mass-produced items. Rolling mills allow us to produce complex profiles up to 2 mm thick.
+      We can produce tables, canopies, flight stairs, small architectural forms, frames of any complexity, and gates. A full cycle of work from design to installation. We manufacture products from stainless
+      steel of any grade (AISI 200, AISI 304, AISI 316, AISI 430). We also offer metal machining services — turning and milling. Heat treatment of blanks. Bending of rod with
+      heating. Manufacture of dies for cold stamping of metal.</p>"
 
-      stillage:           'Стелажі архівні'
-      stillage_warehouse: 'Стелажі складські'
-      stillage_pallet:    'Стелажі палетні'
-      troles:             'Візки вантажні'
-      stillage_mezonin:   'Мезонінні стелажі'
-      gallery:            'Галерея'
-      platform:           'Платформи'
-      loft:               'Дизайнерські стелажі'
-      welcome_text:       'Виготовляємо будь-які види стелажів. По найкращім цінам і найліпшої якості. Доставка в будь-яку точку України.'
+      stillage:           'Archive racking'
+      stillage_warehouse: 'Warehouse racking'
+      stillage_pallet:    'Pallet racking'
+      troles:             'Load trolleys'
+      stillage_mezonin:   'Mezzanine racking'
+      gallery:            'Gallery'
+      platform:           'Platforms'
+      loft:               'Designer racking'
+      welcome_text:       'We manufacture all kinds of racking. At the best prices and the best quality. Delivery to anywhere in Ukraine.'
 
       delivery_eyebrow:      'Logistics'
       delivery_title_pre:    'We deliver across'
@@ -161,55 +163,55 @@ en:
         - Cherkasy
         - Mykolaiv
 
-      h3_met_stel:        'Металічні стелажі від українського виробника'
-      text_met_stel_anons:      'Наша фірма займається проектуванням та виготовленням стелажного обладнання з 2002 року. Накопичений нами досвід дозволяє нам виконувати проекти будь-якої складності за найнижчими цінами на ринку.
-      Ми можемо виготовити практично будь-які розміри стелажів, мезонінів і платформ, з огляду на всі норми протипожежних і будівельних ДСТУ. '
-      text_met_stel_block: 'Також ми виробляємо візки для транспортування товарів по складу. До кожного
-      проекту ми маємо індивідуальний підхід з максимальною концентрацією на деталях. Всі наші вироби виробляються з високоякісних матеріалів на верстатах з ЧПУ. Фарбування деталей стелажів проводиться фарбами
-      європейських виробників. Наші стелажі володіють чудовим співвідношенням ціна / якість. Здійснюємо доставку в будь-яку точку України як службами доставки вантажу (Нова пошта, Делівері, Інтайм і т.д.) так і
-      індивідуальними машинами. Висококваліфікована бригада наших монтажників здійснить монтаж будь-яких стелажних систем в стислі терміни і максимально якісно.'
+      h3_met_stel:        'Metal racking from a Ukrainian manufacturer'
+      text_met_stel_anons:      'Our company has been designing and manufacturing racking equipment since 2002. The experience we have accumulated allows us to carry out projects of any complexity at the lowest prices on the market.
+      We can manufacture almost any size of racking, mezzanines and platforms, taking into account all fire-safety and building DSTU standards. '
+      text_met_stel_block: 'We also manufacture trolleys for transporting goods around the warehouse. For every
+      project we take an individual approach with maximum attention to detail. All our products are made from high-quality materials on CNC machines. Rack parts are painted with coatings from
+      European manufacturers. Our racking offers an excellent price/quality ratio. We deliver to anywhere in Ukraine, both by freight delivery services (Nova Poshta, Delivery, Intime, etc.) and by
+      dedicated vehicles. Our highly qualified team of installers will assemble any racking systems on time and to the highest quality.'
 
-      h3_we_create:       'Ми пропонуємо виготовлення наступного стелажного обладнання:'
+      h3_we_create:       'We offer the manufacture of the following racking equipment:'
 
-      link_text_we_create_arxiv:  'Архівні стелажі'
-      text_we_create_arxiv_anons:       ' - легка серія стелажів з навантаженням на полицю до 200кг. Основні напрямки використання таких стелажів - офіси, архіви, гаражі, погреби тощо. Прекрасно підходять для зберігання
-      канцелярського приладдя, файлових папок і інших побутових дрібниць.'
-      text_we_create_arxiv_block: 'Полиці можуть бути виготовлені з оцинкованого металу або з ДСП / ОSB з підсилюючими елементами.
-      Можливе фарбування деталей стелажа різними кольорами з використанням високоякісної порошкової фарби. Мінімальний крок встановлення полиць, по висоті, 100 мм.'
+      link_text_we_create_arxiv:  'Archive racking'
+      text_we_create_arxiv_anons:       ' — a light series of racking with a shelf load of up to 200 kg. The main uses for such racking are offices, archives, garages, cellars, etc. Perfectly suited for storing
+      stationery, file folders and other household items.'
+      text_we_create_arxiv_block: 'Shelves can be made of galvanised metal or from chipboard/OSB with reinforcing elements.
+      Rack parts can be painted in various colours using high-quality powder coating. The minimum shelf installation pitch, by height, is 100 mm.'
 
-      link_text_we_create_wareh:  'Складскі стелажі'
-      text_we_create_wareh_anons: ' - самий універсальний вид стелажів, з навантаженням на полицю до 400кг. Може застосовуватися як на складах, так і в торгових залах. Прекрасно підходять для зберігання різносортного
-      товару.'
-      text_we_create_wareh_block: 'Можуть комплектуватися рівнями для зберігання автомобільних покришок (коліс). На даному типі стелажів можливе встановлення перекриттів мезоніну для створення багаторівневого складу.
-      Полку може бути металева (фарбована, оцинкований) або з ДСП / OSB. Мінімальний крок установки полиць по висоті 75 мм.'
+      link_text_we_create_wareh:  'Warehouse racking'
+      text_we_create_wareh_anons: ' — the most universal type of racking, with a shelf load of up to 400 kg. It can be used both in warehouses and in retail areas. Perfectly suited for storing
+      assorted goods.'
+      text_we_create_wareh_block: 'Can be fitted with levels for storing car tyres (wheels). Mezzanine decking can be installed on this type of racking to create a multi-level warehouse.
+      The shelf can be metal (painted, galvanised) or chipboard/OSB. The minimum shelf installation pitch by height is 75 mm.'
 
-      link_text_we_create_pallet:  'Палетні стелажі'
-      text_we_create_pallet_anons:       ' - призначені для зберігання палетованого вантажу. Можуть поставлятися з траверсами для встановлення палет як EURO зразка (1200х800 мм) так і палет "фінів" (1200х1000 мм).'
-      text_we_create_pallet_block: 'Даний вид стелажів є основою для важких мезонінів і платформ. Може комплектуватися полками, як на складських стелажах. Мінімальний крок установки рівнів по висоті 25 мм.'
+      link_text_we_create_pallet:  'Pallet racking'
+      text_we_create_pallet_anons:       ' — designed for storing palletised loads. Can be supplied with beams for EURO pallets (1200×800 mm) as well as "Finnish" pallets (1200×1000 mm).'
+      text_we_create_pallet_block: 'This type of racking is the basis for heavy mezzanines and platforms. It can be fitted with shelves, as on warehouse racking. The minimum level installation pitch by height is 25 mm.'
 
-      link_text_we_create_troley:  'Вантажні візки'
-      text_we_create_troley_anons: ' - зручні і багатофункціональні візки для переміщення вантажу по складу. Можливий випуск платфоремних, сітчятих, багатоярусних і інших видів візків. '
-      text_we_create_troley_block: 'Істотно поліпшує логістику по складу. Виробляються за індивідуальними вимогами замовника з урахуванням усіх умов праці. Комплектуються якісними колесами відомих марок.
-      Вантажопідйомність до 1000 кг. Можливо виготовлення візків з вантажопідйомністю до 1500 кг.'
+      link_text_we_create_troley:  'Load trolleys'
+      text_we_create_troley_anons: ' — convenient and multifunctional trolleys for moving loads around the warehouse. Platform, mesh, multi-tier and other types of trolleys can be produced. '
+      text_we_create_troley_block: 'Significantly improves warehouse logistics. Manufactured to the customer''s individual requirements, taking into account all working conditions. Fitted with quality wheels from well-known brands.
+      Load capacity up to 1000 kg. Trolleys with a load capacity of up to 1500 kg can be manufactured.'
 
-      link_text_we_create_mez:  'Мезоніни'
-      text_we_create_mez_anons: ' - багаторівневі стелажі, збільшують поверховість складу. Дозволяють розміщувати вантаж ручного складування без використання драбин.'
-      text_we_create_mez_block: 'Прекриття підлоги мезоніну може бути виконано з ДСП / OSB, металевих решіток або ДСП / OSB покритого листами металу для зменшення зносу. На рівнях мезоніну допускається
-      використання візків (повинно вказуватися в технічному завданні на проектування мезоніну). Мезоніни можуть комплектуватися маршоввими сходами. Допустимі навантаження на перекриття мезоніну до 1000 кг.
-      на метр квадратний.'
+      link_text_we_create_mez:  'Mezzanines'
+      text_we_create_mez_anons: ' — multi-level racking that increases the number of storeys in a warehouse. Allows manually stacked loads to be placed without using ladders.'
+      text_we_create_mez_block: 'The mezzanine floor decking can be made of chipboard/OSB, metal gratings, or chipboard/OSB covered with metal sheets to reduce wear. On mezzanine levels the use
+      of trolleys is permitted (this must be specified in the design brief for the mezzanine). Mezzanines can be fitted with flight stairs. The permissible load on the mezzanine decking is up to 1000 kg
+      per square metre.'
 
-      link_text_we_create_plat:  'Платформи'
-      text_we_create_plat_anons: ' - створює додатковий рівень підлоги. Можливе встановлення інших типів стелажів на підлогу платформи (повинно вказуватися в технічному завданні на проектування платформи). '
-      text_we_create_plat_block: 'Покриття підлоги платформи, як і в мезоніні, може бути виконано з ДСП / OSB, металевих решіток або ДСП / OSB покритого листами металу для зменшення зносу.
-      Навантаження на квадратний метр підлоги платформи, може досягати 1500 кг. Основою несучих конструкцій перекриття підлоги платформи слугують ферми. Кожна платформа розраховується індивідуально,
-      в залежності від навантажень, площі скдала і зберігаємого вантажу. В платвормі може бути передбачено завантажувальний майданчик для встановлення товару за допомогою підйомної техніки.'
+      link_text_we_create_plat:  'Platforms'
+      text_we_create_plat_anons: ' — creates an additional floor level. Other types of racking can be installed on the platform floor (this must be specified in the design brief for the platform). '
+      text_we_create_plat_block: 'The platform floor covering, as with a mezzanine, can be made of chipboard/OSB, metal gratings, or chipboard/OSB covered with metal sheets to reduce wear.
+      The load per square metre of platform floor can reach 1500 kg. Trusses serve as the basis of the load-bearing structures of the platform floor decking. Each platform is calculated individually,
+      depending on the loads, warehouse area and stored goods. A platform may include a loading area for placing goods using lifting equipment.'
 
-      link_text_we_create_loft:  'Дизайнерські стелажі (меблі Loft)'
-      text_we_create_loft_anons: " - Автентичні меблі в стилі «лофт». Основою даних меблів служать метал і дерево. Меблі «лофт» відрізняються легкістю, надійністю і неперевершеним дизайном.
-      Такі меблі прикрасять будь-який інтер'єр і створять відчуття вільного простору у вашому домі."
-      text_we_create_loft_block: "Легкість конструкції і простота збірки дають можливість не «прив'язуватися» до певного місця в кімнаті.
-      Основою стелажів «лофт» служать металеві профілю пофарбовані якісними порошковими фарбами будь-яких кольорів. Можливе виготовлення з нержавіючої сталі.
-      Декорування виконано з ДСП або натурального лакованого (пофарбованого) дерева."
+      link_text_we_create_loft:  'Designer racking (Loft furniture)'
+      text_we_create_loft_anons: " — authentic loft-style furniture. Metal and wood serve as the basis of this furniture. Loft furniture is distinguished by its lightness, reliability and outstanding design.
+      Such furniture will decorate any interior and create a feeling of open space in your home."
+      text_we_create_loft_block: "The lightness of the structure and ease of assembly mean you are not tied to a particular spot in the room.
+      Loft racking is based on metal profiles painted with high-quality powder coatings in any colour. Manufacture from stainless steel is also possible.
+      The decoration is made of chipboard or natural varnished (painted) wood."
 
 
 
@@ -219,6 +221,7 @@ en:
         est:      '2002 — Trimetal Service'
         address:  'Kharkiv, 22 Araviiska St.'
         email:    'stm_industry@ukr.net'
+        tel_number: '+38 (067) _________'
       nav:
         products:   'Products'
         production: 'Production'
@@ -289,8 +292,10 @@ en:
         title_accent:  'storage project'
         lead:          'Leave a request — an engineer will contact you, clarify the dimensions and load and prepare a commercial offer.'
         email_label:   'Email'
+        phone_label:   'Phone'
         address_label: 'Address'
         address_value: 'Kharkiv, 22 Araviiska St.'
+        map_label:     'Location'
         company_label: 'Company'
         company_value: 'STM-Industry LLC'
         form:
@@ -301,7 +306,8 @@ en:
           msg:      'What do you need?'
           msg_ph:   'Rack type, dimensions, quantity, delivery city…'
           submit:   'Send request'
-          note:     'Thank you! Your email app will open — send the message and we will get back to you.'
+          note:     'Thank you! Your request has been sent — we will get back to you shortly.'
+          error:    'Could not send your request. Please try again later or give us a call.'
       footer:
         about:          'Ukrainian manufacturer of metal racking and storage systems since 2002.'
         products_title: 'Products'
@@ -311,199 +317,207 @@ en:
 
     stillage:
       index:
-        tip_polki:            'Тип полички'
-        metall_shelf_type:    'Металічна'
-        dsp_shelf_type:       'Каркас під ДСП (без урахування ДСП)'
-        header:               'Стелажі архівні'
-        shelf_load_title:     'Максимальна розпіділена вага на одну полицю стелажа'
-        about:                "Стелажі легкої серії з навантаженням на одну полицю до 200 кг. Прекрасно підходять для офісних приміщень, торгових залів, архівів, гаражів, погребів.
-        Можуть бути виконані з металевою полицею або з полицею ДСП. Можливе фарбування окремих елементів стелажа порошковою фарбою будь-якого кольору.
-        Стелаж складається  з стійок, поличок, підсилювачів (присутність підсилювача залежить від навантаження на полицю)
-                               <p>1. Стійка: гнутий кутник з повздовжніми ребрами жорсткості, довжиною 500-3500 мм. з оцинкованої сталі марки 08КП, товщиною 1.15 мм.
-                               Зачепи для кріплення поличок пробиті по довжині стійки з кроком 100-400 мм., що дозволяє встановлювати полиці на необхідну висоту.</p>
-                               <p>2. Полиця: гнута коробкова конструкція з повздовжніми ребрами жорсткості. Довжина полиці 400-1150 мм., ширина 250-800 мм. Висота ребер жорсткості 30 мм.
-                               Поличка виготовлена з оцинкованої сталі 08КП, товщиною 0.55-1.00 мм. Клиновидні отвори для зчеплення з стійкою, пробиті в ребрах жорсткості по два з кожної сторони.
-                               Другий тип полички складається з траверс, висотою 40мм. довжиною 400-1150 мм. і шириною 250-800 мм. та накриття поличок. Накриття полички - ДСП, МДФ, OSB та інщі доступні матеріали (за бажанням замовника)</p>
-                               <p>3. Підсилювач: гнута профільна конструкція з оцинкованої сталі 08КП, товщиною 0.55-1.00 мм.</p>"
+        tip_polki:            'Shelf type'
+        metall_shelf_type:    'Metal'
+        dsp_shelf_type:       'Frame for chipboard (chipboard not included)'
+        header:               'Archive racking'
+        lead:                 'Light-duty shelving racks with up to 200 kg per shelf — for offices, archives, retail floors, garages and cellars. Configure and price yours online.'
+        shelf_load_title:     'Maximum distributed load per rack shelf'
+        about:                "Light-series racking with a load of up to 200 kg per shelf. Perfectly suited for offices, retail areas, archives, garages and cellars.
+        Can be made with a metal shelf or a chipboard shelf. Individual rack elements can be painted with powder coating in any colour.
+        The rack consists of uprights, shelves and reinforcers (the presence of a reinforcer depends on the shelf load).
+                               <p>1. Upright: a bent angle with longitudinal stiffening ribs, 500-3500 mm long, made of galvanised steel grade 08KP, 1.15 mm thick.
+                               Hooks for fixing the shelves are punched along the length of the upright at a pitch of 100-400 mm, allowing shelves to be set at the required height.</p>
+                               <p>2. Shelf: a bent box-section structure with longitudinal stiffening ribs. Shelf length 400-1150 mm, width 250-800 mm. Stiffening rib height 30 mm.
+                               The shelf is made of galvanised steel 08KP, 0.55-1.00 mm thick. Wedge-shaped holes for engaging with the upright are punched in the stiffening ribs, two on each side.
+                               The second type of shelf consists of beams 40 mm high, 400-1150 mm long and 250-800 mm wide, plus a shelf cover. The shelf cover is chipboard, MDF, OSB or other available materials (at the customer's request).</p>
+                               <p>3. Reinforcer: a bent profile structure made of galvanised steel 08KP, 0.55-1.00 mm thick.</p>"
         table:
-          name_1:    'Стійка'
-          texn_1:    '<p>Висота:  1000-3500 мм.</p>
-                      <p>Навантаження – 500 кг</p>
-                      <p>Оцинкована/Фарбована (RAL5005, RAL7035)</p>'
-          name_2:    'Поличка'
-          texn_2:    '<p>Довжина – 400-1150 мм</p>
-                      <p>Ширина 250-800 мм</p>
-                      <p>Навантаження – до 200 кг</p>
-                      <p>Оцинкована/Фарбована (RAL5005, RAL7035)</p>'
-          name_3:    'Підсилювач'
-          texn_3:    '<p>Довжина – 400-1150 мм</p>
-                      <p>Ширина 40 мм</p>
-                      <p>Оцинкований/Фарбований (RAL5005, RAL7035)</p>'
+          name_1:    'Upright'
+          texn_1:    '<p>Height: 1000-3500 mm.</p>
+                      <p>Load – 500 kg</p>
+                      <p>Galvanised/Painted (RAL5005, RAL7035)</p>'
+          name_2:    'Shelf'
+          texn_2:    '<p>Length – 400-1150 mm</p>
+                      <p>Width 250-800 mm</p>
+                      <p>Load – up to 200 kg</p>
+                      <p>Galvanised/Painted (RAL5005, RAL7035)</p>'
+          name_3:    'Reinforcer'
+          texn_3:    '<p>Length – 400-1150 mm</p>
+                      <p>Width 40 mm</p>
+                      <p>Galvanised/Painted (RAL5005, RAL7035)</p>'
       show:
-        header:       'Стелаж архівний'
+        header:       'Archive rack'
 
     stillage_warehouse:
       index:
-        header:           'Стелажі складські'
-        shelf_steel:      'Поличка металева'
-        shelf_load_title: 'Максимальне розпіділене навантаження на один рівень'
-        dsp:              'Каркас під ДСП (без урахування ДСП)'
-        okraska:          'Фарбування'
-        rama:             'Рама'
-        ocink:            'Оцинкована'
-        okrash:           'Фарбована'
-        polka:            'Поличка'
-        abbout:           "Середня серія стелажів з навантаженням на одну полицю до 400 кг. Підходять для обладнання складів, виробничих цехів (зберігання інструменту і матеріалів), шинних центрів.
-        Випускаються з металевою полицею або полицею ДСП. Виготовляємо рівні під зберігання шин. Деталі стелажа можливо пофарбувати порошковою фарбою будь-якого кольору.
-        Стелаж складається з рам, траверс, металевих набраних полиць або підсилювачів під полку ДСП.
-        <p> 1. Рама стелажа - дві вертикальні стійки спеціального профілю з перфорацією, з'єднаних між собою горизонтальними і похилими перемичками. </p>
-        <p> 2. Траверса гнута з листового металу з зачепами для кріплення до рам. </p>
-        <p> 3. Металева полиця складена з окремих поличок профільованого металу з зачепами для кріплення до траверси стелажа. </p>
-        <p> 4. Крок перестановки траверс - 75 мм </p>"
+        header:           'Warehouse racking'
+        shelf_steel:      'Metal shelf'
+        shelf_load_title: 'Maximum distributed load per level'
+        dsp:              'Frame for chipboard (chipboard not included)'
+        okraska:          'Painting'
+        rama:             'Frame'
+        ocink:            'Galvanised'
+        okrash:           'Painted'
+        polka:            'Shelf'
+        abbout:           "A medium series of racking with a load of up to 400 kg per shelf. Suitable for equipping warehouses, production shops (storage of tools and materials) and tyre centres.
+        Produced with a metal shelf or a chipboard shelf. We manufacture levels for storing tyres. Rack parts can be painted with powder coating in any colour.
+        The rack consists of frames, beams, assembled metal shelves or reinforcers for the chipboard shelf.
+        <p> 1. Rack frame — two vertical uprights of a special perforated profile, connected to each other by horizontal and diagonal braces. </p>
+        <p> 2. Beam bent from sheet metal with hooks for fixing to the frames. </p>
+        <p> 3. Metal shelf assembled from individual profiled metal shelf panels with hooks for fixing to the rack beam. </p>
+        <p> 4. Beam repositioning pitch — 75 mm </p>"
 
         table:
-          name_1:    'Рама'
-          texn_1:    '<p>Висота:  1500-5200 мм.</p>
-                      <p>Ширина:  300-1500 мм</p>
-                      <p>Навантаження – 2100 кг</p>
-                      <p>Оцинкована/Фарбована</p>'
-          name_2:    'Траверса'
-          texn_2:    '<p>Довжина – 800-2700 мм</p>
-                      <p>Навантаження – до 350 кг/шт</p>
-                      <p>Фарбована</p>'
-          name_3:    'Підсилювач'
-          texn_3:    '<p>Довжина – 300-1500 мм</p>
-                      <p>Навантаження – до 150 кг/шт</p>
-                      <p>Фарбований</p>'
+          name_1:    'Frame'
+          texn_1:    '<p>Height: 1500-5200 mm.</p>
+                      <p>Width: 300-1500 mm</p>
+                      <p>Load – 2100 kg</p>
+                      <p>Galvanised/Painted</p>'
+          name_2:    'Beam'
+          texn_2:    '<p>Length – 800-2700 mm</p>
+                      <p>Load – up to 350 kg/pc</p>
+                      <p>Painted</p>'
+          name_3:    'Reinforcer'
+          texn_3:    '<p>Length – 300-1500 mm</p>
+                      <p>Load – up to 150 kg/pc</p>
+                      <p>Painted</p>'
       show:
-        header:          'Стелажі складскі поличкові збірно-розбірні'
-        max_load_ur:     'Максимальне навантаження на рівень'
-        weight_osn_sec:  'Вага основної секції'
-        weight_pris_sec: 'Вага приставної секції'
-        metall_pol:      'Металева поличка'
-        karkas_dsp:      'Каркас під ДСП'
-        okrash_matall:   'Фарбована металева поличка'
+        header:          'Warehouse shelf racking, bolt-together/knock-down'
+        max_load_ur:     'Maximum load per level'
+        weight_osn_sec:  'Weight of the main section'
+        weight_pris_sec: 'Weight of the add-on section'
+        metall_pol:      'Metal shelf'
+        karkas_dsp:      'Frame for chipboard'
+        okrash_matall:   'Painted metal shelf'
 
     stillage_pallet:
       index:
-        header:           'Стелажі палетні'
-        width:            'Ширина (Довжина траверси)'
-        width_title:      'Ширина секції в милиметрах (Довжина траверси)'
-        shelf_load_title: 'Максимальне росподілене навантаження на один рівень зберігання стелажа'
-        abbout:           "Призначені для зберігання вантажу розміщеного на палетах. Наша фірма випускає палетні стелажі як під розмір EURO палет (1200х800) так і 'фінів' (1200х1000).
-        Стелаж складається з рам, і траверс.
-                          <p>1. Рама стелажа являє собою дві вертикальні стійки спеціального профілю з перфорацією, з'єднаних між собою горизонтальними і нахиленими перемичками. Кожна рама кріпиться до полу складу двома анкерними болтами через отвори у підошві.</p>
-                          <p>2. Траверса - прямокутний профіль з привареними зачепами для кріплення до рам. Кріплення траверс до рам - болтове, згідно останніх європейських стандартів.</p>
-                          <p>3. Крок перестановки траверс – 25 мм</p>"
+        header:           'Pallet racking'
+        width:            'Width (Beam length)'
+        width_title:      'Section width in millimetres (Beam length)'
+        shelf_load_title: 'Maximum distributed load per rack storage level'
+        abbout:           "Designed for storing loads placed on pallets. Our company produces pallet racking both for EURO pallets (1200x800) and 'Finnish' pallets (1200x1000).
+        The rack consists of frames and beams.
+                          <p>1. The rack frame is two vertical uprights of a special perforated profile, connected to each other by horizontal and diagonal braces. Each frame is fixed to the warehouse floor with two anchor bolts through holes in the base plate.</p>
+                          <p>2. The beam is a rectangular profile with welded hooks for fixing to the frames. The beams are bolted to the frames, in accordance with the latest European standards.</p>
+                          <p>3. Beam repositioning pitch – 25 mm</p>"
         table:
-          name_1:    'Рама'
-          texn_1:    '<p>Висота:  1500-6000 мм./p>
-                      <p>Ширина:  1100 мм</p>
-                      <p>Навантаження: 15000 кг</p>
-                      <p>Оцинкована</p>'
-          name_2:    'Траверса'
-          texn_2:    '<p>Довжина: 1200-3500 мм</p>
-                      <p>Навантаження: до 1700 кг/шт</p>
-                      <p>Фарбована (RAL3020)</p>'
+          name_1:    'Frame'
+          texn_1:    '<p>Height: 1500-6000 mm./p>
+                      <p>Width: 1100 mm</p>
+                      <p>Load: 15000 kg</p>
+                      <p>Galvanised</p>'
+          name_2:    'Beam'
+          texn_2:    '<p>Length: 1200-3500 mm</p>
+                      <p>Load: up to 1700 kg/pc</p>
+                      <p>Painted (RAL3020)</p>'
       show:
-        header:       'Стелажі палетні збірно-розбірні'
-        max_load_ur:  'Максимальне навантаження на рівень'
-        weight_ram:   'Вага рами'
-        weaight_trav: 'Вага траверси'
+        header:       'Pallet racking, bolt-together/knock-down'
+        max_load_ur:  'Maximum load per level'
+        weight_ram:   'Frame weight'
+        weaight_trav: 'Beam weight'
 
     mezanine:
       index:
-        header:        'Мезоніни'
-        about:         "<p> Багатоярусні системи зібрані на основі елементів складських або палетних стелажів. Додають один або кілька рівнів підлоги на склад. Чудово підходять для зберігання товару ручного
-        складування. Можливо комбіноване зберігання вантажу - на підлозі складу і перших рівнях мезоніну встановлюються палети, а на першому і більш високих рівнях мезоніну зберігається товар ручного складування.
-        Покриття підлоги мезоніну може бути виконано з плит ДСП / OSB або металевих решіток. Максимальне навантаження на один метр квадратний підлоги мезоніна може досягати 1000 кг.
-        При необхідності можна покрити плити ДСП / OSB тонким листом металу (1мм) для зменшення зносу поклитія при пересуванні рокл і вантажних візків. Також на поверхах мезоніну можливо розміститися додаткові
-        офісні та торгові площі. Все мезоніни обладнуються поручнями та однією чи кількома сходами. Сходи, за бажанням кліента, можуть бути маршевими або типу 'стремянка'.
-        Наші фахівці допоможуть вам підібрати мезонін під ваш товар і складську логістику. Можливий виїзд на заміри складу. Виконуємо роботи по монтажу мезоніну.</p>"
+        header:        'Mezzanines'
+        about:         "<p> Multi-tier systems assembled from warehouse or pallet racking elements. They add one or more floor levels to the warehouse. Ideal for storing manually stacked
+        goods. Combined load storage is possible — pallets are placed on the warehouse floor and the first mezzanine levels, while manually stacked goods are stored on the first and higher mezzanine levels.
+        The mezzanine floor decking can be made of chipboard/OSB boards or metal gratings. The maximum load per square metre of mezzanine floor can reach 1000 kg.
+        If necessary, the chipboard/OSB boards can be covered with a thin metal sheet (1 mm) to reduce wear on the covering when hand pallet trucks and load trolleys move over it. Additional
+        office and retail space can also be located on the mezzanine floors. All mezzanines are fitted with railings and one or more staircases. Staircases, at the client's request, can be flight stairs or a stepladder type.
+        Our specialists will help you select a mezzanine to suit your goods and warehouse logistics. On-site warehouse measurement is available. We carry out mezzanine installation work.</p>"
 
     platform:
       index:
-        header:        'Платформи'
-        about:         "<p> Індивідуальні рішення для зберігання вантажів на палетах або на підлозі платформи. Платформа збирається зі стійок, ферм, підсилювачів і настилу.
-        Всі елементи ретельно розраховуються нашими фахівцями під індивідуальні параметри кожної платформи. На перекриття платформи можлива установка стелажів інших типів. </p>
-        <p> Як перекриття можуть використовуватися високоміцні деревні плити МДФ, ДСП, OSB або металеві оцинковані решітки. Перекриття платформи здатне витримувати навантаження
-        до 1000 кг на 1 м.кв. Конструкція має на увазі суцільну платформу верхнього поверху з майданчиком для установки палет карою або іншим підйомним механізмом. </p>"
+        header:        'Platforms'
+        about:         "<p> Custom solutions for storing loads on pallets or on the platform floor. The platform is assembled from uprights, trusses, reinforcers and decking.
+        All elements are carefully calculated by our specialists for the individual parameters of each platform. Other types of racking can be installed on the platform decking. </p>
+        <p> High-strength MDF, chipboard or OSB wood boards or galvanised metal gratings can be used as decking. The platform decking can withstand a load
+        of up to 1000 kg per 1 m². The design implies a continuous upper-floor platform with an area for placing pallets by forklift or another lifting mechanism. </p>"
 
     loft:
       index:
-        header:        'Дизайнерські стелажі (меблі Loft)'
-        about:         "<p>Автентичні меблі в стилі «лофт». Основою даних меблів служать метал і дерево. Меблі «лофт» відрізняються легкістю, надійністю і неперевершеним дизайном.
-        Такі меблі прикрасять будь-який інтер'єр і створять відчуття вільного простору у вашому домі. Легкість конструкції і простота збірки дають можливість не «прив'язуватися» до певного місця в кімнаті.
-        Основою стелажів «лофт» служать металеві профілю пофарбовані якісними порошковими фарбами будь-яких кольорів. Можливе виготовлення з нержавіючої сталі.
-        Декорування виконано з ДСП або натурального лакованого (пофарбованого) дерева..</p>"
+        header:        'Designer racking (Loft furniture)'
+        about:         "<p>Authentic loft-style furniture. Metal and wood serve as the basis of this furniture. Loft furniture is distinguished by its lightness, reliability and outstanding design.
+        Such furniture will decorate any interior and create a feeling of open space in your home. The lightness of the structure and ease of assembly mean you are not tied to a particular spot in the room.
+        Loft racking is based on metal profiles painted with high-quality powder coatings in any colour. Manufacture from stainless steel is also possible.
+        The decoration is made of chipboard or natural varnished (painted) wood.</p>"
 
 
     gallery:
-      header:    'Галерея'
-      arxiv:     'Архівні стелажі'
-      warehouse: 'Складські стелажі'
-      pallet:    'Палетні стелажі'
-      trolley:   'Візки'
-      mezzanine:  'Мезонінні стелажі'
-      platforms:  'Платформи'
-      lofts:      'Дизайнерські стелажі (меблі Loft)'
+      header:    'Gallery'
+      arxiv:     'Archive racking'
+      warehouse: 'Warehouse racking'
+      pallet:    'Pallet racking'
+      trolley:   'Trolleys'
+      mezzanine:  'Mezzanine racking'
+      platforms:  'Platforms'
+      lofts:      'Designer racking (Loft furniture)'
+      count:
+        one:   '%{count} photo'
+        other: '%{count} photos'
+      empty:     'Photos are coming soon.'
 
 
     trolleys:
       index:
-        header:     'Візки'
-        about:      'Візки поставляються без коліс (за домовленістю).
-                    <p>Висота ручки, в on-line розрахунку, не враховує висоту колес.</p>'
-        about_sec:  'Можливе виробництво візків під індивідуальні вимоги.'
+        header:     'Trolleys'
+        about:      'Trolleys are supplied without wheels (by agreement).
+                    <p>The handle height, in the on-line calculation, does not include the wheel height.</p>'
+        about_sec:  'Trolleys can be manufactured to individual requirements.'
         model:
-          model: 'Модель'
-        used_materials:      'Використовувані матеріали:'
-        pipe:                'Труба 25х25'
-        corner:              'Кутник 25х25'
-        list:                'Лист 2мм'
-        list_or_dsp:         'Лист 2мм або ламіноване ДСП 16мм'
-        setka:               'Сітка 50х50х3'
-        laminar_dsp:         'Ламіноване ДСП 16мм'
-        powder_paint:        'Порошковая фарба RAL5005(синя)'
-        on_line_model:       'On-line розрахунок моделі'
-        length_title:        'Довжина платформи візка в міліметрах'
-        width_title:         'Шрина візка в міліметрах'
-        handle_height:       'Висота ручки'
-        handle_height_title: 'Висота ручки від пола в міліметрах'
-        weight:              'Навантаження на полочку'
-        weight_title:        'Максимальне росподілене навантаження на одну поличку візка'
-        calculate:           'Розрахувати'
+          model: 'Model'
+        used_materials:      'Materials used:'
+        pipe:                'Tube 25x25'
+        corner:              'Angle 25x25'
+        list:                'Sheet 2 mm'
+        list_or_dsp:         'Sheet 2 mm or laminated chipboard 16 mm'
+        setka:               'Mesh 50x50x3'
+        laminar_dsp:         'Laminated chipboard 16 mm'
+        powder_paint:        'Powder paint RAL5005 (blue)'
+        on_line_model:       'On-line model calculation'
+        length_title:        'Trolley platform length in millimetres'
+        width_title:         'Trolley width in millimetres'
+        handle_height:       'Handle height'
+        handle_height_title: 'Handle height from the floor in millimetres'
+        weight:              'Load per shelf'
+        weight_title:        'Maximum distributed load per trolley shelf'
+        calculate:           'Calculate'
 
       show:
-        header:         'Візок'
-        max_load:       'Максимальне навантаження на рівень'
-        weight_without: 'Вага візка без колес'
-        type:           'Тип'
-        parameters:     'Параметри'
+        header:         'Trolley'
+        max_load:       'Maximum load per level'
+        weight_without: 'Trolley weight without wheels'
+        type:           'Type'
+        parameters:     'Parameters'
 
     contacts:
       index:
-        header:           'Контакти'
-        address_title:    'Адреса'
-        address:          'Україна, м. Харків, вул.Морозова, 7.'
-        tel:              'Телефон'
-        map:              'Мапа проїзду'
+        header:           'Contacts'
+        address_title:    'Address'
+        address:          'Ukraine, Kharkiv, 22 Araviiska St.'
+        tel_title:        'Phone'
+        tel_number:       '-'
+        map:              'Directions map'
+        email_title:      'Email'
+        email:            'stm_industry@ukr.net'
 
 
     registration:
-      header:         'Реєстрація'
-      login:          'Логін'
-      name:           "Ім'я"
-      password:       'Пароль'
-      password_conf:  'Підтвердження паролю'
-      submit_button:  'Реєстрація'
+      header:         'Registration'
+      login:          'Login'
+      name:           'Name'
+      password:       'Password'
+      password_conf:  'Password confirmation'
+      submit_button:  'Register'
 
     login:
-      remember_me: "Запам'ятати мене"
-      come_in: 'Увійти'
+      remember_me: 'Remember me'
+      come_in: 'Sign in'
 
     news:
-      header: 'Новини'
+      header: 'News'
 
     articles:
-      header: 'Статті'
+      header: 'Articles'

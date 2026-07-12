@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale_a, except: :set_locale
   before_action :set_meta_tags
-  before_action :set_contacts
 
 
   def set_meta_tags
@@ -92,9 +91,6 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def set_contacts
-    @contacts = Contact.all
-  end
 
   def set_locale_a
     I18n.locale = params[:locale] || (current_user.language.to_sym if current_user.present?) || I18n.default_locale

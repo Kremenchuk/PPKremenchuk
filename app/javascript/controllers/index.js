@@ -13,3 +13,6 @@ application.register("product-form", ProductFormController)
 import SiteController from "./site_controller"
 application.register("site", SiteController)
 
+import GalleryController from "./gallery_controller"
+application.register("gallery", GalleryController)
+

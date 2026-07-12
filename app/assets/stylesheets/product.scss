@@ -1,0 +1,199 @@
+// =====================================================================
+//  STM INDUSTRY — Product pages ("Industrial Precision")
+//  Scoped under body.stm-redesign .pdp so it reuses the design tokens
+//  (--r-*) and shared components (.btn, .eyebrow) from zz_redesign.scss
+//  without colliding with the legacy Bootstrap / mine.css.scss styles.
+//  The calculator markup contract (product_form_controller.js) is kept:
+//  #hiden_element_1 stays display:none by default (legacy rule) and the
+//  Stimulus toggle flips it inline.
+// =====================================================================
+
+body.stm-redesign {
+  .pdp {
+    max-width: var(--r-wrap);
+    margin: 0 auto;
+    padding: 0 28px 20px;
+
+    // ---- HERO / header ----------------------------------------------
+    .pdp-hero { padding: 40px 0 8px; }
+    .pdp-crumbs {
+      font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--r-muted); margin-bottom: 22px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+    }
+    .pdp-crumbs a { color: var(--r-muted); transition: .3s; }
+    .pdp-crumbs a:hover { color: var(--r-orange-2); }
+    .pdp-crumbs .sep { color: var(--r-line-2); }
+    .pdp-crumbs .cur { color: var(--r-text); }
+
+    .pdp-title {
+      font-family: var(--f-disp); font-weight: 600; text-transform: uppercase;
+      line-height: 1.02; letter-spacing: -.005em; margin: 16px 0 16px;
+      font-size: clamp(34px, 5.4vw, 62px); color: var(--r-text);
+    }
+    .pdp-lead { color: var(--r-muted); font-size: clamp(15px, 1.7vw, 18px); max-width: 720px; }
+
+    .pdp-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 0; padding: 0; }
+    .pdp-chips li {
+      font-family: var(--f-mono); font-size: 12.5px; letter-spacing: .04em; color: var(--r-text);
+      background: rgba(30, 30, 34, .55); border: 1px solid var(--r-line-2); padding: 8px 14px; border-radius: 2px;
+    }
+    .pdp-chips b { color: var(--r-orange-2); font-weight: 500; }
+
+    // ---- section rhythm ---------------------------------------------
+    .pdp-block { margin-top: 56px; }
+    .pdp-eyebrow-row { margin-bottom: 24px; }
+    .pdp-h2 {
+      font-family: var(--f-disp); font-weight: 600; text-transform: uppercase; line-height: 1.05;
+      font-size: clamp(26px, 3.4vw, 40px); letter-spacing: -.005em; color: var(--r-text); margin: 12px 0 0;
+    }
+    .pdp-h2 em { font-style: normal; color: var(--r-orange); }
+    .pdp-h2--center { text-align: center; }
+
+    // ---- CALCULATOR --------------------------------------------------
+    .pdp-calc {
+      margin-top: 30px; background: var(--r-panel); border: 1px solid var(--r-line);
+      border-radius: 4px; overflow: hidden;
+    }
+    .pdp-calc__bar {
+      display: flex; align-items: center; gap: 14px; cursor: pointer; user-select: none;
+      padding: 20px 26px; background: linear-gradient(150deg, #1d1208, #16121a);
+      border-bottom: 1px solid var(--r-line); transition: .3s var(--r-ease);
+    }
+    .pdp-calc__bar:hover { background: linear-gradient(150deg, #241609, #191320); }
+    .pdp-calc__bar img { width: 26px; height: 26px; flex: none; }
+    .pdp-calc__bar span {
+      font-family: var(--f-disp); font-weight: 600; text-transform: uppercase; letter-spacing: .05em;
+      font-size: 18px; color: var(--r-text);
+    }
+    .pdp-calc__bar .hint {
+      margin-left: auto; font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--r-orange-2); font-weight: 400;
+    }
+    .pdp-calc__off { padding: 22px 26px; color: var(--r-muted); font-family: var(--f-mono); font-size: 13px; }
+
+    .pdp-panel { padding: 30px 26px 32px; display: none; }
+    #hiden_element_1.pdp-panel { display: none; } // collapsed by default; Stimulus toggles inline display
+
+    .pdp-fields { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+    .pdp-field { display: flex; flex-direction: column; gap: 7px; }
+    .pdp-field label {
+      font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--r-muted);
+    }
+    .pdp-field .range { font-family: var(--f-mono); font-size: 11px; color: var(--r-orange-2); letter-spacing: .04em; }
+    .pdp-field input {
+      font-family: var(--f-body); font-size: 16px; color: var(--r-text); background: var(--r-bg-2);
+      border: 1px solid var(--r-line-2); border-radius: 2px; padding: 12px 14px; width: 100%; transition: .3s;
+    }
+    .pdp-field input:focus { outline: none; border-color: var(--r-orange); box-shadow: 0 0 0 3px rgba(255, 106, 26, .14); }
+
+    .pdp-options { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 26px; }
+    .pdp-optgroup .pdp-optlabel {
+      display: block; font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--r-muted); margin-bottom: 10px;
+    }
+
+    // segmented "chip" toggle built from real radio inputs (JS-friendly)
+    .seg { display: inline-flex; flex-wrap: wrap; gap: 8px; }
+    .seg__input { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
+    .seg__opt {
+      cursor: pointer; font-family: var(--f-body); font-size: 14px; color: var(--r-text);
+      background: var(--r-bg-2); border: 1px solid var(--r-line-2); border-radius: 2px;
+      padding: 11px 16px; transition: .25s var(--r-ease); margin: 0;
+    }
+    .seg__opt:hover { border-color: var(--r-orange-2); }
+    .seg__input:checked + .seg__opt {
+      background: var(--r-orange); color: #180a02; border-color: var(--r-orange); font-weight: 600;
+    }
+    .seg__input:focus-visible + .seg__opt { box-shadow: 0 0 0 3px rgba(255, 106, 26, .18); }
+    .seg__input:disabled + .seg__opt { opacity: .4; cursor: not-allowed; }
+
+    .pdp-submit { margin-top: 30px; }
+
+    // ---- RESULT ------------------------------------------------------
+    .pdp-result {
+      margin-top: 26px; background: linear-gradient(150deg, #1d1208, #141014);
+      border: 1px solid rgba(255, 106, 26, .3); border-radius: 4px; overflow: hidden;
+      box-shadow: 0 24px 50px -30px #000;
+    }
+    .pdp-result__head {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 20px 26px; border-bottom: 1px solid var(--r-line);
+    }
+    .pdp-result__name {
+      font-family: var(--f-disp); font-weight: 600; text-transform: uppercase; letter-spacing: .02em;
+      font-size: 20px; color: var(--r-text);
+    }
+    .pdp-print {
+      background: transparent; border: 1px solid var(--r-line-2); border-radius: 2px; color: var(--r-text);
+      width: 42px; height: 42px; display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: .3s; font-size: 16px; margin: 0; padding: 0;
+    }
+    .pdp-print:hover { border-color: var(--r-orange); color: var(--r-orange); }
+
+    .pdp-result__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center; padding: 26px; }
+    .pdp-result__specs { list-style: none; margin: 0; padding: 0; }
+    .pdp-result__specs li {
+      display: flex; justify-content: space-between; gap: 20px; padding: 14px 0;
+      border-bottom: 1px solid var(--r-line); font-size: 15px;
+    }
+    .pdp-result__specs li:last-child { border-bottom: 0; }
+    .pdp-result__specs .k {
+      font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--r-muted);
+    }
+    .pdp-result__specs .v { color: var(--r-text); font-weight: 500; }
+    .pdp-result__specs .price-row .k { color: var(--r-orange-2); }
+    .pdp-result__specs .price-row .v {
+      font-family: var(--f-disp); font-weight: 700; font-size: 26px; color: var(--r-orange); line-height: 1;
+    }
+    .pdp-result__diagram { display: flex; align-items: center; justify-content: center; }
+    // the legacy dimension diagram keeps its own positioning classes;
+    // just give it breathing room + a light plate so the gif reads on dark
+    .pdp-result__diagram .dimensions_stillage { background: #f4f4f2; border-radius: 4px; padding: 14px; }
+
+    // ---- ABOUT / prose ----------------------------------------------
+    .pdp-prose { max-width: 940px; margin-inline: auto; text-align: justify; }
+    .pdp-prose p { color: var(--r-muted); font-size: 15px; margin: 0 0 14px; }
+    .pdp-prose h3 {
+      font-family: var(--f-disp); font-weight: 500; text-transform: uppercase; font-size: 20px;
+      letter-spacing: .02em; color: var(--r-text); margin: 24px 0 12px;
+    }
+
+    // ---- COMPONENTS grid --------------------------------------------
+    .pdp-parts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 30px; }
+    .pdp-part {
+      background: var(--r-panel); border: 1px solid var(--r-line); border-radius: 4px; overflow: hidden;
+      display: flex; flex-direction: column; transition: .4s var(--r-ease);
+    }
+    .pdp-part:hover { transform: translateY(-4px); border-color: rgba(255, 106, 26, .4); }
+    .pdp-part__media {
+      aspect-ratio: 4/3; background: #f4f4f2 radial-gradient(circle at 50% 40%, #fff, #ececea);
+      display: flex; align-items: center; justify-content: center; padding: 18px;
+    }
+    .pdp-part__media img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+    .pdp-part__body { padding: 20px 20px 22px; }
+    .pdp-part__body h4 {
+      font-family: var(--f-disp); font-weight: 600; text-transform: uppercase; font-size: 18px;
+      letter-spacing: .02em; color: var(--r-text); margin: 0 0 10px;
+    }
+    .pdp-part__body p { color: var(--r-muted); font-size: 14px; margin: 0 0 4px; }
+  }
+
+  // ---- RESPONSIVE ---------------------------------------------------
+  @media (max-width: 980px) {
+    .pdp .pdp-fields { grid-template-columns: repeat(3, 1fr); }
+    .pdp .pdp-parts { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .pdp .pdp-fields { grid-template-columns: repeat(2, 1fr); }
+    .pdp .pdp-options { grid-template-columns: 1fr; }
+    .pdp .pdp-result__grid { grid-template-columns: 1fr; }
+    .pdp .pdp-parts { grid-template-columns: 1fr; }
+    .pdp .pdp-calc__bar .hint { display: none; }
+  }
+  @media (max-width: 440px) {
+    .pdp { padding: 0 18px 20px; }
+    .pdp .pdp-fields { grid-template-columns: 1fr; }
+  }
+}
+

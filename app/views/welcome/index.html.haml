@@ -114,7 +114,7 @@
             %div
               %b= m[:value]
               %span= m[:label]
-        = link_to gallery_index_path, class: 'btn btn--lg' do
+        = link_to "#{root_path}#contact", class: 'btn btn--lg' do
           = t('page.home.showcase.cta')
           %i.arr →
 
@@ -167,13 +167,21 @@
           %li
             %span= t('page.home.contact.email_label')
             = link_to t('page.home.topbar.email'), "mailto:#{t('page.home.topbar.email')}"
+          - phone = t('page.home.topbar.tel_number', default: '').to_s.strip
+          - if phone.present? && phone != '-'
+            %li
+              %span= t('page.home.contact.phone_label')
+              = link_to phone, "tel:#{phone.gsub(/[^\d+]/, '')}"
           %li
             %span= t('page.home.contact.address_label')
-            = link_to t('page.home.contact.address_value'), contact_index_path
+            %span= t('page.home.contact.address_value')
+          %li
+            %span= t('page.home.contact.map_label')
+            = link_to t('page.contacts.index.map'), 'https://www.google.com/maps/search/?api=1&query=49.9692534%2C36.2371595', target: '_blank', rel: 'noopener'
           %li
             %span= t('page.home.contact.company_label')
             %span= t('page.home.contact.company_value')
-      %form.form.reveal{:style => "--d:.1s", "data-action" => "submit->site#sendMail"}
+      %form.form.reveal{:style => "--d:.1s", :action => contact_request_path, :method => "post", "data-action" => "submit->site#sendMail"}
         .form__row
           %label
             = t('page.home.contact.form.name')
@@ -187,4 +195,4 @@
         %button.btn.btn--lg.btn--block{:type => "submit"}
           = t('page.home.contact.form.submit')
           %i.arr →
-        %p.form__note{"data-site-target" => "note", :hidden => true}= t('page.home.contact.form.note')
+        %p.form__note{"data-site-target" => "note", "data-error-text" => t('page.home.contact.form.error'), :hidden => true}= t('page.home.contact.form.note')

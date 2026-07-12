@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_19_082410) do
+ActiveRecord::Schema[7.2].define(version: 2026_07_12_102046) do
   create_table "articles", force: :cascade do |t|
     t.json "title", default: {"uk" => "", "en" => "", "ru" => ""}, null: false
     t.json "short_body", default: {"uk" => "", "en" => "", "ru" => ""}, null: false
@@ -204,11 +204,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_19_082410) do
     t.float "wei_list_2_1_045", default: 2.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "contacts", force: :cascade do |t|
-    t.string "name"
-    t.string "text"
   end
 
   create_table "galleries", force: :cascade do |t|

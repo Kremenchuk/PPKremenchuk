@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   get '/change_locale/:new_locale', to: 'application#set_locale', as: 'locale', constraints: lambda { |req| req.params['new_locale'].present? && I18n.available_locales.include?(req.params['new_locale'].to_sym) }
 
   resources :users
-  resources :admin_contacts
 
   post 'constants/load_constant' => 'constants#load_constant'
   get 'sitemap' => 'welcome#site_map'
@@ -31,6 +30,8 @@ Rails.application.routes.draw do
 
     get 'welcome' => 'welcome#index', as: 'welcome_index'
 
+    post 'contact_request' => 'welcome#contact_request', as: 'contact_request'
+
     get 'trolley' => 'trolley#index', as: 'trolley_index'
     get 'trolley/show'
 
@@ -42,17 +43,10 @@ Rails.application.routes.draw do
     get :galleries_view_photo, controller: :galleries, action: :galleries_view_photo
     get :gallery_view_photo_close, controller: :galleries, action: :gallery_view_photo_close
 
-    get 'contact' => 'contact#index', as: 'contact_index'
-
     get 'admin_panel' => 'admin_panel#index', as: 'admin_panel_index'
 
 
 
-    # contacts
-    get 'contacts_index' => 'admin_panel#contacts_index', as: 'contacts_index'
-    post 'contacts_new' => 'admin_panel#contacts_new', as: 'contacts_new'
-    put 'contacts_update' => 'admin_panel#contacts_update', as: 'contacts_update'
-    delete 'contact_destroy' => 'admin_panel#contact_destroy', as: 'contact_destroy'
 
     get 'photo_browser_index' => 'galleries#photo_browser_index', as: 'photo_browser_index'
     post 'photo_browser_new' => 'galleries#photo_browser_new', as: 'photo_browser_new'

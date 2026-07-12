@@ -1,23 +1,20 @@
 module WelcomeHelper
-  # Image locale — the localized product GIFs only ship in uk/ru; English
-  # falls back to the Ukrainian artwork.
-  def welcome_image_locale
-    I18n.locale == :ru ? 'ru' : 'uk'
-  end
-
   # Product cards shown on the welcome page.
   # Each item: { key:, title:, path:, image: (or nil for a feature card), icon: }
+  #
+  # Images are clean, language-neutral product renders (the localized banner
+  # captions were stripped) — the product name is rendered from i18n below the
+  # card image, so no per-locale artwork is needed.
   def welcome_products
-    l = welcome_image_locale
     [
-      { key: 'stillage',  title: t('page.welcome.stillage'),           path: stillage_index_path,           image: "design/all_parts/welcome/stillage_arxivniy_bitovoy_#{l}.gif", icon: 'fa-archive' },
-      { key: 'warehouse', title: t('page.welcome.stillage_warehouse'), path: stillage_warehouse_index_path, image: "design/all_parts/welcome/stillage_warehouse_#{l}.gif",         icon: 'fa-warehouse' },
-      { key: 'pallet',    title: t('page.welcome.stillage_pallet'),    path: stillage_pallet_index_path,    image: "design/all_parts/welcome/stillage_pallet_#{l}.gif",            icon: 'fa-pallet' },
-      { key: 'trolley',   title: t('page.welcome.troles'),             path: trolley_index_path,            image: "design/all_parts/welcome/troleys_#{l}.gif",                    icon: 'fa-dolly' },
-      { key: 'mezzanine', title: t('page.welcome.stillage_mezonin'),   path: mezzanine_index_path,          image: "design/all_parts/welcome/stillage_mezonin_#{l}.gif",           icon: 'fa-layer-group' },
-      { key: 'platform',  title: t('page.welcome.platform'),           path: platform_index_path,           image: nil,                                                           icon: 'fa-truck-loading' },
-      { key: 'loft',      title: t('page.welcome.loft'),               path: lofts_path,                    image: nil,                                                           icon: 'fa-couch' },
-      { key: 'gallery',   title: t('page.welcome.gallery'),            path: gallery_index_path,            image: "design/all_parts/welcome/gallery_#{l}.gif",                    icon: 'fa-images' }
+      { key: 'stillage',  title: t('page.welcome.stillage'),           path: stillage_index_path,           image: 'design/all_parts/welcome/clean/stillage.png',  icon: 'fa-archive' },
+      { key: 'warehouse', title: t('page.welcome.stillage_warehouse'), path: stillage_warehouse_index_path, image: 'design/all_parts/welcome/clean/warehouse.png', icon: 'fa-warehouse' },
+      { key: 'pallet',    title: t('page.welcome.stillage_pallet'),    path: stillage_pallet_index_path,    image: 'design/all_parts/welcome/clean/pallet.png',    icon: 'fa-pallet' },
+      { key: 'trolley',   title: t('page.welcome.troles'),             path: trolley_index_path,            image: 'design/all_parts/welcome/clean/trolley.png',   icon: 'fa-dolly' },
+      { key: 'mezzanine', title: t('page.welcome.stillage_mezonin'),   path: mezzanine_index_path,          image: 'design/all_parts/welcome/clean/mezzanine.png', icon: 'fa-layer-group' },
+      { key: 'platform',  title: t('page.welcome.platform'),           path: platform_index_path,           image: nil,                                            icon: 'fa-truck-loading' },
+      { key: 'loft',      title: t('page.welcome.loft'),               path: lofts_path,                    image: nil,                                            icon: 'fa-couch' },
+      { key: 'gallery',   title: t('page.welcome.gallery'),            path: gallery_index_path,            image: 'design/all_parts/welcome/clean/gallery.png',   icon: 'fa-images' }
     ]
   end
 
