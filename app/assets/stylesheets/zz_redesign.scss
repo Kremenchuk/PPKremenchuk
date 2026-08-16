@@ -106,7 +106,6 @@ body.stm-redesign {
   .topbar__lang { display: inline-flex; gap: 10px; align-items: center; }
   .topbar__lang a { color: var(--r-muted); transition: .3s; }
   .topbar__lang a:hover { color: var(--r-orange-2); }
-  .topbar__lang a.is-active { color: var(--r-orange-2); font-weight: 700; }
   .topbar__auth { display: inline-flex; gap: 10px; align-items: center; margin-left: 4px; }
   .topbar__auth a { color: var(--r-muted); transition: .3s; }
   .topbar__auth a:hover { color: var(--r-orange-2); }
@@ -181,9 +180,6 @@ body.stm-redesign {
     .hero__chips { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px; padding: 0; }
     .hero__chips li { font-family: var(--f-mono); font-size: 12.5px; letter-spacing: .05em; color: var(--r-text); background: rgba(30, 30, 34, .55); border: 1px solid var(--r-line-2); padding: 8px 14px; border-radius: 2px; }
     .hero__chips li span { color: var(--r-orange-2); }
-    .hero__scroll { position: absolute; left: 28px; bottom: 26px; z-index: 2; display: flex; align-items: center; gap: 12px; font-family: var(--f-mono); font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--r-muted); }
-    .hero__scroll span { position: relative; width: 26px; height: 40px; border: 1.5px solid var(--r-line-2); border-radius: 14px; }
-    .hero__scroll span::before { content: ""; position: absolute; left: 50%; top: 7px; width: 3px; height: 7px; background: var(--r-orange); border-radius: 2px; transform: translateX(-50%); animation: r-scroll 1.6s infinite; }
 
     // ---- STATS --------------------------------------------------------
     .stats { background: var(--r-orange); color: #1a0a02; position: relative; z-index: 3; }
@@ -317,7 +313,6 @@ body.stm-redesign {
     .footer__in { grid-template-columns: 1fr 1fr; }
     .footer__brand { grid-column: 1/-1; }
     .home .hero { min-height: auto; padding: 64px 0 56px; }
-    .home .hero__scroll { display: none; }
     .footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
     .topbar__in { flex-wrap: wrap; height: auto; padding: 8px 0; gap: 8px 12px; }
     .topbar__item--address { display: none; }
@@ -335,7 +330,6 @@ body.stm-redesign {
 
 @media (prefers-reduced-motion: reduce) {
   body.stm-redesign .reveal { opacity: 1; transform: none; }
-  body.stm-redesign .home .marquee__track,
-  body.stm-redesign .home .hero__scroll span::before { animation: none; }
+  body.stm-redesign .home .marquee__track { animation: none; }
 }
 

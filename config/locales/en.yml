@@ -43,13 +43,8 @@ en:
     all:
       stillage:   'Rack'
       home:       'Home'
-      read_next: 'Read more'
-      footer: 'The best racking equipment is only here. We manufacture any size of racking and trolleys. Rack parts are painted with high-quality powder coatings.
-      The best price/quality ratio on the market! Fast manufacturing and delivery. Delivery to Kyiv, Lviv, Kharkiv, Dnipro, Odesa, Vinnytsia, Sumy, Poltava, Ternopil, Zaporizhzhia and other cities of Ukraine.
-      Short production lead times. On-site measurement and installation of racking systems.'
       print:       'Print'
       on_line:     'On-line rack calculation'
-      on_line_off: 'On-line calculation is temporarily disabled'
       mm:          'mm'
       unit:        'pcs'
       kg:          'kg'
@@ -87,36 +82,15 @@ en:
       pris_sec:        'Add-on section'
       pris_sec_rash:   'Add-on section (schematic view)'
       table:
-        header_photo: 'Photo'
-        header_name:  'Name'
         header_texn:  'Technical specifications'
-      triomet:            'Trimetal Service'
-
     layout:
       title:          'Racking from the manufacturer (online calculation)'
-      pp:             'PE'
-      kremenchuk:     'KREMENCHUK'
       sign_out:       'Sign out'
       sign_in:        'Sign in'
-      registration:   'Register'
       admin_constants: 'Admin panel'
-      production:     'PRODUCTS'
-      contact:        'CONTACTS'
-      company:        'ABOUT THE COMPANY'
-      site:           'Site: Kremenchuk Artem'
-      design:         'Design: Chernyshov Heorhii'
       drop_menu:
         news:         'News'
         about_us:     'About the company'
-        contact:      'Contacts'
-        stillage:     'Archive racking (on-line calculation)'
-        warehouse:    'Warehouse racking (on-line calculation)'
-        pallet:       'Pallet racking (on-line calculation)'
-        trolleys:     'Load trolleys (on-line calculation)'
-        mezzanine:    'Mezzanine racking'
-        gallery:      'Gallery'
-        platform:     'Platforms'
-        loft:         'Designer racking (Loft furniture)'
         article:      'Articles'
 
     welcome:
@@ -218,7 +192,6 @@ en:
 
     home:
       topbar:
-        est:      '2002 — Trimetal Service'
         address:  'Kharkiv, 22 Araviiska St.'
         email:    'stm_industry@ukr.net'
         tel_number: '+38 (067) _________'
@@ -237,7 +210,6 @@ en:
         lead:          'We design and manufacture racking, mezzanines, platforms and load trolleys for warehouses, archives and production sites. In-house manufacturing, delivery and installation across Ukraine.'
         cta_primary:   'Find a solution'
         cta_secondary: 'About production'
-        scroll:        'scroll'
         chips:
           - 'up to 1500 kg/m²'
           - 'CNC production'
@@ -332,26 +304,13 @@ en:
                                The shelf is made of galvanised steel 08KP, 0.55-1.00 mm thick. Wedge-shaped holes for engaging with the upright are punched in the stiffening ribs, two on each side.
                                The second type of shelf consists of beams 40 mm high, 400-1150 mm long and 250-800 mm wide, plus a shelf cover. The shelf cover is chipboard, MDF, OSB or other available materials (at the customer's request).</p>
                                <p>3. Reinforcer: a bent profile structure made of galvanised steel 08KP, 0.55-1.00 mm thick.</p>"
-        table:
-          name_1:    'Upright'
-          texn_1:    '<p>Height: 1000-3500 mm.</p>
-                      <p>Load – 500 kg</p>
-                      <p>Galvanised/Painted (RAL5005, RAL7035)</p>'
-          name_2:    'Shelf'
-          texn_2:    '<p>Length – 400-1150 mm</p>
-                      <p>Width 250-800 mm</p>
-                      <p>Load – up to 200 kg</p>
-                      <p>Galvanised/Painted (RAL5005, RAL7035)</p>'
-          name_3:    'Reinforcer'
-          texn_3:    '<p>Length – 400-1150 mm</p>
-                      <p>Width 40 mm</p>
-                      <p>Galvanised/Painted (RAL5005, RAL7035)</p>'
       show:
         header:       'Archive rack'
 
     stillage_warehouse:
       index:
         header:           'Warehouse racking'
+        lead:             'Medium-duty racking with up to 400 kg per level — for warehouses, production shops and tyre centres. Configure and price yours online.'
         shelf_steel:      'Metal shelf'
         shelf_load_title: 'Maximum distributed load per level'
         dsp:              'Frame for chipboard (chipboard not included)'
@@ -368,22 +327,8 @@ en:
         <p> 3. Metal shelf assembled from individual profiled metal shelf panels with hooks for fixing to the rack beam. </p>
         <p> 4. Beam repositioning pitch — 75 mm </p>"
 
-        table:
-          name_1:    'Frame'
-          texn_1:    '<p>Height: 1500-5200 mm.</p>
-                      <p>Width: 300-1500 mm</p>
-                      <p>Load – 2100 kg</p>
-                      <p>Galvanised/Painted</p>'
-          name_2:    'Beam'
-          texn_2:    '<p>Length – 800-2700 mm</p>
-                      <p>Load – up to 350 kg/pc</p>
-                      <p>Painted</p>'
-          name_3:    'Reinforcer'
-          texn_3:    '<p>Length – 300-1500 mm</p>
-                      <p>Load – up to 150 kg/pc</p>
-                      <p>Painted</p>'
       show:
-        header:          'Warehouse shelf racking, bolt-together/knock-down'
+        short:           'Warehouse rack'
         max_load_ur:     'Maximum load per level'
         weight_osn_sec:  'Weight of the main section'
         weight_pris_sec: 'Weight of the add-on section'
@@ -394,6 +339,7 @@ en:
     stillage_pallet:
       index:
         header:           'Pallet racking'
+        lead:             'Racking for palletised loads — sized for EURO pallets (1200x800) and Finnish pallets (1200x1000), up to 3000 kg per level. Configure and price yours online.'
         width:            'Width (Beam length)'
         width_title:      'Section width in millimetres (Beam length)'
         shelf_load_title: 'Maximum distributed load per rack storage level'
@@ -402,18 +348,8 @@ en:
                           <p>1. The rack frame is two vertical uprights of a special perforated profile, connected to each other by horizontal and diagonal braces. Each frame is fixed to the warehouse floor with two anchor bolts through holes in the base plate.</p>
                           <p>2. The beam is a rectangular profile with welded hooks for fixing to the frames. The beams are bolted to the frames, in accordance with the latest European standards.</p>
                           <p>3. Beam repositioning pitch – 25 mm</p>"
-        table:
-          name_1:    'Frame'
-          texn_1:    '<p>Height: 1500-6000 mm./p>
-                      <p>Width: 1100 mm</p>
-                      <p>Load: 15000 kg</p>
-                      <p>Galvanised</p>'
-          name_2:    'Beam'
-          texn_2:    '<p>Length: 1200-3500 mm</p>
-                      <p>Load: up to 1700 kg/pc</p>
-                      <p>Painted (RAL3020)</p>'
       show:
-        header:       'Pallet racking, bolt-together/knock-down'
+        short:           'Pallet rack'
         max_load_ur:  'Maximum load per level'
         weight_ram:   'Frame weight'
         weaight_trav: 'Beam weight'
@@ -421,6 +357,7 @@ en:
     mezanine:
       index:
         header:        'Mezzanines'
+        lead:   'Multi-tier systems built from warehouse or pallet racking — they add one or more floor levels to a warehouse. We engineer the structure around your building.'
         about:         "<p> Multi-tier systems assembled from warehouse or pallet racking elements. They add one or more floor levels to the warehouse. Ideal for storing manually stacked
         goods. Combined load storage is possible — pallets are placed on the warehouse floor and the first mezzanine levels, while manually stacked goods are stored on the first and higher mezzanine levels.
         The mezzanine floor decking can be made of chipboard/OSB boards or metal gratings. The maximum load per square metre of mezzanine floor can reach 1000 kg.
@@ -431,6 +368,7 @@ en:
     platform:
       index:
         header:        'Platforms'
+        lead:   'Bespoke solutions for storing loads on pallets or on the platform floor. The deck carries up to 1000 kg per m². Engineered to your parameters.'
         about:         "<p> Custom solutions for storing loads on pallets or on the platform floor. The platform is assembled from uprights, trusses, reinforcers and decking.
         All elements are carefully calculated by our specialists for the individual parameters of each platform. Other types of racking can be installed on the platform decking. </p>
         <p> High-strength MDF, chipboard or OSB wood boards or galvanised metal gratings can be used as decking. The platform decking can withstand a load
@@ -439,6 +377,7 @@ en:
     loft:
       index:
         header:        'Designer racking (Loft furniture)'
+        lead:   'Authentic loft-style furniture in steel and wood. Light knock-down frames, powder coating in any colour, stainless steel available on request.'
         about:         "<p>Authentic loft-style furniture. Metal and wood serve as the basis of this furniture. Loft furniture is distinguished by its lightness, reliability and outstanding design.
         Such furniture will decorate any interior and create a feeling of open space in your home. The lightness of the structure and ease of assembly mean you are not tied to a particular spot in the room.
         Loft racking is based on metal profiles painted with high-quality powder coatings in any colour. Manufacture from stainless steel is also possible.
@@ -463,6 +402,7 @@ en:
     trolleys:
       index:
         header:     'Trolleys'
+        lead:             'In-house load trolleys: platform, cage and shelf types — 15 models, also built to custom sizes. Configure and price yours online.'
         about:      'Trolleys are supplied without wheels (by agreement).
                     <p>The handle height, in the on-line calculation, does not include the wheel height.</p>'
         about_sec:  'Trolleys can be manufactured to individual requirements.'
@@ -481,7 +421,7 @@ en:
         width_title:         'Trolley width in millimetres'
         handle_height:       'Handle height'
         handle_height_title: 'Handle height from the floor in millimetres'
-        weight:              'Load per shelf'
+        weight:              'Load'
         weight_title:        'Maximum distributed load per trolley shelf'
         calculate:           'Calculate'
 
@@ -494,16 +434,7 @@ en:
 
     contacts:
       index:
-        header:           'Contacts'
-        address_title:    'Address'
-        address:          'Ukraine, Kharkiv, 22 Araviiska St.'
-        tel_title:        'Phone'
-        tel_number:       '-'
         map:              'Directions map'
-        email_title:      'Email'
-        email:            'stm_industry@ukr.net'
-
-
     registration:
       header:         'Registration'
       login:          'Login'

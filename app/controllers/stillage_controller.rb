@@ -142,7 +142,7 @@ class StillageController < ApplicationController
 
     @price_stillage = @sebest * (@natsenka/100 +1)
 
-    @name_stilage = "#{@hight_var} x #{@width_var} x #{@depth_var} #{@num_of_shelves_var}п "
+    @name_stilage = "#{@hight_var} x #{@width_var} x #{@depth_var} #{@num_of_shelves_var}п. "
 
     if @usil == 1
       @name_stilage = @name_stilage + " #{@usil} усилитель"
@@ -239,7 +239,7 @@ class StillageController < ApplicationController
 
     @price_stillage = sebest * (@natsenka/100 +1)
 
-    @name_stilage = "#{@hight_var} x #{@width_var} x #{@depth_var} #{@num_of_shelves_var}п "
+    @name_stilage = "#{@hight_var} x #{@width_var} x #{@depth_var} #{@num_of_shelves_var}п. "
 
     #проверка выбора оцинкованный или окрашенный стеллаж
     if @okr_or_oc == "osinkovaniy"

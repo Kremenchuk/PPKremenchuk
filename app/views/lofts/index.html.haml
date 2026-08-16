@@ -1,14 +1,19 @@
-%h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
-  =t('page.loft.index.header')
-.container-fluid
-  .row
-    .col-md-6
-      %p
-  .row
-    .col-md-12.all_tytle_page_img_stillage_stillage_warehouse_stillage_pallet
-      =image_tag("design/all_parts/loft/stellag_dlya_knig.jpg", class: "tytle_page_img_stillage_loft")
-%p
-.container-fluid
-  .row
-    .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet
-      =raw t("page.loft.index.about")
+.pdp
+  %section.pdp-hero
+    %nav.pdp-crumbs
+      = link_to t('page.all.home'), root_path
+      %span.sep /
+      = link_to t('page.home.nav.products'), "#{root_path}#products"
+      %span.sep /
+      %span.cur= t('page.loft.index.header')
+    %p.eyebrow
+      %span.eyebrow__tick
+      = t('page.home.nav.products')
+    %h1.pdp-title= t('page.loft.index.header')
+    %p.pdp-lead= t('page.loft.index.lead')
+
+  %figure.pdp-figure
+    = image_tag('design/all_parts/loft/stellag_dlya_knig.jpg', alt: t('page.loft.index.header'))
+
+  .pdp-block
+    .pdp-prose= raw t('page.loft.index.about')

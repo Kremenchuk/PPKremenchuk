@@ -2,27 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
 .article_header a {
   color: var(--stm-text) !important;
   float: left;
 }
 
 .article_header {
-  text-align: center;
-}
-
-.article_image {
-  text-align: center;
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-
-.article_image img{
-  width: 250px;
-}
-
-.article_h2 h2 {
   text-align: center;
 }
 

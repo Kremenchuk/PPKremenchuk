@@ -174,7 +174,9 @@ class StillagePalletController < ApplicationController
     if @num_of_shelves_var>4
       @text_var = t('page.all.urovney')
     end
-    @name_stillage="#{@hight_var}x#{@width_var} #{t('page.all.traversa_lit')}: #{@width_var}x#{@hight_traversi}x#{@depth_traversi}x1.5 #{t('page.all.urovney')}: #{@num_of_shelves_var} п. "
+    # тот же формат, что и на остальных страницах расчёта: размеры через
+    # " x " с пробелами, количество уровней слитно с сокращением
+    @name_stillage="#{@hight_var} x #{@width_var} #{t('page.all.traversa_lit')}: #{@width_var} x #{@hight_traversi} x #{@depth_traversi} x 1.5 #{t('page.all.urovney')}: #{@num_of_shelves_var}п. "
     enter_row_to_excel(@name_stillage, @price_stillage_osn) #внесение в ексель файл данных о расчете стеллажа.
 
     render 'index'

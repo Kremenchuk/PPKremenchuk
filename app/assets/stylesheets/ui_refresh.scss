@@ -26,140 +26,17 @@
 }
 
 // ---- base niceties (safe, global) -----------------------------------
-html { scroll-behavior: smooth; }
+// NB: no `html { scroll-behavior: smooth }`. Turbo Drive swaps the DOM in
+// place and scrolls to the top *after* rendering, so a global smooth
+// behaviour makes every navigation paint at the previous offset and then
+// visibly glide up. In-page anchors are scrolled smoothly by
+// site_controller#initAnchorScroll instead, which also honours
+// prefers-reduced-motion.
 
 *:focus-visible {
   outline: 2px solid var(--stm-accent);
   outline-offset: 2px;
 }
-
-// =====================================================================
-//  Header
-// =====================================================================
-.fix_header {
-  background:
-    linear-gradient(180deg, rgba(254, 125, 20, .06), transparent 40%),
-    var(--stm-bg);
-  border-bottom: 1px solid var(--stm-border);
-  box-shadow: 0 2px 16px rgba(0, 0, 0, .4);
-  color: var(--stm-text);
-}
-
-.logo { transition: transform .2s ease; }
-.col_header1 a:hover .logo { transform: scale(1.03); }
-
-// header nav row: align with the fluid container gutters (drop the legacy
-// left offset that assumed a fixed-width container)
-.layout_table { padding-left: 0 !important; }
-
-// top-level menu labels (Продукція / Компанія / language)
-.col_header3,
-.col_header4,
-.col_header5 {
-  transition: background .2s ease, color .2s ease;
-  border-radius: 8px;
-}
-
-.col_header3:hover,
-.col_header4:hover,
-.col_header5:hover {
-  background: var(--stm-accent-050) !important;
-  color: var(--stm-accent);
-  cursor: default;
-}
-
-// auth links block
-.col_header2 a { color: var(--stm-text); }
-.col_header2 a:hover { color: var(--stm-accent); text-decoration: none; }
-
-// dropdown flyout panels
-ul.dropdown .dropdown-inside {
-  background: var(--stm-surface-2);
-  border: 1px solid var(--stm-border);
-  border-radius: var(--stm-radius-sm);
-  box-shadow: var(--stm-shadow);
-  overflow: hidden;
-}
-
-ul.dropdown-inside > li {
-  border: none;
-  border-bottom: 1px solid var(--stm-border);
-  height: 48px;
-  line-height: 48px;
-  transition: background .18s ease;
-}
-ul.dropdown-inside > li:last-child { border-bottom: none; }
-
-ul.dropdown li.dropdown-top a { color: var(--stm-text); }
-
-ul.dropdown .dropdown-inside a {
-  color: var(--stm-text);
-  display: block;
-  padding-left: 14px;
-  transition: color .18s ease, background .18s ease;
-}
-ul.dropdown .dropdown-inside a:hover {
-  height: 48px;
-  line-height: 48px;
-  background: var(--stm-accent-050);
-  color: var(--stm-accent);
-  text-decoration: none;
-}
-
-// =====================================================================
-//  Hamburger menu (mobile)
-// =====================================================================
-.menu__btn {
-  background-color: transparent;
-}
-
-.menu__box {
-  background-color: var(--stm-surface);
-  border-left: 1px solid var(--stm-border);
-  box-shadow: -4px 0 24px rgba(0, 0, 0, .5);
-}
-
-.menu__box__name {
-  color: var(--stm-accent);
-  background-color: transparent;
-  border-top: 1px solid var(--stm-border);
-  border-bottom: 1px solid var(--stm-border);
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  font-size: .82rem;
-}
-
-.menu__item {
-  color: var(--stm-text);
-  transition: background .18s ease, color .18s ease;
-
-  &:hover {
-    background-color: var(--stm-accent-050);
-    color: var(--stm-accent);
-  }
-}
-
-// =====================================================================
-//  Footer
-// =====================================================================
-.fix_footer {
-  background: var(--stm-surface);
-  color: var(--stm-muted);
-  border-top: 1px solid var(--stm-border);
-  width: 100%;
-  left: 0;
-  right: 0;
-
-  a {
-    color: var(--stm-accent);
-    text-decoration: none;
-    transition: color .18s ease;
-  }
-  a:hover { color: var(--stm-accent-600); text-decoration: underline; }
-}
-
-.footer_contacts { color: var(--stm-text); }
-.footer_text { color: var(--stm-muted); }
 
 // =====================================================================
 //  Global base theme  (applies the dark industrial look to every page)
@@ -205,18 +82,6 @@ hr { border-color: var(--stm-border); }
 // =====================================================================
 .main > .container-fluid { padding-inline: 0; }
 
-.fix_header .container {
-  width: 100%;
-  max-width: none;
-  margin-inline: 0;
-  padding-inline: clamp(14px, 3.5vw, 56px);
-  box-sizing: border-box;
-}
-
-.fix_footer .container-fluid {
-  padding-inline: clamp(14px, 3.5vw, 56px);
-}
-
 // =====================================================================
 //  Content elements (scoped to .wrapper so header/footer stay intact)
 // =====================================================================
@@ -245,15 +110,6 @@ hr { border-color: var(--stm-border); }
     border-radius: 8px;
     padding: 6px;
     box-sizing: border-box;
-  }
-
-  .tytle_page_img_stillage_stillage_warehouse_stillage_pallet,
-  .tytle_page_img_stillage_loft {
-    background: #fff;
-    border-radius: var(--stm-radius);
-    padding: 12px;
-    box-sizing: border-box;
-    box-shadow: var(--stm-shadow);
   }
 
   // ---- form controls ---------------------------------------------
@@ -304,13 +160,6 @@ hr { border-color: var(--stm-border); }
   }
   .btn-success:hover,
   input[type="submit"]:hover { background: var(--stm-accent-600); color: #1a1205; }
-
-  .btn-default {
-    background: transparent;
-    color: var(--stm-text);
-    border-color: var(--stm-border);
-  }
-  .btn-default:hover { border-color: var(--stm-accent); color: var(--stm-accent); }
 
   // ---- auth forms (devise) ---------------------------------------
   .field { margin-bottom: 14px; }

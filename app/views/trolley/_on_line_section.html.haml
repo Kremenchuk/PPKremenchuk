@@ -1,35 +1,20 @@
-.row
-  .col-md-6
-    =label_tag(:q, t('page.all.lenght'))
-    %p
-      = "(600-1500 #{t('page.all.mm')})"
-    %p{:title => t('page.trolleys.index.length_title')}
-      %input{:maxlength => "4", :name => "lengthT", :pattern => "^[ 0-9]+$",
-                    :size => "10", :value => "", :type => "text",
-                    data: { 'product-form-target': 'field', label: 'Длина', min: 600, max: 1500 }}
-  .col-md-6
-    =label_tag(:q, t('page.all.widht'))
-    %p
-      = "(500-1200 #{t('page.all.mm')})"
-      %p{:title => t('page.trolleys.index.width_title')}
-        %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                       :size => "10", :value => "", :type => "text",
-                       data: { 'product-form-target': 'field', label: 'Ширина', min: 500, max: 1200 }}
-.row
-  .col-md-6
-    =label_tag(:q, t('page.trolleys.index.handle_height'))
-    %p
-      = "(600-1200 #{t('page.all.mm')})"
-    %p{:title => t('page.trolleys.index.handle_height_title')}
-      %input{:maxlength => "4", :name => "hight_ruch", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text",
-                     data: { 'product-form-target': 'field', label: 'Высота ручки', min: 600, max: 1200 }}
-  .col-md-6
-    =label_tag(:q, t('page.trolleys.index.weight'))
-    %p
-      = "(50-400 #{t('page.all.kg')})"
-    %p{:title => t('page.trolleys.index.weight_title')}
-      %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                     :size => "10", :value => "", :type => "text",
-                     data: { 'product-form-target': 'field', label: 'Нагрузка на полку', min: 50, max: 400 }}
-
+-# Shared calculator fields for every trolley model. `model` comes from
+-# TrolleysHelper::TROLLEY_MODELS and is only used to keep input ids unique
+-# across the 15 forms on the page.
+.pdp-fields.pdp-fields--2
+  .pdp-field{ title: t('page.trolleys.index.length_title') }
+    = label_tag trolley_field_id(model, 'lengthT'), t('page.all.lenght')
+    %span.range= "(600–1500 #{t('page.all.mm')})"
+    %input{ id: trolley_field_id(model, 'lengthT'), maxlength: '4', name: 'lengthT', pattern: '^[ 0-9]+$', type: 'text', value: '', data: { 'product-form-target': 'field', label: t('page.all.lenght'), min: 600, max: 1500 } }
+  .pdp-field{ title: t('page.trolleys.index.width_title') }
+    = label_tag trolley_field_id(model, 'widthS'), t('page.all.widht')
+    %span.range= "(500–1200 #{t('page.all.mm')})"
+    %input{ id: trolley_field_id(model, 'widthS'), maxlength: '4', name: 'widthS', pattern: '^[ 0-9]+$', type: 'text', value: '', data: { 'product-form-target': 'field', label: t('page.all.widht'), min: 500, max: 1200 } }
+  .pdp-field{ title: t('page.trolleys.index.handle_height_title') }
+    = label_tag trolley_field_id(model, 'hight_ruch'), t('page.trolleys.index.handle_height')
+    %span.range= "(600–1200 #{t('page.all.mm')})"
+    %input{ id: trolley_field_id(model, 'hight_ruch'), maxlength: '4', name: 'hight_ruch', pattern: '^[ 0-9]+$', type: 'text', value: '', data: { 'product-form-target': 'field', label: t('page.trolleys.index.handle_height'), min: 600, max: 1200 } }
+  .pdp-field{ title: t('page.trolleys.index.weight_title') }
+    = label_tag trolley_field_id(model, 'shelf_load'), t('page.trolleys.index.weight')
+    %span.range= "(50–400 #{t('page.all.kg')})"
+    %input{ id: trolley_field_id(model, 'shelf_load'), maxlength: '3', name: 'shelf_load', pattern: '^[ 0-9]+$', type: 'text', value: '', data: { 'product-form-target': 'field', label: t('page.trolleys.index.weight'), min: 50, max: 400 } }

@@ -1,7 +1,8 @@
 .pdp-result
   .pdp-result__head
     %span.pdp-result__name= @name_stilage
-    = button_to '', class: 'pdp-print', onclick: 'window.print(); return false;', title: t('page.all.print') do
+    - print_name = "#{t('page.stillage.show.header')} #{@name_stilage}"
+    %button.pdp-print{ type: 'button', title: t('page.all.print'), data: { controller: 'print', action: 'click->print#run', 'print-name-value': print_name } }
       🖨
   .pdp-result__grid
     %ul.pdp-result__specs

@@ -1,98 +1,74 @@
-%h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
-  =t('page.stillage_pallet.index.header')
-.container-fluid
-  .row
-    .col-md-6
-      %p
-  .row
-    .col-md-12.all_tytle_page_img_stillage_stillage_warehouse_stillage_pallet
-      =image_tag("design/all_parts/stillage_pallet/stillage_pallet_Pasport.png", :class => "tytle_page_img_stillage_stillage_warehouse_stillage_pallet")
+.pdp
+  %section.pdp-hero
+    %nav.pdp-crumbs
+      = link_to t('page.all.home'), root_path
+      %span.sep /
+      = link_to t('page.home.nav.products'), "#{root_path}#products"
+      %span.sep /
+      %span.cur= t('page.stillage_pallet.index.header')
+    %p.eyebrow
+      %span.eyebrow__tick
+      = t('page.all.stillage')
+    %h1.pdp-title= t('page.stillage_pallet.index.header')
+    %p.pdp-lead= t('page.stillage_pallet.index.lead')
+    %ul.pdp-chips
+      %li
+        %b= t('page.all.height')
+        = "2000–6000 #{t('page.all.mm')}"
+      %li
+        %b= t('page.all.widht')
+        = "1200–3500 #{t('page.all.mm')}"
+      %li
+        %b= t('page.all.num_of_ur')
+        = "2–10 #{t('page.all.unit')}"
+      %li
+        %b= t('page.all.ur_load')
+        = "500–3000 #{t('page.all.kg')}"
 
-%p
--if !@constant.on_off_calc_stillage_pallet
-  = form_tag(calculate_actual_price_stillage_pallet_path, method: :get, id: 'contact_form', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
-    .container-fluid
-      .text_size{ data: { action: 'click->product-form#toggle' } }
-        =image_tag("plus.png", :id => "chg_img_1", :alt => "mater", :name => "img_1", :width => "30", :height => "30", data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
-        =t('page.all.on_line')
-      #hiden_element_1{ data: { 'product-form-target': 'panel' } }
-        .row
-          .col-md-3
-            =label_tag(:q, t('page.all.height'))
-            %p
-              (2000-6000 #{t('page.all.mm')})
-            %p{:title => t('page.all.height_title')}
-              %input{:maxlength => "4", :name => "hight", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text",
-                  data: { 'product-form-target': 'field', label: 'Высота', min: 2000, max: 6000 }}
-          .col-md-3
-            =label_tag(:q, t('page.stillage_pallet.index.width'))
-            %p
-              (1200-3500 #{t('page.all.mm')})
-            %p{:title => t('page.stillage_pallet.index.width_title')}
-              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text",
-                  data: { 'product-form-target': 'field', label: 'Ширина', min: 1200, max: 3500 }}
-          .col-md-3
-            =label_tag(:q, t('page.all.num_of_ur'))
-            %p
-              (2-10 #{t('page.all.unit')})
-            %p{:title => t('page.all.num_of_ur_title')}
-              %input{:maxlength => "2", :name => "num_of_shelves", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text",
-                  data: { 'product-form-target': 'field', label: 'Количество ярусов', min: 2, max: 10 }}
-          .col-md-3
-            =label_tag(:q, t('page.all.ur_load'))
-            %p
-              (500-3000 #{t('page.all.kg')})
-            %p{:title => t('page.stillage_pallet.index.shelf_load_title')}
-              %input{:maxlength => "4", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                  :size => "10", :value => "", :type => "text",
-                  data: { 'product-form-target': 'field', label: 'Нагрузка на ярус', min: 500, max: 3000 }}
-        .row
-          .col-md-3
-            %p
-            %input{:name => "send", :type => "submit", :value => t('page.all.calculate_stillage'), :class => "btn btn-success"}
-#actual_price
-  .row
-    .col-md-12
-      - if @name_stillage.present?
-        = render partial: 'show_actual_price'
-      -#-else
-      -#  .on_line_calculation_off
-      -#    =t('page.all.on_line_off')
+  -# ONLINE CALCULATOR
+  - if !@constant.on_off_calc_stillage_pallet
+    = form_tag(calculate_actual_price_stillage_pallet_path, method: :get, id: 'contact_form', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
+      .pdp-calc
+        .pdp-calc__bar{ data: { action: 'click->product-form#toggle' } }
+          = image_tag('plus.png', id: 'chg_img_1', alt: '+', width: '26', height: '26', data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
+          %span= t('page.all.on_line')
+          %span.hint= t('page.all.calculate_stillage')
+        #hiden_element_1.pdp-panel{ data: { 'product-form-target': 'panel' } }
+          .pdp-fields.pdp-fields--4
+            .pdp-field{ title: t('page.all.height_title') }
+              = label_tag :hight, t('page.all.height')
+              %span.range= "(2000–6000 #{t('page.all.mm')})"
+              %input{ maxlength: '4', name: 'hight', pattern: '^[ 0-9]+$', type: 'text', value: '', data: { 'product-form-target': 'field', label: t('page.all.height'), min: 2000, max: 6000 } }
+            .pdp-field{ title: t('page.stillage_pallet.index.width_title') }
+              = label_tag :widthS, t('page.stillage_pallet.index.width')
+              %span.range= "(1200–3500 #{t('page.all.mm')})"
+              %input{ maxlength: '4', name: 'widthS', pattern: '^[ 0-9]+$', type: 'text', value: '', data: { 'product-form-target': 'field', label: t('page.stillage_pallet.index.width'), min: 1200, max: 3500 } }
+            .pdp-field{ title: t('page.all.num_of_ur_title') }
+              = label_tag :num_of_shelves, t('page.all.num_of_ur')
+              %span.range= "(2–10 #{t('page.all.unit')})"
+              %input{ maxlength: '2', name: 'num_of_shelves', pattern: '^[ 0-9]+$', type: 'text', value: '', data: { 'product-form-target': 'field', label: t('page.all.num_of_ur'), min: 2, max: 10 } }
+            .pdp-field{ title: t('page.stillage_pallet.index.shelf_load_title') }
+              = label_tag :shelf_load, t('page.all.ur_load')
+              %span.range= "(500–3000 #{t('page.all.kg')})"
+              %input{ maxlength: '4', name: 'shelf_load', pattern: '^[ 0-9]+$', type: 'text', value: '', data: { 'product-form-target': 'field', label: t('page.all.ur_load'), min: 500, max: 3000 } }
+          .pdp-submit
+            %button.btn.btn--lg{ name: 'send', type: 'submit' }
+              = t('page.all.calculate_stillage')
+              %i.arr →
 
-%p
-.container-fluid
-  .row
-    .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet
-      =raw t('page.stillage_pallet.index.abbout')
-  .row
-    .col-md-12.style_p
-      %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-        %tr
-          %th.header_table
-            =t('page.all.table.header_photo')
-          %th.header_table
-            =t('page.all.table.header_name')
-          %th.header_table
-            =t('page.all.table.header_texn')
-          %tr{:align => "center"}
-            %td
-              =image_tag("design/all_parts/stillage_pallet/stillage_pallet_Pasport_table_rama.png", :width => "200", :height => "200")
-            %td
-              =t('page.stillage_pallet.index.table.name_1')
-            %td
-              =raw t('page.stillage_pallet.index.table.texn_1')
-          %tr{:align => "center"}
-            %td
-              =image_tag("design/all_parts/stillage_pallet/stillage_pallet_Pasport_table_traversa.png", :width => "200", :height => "200")
-            %td
-              =t('page.stillage_pallet.index.table.name_2')
-            %td
-              =raw t('page.stillage_pallet.index.table.texn_2')
+  #actual_price
+    - if @name_stillage.present?
+      = render partial: 'show_actual_price'
+
+  -# ABOUT (hidden when printing the calculation)
+  #no_print
+    .pdp-block
+      - about_intro, about_details = t('page.stillage_pallet.index.abbout').to_s.split(/(?=<p>)/, 2)
+      .pdp-prose= raw about_intro
+      %h2.pdp-h2.pdp-h2--center= t('page.all.table.header_texn')
+      - if about_details.present?
+        .pdp-prose= raw about_details
 
 - if @name_stillage.present?
   :javascript
     document.location.hash = "#actual_price";
-

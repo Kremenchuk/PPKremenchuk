@@ -88,8 +88,10 @@ export default class extends Controller {
       if (isDsp && index === 0) option.checked = true // force "оцинкованная"
     })
 
+    // dimming is done with a class so the styling stays in the stylesheet
+    // (the dark redesign theme can't use a hard-coded rgb(0,0,0))
     this.dspRowTargets.forEach((row) => {
-      row.style.color = isDsp ? "rgb(150,150,150)" : "rgb(0,0,0)"
+      row.classList.toggle("is-off", isDsp)
     })
   }
 

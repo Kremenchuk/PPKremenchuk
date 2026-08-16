@@ -4,9 +4,6 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
-
 import ProductFormController from "./product_form_controller"
 application.register("product-form", ProductFormController)
 
@@ -16,3 +13,5 @@ application.register("site", SiteController)
 import GalleryController from "./gallery_controller"
 application.register("gallery", GalleryController)
 
+import PrintController from "./print_controller"
+application.register("print", PrintController)

@@ -42,10 +42,12 @@ body.stm-redesign {
 
     // ---- section rhythm ---------------------------------------------
     .pdp-block { margin-top: 56px; }
-    .pdp-eyebrow-row { margin-bottom: 24px; }
     .pdp-h2 {
       font-family: var(--f-disp); font-weight: 600; text-transform: uppercase; line-height: 1.05;
-      font-size: clamp(26px, 3.4vw, 40px); letter-spacing: -.005em; color: var(--r-text); margin: 12px 0 0;
+      font-size: clamp(26px, 3.4vw, 40px); letter-spacing: -.005em; color: var(--r-text);
+      // the heading sits between two prose blocks ("Технічні характеристики"),
+      // so it needs air on both sides to read as a section break
+      margin: 48px 0 26px;
     }
     .pdp-h2 em { font-style: normal; color: var(--r-orange); }
     .pdp-h2--center { text-align: center; }
@@ -70,7 +72,6 @@ body.stm-redesign {
       margin-left: auto; font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .1em;
       text-transform: uppercase; color: var(--r-orange-2); font-weight: 400;
     }
-    .pdp-calc__off { padding: 22px 26px; color: var(--r-muted); font-family: var(--f-mono); font-size: 13px; }
 
     .pdp-panel { padding: 30px 26px 32px; display: none; }
     #hiden_element_1.pdp-panel { display: none; } // collapsed by default; Stimulus toggles inline display
@@ -84,6 +85,9 @@ body.stm-redesign {
     .pdp-field input {
       font-family: var(--f-body); font-size: 16px; color: var(--r-text); background: var(--r-bg-2);
       border: 1px solid var(--r-line-2); border-radius: 2px; padding: 12px 14px; width: 100%; transition: .3s;
+      // grid items stretch to the row height, so pinning the input to the
+      // bottom keeps every input on a row aligned even when one label wraps
+      margin-top: auto;
     }
     .pdp-field input:focus { outline: none; border-color: var(--r-orange); box-shadow: 0 0 0 3px rgba(255, 106, 26, .14); }
 
@@ -111,6 +115,12 @@ body.stm-redesign {
     .pdp-submit { margin-top: 30px; }
 
     // ---- RESULT ------------------------------------------------------
+    // After a calculation the page jumps to #actual_price. The site header
+    // is sticky (74px + 1px rule), so without a scroll margin it covers the
+    // result name. Shared by all four calculators (archive / warehouse /
+    // pallet racking and trolleys).
+    #actual_price { scroll-margin-top: 96px; }
+
     .pdp-result {
       margin-top: 26px; background: linear-gradient(150deg, #1d1208, #141014);
       border: 1px solid rgba(255, 106, 26, .3); border-radius: 4px; overflow: hidden;
@@ -120,8 +130,13 @@ body.stm-redesign {
       display: flex; align-items: center; justify-content: space-between; gap: 16px;
       padding: 20px 26px; border-bottom: 1px solid var(--r-line);
     }
+    // NB: no `text-transform: uppercase` here. The name starts with the
+    // dimensions ("2000x1500x500 …") and uppercasing turns the separator
+    // into a cap-height "X" that is exactly as tall as the digits, so the
+    // number runs together and stops being readable. Lower-case "x" sits at
+    // x-height and reads as a multiplication sign.
     .pdp-result__name {
-      font-family: var(--f-disp); font-weight: 600; text-transform: uppercase; letter-spacing: .02em;
+      font-family: var(--f-disp); font-weight: 600; text-transform: none; letter-spacing: .02em;
       font-size: 20px; color: var(--r-text);
     }
     .pdp-print {
@@ -152,43 +167,25 @@ body.stm-redesign {
     .pdp-result__diagram .dimensions_stillage { background: #f4f4f2; border-radius: 4px; padding: 14px; }
 
     // ---- ABOUT / prose ----------------------------------------------
-    .pdp-prose { max-width: 940px; margin-inline: auto; text-align: justify; }
-    .pdp-prose p { color: var(--r-muted); font-size: 15px; margin: 0 0 14px; }
+    // long-form copy — larger than the UI text around it so a wall of
+    // description stays comfortable to read
+    .pdp-prose { max-width: 940px; margin-inline: auto; text-align: justify; font-size: 17px; }
+    .pdp-prose p { color: var(--r-muted); font-size: 17px; line-height: 1.65; margin: 0 0 16px; }
     .pdp-prose h3 {
       font-family: var(--f-disp); font-weight: 500; text-transform: uppercase; font-size: 20px;
       letter-spacing: .02em; color: var(--r-text); margin: 24px 0 12px;
     }
 
-    // ---- COMPONENTS grid --------------------------------------------
-    .pdp-parts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 30px; }
-    .pdp-part {
-      background: var(--r-panel); border: 1px solid var(--r-line); border-radius: 4px; overflow: hidden;
-      display: flex; flex-direction: column; transition: .4s var(--r-ease);
-    }
-    .pdp-part:hover { transform: translateY(-4px); border-color: rgba(255, 106, 26, .4); }
-    .pdp-part__media {
-      aspect-ratio: 4/3; background: #f4f4f2 radial-gradient(circle at 50% 40%, #fff, #ececea);
-      display: flex; align-items: center; justify-content: center; padding: 18px;
-    }
-    .pdp-part__media img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
-    .pdp-part__body { padding: 20px 20px 22px; }
-    .pdp-part__body h4 {
-      font-family: var(--f-disp); font-weight: 600; text-transform: uppercase; font-size: 18px;
-      letter-spacing: .02em; color: var(--r-text); margin: 0 0 10px;
-    }
-    .pdp-part__body p { color: var(--r-muted); font-size: 14px; margin: 0 0 4px; }
   }
 
   // ---- RESPONSIVE ---------------------------------------------------
   @media (max-width: 980px) {
     .pdp .pdp-fields { grid-template-columns: repeat(3, 1fr); }
-    .pdp .pdp-parts { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 720px) {
     .pdp .pdp-fields { grid-template-columns: repeat(2, 1fr); }
     .pdp .pdp-options { grid-template-columns: 1fr; }
     .pdp .pdp-result__grid { grid-template-columns: 1fr; }
-    .pdp .pdp-parts { grid-template-columns: 1fr; }
     .pdp .pdp-calc__bar .hint { display: none; }
   }
   @media (max-width: 440px) {
@@ -197,3 +194,486 @@ body.stm-redesign {
   }
 }
 
+// =====================================================================
+//  WAREHOUSE RACKING (stillage_warehouse) — additions
+//  The result block carries more data than the archive page:
+//  3 spec figures, a 4-column price table and two schematic drawings.
+//  Legacy class names (.stillage-warehouse, .item-info, .header_table,
+//  .prist_section, .dimensions_stillage_warehouse, .table_* and the
+//  *_size_stilage_warehouse_* label classes) are preserved so print.scss
+//  and mine.css.scss keep working untouched.
+// =====================================================================
+
+body.stm-redesign {
+  .pdp {
+    // ---- three option groups side by side ----------------------------
+    .pdp-options--3 { grid-template-columns: repeat(3, 1fr); }
+
+    // pallet racking has four inputs and no option groups
+    .pdp-fields--4 { grid-template-columns: repeat(4, 1fr); }
+    // trolley cards are narrow — two inputs per row
+    .pdp-fields--2 { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+    // ---- HERO FIGURE --------------------------------------------------
+    // content pages (mezzanines, platforms, loft furniture) lead with a
+    // photograph instead of a calculator
+    // The source photos are small (600x450, 560x734), so they are shown at
+    // their natural size on a plate — stretching them to the 1240px column
+    // both crops and upscales into a blur.
+    .pdp-figure {
+      margin: 34px 0 0;
+      padding: 24px;
+      border: 1px solid var(--r-line);
+      border-radius: 4px;
+      background: var(--r-panel);
+      display: flex;
+      justify-content: center;
+    }
+    .pdp-figure img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 3px;
+    }
+
+    // ---- CALLOUT ------------------------------------------------------
+    // for the handful of facts a buyer has to read before configuring
+    // (e.g. trolleys ship without wheels)
+    .pdp-note {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      max-width: 940px;
+      margin: 0 auto 26px;
+      padding: 20px 24px;
+      background: linear-gradient(150deg, #1d1208, #16121a);
+      border: 1px solid rgba(255, 106, 26, .3);
+      border-left: 3px solid var(--r-orange);
+      border-radius: 4px;
+    }
+    .pdp-note__mark {
+      flex: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--r-orange);
+      color: #180a02;
+      font-family: var(--f-disp);
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 26px;
+      text-align: center;
+    }
+    .pdp-note__body { color: var(--r-text); font-size: 15px; }
+    .pdp-note__body p { margin: 8px 0 0; text-indent: 0; color: var(--r-muted); }
+    .pdp-note__body p:last-child { margin-bottom: 0; }
+
+    // ---- TROLLEY MODEL CARDS ------------------------------------------
+    // 15 models, each its own form posting to the shared calculator
+    .tgrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 30px;
+    }
+    .tcard {
+      background: var(--r-panel);
+      border: 1px solid var(--r-line);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: .4s var(--r-ease);
+    }
+    .tcard:hover { border-color: rgba(255, 106, 26, .4); }
+    .tcard form { margin: 0; display: flex; flex-direction: column; height: 100%; }
+    .tcard__media {
+      aspect-ratio: 4/3;
+      background: #f4f4f2 radial-gradient(circle at 50% 40%, #fff, #ececea);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .tcard__media img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+
+    .tcard__body { padding: 20px 20px 18px; flex: 1; }
+    .tcard__name {
+      font-family: var(--f-disp);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      font-size: 20px;
+      color: var(--r-text);
+      margin: 0 0 14px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .tcard__kicker {
+      font-family: var(--f-mono);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--r-muted);
+      font-weight: 400;
+    }
+    .tcard__label {
+      font-family: var(--f-mono);
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--r-muted);
+      margin: 0 0 8px;
+      text-indent: 0;
+    }
+    .tcard__mats { list-style: none; margin: 0; padding: 0; }
+    .tcard__mats li {
+      position: relative;
+      padding-left: 16px;
+      color: var(--r-muted);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+    .tcard__mats li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 1px;
+      background: var(--r-orange);
+    }
+
+    .tcard__calc { border-top: 1px solid var(--r-line); }
+    .tcard__bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+      padding: 14px 20px;
+      background: linear-gradient(150deg, #1d1208, #16121a);
+      transition: .3s var(--r-ease);
+    }
+    .tcard__bar:hover { background: linear-gradient(150deg, #241609, #191320); }
+    .tcard__bar img { width: 22px; height: 22px; flex: none; }
+    .tcard__bar span {
+      font-family: var(--f-disp);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-size: 13.5px;
+      color: var(--r-text);
+    }
+    .tcard__panel { padding: 20px; }
+    .tcard__panel .pdp-field label { font-size: 10.5px; }
+    .tcard__panel .pdp-field input { font-size: 15px; padding: 10px 12px; }
+    .tcard__submit { margin-top: 18px; }
+
+    .pdp-optgroup .pdp-optlabel em {
+      font-style: normal;
+      color: var(--r-orange-2);
+      &::before { content: "· "; color: var(--r-line-2); }
+    }
+
+    // shelf painting is not selectable when the shelf is chipboard.
+    // `.is-off` is set by product_form_controller#toggleDsp; the :has()
+    // rule is a no-JS fallback keyed on the disabled radios themselves.
+    .pdp-optgroup.is-off,
+    .pdp-optgroup:has(.seg__input:disabled) { opacity: .45; }
+    .pdp-optgroup.is-off .seg__opt,
+    .pdp-optgroup:has(.seg__input:disabled) .seg__opt { cursor: not-allowed; }
+
+    // ---- specs as a row of figures -----------------------------------
+    .pdp-result__specs--row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--r-line);
+      border: 1px solid var(--r-line);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .pdp-result__specs--row li {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 8px;
+      padding: 18px 20px;
+      border-bottom: 0;
+      background: var(--r-bg-2);
+    }
+    .pdp-result__specs--row .k { line-height: 1.4; }
+    .pdp-result__specs--row .v {
+      font-family: var(--f-disp);
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 1;
+      color: var(--r-text);
+    }
+
+    .item-info { padding: 26px; }
+
+    // ---- price table --------------------------------------------------
+    .pdp-pricetable { margin-top: 22px; overflow-x: auto; }
+    .pdp-pricetable table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--r-line);
+      border-radius: 3px;
+    }
+    .pdp-pricetable th,
+    .pdp-pricetable td {
+      border: 1px solid var(--r-line);
+      padding: 14px 16px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    .pdp-pricetable th {
+      background: rgba(255, 255, 255, .03);
+      font-family: var(--f-mono);
+      font-size: 11.5px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--r-muted);
+      font-weight: 400;
+    }
+    .pdp-pricetable th .sub {
+      display: block;
+      margin-top: 6px;
+      font-size: 11px;
+      letter-spacing: .02em;
+      text-transform: none;
+      color: var(--r-line-2);
+      color: rgba(242, 240, 234, .45);
+    }
+    .pdp-pricetable td {
+      font-family: var(--f-disp);
+      font-weight: 500;
+      font-size: 18px;
+      color: var(--r-text);
+      white-space: nowrap;
+    }
+    .pdp-pricetable td.is-total {
+      color: var(--r-orange);
+      font-weight: 700;
+      font-size: 22px;
+      background: rgba(255, 106, 26, .06);
+    }
+
+    // ---- schematic drawings -------------------------------------------
+    .pdp-schemes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 0 26px 26px;
+    }
+    .pdp-scheme__title {
+      font-family: var(--f-disp);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-size: 15px;
+      color: var(--r-muted);
+      margin: 0 0 12px;
+      text-align: center;
+    }
+    // title row + plate; `1fr` makes the plate absorb the leftover height so
+    // both schemes end up exactly as tall as the taller one (grid items
+    // stretch to the row height by default)
+    .pdp-scheme {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-width: 0;
+    }
+    .pdp-scheme__plate {
+      background: #f4f4f2;
+      border: 1px solid var(--r-line);
+      border-radius: 4px;
+      padding: 16px;
+      // the dimension captions are rotated blocks the full width of the
+      // drawing, so their *boxes* stick out well past it even though the
+      // glyphs sit on the drawing. Clip instead of scrolling.
+      overflow: hidden;
+      color: #1a1a1a;
+      font-family: var(--f-mono);
+      font-size: 13px;
+    }
+    // The legacy drawing keeps its pixel geometry — only the wrappers that
+    // used to create the Bootstrap column offsets are neutralised. This
+    // holds for print too: the result block no longer carries the
+    // .stillage-warehouse class, so print.scss's mm-based overrides for the
+    // old markup are out of the picture.
+    .pdp-scheme__plate .dimensions_stillage_warehouse { padding-left: 0; }
+    .pdp-scheme__plate .indent_left_stilage_warehouse,
+    .pdp-scheme__plate .indent_right_stilage_warehouse { display: none; }
+    // captions are positioned relative to this box, so the image and the
+    // captions have to move together — centre the whole box, not the image
+    .pdp-scheme__plate .dimension_image_stilage_warehouse {
+      display: block;
+      width: 435px;
+      margin: 0 auto;
+    }
+    .pdp-scheme__plate img { max-width: none; }
+  }
+
+  @media (max-width: 1080px) {
+    .pdp .pdp-schemes { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 1080px) {
+    .pdp .tgrid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 980px) {
+    .pdp .pdp-options--3 { grid-template-columns: 1fr 1fr; }
+    .pdp .pdp-fields--4 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 620px) {
+    .pdp .tgrid { grid-template-columns: 1fr; }
+    .pdp .pdp-figure { padding: 14px; }
+  }
+  @media (max-width: 720px) {
+    .pdp .pdp-options--3 { grid-template-columns: 1fr; }
+    .pdp .pdp-result__specs--row { grid-template-columns: 1fr; }
+    .pdp .item-info { padding: 20px; }
+    .pdp .pdp-schemes { padding: 0 20px 20px; }
+  }
+  // the drawing is a fixed 435px block — below that it has to be scaled
+  // down as a whole (transform keeps the caption geometry intact), and the
+  // plate gets an explicit height because a transform doesn't shrink layout
+  @media (max-width: 540px) {
+    .pdp .pdp-scheme__plate { padding: 8px; height: 440px; }
+    .pdp .pdp-scheme__plate .dimensions_stillage_warehouse {
+      transform: scale(.62);
+      transform-origin: top center;
+    }
+  }
+}
+
+// ---- PRINT ----------------------------------------------------------
+// #actual_price is the only visible node when printing (see print.scss),
+// so the result block has to fall back to black-on-white.
+@media print {
+  // print.scss hides the page with `visibility: hidden`, which keeps every
+  // element's box in the flow — the chrome and the hero used to push the
+  // result onto a second page behind a sheet of white space. Take them out
+  // of the flow entirely, and drop .wrapper's 81.9vh min-height (which on
+  // paper resolves against the page box).
+  body.stm-redesign .grain,
+  body.stm-redesign .topbar,
+  body.stm-redesign .header,
+  body.stm-redesign .footer,
+  body.stm-redesign .pdp-hero,
+  body.stm-redesign .pdp-calc { display: none !important; }
+
+  // application.css.scss stretches the document to the viewport
+  // (html { height: 100% } / body { min-height: 100% }); on paper that
+  // resolves against the page box and leaves a trailing blank sheet.
+  html, body.stm-redesign {
+    height: auto;
+    min-height: 0;
+  }
+  body.stm-redesign .wrapper {
+    display: block;
+    width: auto;
+    min-height: 0;
+    padding-top: 0;
+  }
+  body.stm-redesign .pdp { max-width: none; padding: 0; }
+
+  // ---- fit the whole calculation on one sheet -----------------------
+  // A4 landscape (what the print dialog defaults to here) leaves ~190mm of
+  // height, and the drawing alone is 132mm at its screen size — too little
+  // slack, so the grid row kept spilling onto a second page. Tighten the
+  // paddings and give the drawing a fixed print height with a matching
+  // scale(): the captions are positioned in px against the drawing, so
+  // scaling the whole block keeps them aligned, while the fixed height is
+  // what the pagination actually measures.
+  body.stm-redesign .pdp .pdp-result__grid,
+  body.stm-redesign .pdp .item-info,
+  body.stm-redesign .pdp .pdp-schemes,
+  body.stm-redesign .pdp .pdp-scheme { break-inside: avoid; page-break-inside: avoid; }
+
+  body.stm-redesign .pdp .pdp-result__head { padding: 0 0 8px; }
+  body.stm-redesign .pdp .pdp-result__grid {
+    padding: 10px 0 0;
+    gap: 12px;
+    align-items: start;
+  }
+  body.stm-redesign .pdp .pdp-result__specs li { padding: 9px 0; }
+
+  body.stm-redesign .pdp .pdp-result__diagram {
+    height: 100mm;
+    overflow: hidden;
+    display: block;
+  }
+  body.stm-redesign .pdp .pdp-result__diagram .dimensions_stillage {
+    background: none;
+    padding: 0;              // mine.css.scss uses padding-left: 20vw — on
+    transform: scale(.72);   // paper that is 59mm of dead space
+    transform-origin: top center;
+  }
+
+  // print.scss pulls the page 10mm above the sheet to compensate for the
+  // chrome that is no longer there; give it a normal margin instead
+  @page { margin: 10mm; }
+
+  body.stm-redesign .pdp .pdp-result {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    background: #fff;
+    border: 0;
+    box-shadow: none;
+    color: #000;
+  }
+  body.stm-redesign .pdp .pdp-result__head { border-bottom: 1px solid #000; }
+  body.stm-redesign .pdp .pdp-result__name,
+  body.stm-redesign .pdp .pdp-result__specs .k,
+  body.stm-redesign .pdp .pdp-result__specs .v,
+  body.stm-redesign .pdp .pdp-pricetable th,
+  body.stm-redesign .pdp .pdp-pricetable td,
+  body.stm-redesign .pdp .pdp-pricetable th .sub,
+  body.stm-redesign .pdp .pdp-scheme__title { color: #000; }
+  body.stm-redesign .pdp .pdp-result__specs--row {
+    background: none;
+    border-color: #000;
+    gap: 0;
+  }
+  body.stm-redesign .pdp .pdp-result__specs--row li { background: none; }
+  body.stm-redesign .pdp .pdp-pricetable th,
+  body.stm-redesign .pdp .pdp-pricetable td,
+  body.stm-redesign .pdp .pdp-pricetable table { border-color: #000; background: none; }
+  body.stm-redesign .pdp .pdp-print,
+  body.stm-redesign .pdp .print-button-section { display: none; }
+  // both drawings are wanted on paper, so keep them side by side (stacking
+  // them would not fit) and override print.scss's legacy
+  // `.prist_section { display: none }`, which was written for the old
+  // single-column print layout
+  body.stm-redesign .pdp .pdp-schemes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8mm;
+    padding: 0;
+  }
+  body.stm-redesign .pdp .pdp-scheme,
+  body.stm-redesign .pdp .pdp-scheme.prist_section { display: block; }
+  body.stm-redesign .pdp .item-info { padding: 10px 0 0; }
+  // same trick as the archive drawing: fixed print height + matching scale
+  body.stm-redesign .pdp .pdp-scheme__title { margin: 10px 0 4px; font-size: 12px; }
+  body.stm-redesign .pdp .pdp-scheme__plate {
+    background: none;
+    border: 0;
+    padding: 0;
+    height: 86mm;
+    overflow: hidden;
+  }
+  body.stm-redesign .pdp .pdp-scheme__plate .dimensions_stillage_warehouse {
+    transform: scale(.5);
+    transform-origin: top center;
+  }
+  body.stm-redesign .pdp .pdp-pricetable { margin-top: 14px; }
+  body.stm-redesign .pdp .pdp-pricetable th,
+  body.stm-redesign .pdp .pdp-pricetable td { padding: 8px 10px; }
+}
