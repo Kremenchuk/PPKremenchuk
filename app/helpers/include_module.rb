@@ -95,8 +95,27 @@ module IncludeModule
 
 
   private
+
+  # Lazily builds the bookkeeping logger, making sure log/ exists first so that
+  # Logger.new can't raise on a fresh deploy (Render's disk is ephemeral and the
+  # directory is not shipped in the repo).
+  def calc_logger
+    @logger ||= begin
+      FileUtils.mkdir_p(Rails.root.join("log"))
+      Logger.new(Rails.root.join("log", "PPKremenchuk.log").to_s)
+    rescue StandardError
+      Logger.new($stderr)
+    end
+  end
+
   def enter_row_to_excel(stillage, price)  #Внесение данных в книгу расчета
-    @logger ||= Logger.new("#{Rails.root}/log/PPKremenchuk.log")
+    # The price is already computed by the caller; this only records the request
+    # into 1.xlsx. Skip silently when that workbook isn't present (e.g. staging)
+    # so a missing bookkeeping file never turns a valid calculation into a 500.
+    unless File.exist?(Rails.root.join("1.xlsx"))
+      calc_logger.info("1.xlsx not found — skipping calculation bookkeeping for #{stillage}")
+      return
+    end
     begin
       @current_date = Time.now.strftime("%d.%m.%Y")
       workbook = RubyXL::Parser.parse(Rails.root.join("1.xlsx").to_s)
@@ -125,7 +144,7 @@ module IncludeModule
         end
       end
     rescue => e
-      @logger.warn("#{e.message}\nwrite_row_to_excel")
+      calc_logger.warn("#{e.message}\nwrite_row_to_excel")
     end
 
 
@@ -167,7 +186,7 @@ module IncludeModule
       workbook.write(Rails.root.join("1.xlsx").to_s)
     end
   rescue => e
-    @logger.warn("#{e.message}\nwrite_row_to_excel")
+    calc_logger.warn("#{e.message}\nwrite_row_to_excel")
   end
 
 end

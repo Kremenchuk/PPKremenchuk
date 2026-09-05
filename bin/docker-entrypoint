@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+# Prepare the SQLite database (create + load schema, or migrate) and make sure
+# the seed data (admin user + calculator constants) exists before the web
+# server starts. Seeds are idempotent, so this is safe on every boot.
+case "$*" in
+  *puma*|*"rails s"*|*"rails server"*)
+    bin/rails db:prepare
+    bin/rails db:seed
+    ;;
+esac
+
+exec "$@"

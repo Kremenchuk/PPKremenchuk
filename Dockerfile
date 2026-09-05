@@ -13,7 +13,7 @@
 # =====================================================================
 
 ARG RUBY_VERSION=3.4.8
-ARG NODE_MAJOR=20
+ARG NODE_MAJOR=22
 
 # ---------------------------------------------------------------- base
 FROM ruby:${RUBY_VERSION}-slim AS base
@@ -30,7 +30,7 @@ ENV RAILS_ENV=production \
 # curl         – container healthcheck
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-      curl libsqlite3-0 imagemagick tzdata && \
+      curl libsqlite3-0 libyaml-0-2 imagemagick tzdata && \
     rm -rf /var/lib/apt/lists/*
 
 # --------------------------------------------------------------- build
@@ -40,7 +40,7 @@ ARG NODE_MAJOR
 
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-      build-essential git pkg-config libsqlite3-dev && \
+      build-essential git pkg-config libsqlite3-dev libyaml-dev && \
     curl -fsSL https://deb.nodesource.com/setup_${NODE_MAJOR}.x | bash - && \
     apt-get install --no-install-recommends -y nodejs && \
     npm install -g yarn@1.22.22 && \
@@ -71,11 +71,16 @@ FROM base
 
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
+# autoprefixer-rails (pulled in by bootstrap-sass) requires an ExecJS runtime
+# at boot even in production, so the node binary has to be in the final image.
+COPY --from=build /usr/bin/node /usr/bin/node
 
 # Run as a non-root user; the writable paths are the mounted volumes.
 RUN groupadd --system --gid 1000 rails && \
     useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
     mkdir -p db log storage tmp/pids public/uploads && \
+    sed -i 's/\r$//' bin/* && \
+    chmod +x bin/* && \
     chown -R rails:rails db log storage tmp public/uploads
 USER rails:rails
 
