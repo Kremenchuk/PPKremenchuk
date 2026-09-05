@@ -181,21 +181,28 @@ export default class extends Controller {
 
     if (this.rack) {
       this.turntable.remove(this.rack)
-      this.rack.traverse((m) => { if (m.geometry) m.geometry.dispose() })
+      this.rack.traverse((m) => {
+        if (m.geometry) m.geometry.dispose()
+        if (m.isSprite && m.material) { m.material.map?.dispose(); m.material.dispose() }
+      })
     }
+    if (!this.dimMat) this.dimMat = new THREE.MeshBasicMaterial({ color: 0xff7a2a })
 
     const frameMat = c.painted ? this.materials.painted : this.materials.galvanized
     const deckMat = c.dsp ? this.materials.wood : (c.painted ? this.materials.painted : this.materials.steelDeck)
 
     // units: metres
     const W = c.W / 1000, D = c.D / 1000, H = c.H / 1000
-    const heavy = this.typeValue === "pallet"
-    const post = heavy ? 0.09 : 0.06
+    const type = this.typeValue
+    const pallet = type === "pallet"
+    const warehouse = type === "warehouse"
+    const post = pallet ? 0.1 : warehouse ? 0.07 : 0.05
     const g = new THREE.Group()
 
-    const addBox = (w, h, d, x, y, z, mat, rotY = 0) => {
+    const addBox = (w, h, d, x, y, z, mat, rot) => {
       const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat)
-      m.position.set(x, y, z); m.rotation.y = rotY
+      m.position.set(x, y, z)
+      if (rot) { m.rotation.x = rot.x || 0; m.rotation.y = rot.y || 0; m.rotation.z = rot.z || 0 }
       m.castShadow = true; m.receiveShadow = true
       g.add(m)
       return m
@@ -203,40 +210,84 @@ export default class extends Controller {
 
     const px = W / 2 - post / 2
     const pz = D / 2 - post / 2
+    const top = H / 2 - 0.08
+    const bottom = -H / 2 + (pallet ? 0.22 : 0.14)
+    const levelY = (i) => (c.N === 1 ? top : lerp(bottom, top, i / (c.N - 1)))
+
+    // corner posts + feet
     for (const sx of [-1, 1]) for (const sz of [-1, 1]) {
       addBox(post, H, post, sx * px, 0, sz * pz, frameMat)
-      addBox(post * 2.2, 0.05, post * 2.2, sx * px, -H / 2 + 0.025, sz * pz, frameMat) // foot
+      addBox(post * 2.2, 0.05, post * 2.4, sx * px, -H / 2 + 0.025, sz * pz, frameMat)
     }
 
-    // shelves
-    const top = H / 2 - 0.08
-    const bottom = -H / 2 + (heavy ? 0.32 : 0.14)
-    const deckT = heavy ? 0.06 : 0.035
-    for (let i = 0; i < c.N; i++) {
-      const y = c.N === 1 ? top : lerp(bottom, top, i / (c.N - 1))
-      // beams front/back
-      const beamH = heavy ? 0.11 : 0.07
-      for (const sz of [-1, 1]) {
-        addBox(W - post, beamH, 0.045, 0, y - beamH / 2, sz * (D / 2 - post / 2), frameMat)
-      }
-      // deck
-      addBox(W - post * 1.4, deckT, D - post * 1.4, 0, y - deckT / 2 - (heavy ? beamH : 0.0), 0, deckMat)
-    }
-
-    // back cross-braces
-    const braceLen = Math.hypot(W, H) * 0.5
-    for (const dir of [-1, 1]) {
-      const b = addBox(0.03, braceLen, 0.03, 0, 0, -pz, frameMat)
-      b.rotation.z = dir * Math.atan2(W, H)
-      b.scale.y = 0.6
-    }
-    // side braces for pallet racks
-    if (heavy) {
+    if (pallet) {
+      // ── real pallet rack: two braced upright frames + horizontal load beams
+      // side frame bracing (zig-zag in the depth plane) — NOT a back cross
       for (const sx of [-1, 1]) {
-        const b = addBox(0.03, Math.hypot(D, H) * 0.42, 0.03, sx * px, 0, 0, frameMat)
-        b.rotation.x = Math.atan2(D, H)
+        const rungs = Math.max(3, Math.round(H / 0.9))
+        let prev = null
+        for (let r = 0; r <= rungs; r++) {
+          const y = -H / 2 + (H * r) / rungs
+          addBox(post * 0.55, 0.03, D - post, sx * px, y, 0, frameMat) // horizontal rung
+          if (prev) {
+            const dy = y - prev
+            const len = Math.hypot(D - post, dy)
+            const b = addBox(post * 0.5, 0.028, len, sx * px, (y + prev) / 2, 0, frameMat,
+              { x: (r % 2 ? 1 : -1) * Math.atan2(D - post, dy) })
+            b.scale.set(1, 1, 1)
+          }
+          prev = y
+        }
+      }
+      // load beams front & back at each level (pallets rest on these, no deck)
+      const beamH = 0.11
+      for (let i = 0; i < c.N; i++) {
+        const y = levelY(i)
+        for (const sz of [-1, 1]) addBox(W - post, beamH, 0.06, 0, y - beamH / 2, sz * pz, frameMat)
+        // a couple of euro pallets sitting on the beams
+        const palW = Math.min(1.2, (W - post) / 2 - 0.1)
+        for (const side of [-1, 1]) {
+          const g2y = y + 0.02
+          addBox(palW, 0.06, D - 0.16, side * (W / 4), g2y + 0.06, 0, this.materials.wood) // pallet top
+          for (const bx of [-1, 0, 1]) addBox(0.09, 0.06, D - 0.16, side * (W / 4) + bx * palW * 0.42, g2y, 0, this.materials.wood) // blocks
+        }
+      }
+    } else {
+      // ── archive (light) / warehouse (medium) shelving: flat decks + edge beams
+      const deckT = warehouse ? 0.04 : 0.03
+      const beamH = warehouse ? 0.08 : 0.05
+      for (let i = 0; i < c.N; i++) {
+        const y = levelY(i)
+        for (const sz of [-1, 1]) addBox(W - post, beamH, 0.04, 0, y - beamH / 2, sz * pz, frameMat)
+        addBox(W - post * 1.4, deckT, D - post * 1.4, 0, y - deckT / 2, 0, deckMat)
+        // small back stop lip on archive shelving
+        if (!warehouse) addBox(W - post, 0.05, 0.014, 0, y + 0.02, -pz, deckMat)
       }
     }
+
+    // ── dimension annotations (H × W × D in mm), rotate with the rack ──────
+    const dim = (w, h, d, x, y, z, rot) => {
+      const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), this.dimMat)
+      m.position.set(x, y, z); if (rot) m.rotation.z = rot
+      g.add(m)
+    }
+    const zf = D / 2 + 0.02
+    const ox = 0.16, oy = 0.16
+    // height (left, vertical)
+    dim(0.01, H, 0.01, -W / 2 - ox, 0, zf)
+    dim(0.07, 0.012, 0.01, -W / 2 - ox, H / 2, zf)
+    dim(0.07, 0.012, 0.01, -W / 2 - ox, -H / 2, zf)
+    g.add(this.placeLabel(`${c.H} мм`, -W / 2 - ox - 0.02, 0, zf, "right"))
+    // width (bottom, horizontal)
+    dim(W, 0.01, 0.01, 0, -H / 2 - oy, zf)
+    dim(0.012, 0.07, 0.01, -W / 2, -H / 2 - oy, zf)
+    dim(0.012, 0.07, 0.01, W / 2, -H / 2 - oy, zf)
+    g.add(this.placeLabel(`${c.W} мм`, 0, -H / 2 - oy - 0.02, zf, "center"))
+    // depth (right, along Z)
+    dim(0.01, 0.01, D, W / 2 + ox, -H / 2, 0)
+    dim(0.01, 0.07, 0.012, W / 2 + ox, -H / 2, D / 2)
+    dim(0.01, 0.07, 0.012, W / 2 + ox, -H / 2, -D / 2)
+    g.add(this.placeLabel(`${Math.round(c.D)} мм`, W / 2 + ox + 0.02, -H / 2, 0, "left"))
 
     this.rack = g
     this.turntable.add(g)
@@ -245,13 +296,48 @@ export default class extends Controller {
     this.frameCamera()
   }
 
+  // billboard text label (mm dimension) as a camera-facing sprite
+  placeLabel(text, x, y, z, align) {
+    const THREE = this.THREE
+    const fs = 46, pad = 18
+    const c = document.createElement("canvas")
+    let ctx = c.getContext("2d")
+    ctx.font = `700 ${fs}px 'JetBrains Mono', monospace`
+    const w = Math.ceil(ctx.measureText(text).width) + pad * 2
+    const h = fs + pad * 1.4
+    c.width = w; c.height = h
+    ctx = c.getContext("2d")
+    ctx.font = `700 ${fs}px 'JetBrains Mono', monospace`
+    const r = 12
+    ctx.fillStyle = "rgba(10,10,12,0.82)"
+    ctx.beginPath()
+    ctx.moveTo(r, 0); ctx.arcTo(w, 0, w, h, r); ctx.arcTo(w, h, 0, h, r)
+    ctx.arcTo(0, h, 0, 0, r); ctx.arcTo(0, 0, w, 0, r); ctx.closePath(); ctx.fill()
+    ctx.lineWidth = 3; ctx.strokeStyle = "rgba(255,106,26,0.9)"; ctx.stroke()
+    ctx.fillStyle = "#ffb079"; ctx.textAlign = "center"; ctx.textBaseline = "middle"
+    ctx.fillText(text, w / 2, h / 2 + 2)
+
+    const tex = new THREE.CanvasTexture(c)
+    tex.colorSpace = THREE.SRGBColorSpace
+    const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthTest: false, depthWrite: false })
+    const sp = new THREE.Sprite(mat)
+    const unit = 0.17
+    const worldW = unit * (w / h)
+    sp.scale.set(worldW, unit, 1)
+    // nudge so the label sits just outside the tick, not centred on it
+    const dx = align === "right" ? -worldW / 2 : align === "left" ? worldW / 2 : 0
+    sp.position.set(x + dx, y, z)
+    sp.renderOrder = 999
+    return sp
+  }
+
   frameCamera() {
     const H = this.rackH, W = this.rackW, D = this.rackD
-    const reach = Math.max(H, W * 1.1, D)
-    const dist = reach * 1.75 + 0.8
+    const reach = Math.max(H + 0.5, W * 1.15 + 0.6, D + 0.4)
+    const dist = reach * 1.75 + 0.7
     this.camDist = dist
-    this.camera.position.set(dist * 0.66, H * 0.16, dist * 0.86)
-    this.camera.lookAt(0, -H * 0.02, 0)
+    this.camera.position.set(dist * 0.64, H * 0.12, dist * 0.9)
+    this.camera.lookAt(0, -H * 0.04, 0)
     this.camera.updateProjectionMatrix()
   }
 
