@@ -461,3 +461,70 @@ body.stm-redesign .scrollstage {
 @media (prefers-reduced-motion: reduce) {
   body.stm-redesign .scrollstage .scrollstage__hint i { animation: none; }
 }
+
+// =====================================================================
+//  PDP — live 3D studio + calculator
+// =====================================================================
+body.stm-redesign {
+  .pdp-studio {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 26px;
+    align-items: stretch;
+    margin: 30px 0 22px;
+  }
+
+  .pdp-stage {
+    position: relative;
+    min-height: 480px;
+    border: 1px solid var(--r-line);
+    border-radius: 4px;
+    overflow: hidden;
+    background:
+      radial-gradient(120% 80% at 50% 8%, rgba(255, 106, 26, .10), transparent 60%),
+      linear-gradient(180deg, #14161b, #0b0d11);
+  }
+  .pdp-stage__canvas {
+    position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+    touch-action: pan-y; cursor: grab;
+    &:active { cursor: grabbing; }
+  }
+  .pdp-stage::before {   // faint floor grid
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    -webkit-mask-image: radial-gradient(100% 80% at 50% 55%, #000 20%, transparent 75%);
+    mask-image: radial-gradient(100% 80% at 50% 55%, #000 20%, transparent 75%);
+  }
+  .pdp-stage__badge {
+    position: absolute; top: 14px; left: 14px; z-index: 2;
+    font-family: var(--f-mono); font-size: 11px; font-weight: 700; letter-spacing: .18em;
+    color: #180a02; background: var(--r-orange); padding: 4px 9px; border-radius: 2px;
+  }
+  .pdp-stage__hint {
+    position: absolute; bottom: 14px; left: 0; right: 0; z-index: 2; text-align: center;
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+    color: rgba(255, 255, 255, .5); pointer-events: none;
+  }
+  .pdp-stage--fallback { background: linear-gradient(180deg, #16181d, #0b0d11); }
+
+  .pdp-studio__panel { display: flex; flex-direction: column; }
+  // inside the studio the calculator fields stay open next to the 3D
+  // (beats product.scss's `#hiden_element_1.pdp-panel { display:none }`)
+  .pdp-studio #hiden_element_1.pdp-panel { display: block; }
+
+  // result dimensions (replaces the old gif diagram)
+  .pdp-result__dims { display: flex; flex-wrap: wrap; gap: 10px 14px; align-content: flex-start; }
+  .pdp-result__dim {
+    display: inline-flex; flex-direction: column; gap: 2px;
+    border: 1px solid var(--r-line); border-radius: 3px; padding: 10px 14px; min-width: 110px;
+    b { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--r-muted); font-weight: 500; }
+  }
+
+  @media (max-width: 900px) {
+    .pdp-studio { grid-template-columns: 1fr; }
+    .pdp-stage { min-height: 380px; order: -1; }
+  }
+}

@@ -25,36 +25,42 @@
         %b= t('page.all.ur_load')
         = "500–3000 #{t('page.all.kg')}"
 
-  -# ONLINE CALCULATOR
-  - if !@constant.on_off_calc_stillage_pallet
-    = form_tag(calculate_actual_price_stillage_pallet_path, method: :get, id: 'contact_form', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
-      .pdp-calc
-        .pdp-calc__bar{ data: { action: 'click->product-form#toggle' } }
-          = image_tag('plus.png', id: 'chg_img_1', alt: '+', width: '26', height: '26', data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
-          %span= t('page.all.on_line')
-          %span.hint= t('page.all.calculate_stillage')
-        #hiden_element_1.pdp-panel{ data: { 'product-form-target': 'panel' } }
-          .pdp-fields.pdp-fields--4
-            .pdp-field{ title: t('page.all.height_title') }
-              = label_tag :hight, t('page.all.height')
-              %span.range= "(2000–6000 #{t('page.all.mm')})"
-              %input{ maxlength: '4', name: 'hight', pattern: '^[ 0-9]+$', type: 'text', value: '', data: { 'product-form-target': 'field', label: t('page.all.height'), min: 2000, max: 6000 } }
-            .pdp-field{ title: t('page.stillage_pallet.index.width_title') }
-              = label_tag :widthS, t('page.stillage_pallet.index.width')
-              %span.range= "(1200–3500 #{t('page.all.mm')})"
-              %input{ maxlength: '4', name: 'widthS', pattern: '^[ 0-9]+$', type: 'text', value: '', data: { 'product-form-target': 'field', label: t('page.stillage_pallet.index.width'), min: 1200, max: 3500 } }
-            .pdp-field{ title: t('page.all.num_of_ur_title') }
-              = label_tag :num_of_shelves, t('page.all.num_of_ur')
-              %span.range= "(2–10 #{t('page.all.unit')})"
-              %input{ maxlength: '2', name: 'num_of_shelves', pattern: '^[ 0-9]+$', type: 'text', value: '', data: { 'product-form-target': 'field', label: t('page.all.num_of_ur'), min: 2, max: 10 } }
-            .pdp-field{ title: t('page.stillage_pallet.index.shelf_load_title') }
-              = label_tag :shelf_load, t('page.all.ur_load')
-              %span.range= "(500–3000 #{t('page.all.kg')})"
-              %input{ maxlength: '4', name: 'shelf_load', pattern: '^[ 0-9]+$', type: 'text', value: '', data: { 'product-form-target': 'field', label: t('page.all.ur_load'), min: 500, max: 3000 } }
-          .pdp-submit
-            %button.btn.btn--lg{ name: 'send', type: 'submit' }
-              = t('page.all.calculate_stillage')
-              %i.arr →
+  -# ONLINE CALCULATOR + LIVE 3D STUDIO
+  .pdp-studio
+    .pdp-stage{ data: { controller: 'rack-viewer', 'rack-viewer-type-value': 'pallet', 'rack-viewer-height-value': 'hight', 'rack-viewer-width-value': 'widthS', 'rack-viewer-depth-value': '', 'rack-viewer-shelves-value': 'num_of_shelves', 'rack-viewer-defaults-value': '{"h":4500,"w":2700,"d":1100,"n":3,"painted":true}' } }
+      %canvas.pdp-stage__canvas{ 'aria-hidden' => 'true', data: { 'rack-viewer-target' => 'canvas' } }
+      %span.pdp-stage__badge 3D
+      %span.pdp-stage__hint= t('page.all.rack3d_hint')
+    .pdp-studio__panel
+      - if !@constant.on_off_calc_stillage_pallet
+        = form_tag(calculate_actual_price_stillage_pallet_path, method: :get, id: 'contact_form', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
+          .pdp-calc
+            .pdp-calc__bar{ data: { action: 'click->product-form#toggle' } }
+              = image_tag('plus.png', id: 'chg_img_1', alt: '+', width: '26', height: '26', data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
+              %span= t('page.all.on_line')
+              %span.hint= t('page.all.calculate_stillage')
+            #hiden_element_1.pdp-panel{ data: { 'product-form-target': 'panel' } }
+              .pdp-fields.pdp-fields--4
+                .pdp-field{ title: t('page.all.height_title') }
+                  = label_tag :hight, t('page.all.height')
+                  %span.range= "(2000–6000 #{t('page.all.mm')})"
+                  %input{ maxlength: '4', name: 'hight', pattern: '^[ 0-9]+$', type: 'text', value: params[:hight], data: { 'product-form-target': 'field', label: t('page.all.height'), min: 2000, max: 6000 } }
+                .pdp-field{ title: t('page.stillage_pallet.index.width_title') }
+                  = label_tag :widthS, t('page.stillage_pallet.index.width')
+                  %span.range= "(1200–3500 #{t('page.all.mm')})"
+                  %input{ maxlength: '4', name: 'widthS', pattern: '^[ 0-9]+$', type: 'text', value: params[:widthS], data: { 'product-form-target': 'field', label: t('page.stillage_pallet.index.width'), min: 1200, max: 3500 } }
+                .pdp-field{ title: t('page.all.num_of_ur_title') }
+                  = label_tag :num_of_shelves, t('page.all.num_of_ur')
+                  %span.range= "(2–10 #{t('page.all.unit')})"
+                  %input{ maxlength: '2', name: 'num_of_shelves', pattern: '^[ 0-9]+$', type: 'text', value: params[:num_of_shelves], data: { 'product-form-target': 'field', label: t('page.all.num_of_ur'), min: 2, max: 10 } }
+                .pdp-field{ title: t('page.stillage_pallet.index.shelf_load_title') }
+                  = label_tag :shelf_load, t('page.all.ur_load')
+                  %span.range= "(500–3000 #{t('page.all.kg')})"
+                  %input{ maxlength: '4', name: 'shelf_load', pattern: '^[ 0-9]+$', type: 'text', value: params[:shelf_load], data: { 'product-form-target': 'field', label: t('page.all.ur_load'), min: 500, max: 3000 } }
+              .pdp-submit
+                %button.btn.btn--lg{ name: 'send', type: 'submit' }
+                  = t('page.all.calculate_stillage')
+                  %i.arr →
 
   #actual_price
     - if @name_stillage.present?

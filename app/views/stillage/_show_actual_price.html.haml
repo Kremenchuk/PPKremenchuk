@@ -15,13 +15,16 @@
       %li.price-row
         %span.k= t('page.all.price')
         %span.v= "#{@price_stillage} #{t('page.all.uah')}"
-    .pdp-result__diagram
-      .dimensions_stillage
-        .dimension_image_stilage
-          .height_size_stilage
-            ="#{@hight_var}"
-          .widht_size_stilage
-            ="#{@width_var}"
-          .depth_size_stilage
-            ="#{@depth_var}"
-          =image_tag("design/all_parts/stillage_arxiv/stillage_show_dimension 45.gif", class: "dimaension_image_size_stilage")
+    .pdp-result__dims
+      %span.pdp-result__dim
+        %b= t('page.all.height')
+        = "#{@hight_var} #{t('page.all.mm')}"
+      %span.pdp-result__dim
+        %b= t('page.all.widht')
+        = "#{@width_var} #{t('page.all.mm')}"
+      %span.pdp-result__dim
+        %b= t('page.all.depth')
+        = "#{@depth_var} #{t('page.all.mm')}"
+      %span.pdp-result__dim
+        %b= t('page.all.num_of_shelves')
+        = "#{@num_of_shelves_var} #{t('page.all.unit')}"

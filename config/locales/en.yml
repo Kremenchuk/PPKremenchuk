@@ -43,6 +43,7 @@ en:
     all:
       stillage:   'Rack'
       home:       'Home'
+      rack3d_hint: 'Drag to rotate'
       print:       'Print'
       on_line:     'On-line rack calculation'
       mm:          'mm'

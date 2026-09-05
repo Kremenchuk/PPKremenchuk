@@ -18,3 +18,6 @@ application.register("print", PrintController)
 
 import HeroController from "./hero_controller"
 application.register("hero", HeroController)
+
+import RackViewerController from "./rack_viewer_controller"
+application.register("rack-viewer", RackViewerController)
