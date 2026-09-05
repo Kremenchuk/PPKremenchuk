@@ -240,6 +240,19 @@ en:
             text: 'Reinforced sections for parts, tooling and components on the shop floor.'
           - kicker: 'Home design'
             text: 'And the same rack again — a designer loft shelf in metal and wood for interiors.'
+      slides:
+        warehouse:
+          type: 'Warehouse racking'
+          text: 'Reinforced sections for warehouses, workshops and shops — up to 400 kg per level, steel or MDF.'
+          cta:  'Calculate online'
+        loft:
+          type: 'Designer racking'
+          text: 'Loft shelves in metal and wood — for books, décor and warmth in your interior.'
+          cta:  'Learn more'
+        platform:
+          type: 'Platforms & mezzanines'
+          text: 'An extra floor level and multi-tier systems that double your usable warehouse area.'
+          cta:  'Learn more'
       stats:
         - { num: '2002', label: 'year founded' }
         - { num: '22', suffix: '+', label: 'years on the market' }

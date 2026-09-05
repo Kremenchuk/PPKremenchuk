@@ -1,4 +1,14 @@
 module WelcomeHelper
+  # Full-screen hero slides (one swipe = one scene). Real photographs of real
+  # racks in real spaces; the i18n key carries the big product-type label + copy.
+  def home_slides
+    [
+      { key: 'warehouse', photo: 'design/all_parts/mezzanine/stillage_mezonin_IMG_1640.JPG', path: stillage_warehouse_index_path },
+      { key: 'loft',      photo: 'design/all_parts/loft/stellag_dlya_knig.jpg',              path: lofts_path },
+      { key: 'platform',  photo: 'design/all_parts/platform/3.JPG',                          path: platform_index_path },
+    ]
+  end
+
   # Product cards shown on the welcome page.
   # Each item: { key:, title:, path:, image: (or nil for a feature card), icon: }
   #

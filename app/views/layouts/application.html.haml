@@ -33,7 +33,7 @@
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
 
     = favicon_link_tag 'stm_industry_black_100_50.jpg'
-  %body.stm-redesign
+  %body{class: "stm-redesign page-#{controller_name}"}
     .grain{"aria-hidden" => "true"}
     .main{"data-controller" => "site"}
 

@@ -1,48 +1,31 @@
 .home
-  -# ░░ HERO — scroll-morph stage (one rack, four worlds) ░░
-  %section.scrollstage#hero{"data-controller" => "hero"}
-    .scrollstage__sticky
-      %canvas.scrollstage__canvas{"data-hero-target" => "canvas", "aria-hidden" => "true"}
-      .scrollstage__grid{"aria-hidden" => "true"}
-      .scrollstage__fallback{"aria-hidden" => "true"}
-        = image_tag "design/all_parts/background.jpg", alt: ""
-      %span.hero__side{"aria-hidden" => "true"} EST · 2002 · KHARKIV · UA
-      .wrap.scrollstage__ui
-        .scrollstage__lead
-          %p.eyebrow
-            %span.eyebrow__tick
-            = t('page.home.hero.eyebrow')
-          %h1.hero__title
-            %span= t('page.home.hero.title_1')
-            %span= t('page.home.hero.title_2')
-            %span.hero__title--accent= t('page.home.hero.title_accent')
-          .scrollstage__caps
-            - Array(t('page.home.stage.scenes')).each_with_index do |sc, i|
-              %article.scrollstage__cap{"data-hero-target" => "cap", "data-scene" => i}
-                %span.scrollstage__kicker= sc[:kicker]
-                %p.scrollstage__text= sc[:text]
-          .hero__actions
-            = link_to "#{root_path}#products", class: 'btn btn--lg' do
-              = t('page.home.hero.cta_primary')
+  -# ░░ HERO — full-screen photo scenes, one swipe = one scene ░░
+  - slides = home_slides
+  %section.pstack#hero
+    - slides.each_with_index do |s, i|
+      %section.pscene{class: "pscene--#{s[:key]}"}
+        .pscene__media
+          = image_tag s[:photo], alt: t("page.home.slides.#{s[:key]}.type"), loading: (i.zero? ? 'eager' : 'lazy')
+        .pscene__veil{"aria-hidden" => "true"}
+        .wrap.pscene__in
+          %span.pscene__meta
+            %span.pscene__idx= "#{format('%02d', i + 1)} / #{format('%02d', slides.size)}"
+            %span.pscene__brand= t('page.home.hero.eyebrow')
+          - if i.zero?
+            %h1.pscene__type.reveal= t("page.home.slides.#{s[:key]}.type")
+          - else
+            %h2.pscene__type.reveal= t("page.home.slides.#{s[:key]}.type")
+          %p.pscene__text.reveal{:style => "--d:.08s"}= t("page.home.slides.#{s[:key]}.text")
+          .pscene__actions.reveal{:style => "--d:.16s"}
+            = link_to s[:path], class: 'btn btn--lg' do
+              = t("page.home.slides.#{s[:key]}.cta")
               %i.arr →
-            = link_to t('page.home.hero.cta_secondary'), "#{root_path}#why", class: 'btn btn--ghost btn--lg'
-      .scrollstage__dots{"aria-hidden" => "true"}
-        - Array(t('page.home.stage.scenes')).each_with_index do |_sc, i|
-          %span.scrollstage__dot{"data-hero-target" => "dot", "data-scene" => i}
-      %span.scrollstage__hint{"aria-hidden" => "true"}
-        = t('page.home.stage.hint')
-        %i ↓
-
-  -# ░░ STATS ░░
-  %section.stats#stats
-    .wrap.stats__grid
-      - Array(t('page.home.stats')).each_with_index do |stat, i|
-        .stat.reveal{:style => "--d:#{i * 0.08}s"}
-          .stat__num
-            %span= stat[:num]
-            - if stat[:suffix].present?
-              %i= stat[:suffix]
-          .stat__label= stat[:label]
+            - if i.zero?
+              = link_to t('page.home.hero.cta_primary'), "#{root_path}#products", class: 'btn btn--ghost btn--lg'
+        - if i.zero?
+          %span.pscene__hint{"aria-hidden" => "true"}
+            = t('page.home.stage.hint')
+            %i ↓
 
   -# ░░ PRODUCTS ░░
   %section.section.products#products
@@ -95,7 +78,7 @@
         %p.sec-sub= t('page.home.why.sub')
       .feats
         - feat_icons = %w[fa-industry fa-spray-can fa-shield-alt fa-ruler-combined fa-truck fa-tools]
-        - Array(t('page.home.why.feats')).each_with_index do |feat, i|
+        - Array(t('page.home.why.feats')).first(4).each_with_index do |feat, i|
           .feat.reveal{:style => "--d:#{i * 0.06}s"}
             %span.feat__ico
               %i.fa{:class => feat_icons[i] || 'fa-check'}
