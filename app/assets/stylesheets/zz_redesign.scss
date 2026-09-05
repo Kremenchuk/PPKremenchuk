@@ -333,3 +333,131 @@ body.stm-redesign {
   body.stm-redesign .home .marquee__track { animation: none; }
 }
 
+
+// =====================================================================
+//  HERO — scroll-morph stage (one rack, four worlds)
+// =====================================================================
+body.stm-redesign .scrollstage {
+  position: relative;
+  min-height: 440vh;                 // scroll distance that drives the morph
+  --stage-top: #1a2230;
+  --stage-bottom: #0b0e14;
+
+  .scrollstage__sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--stage-top), var(--stage-bottom));
+    display: flex;
+    transition: background .1s linear;
+  }
+
+  .scrollstage__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: block;
+    touch-action: pan-y;             // vertical scroll (the morph) always wins on touch
+    cursor: grab;
+    &:active { cursor: grabbing; }
+  }
+
+  .scrollstage__grid {
+    position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: .5;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(120% 90% at 50% 40%, #000 30%, transparent 78%);
+    mask-image: radial-gradient(120% 90% at 50% 40%, #000 30%, transparent 78%);
+  }
+
+  // dark vignette so the overlay text stays readable across dark AND light scenes
+  .scrollstage__sticky::after {
+    content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(6, 8, 12, .62), rgba(6, 8, 12, .12) 46%, transparent 62%),
+      linear-gradient(0deg, rgba(6, 8, 12, .55), transparent 42%);
+  }
+
+  .scrollstage__fallback { display: none; }
+  &.scrollstage--fallback {
+    .scrollstage__canvas { display: none; }
+    .scrollstage__fallback {
+      display: block; position: absolute; inset: 0; z-index: 1;
+      img { width: 100%; height: 100%; object-fit: cover; opacity: .5; }
+    }
+  }
+
+  .scrollstage__ui {
+    position: relative;
+    z-index: 3;
+    align-self: flex-end;
+    width: 100%;
+    padding-bottom: clamp(84px, 14vh, 150px);
+    pointer-events: none;
+    a { pointer-events: auto; }
+  }
+
+  .scrollstage__lead { max-width: 640px; }
+  .hero__side {
+    position: absolute; right: 26px; top: 46%;
+    writing-mode: vertical-rl; letter-spacing: .34em; font-family: var(--f-mono);
+    font-size: 11px; color: rgba(255, 255, 255, .38); z-index: 3;
+  }
+
+  .hero__title {
+    font-family: var(--f-disp); font-weight: 700; line-height: .95;
+    font-size: clamp(40px, 8.2vw, 104px); text-transform: uppercase; letter-spacing: -.01em;
+    margin: 14px 0 0;
+    span { display: block; }
+    .hero__title--accent { color: var(--r-orange); }
+  }
+
+  .scrollstage__caps { position: relative; min-height: 92px; margin: 20px 0 26px; }
+  .scrollstage__cap {
+    position: absolute; inset: 0; opacity: 0; will-change: opacity;
+  }
+  .scrollstage__kicker {
+    display: inline-block; font-family: var(--f-mono); font-size: 12px; font-weight: 500;
+    letter-spacing: .24em; text-transform: uppercase; color: var(--r-orange-2); margin-bottom: 8px;
+  }
+  .scrollstage__text {
+    font-size: clamp(15px, 2.1vw, 20px); line-height: 1.5;
+    color: rgba(245, 244, 238, .92); max-width: 560px;
+  }
+
+  .scrollstage__dots {
+    position: absolute; right: 26px; bottom: clamp(120px, 18vh, 200px); z-index: 4;
+    display: flex; flex-direction: column; gap: 11px; pointer-events: none;
+  }
+  .scrollstage__dot {
+    width: 9px; height: 9px; border-radius: 50%; background: rgba(255, 255, 255, .26);
+    transition: background .35s var(--r-ease), transform .35s var(--r-ease);
+    &.is-active { background: var(--r-orange); transform: scale(1.35); }
+  }
+
+  .scrollstage__hint {
+    position: absolute; left: 50%; transform: translateX(-50%); bottom: 22px; z-index: 4;
+    display: inline-flex; align-items: center; gap: 8px; pointer-events: none;
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+    color: rgba(255, 255, 255, .55);
+    i { font-style: normal; animation: r-bob 1.6s var(--r-ease) infinite; }
+  }
+}
+
+@keyframes r-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
+@media (max-width: 720px) {
+  body.stm-redesign .scrollstage { min-height: 380vh; }
+  body.stm-redesign .scrollstage .hero__side { display: none; }
+  body.stm-redesign .scrollstage .scrollstage__dots { display: none; }
+  body.stm-redesign .scrollstage .scrollstage__ui { padding-bottom: 92px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.stm-redesign .scrollstage .scrollstage__hint i { animation: none; }
+}

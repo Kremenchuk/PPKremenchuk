@@ -1,29 +1,37 @@
 .home
-  -# ░░ HERO ░░
-  %section.hero
-    .hero__bg{"aria-hidden" => "true"}
-      = image_tag "design/all_parts/background.jpg", alt: "", "data-site-target" => "heroImg"
-      .hero__veil
-      .hero__grid
-    .hero__glow{"aria-hidden" => "true"}
-    %span.hero__side{"aria-hidden" => "true"} EST · 2002 · KHARKIV · UA
-    .wrap.hero__in
-      %p.eyebrow.reveal
-        %span.eyebrow__tick
-        = t('page.home.hero.eyebrow')
-      %h1.hero__title
-        %span.reveal{:style => "--d:.05s"}= t('page.home.hero.title_1')
-        %span.reveal{:style => "--d:.13s"}= t('page.home.hero.title_2')
-        %span.reveal.hero__title--accent{:style => "--d:.21s"}= t('page.home.hero.title_accent')
-      %p.hero__lead.reveal{:style => "--d:.3s"}= t('page.home.hero.lead')
-      .hero__actions.reveal{:style => "--d:.4s"}
-        = link_to "#{root_path}#products", class: 'btn btn--lg' do
-          = t('page.home.hero.cta_primary')
-          %i.arr →
-        = link_to t('page.home.hero.cta_secondary'), "#{root_path}#why", class: 'btn btn--ghost btn--lg'
-      %ul.hero__chips.reveal{:style => "--d:.5s"}
-        - Array(t('page.home.hero.chips')).each do |chip|
-          %li= chip
+  -# ░░ HERO — scroll-morph stage (one rack, four worlds) ░░
+  %section.scrollstage#hero{"data-controller" => "hero"}
+    .scrollstage__sticky
+      %canvas.scrollstage__canvas{"data-hero-target" => "canvas", "aria-hidden" => "true"}
+      .scrollstage__grid{"aria-hidden" => "true"}
+      .scrollstage__fallback{"aria-hidden" => "true"}
+        = image_tag "design/all_parts/background.jpg", alt: ""
+      %span.hero__side{"aria-hidden" => "true"} EST · 2002 · KHARKIV · UA
+      .wrap.scrollstage__ui
+        .scrollstage__lead
+          %p.eyebrow
+            %span.eyebrow__tick
+            = t('page.home.hero.eyebrow')
+          %h1.hero__title
+            %span= t('page.home.hero.title_1')
+            %span= t('page.home.hero.title_2')
+            %span.hero__title--accent= t('page.home.hero.title_accent')
+          .scrollstage__caps
+            - Array(t('page.home.stage.scenes')).each_with_index do |sc, i|
+              %article.scrollstage__cap{"data-hero-target" => "cap", "data-scene" => i}
+                %span.scrollstage__kicker= sc[:kicker]
+                %p.scrollstage__text= sc[:text]
+          .hero__actions
+            = link_to "#{root_path}#products", class: 'btn btn--lg' do
+              = t('page.home.hero.cta_primary')
+              %i.arr →
+            = link_to t('page.home.hero.cta_secondary'), "#{root_path}#why", class: 'btn btn--ghost btn--lg'
+      .scrollstage__dots{"aria-hidden" => "true"}
+        - Array(t('page.home.stage.scenes')).each_with_index do |_sc, i|
+          %span.scrollstage__dot{"data-hero-target" => "dot", "data-scene" => i}
+      %span.scrollstage__hint{"aria-hidden" => "true"}
+        = t('page.home.stage.hint')
+        %i ↓
 
   -# ░░ STATS ░░
   %section.stats#stats

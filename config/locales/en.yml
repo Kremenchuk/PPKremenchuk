@@ -215,6 +215,17 @@ en:
           - 'CNC production'
           - 'DSTU'
           - 'powder coating'
+      stage:
+        hint: 'Scroll'
+        scenes:
+          - kicker: 'Warehouse'
+            text: 'Galvanised warehouse racking for pallets, boxes and loads up to 1500 kg/m².'
+          - kicker: 'Archive & library'
+            text: 'The very same frame — now archive shelving for documents, folders and books.'
+          - kicker: 'Production'
+            text: 'Reinforced sections for parts, tooling and components on the shop floor.'
+          - kicker: 'Home design'
+            text: 'And the same rack again — a designer loft shelf in metal and wood for interiors.'
       stats:
         - { num: '2002', label: 'year founded' }
         - { num: '22', suffix: '+', label: 'years on the market' }

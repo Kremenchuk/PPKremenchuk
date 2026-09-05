@@ -15,3 +15,6 @@ application.register("gallery", GalleryController)
 
 import PrintController from "./print_controller"
 application.register("print", PrintController)
+
+import HeroController from "./hero_controller"
+application.register("hero", HeroController)
