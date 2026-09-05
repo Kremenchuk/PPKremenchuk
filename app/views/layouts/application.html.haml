@@ -5,12 +5,19 @@
 
     -#%meta{:content => "3ZGMYXXCBZBQNEZbdqB9TBw7nJ7IG609UeI7l3BJUXM", :name => "google-site-verification"}
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
-    %meta{:content => @meta_tags, :name => "description"}
+    %meta{:content => meta_description, :name => "description"}
     %meta{:charset => "UTF-8"}
     %meta{:content => "oDjA70vXXP26uDmLtYLA3sgyJbRfaieDhim20ggP6XA", :name => "google-site-verification"}
-    -#%meta{:name => "viewport", content: "width=device-width, initial-scale=1"}
-    %title
-      =t('page.layout.title')
+    %title= page_title
+
+    -# Open Graph / social
+    %meta{:property => "og:type", :content => "website"}
+    %meta{:property => "og:site_name", :content => "STM Industry"}
+    %meta{:property => "og:title", :content => page_title}
+    %meta{:property => "og:description", :content => meta_description}
+    %meta{:property => "og:locale", :content => (I18n.locale == :uk ? 'uk_UA' : 'en_US')}
+    %meta{:name => "twitter:card", :content => "summary_large_image"}
+    %link{:rel => "canonical", :href => request.original_url}
 
     %script{:async => "", :src => "https://www.googletagmanager.com/gtag/js?id=UA-129364309-2"}
     = csrf_meta_tags
