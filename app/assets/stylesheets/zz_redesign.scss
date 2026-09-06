@@ -567,6 +567,11 @@ body.stm-redesign {
     color: rgba(255, 255, 255, .5); pointer-events: none;
   }
   .pdp-stage--fallback { background: linear-gradient(180deg, #16181d, #0b0d11); }
+  // compact stage inside a trolley model card's calculator panel (inherits the
+  // theme-aware background: dark gradient / white in the light theme)
+  .pdp-stage--card { min-height: 250px; margin: 0 0 18px; border-radius: 3px; }
+  .pdp-stage--card .pdp-stage__badge { top: 10px; left: 10px; }
+  .pdp-stage--card .pdp-stage__hint { bottom: 8px; font-size: 10px; }
 
   .pdp-studio__panel { display: flex; flex-direction: column; }
   // inside the studio the calculator fields stay open next to the 3D

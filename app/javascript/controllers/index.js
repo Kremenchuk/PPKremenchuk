@@ -24,3 +24,6 @@ application.register("photostage", PhotostageController)
 
 import RackViewerController from "./rack_viewer_controller"
 application.register("rack-viewer", RackViewerController)
+
+import TrolleyViewerController from "./trolley_viewer_controller"
+application.register("trolley-viewer", TrolleyViewerController)

@@ -102,6 +102,11 @@ export function makeRackScene(THREE, renderer) {
       color: 0xc2c8d0, metalness: 0.62, roughness: 0.44,
       map: galv, roughnessMap: roughN, envMap, envMapIntensity: 1.3,
     }),
+    // RAL5005 powder coat — the blue frame of the trolleys
+    bluePaint: new THREE.MeshStandardMaterial({
+      color: 0x1f4f9e, metalness: 0.4, roughness: 0.45,
+      roughnessMap: roughN, envMap, envMapIntensity: 0.9,
+    }),
     wood: new THREE.MeshStandardMaterial({
       color: 0xffffff, metalness: 0.0, roughness: 0.62,
       map: wood, envMap, envMapIntensity: 0.4,

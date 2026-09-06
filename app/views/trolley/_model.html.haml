@@ -21,6 +21,12 @@
           = image_tag('plus.png', width: '22', height: '22', alt: '+', data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
           %span= t('page.trolleys.index.on_line_model')
         .tcard__panel.pdp-panel{ data: { 'product-form-target': 'panel' } }
+          -# live 3D of this model, redrawn from the fields below (lazy WebGL —
+          -# the context is created only while the panel is open)
+          .pdp-stage.pdp-stage--card{ data: { controller: 'trolley-viewer', 'trolley-viewer-model-value': model[:code] } }
+            %canvas.pdp-stage__canvas{ 'aria-hidden' => 'true', data: { 'trolley-viewer-target' => 'canvas' } }
+            %span.pdp-stage__badge 3D
+            %span.pdp-stage__hint= t('page.all.rack3d_hint')
           = render 'on_line_section', model: model
           .tcard__submit
             %button.btn.btn--block{ name: 'send', type: 'submit' }
