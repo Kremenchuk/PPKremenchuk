@@ -26,6 +26,103 @@ export default class extends Controller {
 
   connect() {
     if (this.hasIconTarget) this.closedIconSrc = this.iconTarget.src
+    this.buildSteppers()
+  }
+
+  disconnect() {
+    // a finger still holding a stepper when the page is torn down must not
+    // leave its auto-repeat interval running
+    ;(this._holdStops || []).forEach((stop) => stop())
+    this._holdStops = []
+  }
+
+  // --- numeric steppers: −/＋ around every field -------------------------
+  // Lets the visitor nudge a dimension up/down instead of only typing. Each
+  // change fires a bubbling `input`, so the live 3D (rack-viewer) redraws and
+  // the same validation limits (min/max, conditional maps) are respected.
+  buildSteppers() {
+    if (!this.hasFieldTarget) return
+    this.fieldTargets.forEach((field) => {
+      if (field.closest(".pdp-stepper")) return
+      const wrap = document.createElement("div")
+      wrap.className = "pdp-stepper"
+      field.parentNode.insertBefore(wrap, field)
+      const minus = this.stepBtn("−", "minus")
+      const plus = this.stepBtn("+", "plus")
+      wrap.appendChild(minus)
+      wrap.appendChild(field)
+      wrap.appendChild(plus)
+      this.bindHold(minus, () => this.step(field, -1))
+      this.bindHold(plus, () => this.step(field, +1))
+    })
+  }
+
+  stepBtn(label, kind) {
+    const b = document.createElement("button")
+    b.type = "button" // never submit the form
+    b.className = `pdp-stepper__btn pdp-stepper__btn--${kind}`
+    b.tabIndex = -1
+    b.setAttribute("aria-hidden", "true")
+    b.textContent = label
+    return b
+  }
+
+  // press-and-hold repeats after a short delay
+  bindHold(btn, fn) {
+    let delay, rep
+    const stop = () => { clearTimeout(delay); clearInterval(rep) }
+    ;(this._holdStops = this._holdStops || []).push(stop)
+    btn.addEventListener("pointerdown", (e) => {
+      e.preventDefault()
+      fn()
+      delay = setTimeout(() => { rep = setInterval(fn, 80) }, 380)
+    })
+    for (const ev of ["pointerup", "pointerleave", "pointercancel"]) btn.addEventListener(ev, stop)
+  }
+
+  stepSize(field) {
+    if (field.dataset.step) return Number(field.dataset.step)
+    const byName = { num_of_shelves: 1, shelf_load: 10, hight: 50, widthS: 50, depth: 50 }
+    if (field.name in byName) return byName[field.name]
+    const max = Number(field.dataset.max)
+    return Number.isFinite(max) && max <= 20 ? 1 : 10
+  }
+
+  // The rack-viewer on the same page declares the dimensions it draws when the
+  // form is empty (data-rack-viewer-defaults-value = {"h","w","d","n"}).
+  viewerDefault(field) {
+    const el = document.querySelector("[data-rack-viewer-defaults-value]")
+    if (!el) return null
+    try {
+      const d = JSON.parse(el.dataset.rackViewerDefaultsValue || "{}")
+      const key = { hight: "h", widthS: "w", depth: "d", num_of_shelves: "n" }[field.name]
+      const v = key ? Number(d[key]) : NaN
+      return Number.isFinite(v) ? v : null
+    } catch (_) {
+      return null
+    }
+  }
+
+  step(field, dir) {
+    const size = this.stepSize(field)
+    const min = this.resolveLimit(field, "min")
+    const max = this.resolveLimit(field, "max")
+    const cur = parseInt(String(field.value).replace(/[^\d]/g, ""), 10)
+    let next
+    if (Number.isFinite(cur)) {
+      next = cur + dir * size
+    } else {
+      // empty field: the live 3D is currently drawing the viewer's default
+      // rack, so step from THAT value (not from the minimum) to avoid a jump
+      const def = this.viewerDefault(field)
+      next = def !== null ? def + dir * size : (min !== null ? min : Math.max(0, dir * size))
+    }
+    if (min !== null) next = Math.max(min, next)
+    if (max !== null) next = Math.min(max, next)
+    if (String(next) === String(field.value).trim()) return
+    field.value = String(next)
+    field.dispatchEvent(new Event("input", { bubbles: true }))
+    field.dispatchEvent(new Event("change", { bubbles: true }))
   }
 
   // --- client-side validation on submit ----------------------------------

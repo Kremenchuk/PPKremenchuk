@@ -56,7 +56,9 @@
           %span.topbar__lang
             - I18n.available_locales.each do |loc|
               - next if loc == I18n.locale
-              = link_to t(loc), locale_path(:new_locale => loc)
+              -# data-turbo=false: full navigation so Turbo never flashes the
+              -# cached previous-language page before the switch settles
+              = link_to t(loc), locale_path(:new_locale => loc), data: { turbo: false }, rel: 'nofollow'
           %span.topbar__sep{"aria-hidden" => "true"}
           %span.topbar__auth
             - if current_user

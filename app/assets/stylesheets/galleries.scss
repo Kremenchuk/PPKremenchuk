@@ -33,7 +33,7 @@
 
   // ---- sticky category tabs -----------------------------------------
   .g-tabs {
-    position: sticky; top: 74px; z-index: 20;
+    position: sticky; top: 113px; z-index: 20; // under pinned topbar (39) + header (74)
     display: flex; flex-wrap: wrap; gap: 8px;
     padding: 16px 0; margin: 22px 0 10px;
     background: linear-gradient(var(--r-bg) 72%, transparent);

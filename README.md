@@ -1,15 +1,28 @@
-# README
-Rename '.env_local' to '.env' before deploying
+# STM Industry
 
-`docker-compose build`
+Сайт производителя металлических стеллажей (Rails 7.2 / Ruby 3.4 / SQLite,
+i18n uk/en/ru, онлайн-калькулятор с 3D-превью на Three.js).
 
-`docker-compose run --rm stm_industry_dev bundle exec rails db:create`
+## Деплой на прод
 
-`docker-compose run --rm stm_industry_dev bundle exec rake db:migrate`
+Полная пошаговая инструкция для DevOps — в **[DEPLOY.md](DEPLOY.md)**
+(Docker Compose и Render, секреты, тома, обновление, откат, чеклист).
 
-`docker-compose run --rm stm_industry_dev bundle exec rake db:seed`
+Быстрый старт (свой сервер, Docker):
 
-`docker-compose run --rm stm_industry_dev bundle exec rails assets:precompile --trace`
+```bash
+cp .env_local .env            # заполнить HOST/DOMAIN; положить config/master.key
+docker compose build          # сборка образа + assets:precompile
+docker compose up -d          # старт (entrypoint сам делает db:prepare + db:seed)
+```
 
-`docker-compose up`
+Приложение слушает `:3000` — поставьте перед ним reverse-proxy с HTTPS.
 
+## Локальная разработка
+
+```bash
+bundle install
+yarn install
+bin/rails db:prepare db:seed
+bin/dev                       # rails server + webpack --watch → http://localhost:3000
+```

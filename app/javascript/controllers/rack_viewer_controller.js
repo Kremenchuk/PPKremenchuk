@@ -6,8 +6,8 @@ import { makeRackScene } from "../lib/rack_scene"
 //
 // It reads the calculator's own form fields, builds a parametric rack from the
 // millimetre dimensions and re-draws it the moment any field changes, so the
-// product is "drawn immediately" and turns slowly on a turntable. Mouse drag
-// spins it; touch is left to page scrolling.
+// product is "drawn immediately" and turns slowly on a turntable. Dragging on
+// the canvas — mouse or finger — spins it (the canvas gets touch-action:none).
 //
 // Configure via data attributes on the controller element (all optional):
 //   data-rack-viewer-form-value       id of the form to read (default contact_form)
@@ -33,7 +33,8 @@ export default class extends Controller {
     depth: { type: String, default: "depth" },
     shelves: { type: String, default: "num_of_shelves" },
     shelftype: { type: String, default: "" },
-    finish: { type: String, default: "" },
+    finish: { type: String, default: "" },        // frame paint radio group
+    shelffinish: { type: String, default: "" },   // shelf paint radio group (warehouse)
     defaults: { type: Object, default: {} },
   }
 
@@ -106,16 +107,22 @@ export default class extends Controller {
     this.ground.receiveShadow = true
     scene.add(this.ground)
 
-    // mouse drag to spin
+    // drag to spin — mouse AND touch. `touch-action: none` stops the browser
+    // from scrolling/zooming the page while a finger drags on the canvas, so
+    // the same pointer handlers work for finger and mouse alike.
+    canvas.style.touchAction = "none"
     canvas.addEventListener("pointerdown", (e) => {
-      if (e.pointerType && e.pointerType !== "mouse") return
-      this.drag = true; this.lastX = e.clientX; canvas.setPointerCapture(e.pointerId)
+      if (this.drag) return // one pointer drives the turntable; ignore a second finger
+      this.drag = true; this.dragId = e.pointerId; this.lastX = e.clientX
+      canvas.setPointerCapture(e.pointerId)
+      e.preventDefault()
     })
     canvas.addEventListener("pointermove", (e) => {
-      if (!this.drag) return
+      if (!this.drag || e.pointerId !== this.dragId) return
       this.yawTarget += (e.clientX - this.lastX) * 0.007; this.lastX = e.clientX
+      e.preventDefault()
     })
-    const up = () => { this.drag = false }
+    const up = (e) => { if (e.pointerId === this.dragId) this.drag = false }
     canvas.addEventListener("pointerup", up)
     canvas.addEventListener("pointercancel", up)
 
@@ -159,11 +166,17 @@ export default class extends Controller {
     const N = clamp(this.fieldNum(this.shelvesValue, d.n || 5), 2, 15)
     const shelf = this.radioVal(this.shelftypeValue).toLowerCase()
     const fin = this.radioVal(this.finishValue).toLowerCase()
+    const shelfFin = this.radioVal(this.shelffinishValue).toLowerCase()
     const dsp = shelf.includes("dsp")
-    // when the calculator has no finish control (e.g. pallet racks) fall back to
-    // the default declared on the element
-    const painted = fin ? /okr|paint|farb/.test(fin) : !!d.painted
-    return { H, W, D, N, dsp, painted }
+    const isPainted = (v) => /okr|paint|farb/.test(v)
+    // frame paint from the finish control (or the element default for calculators
+    // with no finish control, e.g. pallet racks)
+    const framePainted = fin ? isPainted(fin) : !!d.painted
+    // the warehouse rack paints the frame (Рама) and the shelf (Поличка)
+    // independently. Where there is no separate shelf-paint control, the shelf
+    // simply follows the frame's finish.
+    const shelfPainted = shelfFin ? isPainted(shelfFin) : framePainted
+    return { H, W, D, N, dsp, framePainted, shelfPainted }
   }
 
   // ---- build ----------------------------------------------------------
@@ -188,8 +201,8 @@ export default class extends Controller {
     }
     if (!this.dimMat) this.dimMat = new THREE.MeshBasicMaterial({ color: 0xff7a2a })
 
-    const frameMat = c.painted ? this.materials.painted : this.materials.galvanized
-    const deckMat = c.dsp ? this.materials.wood : (c.painted ? this.materials.painted : this.materials.steelDeck)
+    const frameMat = c.framePainted ? this.materials.painted : this.materials.galvanized
+    const deckMat = c.dsp ? this.materials.wood : (c.shelfPainted ? this.materials.painted : this.materials.steelDeck)
 
     // units: metres
     const W = c.W / 1000, D = c.D / 1000, H = c.H / 1000
@@ -220,25 +233,31 @@ export default class extends Controller {
       addBox(post * 2.2, 0.05, post * 2.4, sx * px, -H / 2 + 0.025, sz * pz, frameMat)
     }
 
-    if (pallet) {
-      // ── real pallet rack: two braced upright frames + horizontal load beams
-      // side frame bracing (zig-zag in the depth plane) — NOT a back cross
+    // ── braced upright side frames (warehouse + pallet) ────────────────
+    // Real складські/палетні racks have welded side frames: horizontal rungs
+    // with a zig-zag diagonal between them, in the depth plane (NOT a back
+    // cross). Archive shelving is boltless slotted angle — no diagonals.
+    const braced = pallet || warehouse
+    if (braced) {
+      const bt = post * (pallet ? 0.55 : 0.5)
       for (const sx of [-1, 1]) {
-        const rungs = Math.max(3, Math.round(H / 0.9))
+        const rungs = Math.max(3, Math.round(H / (pallet ? 0.9 : 0.8)))
         let prev = null
         for (let r = 0; r <= rungs; r++) {
           const y = -H / 2 + (H * r) / rungs
-          addBox(post * 0.55, 0.03, D - post, sx * px, y, 0, frameMat) // horizontal rung
-          if (prev) {
+          addBox(bt, 0.03, D - post, sx * px, y, 0, frameMat) // horizontal rung
+          if (prev != null) {
             const dy = y - prev
             const len = Math.hypot(D - post, dy)
-            const b = addBox(post * 0.5, 0.028, len, sx * px, (y + prev) / 2, 0, frameMat,
-              { x: (r % 2 ? 1 : -1) * Math.atan2(D - post, dy) })
-            b.scale.set(1, 1, 1)
+            addBox(bt * 0.9, 0.026, len, sx * px, (y + prev) / 2, 0, frameMat,
+              { x: (r % 2 ? 1 : -1) * Math.atan2(D - post, dy) }) // zig-zag diagonal
           }
           prev = y
         }
       }
+    }
+
+    if (pallet) {
       // load beams front & back at each level (pallets rest on these, no deck)
       const beamH = 0.11
       for (let i = 0; i < c.N; i++) {
@@ -253,7 +272,7 @@ export default class extends Controller {
         }
       }
     } else {
-      // ── archive (light) / warehouse (medium) shelving: flat decks + edge beams
+      // ── archive (light) / warehouse (medium) shelving: flat decks on beams
       const deckT = warehouse ? 0.04 : 0.03
       const beamH = warehouse ? 0.08 : 0.05
       for (let i = 0; i < c.N; i++) {

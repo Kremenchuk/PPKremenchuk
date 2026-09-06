@@ -119,7 +119,7 @@ body.stm-redesign {
     // is sticky (74px + 1px rule), so without a scroll margin it covers the
     // result name. Shared by all four calculators (archive / warehouse /
     // pallet racking and trolleys).
-    #actual_price { scroll-margin-top: 96px; }
+    #actual_price { scroll-margin-top: 120px; } // pinned topbar (39) + header (74) + air
 
     .pdp-result {
       margin-top: 26px; background: linear-gradient(150deg, #1d1208, #141014);

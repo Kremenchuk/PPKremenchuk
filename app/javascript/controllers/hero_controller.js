@@ -122,6 +122,10 @@ export default class extends Controller {
     }
   }
 
+  isLight() {
+    return document.documentElement.getAttribute("data-theme") === "light"
+  }
+
   // ---- scene-snapped scrolling (1 gesture = 1 scene) ------------------
   isPinned() {
     const r = this.element.getBoundingClientRect()
@@ -238,6 +242,11 @@ export default class extends Controller {
 
     this.frameMat = new THREE.MeshStandardMaterial({ color: 0xb9bec7, metalness: 0.9, roughness: 0.34 })
     this.shelfMat = new THREE.MeshStandardMaterial({ color: 0xb9bec7, metalness: 0.9, roughness: 0.34 })
+    // bracing sub-frames get their own materials so their diagonal STYLE can
+    // fade in/out per scene (zig-zag truss vs. loft's leaning brace) — see
+    // buildRack + applyBlend. They still copy the frame colour every frame.
+    this.braceMat = new THREE.MeshStandardMaterial({ color: 0xb9bec7, metalness: 0.9, roughness: 0.34, transparent: true, opacity: 0 })
+    this.loftMat = new THREE.MeshStandardMaterial({ color: 0x1b1b20, metalness: 0.5, roughness: 0.4, transparent: true, opacity: 0 })
     this.rack = this.buildRack(THREE)
     this.world.add(this.rack)
 
@@ -322,20 +331,49 @@ export default class extends Controller {
       g.add(foot)
     }
 
-    // side-frame bracing (real upright frames): horizontal ties + one diagonal
-    // per side — the diagonal doubles as the loft rack's signature leaning brace
+    // ── side-frame bracing, per scene ────────────────────────────────
+    // horizontal ties are shared by every rack; the diagonal STYLE differs so
+    // each world shows a believably different frame (applyBlend fades them):
+    //   • warehouse / production → a zig-zag truss on each side frame
+    //   • archive / library      → no diagonal (clean slotted-angle look)
+    //   • designer / loft        → two bold leaning braces across the front
     const brace = post * 0.55
     for (const sx of [-1, 1]) {
       for (const ty of [-H / 2 + 0.22, H / 2 - 0.22]) {
         const tie = new THREE.Mesh(new THREE.BoxGeometry(brace, brace, D - post), this.frameMat)
         tie.position.set(sx * px, ty, 0); tie.castShadow = true; g.add(tie)
       }
-      const dLen = Math.hypot(D - post, H - 0.5)
-      const diag = new THREE.Mesh(new THREE.BoxGeometry(brace, dLen, brace), this.frameMat)
-      diag.position.set(sx * px, 0, 0)
-      diag.rotation.x = Math.atan2(D - post, H - 0.5)
-      diag.castShadow = true; g.add(diag)
     }
+    // zig-zag truss on both side frames (warehouse + production scenes)
+    this.zigzag = new THREE.Group()
+    for (const sx of [-1, 1]) {
+      const rungs = 4
+      let prev = -H / 2 + 0.22
+      for (let r = 1; r <= rungs; r++) {
+        const y = lerp(-H / 2 + 0.22, H / 2 - 0.22, r / rungs)
+        const dy = y - prev
+        const len = Math.hypot(D - post, dy)
+        const d = new THREE.Mesh(new THREE.BoxGeometry(brace, len, brace), this.braceMat)
+        d.position.set(sx * px, (y + prev) / 2, 0)
+        d.rotation.x = (r % 2 ? 1 : -1) * Math.atan2(D - post, dy)
+        d.castShadow = true; this.zigzag.add(d)
+        prev = y
+      }
+    }
+    g.add(this.zigzag)
+    // loft's signature leaning braces across the front face (designer scene)
+    this.loftDiag = new THREE.Group()
+    for (const off of [-0.08, 0.16]) {
+      // the brace is centred at x=off, so shrink its horizontal run by 2·|off|
+      // and both ends land exactly on / inside the posts instead of poking out
+      const span = W - post - 2 * Math.abs(off)
+      const fLen = Math.hypot(span, H - 0.6)
+      const fd = new THREE.Mesh(new THREE.BoxGeometry(brace * 1.15, fLen, brace * 1.15), this.loftMat)
+      fd.position.set(off, 0, pz - post * 0.15)
+      fd.rotation.z = Math.atan2(span, H - 0.6)
+      fd.castShadow = true; this.loftDiag.add(fd)
+    }
+    g.add(this.loftDiag)
 
     // shelves (wood/steel deck depending on the scene) + front/back load beams
     this.shelfY = []
@@ -711,8 +749,33 @@ export default class extends Controller {
     this.shelfMat.color.setRGB(sr[0], sr[1], sr[2])
     this.shelfMat.metalness = sm; this.shelfMat.roughness = srg
 
+    // bracing sub-frames share the frame's look but fade by scene STYLE:
+    //   zig-zag → warehouse(0) + production(2);  loft brace → designer(3)
+    this.braceMat.color.copy(this.frameMat.color); this.braceMat.metalness = fm; this.braceMat.roughness = frg
+    this.loftMat.color.copy(this.frameMat.color); this.loftMat.metalness = fm; this.loftMat.roughness = frg
+    const zw = (w[0] || 0) + (w[2] || 0)
+    const lw = w[3] || 0
+    this.braceMat.opacity = zw; if (this.zigzag) this.zigzag.visible = zw > 0.01
+    this.loftMat.opacity = lw; if (this.loftDiag) this.loftDiag.visible = lw > 0.01
+
     this.camera.position.lerp(new THREE.Vector3(cam[0], cam[1], cam[2]), 0.12)
     this.camera.lookAt(0, 0.1, 0)
+
+    // light theme: repaint the hero as a bright studio (light backdrop, lifted
+    // ambient) instead of the dark cinematic stage, so it matches the page.
+    const light = this.isLight()
+    if (light) {
+      bgT[0] = 244; bgT[1] = 242; bgT[2] = 236
+      bgB[0] = 223; bgB[1] = 219; bgB[2] = 209
+      fog[0] = 238; fog[1] = 235; fog[2] = 228
+      keyI = Math.max(keyI, 2.3)
+      // setHex (sRGB in) — with ColorManagement on, setRGB() would read these
+      // as LINEAR values and come out far brighter than intended
+      ambI = Math.max(ambI, 1.7); amb.setHex(0xf5f3ec)
+      this.amb.groundColor.setHex(0xd1ccc0)
+    } else {
+      this.amb.groundColor.setHex(0x141118)
+    }
 
     this.key.color.copy(key); this.key.intensity = keyI
     this.rim.color.copy(rim); this.rim.intensity = rimI

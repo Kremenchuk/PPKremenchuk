@@ -91,12 +91,13 @@ body.stm-redesign {
   .btn--block { width: 100%; }
   .btn--ghost { background: transparent; color: var(--r-text); border-color: var(--r-line-2); }
   .btn--ghost::before { background: var(--r-steel); }
-  .btn--ghost:hover { box-shadow: none; color: #fff; }
+  .btn--ghost:hover { box-shadow: none; color: var(--r-text); }
 
   // ===================================================================
   //  TOPBAR
   // ===================================================================
-  .topbar { background: #08080a; border-bottom: 1px solid var(--r-line); font-family: var(--f-mono); font-size: 11.5px; color: var(--r-muted); }
+  // topbar is pinned to the very top; the header sticks just below it
+  .topbar { position: sticky; top: 0; z-index: 101; background: #08080a; border-bottom: 1px solid var(--r-line); font-family: var(--f-mono); font-size: 11.5px; color: var(--r-muted); }
   .topbar__in { display: flex; align-items: center; gap: 16px; height: 38px; letter-spacing: .04em; }
   .topbar__item b { color: var(--r-orange-2); }
   .topbar__sep { width: 1px; height: 13px; background: var(--r-line-2); }
@@ -118,7 +119,7 @@ body.stm-redesign {
   // ===================================================================
   //  HEADER
   // ===================================================================
-  .header { position: sticky; top: 0; z-index: 100; background: rgba(12, 12, 14, .9); border-bottom: 1px solid var(--r-line); transition: background .35s var(--r-ease), box-shadow .35s var(--r-ease); }
+  .header { position: sticky; top: 39px; z-index: 100; background: rgba(12, 12, 14, .9); border-bottom: 1px solid var(--r-line); transition: background .35s var(--r-ease), box-shadow .35s var(--r-ease); }
   .header.scrolled { background: rgba(10, 10, 12, .98); box-shadow: 0 12px 40px -18px #000; }
   .header__in { display: flex; align-items: center; justify-content: space-between; height: 74px; }
   .brand__logo { height: 46px; width: auto; transition: .3s; }
@@ -331,7 +332,15 @@ body.stm-redesign {
     .footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
     .topbar__in { flex-wrap: wrap; height: auto; padding: 8px 0; gap: 8px 12px; }
     .topbar__item--address { display: none; }
+    // the topbar can wrap to two rows on phones (variable height), so don't
+    // pin it there — let it scroll away and keep the header sticky at the top
+    .topbar { position: static; }
+    .header { top: 0; }
+    .home > section { scroll-margin-top: 74px; }
   }
+  // in-page anchors (#products, #why, …) must land below the pinned chrome:
+  // topbar 39px + header 74px on desktop (mobile override above)
+  .home > section { scroll-margin-top: 113px; }
   @media (max-width: 440px) {
     .wrap { padding: 0 18px; }
     .footer__in { grid-template-columns: 1fr; }
@@ -427,14 +436,19 @@ body.stm-redesign .scrollstage {
   .hero__side {
     position: absolute; right: 26px; top: 46%;
     writing-mode: vertical-rl; letter-spacing: .34em; font-family: var(--f-mono);
-    font-size: 11px; color: rgba(255, 255, 255, .38); z-index: 3;
+    font-size: 11px; z-index: 3;
+    // theme-aware: light on the dark stage, dark on the light stage
+    color: var(--r-text); // fallback for browsers without color-mix()
+    color: color-mix(in srgb, var(--r-text) 38%, transparent);
   }
 
   // small supporting line (was the big headline) — now a modest sub-label
   .hero__title {
     font-family: var(--f-disp); font-weight: 600; line-height: 1.1;
     font-size: clamp(15px, 1.9vw, 22px); text-transform: uppercase; letter-spacing: .06em;
-    margin: 8px 0 0; color: rgba(245, 244, 238, .82);
+    margin: 8px 0 0;
+    color: var(--r-text); // fallback for browsers without color-mix()
+    color: color-mix(in srgb, var(--r-text) 82%, transparent);
     span { display: inline; }
     .hero__title--accent { color: var(--r-orange-2); }
     .hero__title--accent::after { display: none; }
@@ -453,8 +467,9 @@ body.stm-redesign .scrollstage {
     text-shadow: 0 18px 50px rgba(0, 0, 0, .5);
   }
   .scrollstage__text {
-    font-size: clamp(15px, 2.1vw, 21px); line-height: 1.5;
-    color: rgba(245, 244, 238, .92); max-width: 560px;
+    font-size: clamp(15px, 2.1vw, 21px); line-height: 1.5; max-width: 560px;
+    color: var(--r-text); // fallback for browsers without color-mix()
+    color: color-mix(in srgb, var(--r-text) 92%, transparent);
   }
 
   .scrollstage__dots {
@@ -462,7 +477,9 @@ body.stm-redesign .scrollstage {
     display: flex; flex-direction: column; gap: 11px; pointer-events: none;
   }
   .scrollstage__dot {
-    width: 9px; height: 9px; border-radius: 50%; background: rgba(255, 255, 255, .26);
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--r-line-2); // fallback for browsers without color-mix()
+    background: color-mix(in srgb, var(--r-text) 26%, transparent);
     transition: background .35s var(--r-ease), transform .35s var(--r-ease);
     &.is-active { background: var(--r-orange); transform: scale(1.35); }
   }
@@ -471,7 +488,8 @@ body.stm-redesign .scrollstage {
     position: absolute; left: 50%; transform: translateX(-50%); bottom: 22px; z-index: 4;
     display: inline-flex; align-items: center; gap: 8px; pointer-events: none;
     font-family: var(--f-mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
-    color: rgba(255, 255, 255, .55);
+    color: var(--r-muted); // fallback for browsers without color-mix()
+    color: color-mix(in srgb, var(--r-text) 55%, transparent);
     i { font-style: normal; animation: r-bob 1.6s var(--r-ease) infinite; }
   }
 }
@@ -704,11 +722,23 @@ body.stm-redesign .pdp-result { transition: background-color .35s var(--r-ease),
   .showcase__card { background: rgba(255, 255, 255, .84); }
   .showcase__card > p { color: var(--r-muted); }
 
-  // ---- cinematic 3D stages stay dark in BOTH themes ----
-  // The hero and the product 3D studio are rendered showrooms (a dark scene
-  // with light overlay text). Re-assert the dark palette on these subtrees so
-  // their captions/controls keep contrast instead of flipping to dark-on-dark.
-  .scrollstage, .pdp-stage {
+  // ---- hero reads light even before three.js paints (and in fallback) ----
+  // hero_controller overrides these inline every frame; the CSS defaults cover
+  // first paint / no-WebGL. The vignette is re-tinted light so the dark text
+  // in the bottom-left keeps its contrast instead of landing on a dark band.
+  .scrollstage { --stage-top: #f4f2ec; --stage-bottom: #dfdbd1; }
+  .scrollstage__sticky::after {
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, .34), rgba(255, 255, 255, .08) 46%, transparent 62%),
+      linear-gradient(0deg, rgba(246, 244, 239, .6), transparent 42%);
+  }
+
+  // ---- product 3D studio stays dark in BOTH themes ----
+  // The calculator studio is a rendered showroom (dark scene, light overlay
+  // labels). Re-assert the dark palette on it so its controls keep contrast.
+  // The hero (.scrollstage) is NOT reset here: it follows the light theme, and
+  // hero_controller repaints its 3D backdrop/lighting light to match.
+  .pdp-stage {
     --r-bg: #0c0c0e; --r-bg-2: #101013;
     --r-panel: #15151a; --r-panel-2: #1b1b21; --r-steel: #25252c;
     --r-line: rgba(255, 255, 255, .08); --r-line-2: rgba(255, 255, 255, .16);
@@ -733,4 +763,33 @@ body.stm-redesign {
 :root[data-theme="light"] body.stm-redesign {
   .theme-toggle__sun { display: none; }
   .theme-toggle__moon { display: block; }
+}
+
+// ---- calculator numeric steppers (−/＋ around each field) --------------
+// Injected by product_form_controller so every calculator field can be
+// nudged up/down; changing the value fires `input`, so the live 3D updates.
+body.stm-redesign {
+  .pdp-stepper { margin-top: auto; display: flex; align-items: stretch; }
+  // `!important`: the generic field rule in product.scss is nested deeper
+  // (body.stm-redesign .pdp .pdp-field input) and would otherwise keep its
+  // width:100% + 14px side padding, which squeezes the input to ~30px and
+  // hides the digits between the two buttons.
+  .pdp-stepper input {
+    flex: 1 1 auto !important; width: auto !important; min-width: 0 !important; margin-top: 0 !important;
+    padding-left: 4px !important; padding-right: 4px !important; font-size: 15px !important;
+    text-align: center; border-radius: 0; position: relative; z-index: 1;
+  }
+  .pdp-stepper__btn {
+    flex: 0 0 30px; display: flex; align-items: center; justify-content: center;
+    background: var(--r-panel); color: var(--r-text);
+    border: 1px solid var(--r-line-2); border-radius: 2px;
+    font-family: var(--f-disp); font-size: 20px; font-weight: 400; line-height: 1;
+    cursor: pointer; user-select: none; -webkit-user-select: none;
+    transition: background .2s var(--r-ease), color .2s var(--r-ease), border-color .2s var(--r-ease);
+  }
+  .pdp-stepper__btn--minus { border-radius: 2px 0 0 2px; border-right: 0; }
+  .pdp-stepper__btn--plus  { border-radius: 0 2px 2px 0; border-left: 0; }
+  .pdp-stepper__btn:hover { background: var(--r-orange); color: #180a02; border-color: var(--r-orange); }
+  .pdp-stepper__btn:active { background: var(--r-orange-deep); }
+  .tcard__panel .pdp-stepper__btn { flex-basis: 30px; font-size: 18px; }
 }
