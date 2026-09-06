@@ -1,0 +1,37 @@
+# Keep the build context small and reproducible.
+# Anything listed here is rebuilt inside the image or is host-only state.
+
+.git
+.gitignore
+.gitattributes
+.idea
+.dockerignore
+Dockerfile
+docker-compose*.yml
+
+# host-only state — the container keeps its own copies on volumes
+db/*.sqlite3
+db/*.sqlite3-*
+log/*
+!log/.keep
+tmp/*
+!tmp/.keep
+storage/*
+!storage/.keep
+public/uploads
+public/assets
+
+# rebuilt during the image build
+node_modules
+app/assets/builds/*
+!app/assets/builds/.keep
+
+# secrets — passed in as environment variables at run time
+.env
+.env_local
+config/master.key
+
+# leftovers from the dead-code sweep; delete the folder when you are ready
+_to_delete
+
+.DS_Store
