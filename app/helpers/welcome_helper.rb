@@ -22,8 +22,8 @@ module WelcomeHelper
       { key: 'pallet',    title: t('page.welcome.stillage_pallet'),    path: stillage_pallet_index_path,    image: 'design/all_parts/welcome/clean/pallet.png',    icon: 'fa-pallet' },
       { key: 'trolley',   title: t('page.welcome.troles'),             path: trolley_index_path,            image: 'design/all_parts/welcome/clean/trolley.png',   icon: 'fa-dolly' },
       { key: 'mezzanine', title: t('page.welcome.stillage_mezonin'),   path: mezzanine_index_path,          image: 'design/all_parts/welcome/clean/mezzanine.png', icon: 'fa-layer-group' },
-      { key: 'platform',  title: t('page.welcome.platform'),           path: platform_index_path,           image: nil,                                            icon: 'fa-truck-loading' },
-      { key: 'loft',      title: t('page.welcome.loft'),               path: lofts_path,                    image: nil,                                            icon: 'fa-couch' },
+      { key: 'platform',  title: t('page.welcome.platform'),           path: platform_index_path,           image: 'design/all_parts/platform/3.JPG',              icon: 'fa-truck-loading' },
+      { key: 'loft',      title: t('page.welcome.loft'),               path: lofts_path,                    image: 'design/all_parts/loft/stellag_dlya_knig.jpg',   icon: 'fa-couch' },
       { key: 'gallery',   title: t('page.welcome.gallery'),            path: gallery_index_path,            image: 'design/all_parts/welcome/clean/gallery.png',   icon: 'fa-images' }
     ]
   end

@@ -529,7 +529,6 @@ body.stm-redesign {
   }
   @media (max-width: 980px) {
     .pdp .pdp-options--3 { grid-template-columns: 1fr 1fr; }
-    .pdp .pdp-fields--4 { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 620px) {
     .pdp .tgrid { grid-template-columns: 1fr; }
@@ -680,3 +679,35 @@ body.stm-redesign {
   body.stm-redesign .pdp .pdp-pricetable th,
   body.stm-redesign .pdp .pdp-pricetable td { padding: 8px 10px; }
 }
+
+// =====================================================================
+//  TROLLEYS — print the model catalogue when there is no calculation
+//  print.scss hides the page (body visibility:hidden, #no_print display:none)
+//  and shows only #actual_price. On the trolley index without a result that
+//  left a blank sheet, so the catalogue block gets the id #trolley_catalog
+//  instead of #no_print and is printed as plain white cards: photo, model,
+//  materials. Calculators / 3D stages are dropped.
+// =====================================================================
+@media print {
+  body.stm-redesign #trolley_catalog { visibility: visible; }
+  body.stm-redesign #trolley_catalog .tcard__calc { display: none !important; }
+  body.stm-redesign #trolley_catalog .tgrid { grid-template-columns: repeat(3, 1fr) !important; gap: 8px; }
+  body.stm-redesign #trolley_catalog .tcard {
+    background: #fff !important; border: 1px solid #bbb !important; box-shadow: none !important;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  body.stm-redesign #trolley_catalog .tcard__media { height: 38mm; background: #fff !important; }
+  body.stm-redesign #trolley_catalog .tcard__body { padding: 8px 10px; }
+  body.stm-redesign #trolley_catalog .tcard__kicker,
+  body.stm-redesign #trolley_catalog .tcard__name,
+  body.stm-redesign #trolley_catalog .tcard__label,
+  body.stm-redesign #trolley_catalog .tcard__mats li { color: #000 !important; }
+  body.stm-redesign #trolley_catalog .tcard__name { font-size: 14px; }
+  body.stm-redesign #trolley_catalog .tcard__mats li { font-size: 10px; }
+  body.stm-redesign #trolley_catalog .pdp-note,
+  body.stm-redesign #trolley_catalog .pdp-prose { color: #000 !important; }
+}
+
+// the platform page photo is a dim warehouse shot — lift it to the same bright
+// register as the other product figures (mezzanine / loft)
+body.stm-redesign .pdp .pdp-figure__img--lift { filter: brightness(1.32) contrast(1.06) saturate(.82); }

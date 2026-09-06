@@ -216,6 +216,10 @@ body.stm-redesign {
     .card:hover::before { border-color: rgba(255, 106, 26, .55); box-shadow: 0 24px 50px -22px #000, inset 0 0 0 1px rgba(255, 106, 26, .18); }
     .card__media { aspect-ratio: 16/11; background: #f4f4f2 radial-gradient(circle at 50% 40%, #fff, #ececea); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
     .card__media img { width: 100%; height: 100%; object-fit: cover; transition: .6s var(--r-ease); }
+    // real photos sit next to clean studio renders: lift the dim warehouse shot
+    // of the platform and re-frame both on the product itself
+    .card__img--platform { filter: brightness(1.32) contrast(1.06) saturate(.82); object-position: 42% 58%; }
+    .card__img--loft { object-position: 50% 42%; }
     .card:hover .card__media img { transform: scale(1.06); }
     .card__body { padding: 24px 22px 22px; position: relative; display: flex; flex-direction: column; flex: 1; }
     .card__idx { font-family: var(--f-mono); font-size: 12px; color: var(--r-orange); letter-spacing: .1em; }
@@ -587,7 +591,9 @@ body.stm-redesign {
   }
 
   @media (max-width: 900px) {
-    .pdp-studio { grid-template-columns: 1fr; }
+    // minmax(0,…): a bare 1fr is minmax(auto,1fr) and lets the panel's
+    // min-content (stepper fields) blow the column past the phone's width
+    .pdp-studio { grid-template-columns: minmax(0, 1fr); }
     .pdp-stage { min-height: 380px; order: -1; }
   }
 }

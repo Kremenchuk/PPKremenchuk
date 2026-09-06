@@ -29,8 +29,9 @@
     - if @price_trol.present?
       = render partial: 'show_actual_price'
 
-  -# MODELS (hidden when printing the calculation)
-  #no_print
+  -# MODELS. With a calculation on the page only the result prints (#no_print
+  -# hides this block); without one the catalogue itself is what gets printed.
+  %div{ id: (@price_trol.present? ? 'no_print' : 'trolley_catalog') }
     .pdp-block
       -# delivery caveats — the two things a buyer must know before using
       -# the calculator, so they get a callout rather than body copy
