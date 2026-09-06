@@ -1,14 +1,19 @@
-%h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
-  =t('page.platform.index.header')
-.container-fluid
-  .row
-    .col-md-6
-      %p
-  .row
-    .col-md-12.all_tytle_page_img_stillage_stillage_warehouse_stillage_pallet
-      =image_tag("design/all_parts/platform/3.JPG", :class => "tytle_page_img_stillage_stillage_warehouse_stillage_pallet")
-%p
-.container-fluid
-  .row
-    .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet
-      =raw t("page.platform.index.about")
+.pdp
+  %section.pdp-hero
+    %nav.pdp-crumbs
+      = link_to t('page.all.home'), root_path
+      %span.sep /
+      = link_to t('page.home.nav.products'), "#{root_path}#products"
+      %span.sep /
+      %span.cur= t('page.platform.index.header')
+    %p.eyebrow
+      %span.eyebrow__tick
+      = t('page.home.nav.products')
+    %h1.pdp-title= t('page.platform.index.header')
+    %p.pdp-lead= t('page.platform.index.lead')
+
+  %figure.pdp-figure
+    = image_tag('design/all_parts/platform/3.JPG', alt: t('page.platform.index.header'))
+
+  .pdp-block
+    .pdp-prose= raw t('page.platform.index.about')

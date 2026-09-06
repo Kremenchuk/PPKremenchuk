@@ -1,6 +1,22 @@
-%h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
-  = @news.title[locale.to_s]
-.col-md-3
-  = image_tag @news.photo, style: 'width: 190px;'
-.col-md-7.news_text
-  = raw(@news.text[locale.to_s])
+.pdp
+  %section.pdp-hero
+    %nav.pdp-crumbs
+      = link_to t('page.all.home'), root_path
+      %span.sep /
+      = link_to t('page.news.header'), news_index_path
+      %span.sep /
+      %span.cur= @news.news_date.strftime('%d.%m.%Y')
+    %p.eyebrow
+      %span.eyebrow__tick
+      = @news.news_date.strftime('%d.%m.%Y')
+    %h1.pdp-title= localized(@news.title)
+
+  - if @news.photo.present?
+    %figure.pdp-figure
+      = image_tag @news.photo, alt: localized(@news.title)
+
+  .pdp-block
+    .pdp-prose= raw localized(@news.text)
+    = link_to news_index_path, class: 'ed-back' do
+      %i.arr ←
+      = t('page.news.back')

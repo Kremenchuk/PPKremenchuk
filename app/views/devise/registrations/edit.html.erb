@@ -1,27 +1,55 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="auth">
+  <div class="auth__card auth__card--wide">
+    <p class="eyebrow"><span class="eyebrow__tick"></span><%= t('page.auth.account_header') %></p>
+    <h1 class="auth__title"><%= t('page.auth.account_header') %></h1>
+    <p class="auth__lead"><%= t('page.auth.account_lead') %></p>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'auth__form' }) do |f| %>
+      <div class="auth-field">
+        <%= f.label :email, t('page.auth.email') %>
+        <%= f.email_field :email, autofocus: true, autocomplete: 'email' %>
+      </div>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+      <div class="auth-grid">
+        <div class="auth-field">
+          <%= f.label :login, t('page.registration.login') %>
+          <%= f.text_field :login, autocomplete: 'username' %>
+        </div>
+
+        <div class="auth-field">
+          <%= f.label :name, t('page.registration.name') %>
+          <%= f.text_field :name, autocomplete: 'name' %>
+        </div>
+      </div>
+
+      <div class="auth-field">
+        <%= f.label :password, t('page.auth.password_new') %>
+        <span class="auth-field__hint"><%= t('page.auth.password_keep_hint') %></span>
+        <%= f.password_field :password, autocomplete: 'new-password' %>
+      </div>
+
+      <div class="auth-field">
+        <%= f.label :password_confirmation, t('page.auth.password_confirm') %>
+        <%= f.password_field :password_confirmation, autocomplete: 'new-password' %>
+      </div>
+
+      <div class="auth-field">
+        <%= f.label :current_password, t('page.auth.current_password') %>
+        <span class="auth-field__hint"><%= t('page.auth.current_password_hint') %></span>
+        <%= f.password_field :current_password, autocomplete: 'current-password' %>
+      </div>
+
+      <%= f.button t('page.auth.account_submit'), class: 'btn btn--lg btn--block' %>
     <% end %>
 
-    <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
-    <%= f.input :password_confirmation, required: false %>
-    <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+    <div class="auth__danger">
+      <p class="auth__danger-title"><%= t('page.auth.danger_title') %></p>
+      <%= button_to t('page.auth.cancel_account'), registration_path(resource_name),
+                    method: :delete, class: 'btn btn--sm auth__danger-btn',
+                    form: { data: { turbo_confirm: t('page.auth.cancel_confirm') } },
+                    data: { confirm: t('page.auth.cancel_confirm') } %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

@@ -1,26 +1,32 @@
-<h2>Вход</h2>
+<div class="auth">
+  <div class="auth__card">
+    <p class="eyebrow"><span class="eyebrow__tick"></span><%= t('page.layout.sign_in') %></p>
+    <h1 class="auth__title"><%= t('page.auth.sign_in_header') %></h1>
+    <p class="auth__lead"><%= t('page.auth.sign_in_lead') %></p>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.label "E-mail" %><br />
-      <%= f.email_field :email, autofocus: true %>
-    </div>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="field">
-      <%= f.label "Пароль" %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'auth__form' }) do |f| %>
+      <div class="auth-field">
+        <%= f.label :email, t('page.auth.email') %>
+        <%= f.email_field :email, autofocus: true, autocomplete: 'email' %>
+      </div>
 
-    <% if devise_mapping.rememberable? -%>
-        <div class="field">
+      <div class="auth-field">
+        <%= f.label :password, t('page.auth.password') %>
+        <%= f.password_field :password, autocomplete: 'current-password' %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <label class="auth-check">
           <%= f.check_box :remember_me %>
-          <%= f.label t('page.login.remember_me') %>
-        </div>
-    <% end -%>
+          <span><%= t('page.login.remember_me') %></span>
+        </label>
+      <% end %>
 
-    <div class="actions">
-      <%= f.submit t('page.login.come_in'), class: 'btn btn-success'%>
-    </div>
-<% end %>
+      <%= f.button t('page.login.come_in'), class: 'btn btn--lg btn--block' %>
+    <% end %>
 
-<%= render "devise/shared/links" %>
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

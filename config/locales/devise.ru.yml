@@ -1,0 +1,52 @@
+# Devise ships English only — see devise.uk.yml for the rationale.
+ru:
+  devise:
+    failure:
+      already_authenticated: 'Вы уже вошли.'
+      inactive: 'Ваш аккаунт ещё не активирован.'
+      invalid: 'Неверный %{authentication_keys} или пароль.'
+      last_attempt: 'Осталась одна попытка до блокировки аккаунта.'
+      not_found_in_database: 'Неверный %{authentication_keys} или пароль.'
+      timeout: 'Сессия завершилась. Пожалуйста, войдите снова.'
+      unconfirmed: 'Чтобы продолжить, подтвердите свой адрес электронной почты.'
+      unauthenticated: 'Чтобы продолжить, войдите или зарегистрируйтесь.'
+    confirmations:
+      confirmed: 'Почта подтверждена.'
+      send_instructions: 'Через несколько минут вы получите письмо со ссылкой для подтверждения почты.'
+      send_paranoid_instructions: 'Если такой адрес есть в нашей базе, вы получите письмо со ссылкой для подтверждения.'
+    # Deliberately blank: Devise only flashes a message when the
+    # translation is present, and signing in or out needs no banner —
+    # the header already switches to the signed-in state.
+    sessions:
+      signed_in:           ''
+      signed_out:          ''
+      already_signed_out:  ''
+    registrations:
+      signed_up: 'Добро пожаловать! Регистрация прошла успешно.'
+      signed_up_but_inactive: 'Аккаунт создан, но вход пока невозможен — он не активирован.'
+      signed_up_but_unconfirmed: 'Письмо со ссылкой для подтверждения отправлено на ваш адрес. Перейдите по ссылке, чтобы активировать аккаунт.'
+      updated: 'Данные аккаунта обновлены.'
+      updated_but_not_signed_in: 'Данные обновлены, но из-за смены пароля нужно войти заново.'
+      update_needs_confirmation: 'Данные обновлены. Чтобы сменить e-mail, подтвердите новый адрес по ссылке в письме.'
+      destroyed: 'До свидания! Ваш аккаунт удалён.'
+    passwords:
+      send_instructions: 'Через несколько минут вы получите письмо с инструкцией по восстановлению пароля.'
+      send_paranoid_instructions: 'Если такой адрес есть в нашей базе, вы получите письмо с инструкцией по восстановлению пароля.'
+      updated: 'Пароль изменён. Вы вошли в аккаунт.'
+      updated_not_active: 'Пароль успешно изменён.'
+      no_token: 'Эта страница доступна только по ссылке из письма о восстановлении пароля.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Подтверждение регистрации'
+      reset_password_instructions:
+        subject: 'Восстановление пароля'
+      password_change:
+        subject: 'Пароль изменён'
+      email_changed:
+        subject: 'E-mail изменён'
+  errors:
+    messages:
+      expired: 'устарело, запросите новое'
+      not_found: 'не найдено'
+      already_confirmed: 'уже подтверждено, попробуйте войти'
+      not_locked: 'не заблокировано'

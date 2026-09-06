@@ -6,8 +6,8 @@
 @media print {
 
 
-  .info, .layout_table, .print-button-section, .footer, .header-left-top, .a-right-bottom, .time-right-bottom,
-  #no_print, #contact_form, .container-fluid, .header_stillage_stillage_warehouse_stillage_pallet_trolleys{
+  .print-button-section, .footer,
+  #no_print, #contact_form, .container-fluid{
       display: none;
   }
 

@@ -1,49 +1,7 @@
-$theme_color: #FE7D14;
 
-
-.admin_panel_link a:visited{
-  color: #0076ff;
-  font-size: 18px;
-  font-weight: 500;
-}
-.admin_panel_link a{
-  color: #0076ff;
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.admin_panel_link a:hover{
-  color: black;
-  font-size: 18px;
-  font-weight: 500;
-}
-.admin_panel_link a:active{
-  color: #0076ff;
-  font-size: 14px;
-  font-weight: 500;
-}
 
 .layout_table {
   border: 1px;
-  width: 100%;
-}
-
-.table_position_trolleys ul > li {
-  margin-left: -20px;
-}
-
-.radio_button_label{
-  font-weight: 200;
-  //margin-left: -20px;
-}
-.radio_button_label_in_table {
-  font-weight: 200;
-  //margin-left: -20px;
-}
-
-.welcome_img_text{
-  position: absolute;
-  top: 152px;
   width: 100%;
 }
 
@@ -53,14 +11,6 @@ $theme_color: #FE7D14;
 #hiden_element_2 {
   display: none;
 }
-//.hiden_element_3 {
-//  display: none;
-//}
-//.hiden_element_4 {
-//  display: none;
-//}
-
-
 
 #btnControl_1 {
   display: none;
@@ -73,7 +23,6 @@ $theme_color: #FE7D14;
   display: block;
 }
 
-
 #btnControl_2 {
   display: none;
 }
@@ -85,54 +34,15 @@ $theme_color: #FE7D14;
   display: block;
 }
 
-
-
-
 * {
   //margin: 0;
   //padding: 0;
 }
 
-.locales_list {
-  //z-index: 999999;
-  //position: absolute;
-  //top: 50px;
-  //right: 100px;
-  //background-color: red;
-  //opacity: 0.1;
-}
-
-.locale_view {
-  //z-index: 999999;
-  //position: relative;
-  //top: 0;
-  //font-size: 14px;
-  //font-weight: 800;
-  //float: right;
-  //min-width: 60px;
-  //border: 1px solid white
-}
-
-
-
 h3{
   font-size: 30px;
 }
 
-
-
-
-  .text_in_trolleys
-  {
-    font-size: 18px;
-    text-indent: 20px;
-    color: #ff0000;
-  }
-  .text_in_trolleys_sec
-  {
-    font-size: 18px;
-    text-indent: 20px;
-  }
   .tp_01
   {
     display: none;
@@ -161,13 +71,7 @@ h3{
   {
     display: none;
   }
-  .on_line_calculation_off
-  {
-    //background: #ff0000;
-    color: #ff0000;
-    font-size: 20px;
-    text-indent: 20px
-  }
+
   .alert_in_site
   {
     background: #ff0000;
@@ -286,7 +190,6 @@ h3{
     transform: rotate(325deg);
   }
 
-
   .height_size_stilage_warehouse_addl
   {
     position: relative;
@@ -324,49 +227,12 @@ h3{
     font-size: 20px;
     text-align: center;
   }
-  .table_position_trolleys
-  {
-    display: table;
-    border-spacing: 1px 1px;
-
-  }
-  /*.row_table_position_trolleys
-  {
-    display: table-cell;
-  }*/
-
-
-
-
   .row_gallery
   {
     display: table;
     width: 100%;
     border-spacing: 10px 1px;
     text-align:center;
-  }
-
-  .abbout_trolleys_all
-  {
-    text-align: center;
-  }
-  .header_name_trolleys
-  {
-    font-size: 25px;
-  }
-  .distance_from_trolleys
-  {
-    margin-bottom: 50px;
-  }
-
-  .hiden_input_trolleys
-  {
-    display: none;
-  }
-  .alert_style
-  {
-    color: rgb(255,0,0);
-    font-size :25px;
   }
 
   .hidenelement1a,.hidenelement2,.hidenelement3,.hidenelement4,.hidenelement5,.hidenelement6,.hidenelement7,.hidenelement8
@@ -378,31 +244,10 @@ h3{
     display: none;
   }
 
-
-
-
-  .style_text_about_stillage_stillage_warehouse_stillage_pallet
-  {
-    font-size: 20px;
-    text-indent: 20px
-  }
   .header_stillage_stillage_warehouse_stillage_pallet_trolleys
   {
     text-align: center;
     font-size: 50px;
-  }
-  .all_tytle_page_img_stillage_stillage_warehouse_stillage_pallet
-  {
-    text-align: center;
-  }
-
-  .tytle_page_img_stillage_stillage_warehouse_stillage_pallet
-  {
-    width: 600px;
-    height: 450px;
-    padding: 10px 0px 10px 0px;
-    background: #FE7D14;
-    //border-radius: 20px;
   }
 
   .input_style_constant
@@ -423,7 +268,6 @@ h3{
     cursor: pointer;
   }
 
-
   .table_data_admin_panel
   {
     font-size: 18px;
@@ -432,119 +276,4 @@ h3{
   {
     font-size: 22px;
   }
-  .update_picture
-  {
-    width: 25px;
-    height: 25px;
-    float: right;
-  }
-  .text_pp
-  {
-    float:right;
-    margin: 20px;
-  }
-  .tb2_tr1_row1_welcome
-  {
-    height: 36px;
-  }
-  .tb2_tr2_col1_welcome
-  {
-    font-size: 22px;
-    color: black;
-  }
-  .tb2_tr3_col1_welcome
-  {
-    width: 102px;
-  }
-  .tb2_tr3_col2_welcome
-  {
-    width: 460px;
-    font-size: 15px;
-    color: black;
-  }
-  .tb2_tr3_col3_welcome
-  {
-    width: 362px;
-  }
-
-  .tb2_tr3_col4_welcome
-  {
-    width: 36px;
-  }
-
-  .tb1_col1_welcome
-  {
-    width: 192px
-  }
-
-
-
-  .tb1_col3_welcome
-  {
-    width: 36px
-  }
-  .tb1_row1_welcome
-  {
-    height: 36px;
-  }
-  .tb1_row3_welcome
-  {
-    height: 34px;
-  }
-
-
-
-  .colortext1
-  {
-    margin-left: -25px;
-    font-size: 18px;
-    font-weight: 700;
-    color: $theme_color;
-  }
-  .colortext2
-  {
-    //margin-left: -5px;
-    font-size: 18px;
-    font-weight: 700;
-    color: white;
-  }
-  //.col1
-  //{
-  //  text-align: center;
-  //  width: 300px;
-  //}
-  //.col2
-  //{
-  //  text-align: center;
-  //  font-weight: 700;
-  //  font-size: 14px;
-  //  width: 181px;
-  //  padding-top: 11px;
-  //}
-  //.col3
-  //{
-  //  text-align: center;
-  //  font-weight: 700;
-  //  font-size: 14px;
-  //  width: 181px;
-  //}
-  //.col5
-  //{
-  //  text-align: center;
-  //  font-weight: 700;
-  //  font-size: 14px;
-  //  width: 181px;
-  //}
-  //.col4 {
-  //  text-align: center;
-  //  font-weight: 700;
-  //  font-size: 14px;
-  //  width: 181px;
-  //}
-
-
-
-
-
-
 

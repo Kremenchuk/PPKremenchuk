@@ -118,8 +118,12 @@ class TrolleyController < ApplicationController
     @price_trol = @price_trol + prise_upakovki
     @price_trol = @price_trol.round(2).to_s
 
-    @name_stillage="Тип: #{@vid} #{@lengthT_var}x#{@width_var} высота ручки: #{@hight_ruch}"
+    # тот же формат, что и на страницах стеллажей: размеры через " x "
+    @name_stillage="#{t('page.trolleys.show.type')}: #{@vid} #{@lengthT_var} x #{@width_var} #{t('page.trolleys.index.handle_height')}: #{@hight_ruch}"
     enter_row_to_excel(@name_stillage, @price_trol) #внесение в ексель файл данных о расчете стеллажа.
+
+    # результат показывается на самой странице моделей, а не отдельной
+    render 'index'
   end
 
 
@@ -154,10 +158,10 @@ class TrolleyController < ApplicationController
       var2 = price_shelf_layer(@lengthT_var,@width_var,2500,1250,@constant.mat_list_25_125_2)
       plosh_shelf = (@lengthT_var/1000.0) * (@width_var/1000.0)
        if var1<=var2
-         @price_shelf_layer_var = var1
+         price_shelf_layer_var = var1
          @wei_trol = (@constant.wei_list_2_1_2 / 2.0) * ((@lengthT_var/1000.0) * (@width_var/1000.0)) * kol_shelf
        else
-         @price_shelf_layer_var = var2
+         price_shelf_layer_var = var2
          @wei_trol = (@constant.wei_list_25_125_2 / 3.125) * ((@lengthT_var/1000.0) * (@width_var/1000.0)) * kol_shelf
        end
      end
@@ -179,7 +183,7 @@ class TrolleyController < ApplicationController
                   ((@lengthT_var * 2.0 + @width_var * 2.0)/1000.0) * kol_shelf * @constant.area_ugolok_20_20_3 + (plosh_shelf * 2) * kol_shelf +
                   @constant.area_plastini_teleg * 2
     @wei_trol = @wei_trol.round(2).to_s
-    price_trol = price_ugolok + @price_shelf_layer_var * kol_shelf + price_kvadr + price_round + plosh_trol * @constant.job_okr_telegek +
+    price_trol = price_ugolok + price_shelf_layer_var * kol_shelf + price_kvadr + price_round + plosh_trol * @constant.job_okr_telegek +
                   price_svarka + @constant.mat_plastini_teleg * 4 + @constant.mat_metizi_teleg * 16
 
     price_trol = price_trol * (@constant.otxod_trol/100 +1)

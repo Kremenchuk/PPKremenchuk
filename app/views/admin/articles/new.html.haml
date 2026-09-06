@@ -1,9 +1,18 @@
-%h1 New article
-.col-md-12
-  %p{:class => "#{flash[:class]}", :style => "#{flash[:style]}"}= flash[:message]
-  = form_for @article, url: admin_articles_path, method: :post do |f|
-    = render partial: 'new_edit', locals: {f: f}
-    .col-md-12
-      = submit_tag "Save", {:class =>"btn btn-success"}
-    .col-md-12
-      %hr
+.pdp
+  %section.pdp-hero
+    %nav.pdp-crumbs
+      = link_to 'Статті', admin_articles_path
+      %span.sep /
+      %span.cur Нова стаття
+    %h1.pdp-title Нова стаття
+
+  .pdp-block
+    .adm-card
+      - if flash[:message].present?
+        -# own modifier instead of Bootstrap's .alert-danger, whose pale
+        -# pink background made the light text unreadable on the dark theme
+        %p.adm-flash{ class: ('adm-flash--error' if flash[:class].to_s.include?('danger')) }= flash[:message]
+      = form_tag admin_articles_path, method: :post do
+        = render 'new_edit'
+        .adm-actions
+          = submit_tag 'Save', class: 'btn btn--sm'

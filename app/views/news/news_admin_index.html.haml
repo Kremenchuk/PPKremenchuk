@@ -1,19 +1,25 @@
-%h1 Добавление и удаление новостей
-= render partial: 'new_edit_form'
-.col-md-12
-  - @news.each do |news|
-    = form_tag news_path(news.id), method: :put, multipart: true do
-      .col-md-12
-        = date_field_tag :news_date, news.news_date, class: 'news_data_field_class', disabled: true
-      .col-md-2
-        = image_tag news.photo, style: 'width: 160px;'
-      .col-md-8
-        = label_tag :title, news.title, style: 'width: 100%;'
-      .col-md-12
-        = label_tag :short_text, news.short_text, style: 'width: 100%;'
-      .col-md-12
-        = label_tag :text, news.text, style: 'width: 100%;'
-      .col-md-12
-        = link_to 'Удалить', news_path(id: news.id), class: 'btn btn-danger', method: :delete
-      .col-md-12
-        %hr
+.pdp
+  %section.pdp-hero
+    %h1.pdp-title Новини
+
+  .pdp-block
+    %h2.adm-h2 Додати новину
+    = render 'new_edit_form', news: @new_news, url: news_index_path, method: :post, submit_label: 'Добавить', with_photo: true
+
+  .pdp-block
+    %h2.adm-h2 Опубліковані
+    - if @news.present?
+      .adm-rows
+        - @news.each do |item|
+          .adm-row
+            - if item.photo.present?
+              .adm-row__media= image_tag item.photo, alt: localized(item.title)
+            .adm-row__body
+              %span.adm-row__date= item.news_date.strftime('%d.%m.%Y')
+              %h3.adm-row__title= localized(item.title)
+              %p.adm-row__text= localized(item.short_text)
+            .adm-row__actions
+              = link_to 'Редактировать', edit_news_path(item.id), class: 'btn btn--sm btn--ghost'
+              = link_to 'Удалить', news_path(id: item.id), class: 'btn btn--sm adm-danger', method: :delete
+    - else
+      %p.ed-empty Новин ще немає.

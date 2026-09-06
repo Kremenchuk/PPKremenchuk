@@ -19,26 +19,8 @@ $icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
 //@import "~bootstrap/scss/bootstrap";
 //@import "font-awesome-sprockets";
 @import "font-awesome";
-@import "jquery-ui";
-@import 'lightbox';
 
 $scroll-bar: 15px;
-
-.button_to_link {
-  margin-top: -8px !important;
-  button {
-    background: none !important;
-    border: none !important;
-    padding: 0 !important;
-    ///*optional*/
-    font-family: arial, sans-serif;
-  }
-}
-
-.button_to_link button:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
 
 p {
   text-indent: 20px; /* Отступ первой строки в пикселах */
@@ -74,16 +56,6 @@ body {
   padding-top: 65px;
 }
 
-.fix_header {
-  position: fixed;
-  font-size: 15px;
-  top: 0;
-  z-index: 999998;
-  color: white;
-  width: 100%;
-  background: #191208;
-}
-
 .layout_table {
   height: 65px;
   border: 1px;
@@ -91,191 +63,12 @@ body {
   text-align: center;
 }
 
-.col_header1
-{
-  height: 100%;
-  vertical-align: middle;
-}
-
-.col_header2
-{
-  height:100%;
-  font-weight: 700;
-  font-size: 14px;
-  padding-top: 11px;
-}
-
-.col_header3
-{
-  height: 100%;
-  font-weight: 700;
-  font-size: 14px;
-  padding-top: 22px;
-}
-
-.col_header4 {
-  height: 100%;
-  font-weight: 700;
-  font-size: 14px;
-  padding-top: 22px;
-}
-
-.col_header5
-{
-  height: 100%;
-  font-weight: 700;
-  font-size: 14px;
-  padding-top: 22px;
-}
-
-
 // блок випадаючого меню
     ul.dropdown li
     {
       position: relative;
       z-index: 1;
     }
-    ul.dropdown-inside
-    {
-      position: absolute;
-      left: -9999px;
-      width: 320px;
-    }
-    .locale_view ul.dropdown-inside
-    {
-      position: absolute;
-      left: -9999px;
-      width: 181px;
-    }
-    ul.dropdown-inside > li
-    {
-      height: 50px;
-      line-height: 45px;
-      border: 1px solid #000000;
-    }
-    ul.dropdown li.dropdown-top
-    {
-      display: inline;
-      float: left;
-      top: 43px;
-      margin-left: -15px;
-    }
-    ul.dropdown li.dropdown-top a
-    {
-      padding: 3px 10px 4px;
-      display: block;
-      color: white;
-    }
-    ul.dropdown .dropdown-inside
-    {
-      background: #462501;
-    }
-    ul.dropdown .dropdown-inside a:hover
-    {
-      height: 50px;
-      line-height: 45px;
-      background: #9a2917;
-      text-decoration: none
-    }
-    .col_header2 a
-    {
-      color: white;
-    }
-
-    .col_header2 a:hover
-    {
-      color: white;
-      text-decoration: underline;
-    }
-    .col_header3:hover ul {
-      display: inline;
-      left: 0;
-    }
-    .col_header3:hover
-    {
-      background: #FE7D14;
-      cursor: default;
-    }
-    .col_header3  ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-    .col_header4  ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-    .col_header4:hover ul {
-      display: inline;
-      left: 0;
-    }
-    .col_header4:hover
-    {
-      background: #FE7D14;
-      cursor: default;
-    }
-
-    .col_header5  ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-    .col_header5  ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-    .col_header5:hover ul {
-      display: inline;
-      left: 0;
-    }
-
-    .col_header5:hover
-    {
-      background: #FE7D14;
-      cursor: default;
-    }
-//---блок випадаючого меню---
-
-.footer_contacts{
-  font-size: 12px;
-  text-indent: 20px;
-  margin-left: -60px;
-  padding-top: 10px;
-
-}
-.footer_style{
-  padding-top: 5px;
-  font-size: 12px;
-  text-indent: 20px;
-  width: 50%;
-}
-.footer_text{
-  padding-top: 10px;
-  font-size: 12px;
-}
-
-.boofer
-{
-  height: 150px;
-}
-.fix_footer
-{
-  //width: calc(100vw - #{$scroll-bar});
-  font-size: 10px;
-  background: #FE7D14;
-  color: #191208;
-  min-height: 100px;
-  left: 0;
-  margin-top: 50px;
-  position: absolute;
-}
-
-.fix_footer table{
-  position: absolute;
-  width: 100%;
-}
 
 .logo
 {
@@ -284,33 +77,8 @@ body {
   margin-top: -2px;
 }
 
-.span_header
-{
-  display:table-cell;
-  height:100%;
-}
-
-.span_header:nth-child(odd)
-{
-  width: 30%;
-}
-
-
-.no-gutter > [class*='col-'] {
-  padding-right:0;
-  padding-left:0;
-}
-
 h1, h2 {
   text-align: center;
-}
-
-.about_href > p {
-  text-indent:0 !important;
-}
-
-.col_header2 > p {
-  text-indent:0 !important;
 }
 
 #hidenelement1a, #hidenelement2, #hidenelement3, #hidenelement3, #hidenelement4, #hidenelement5,

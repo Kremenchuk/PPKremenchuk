@@ -40,3 +40,10 @@
 /node_modules
 
 .env
+
+# Ignore JetBrains IDE settings.
+/.idea
+
+# Ignore user-uploaded files.
+/public/uploads
+

@@ -1,5 +1,18 @@
-%h1.article_header
-  = raw(@article.title[locale.to_s])
-.col-md-12.article_padding_to_footer
-  = raw(@article.body[locale.to_s])
+.pdp
+  %section.pdp-hero
+    %nav.pdp-crumbs
+      = link_to t('page.all.home'), root_path
+      %span.sep /
+      = link_to t('page.articles.header'), articles_path
+      %span.sep /
+      %span.cur= strip_tags(localized(@article.title)).truncate(60)
+    %p.eyebrow
+      %span.eyebrow__tick
+      = t('page.articles.header')
+    %h1.pdp-title= raw localized(@article.title)
 
+  .pdp-block
+    .pdp-prose= raw localized(@article.body)
+    = link_to articles_path, class: 'ed-back' do
+      %i.arr ←
+      = t('page.articles.back')

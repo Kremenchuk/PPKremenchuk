@@ -1,44 +1,45 @@
-<h2>
-  <%= t('page.registration.header') %>
-</h2>
+<div class="auth">
+  <div class="auth__card auth__card--wide">
+    <p class="eyebrow"><span class="eyebrow__tick"></span><%= t('page.registration.header') %></p>
+    <h1 class="auth__title"><%= t('page.auth.sign_up_header') %></h1>
+    <p class="auth__lead"><%= t('page.auth.sign_up_lead') %></p>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= devise_error_messages! %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="field">
-      <%= f.label 'e-mail' %><br />
-      <%= f.email_field :email, autofocus: true %>
-    </div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'auth__form' }) do |f| %>
+      <div class="auth-field">
+        <%= f.label :email, t('page.auth.email') %>
+        <%= f.email_field :email, autofocus: true, autocomplete: 'email' %>
+      </div>
 
-    <div class="field">
-      <%= f.label t('page.registration.login') %><br />
-      <%= f.text_field :login, autofocus: true %>
-    </div>
-
-    <div class="field">
-      <%= f.label t('page.registration.name') %><br />
-      <%= f.text_field :name, autofocus: true %>
-    </div>
-
-    <div class="field">
-      <%= f.label t('page.registration.password') %>
-      <% if @validatable %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
-
-    <div class="field">
-      <%= f.label t('page.registration.password_conf') %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
-    <p>
-        <div class="actions">
-          <%= f.submit t('page.registration.submit_button'), class: 'btn btn-success' %>
+      <div class="auth-grid">
+        <div class="auth-field">
+          <%= f.label :login, t('page.registration.login') %>
+          <%= f.text_field :login, autocomplete: 'username' %>
         </div>
-    </p>
-<% end %>
 
-<%= render "devise/shared/links" %>
+        <div class="auth-field">
+          <%= f.label :name, t('page.registration.name') %>
+          <%= f.text_field :name, autocomplete: 'name' %>
+        </div>
+      </div>
 
+      <div class="auth-field">
+        <%= f.label :password, t('page.registration.password') %>
+        <% if @minimum_password_length %>
+          <span class="auth-field__hint"><%= t('page.auth.min_chars', count: @minimum_password_length) %></span>
+        <% end %>
+        <%= f.password_field :password, autocomplete: 'new-password' %>
+      </div>
 
+      <div class="auth-field">
+        <%= f.label :password_confirmation, t('page.registration.password_conf') %>
+        <%= f.password_field :password_confirmation, autocomplete: 'new-password' %>
+      </div>
+
+      <%= f.button t('page.registration.submit_button'), class: 'btn btn--lg btn--block' %>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

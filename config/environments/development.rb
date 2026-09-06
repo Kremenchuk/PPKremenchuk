@@ -5,20 +5,36 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: ENV['HOST'], port: '80' }
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default :charset => "utf-8"
-  config.action_mailer.smtp_settings = {
-    :address => "smtp.gmail.com",
-    :port => 25,
-    :domain => ENV['DOMAIN'],
-    :user_name => ENV['USER_NAME'],
-    :password => ENV['PASSWORD'],
-    :authentication => :plain,
-    :enable_starttls_auto => true
+  # Confirmation / password-reset links are built from this. ENV['HOST'] is
+  # only set when the app runs from Docker or with an exported environment —
+  # the fallback keeps `bin/dev` working, otherwise Devise raises
+  # "Missing host to link to!" the moment somebody registers.
+  config.action_mailer.default_url_options = {
+    host: ENV.fetch('HOST', '127.0.0.1'),
+    port: ENV.fetch('PORT', '3000')
   }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default :charset => "utf-8"
+
+  if ENV['USER_NAME'].present?
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.smtp_settings = {
+      :address => "smtp.gmail.com",
+      :port => 25,
+      :domain => ENV['DOMAIN'],
+      :user_name => ENV['USER_NAME'],
+      :password => ENV['PASSWORD'],
+      :authentication => :plain,
+      :enable_starttls_auto => true
+    }
+  else
+    # No SMTP credentials in the environment: nothing is actually sent.
+    # letter_opener pops each letter open in the browser, so confirmation
+    # and password-reset links are one click away.
+    config.action_mailer.delivery_method = :letter_opener
+    config.action_mailer.raise_delivery_errors = false
+  end
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

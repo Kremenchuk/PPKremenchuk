@@ -1,43 +1,45 @@
-.stillage-warehouse
-  .col-xs-12.print-button-section
-    = button_to '', class: 'btn btn-default print-button', method: :get, remote: true, onclick: ' window.print(); return false;' do
-      %i.fa.fa-print
-  .row
-    .col-md-10
-      %p.style_p
-        ="#{t('page.stillage_pallet.show.max_load_ur')}: #{@shelf_load_var} #{t('page.all.kg')}"
-      %p.style_p
-        ="#{t('page.stillage_pallet.show.weight_ram')}: #{@wei_ram} #{t('page.all.kg')}"
-      %p.style_p
-        ="#{t('page.stillage_pallet.show.weaight_trav')}: #{@wei_traversi} #{t('page.all.kg')}"
-      %p
-  .row
-    .col-md-12.style_p
-      %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-        %tr
-          %th.header_table
-            =t('page.all.rama')
-            %p
-              ="#{@hight_var}x1100"
-          %th.header_table
-            =t('page.all.traversa')
-            %p
-              ="#{@width_var}x#{@hight_traversi}x#{@depth_traversi}x1.5"
-          %th.header_table
-            =t('page.all.osn_sec')
-            %p
-              ="#{t('page.all.2_ram')}, #{@num_of_shelves_var} #{@text_var}"
-          %th.header_table
-            =t('page.all.pris_sec')
-            %p
-              ="#{t('page.all.1_ram')}, #{@num_of_shelves_var} #{@text_var}"
-          %tr{:align => "center"}
-            %td
-              ="#{@price_ram}"
-            %td
-              ="#{@price_traversa}"
-            %td
-              ="#{@price_stillage_osn}"
-            %td
-              ="#{@price_stillage_prist}"
+-# NB: no .stillage-warehouse class here (the legacy partial reused it) —
+-# print.scss pins that selector to the old Bootstrap markup. Print geometry
+-# for the redesigned result lives in product.scss.
+.pdp-result
+  .pdp-result__head
+    %span.pdp-result__name= @name_stillage
+    - print_name = "#{t('page.stillage_pallet.show.short')} #{@name_stillage}"
+    .print-button-section
+      %button.pdp-print.print-button{ type: 'button', title: t('page.all.print'), data: { controller: 'print', action: 'click->print#run', 'print-name-value': print_name } }
+        🖨
 
+  .item-info
+    %ul.pdp-result__specs.pdp-result__specs--row
+      %li
+        %span.k= t('page.stillage_pallet.show.max_load_ur')
+        %span.v= "#{@shelf_load_var} #{t('page.all.kg')}"
+      %li
+        %span.k= t('page.stillage_pallet.show.weight_ram')
+        %span.v= "#{@wei_ram} #{t('page.all.kg')}"
+      %li
+        %span.k= t('page.stillage_pallet.show.weaight_trav')
+        %span.v= "#{@wei_traversi} #{t('page.all.kg')}"
+
+    .pdp-pricetable
+      %table
+        %thead
+          %tr
+            %th.header_table
+              = t('page.all.rama')
+              %span.sub= "#{@hight_var}x1100"
+            %th.header_table
+              = t('page.all.traversa')
+              %span.sub= "#{@width_var}x#{@hight_traversi}x#{@depth_traversi}x1.5"
+            %th.header_table
+              = t('page.all.osn_sec')
+              %span.sub= "#{t('page.all.2_ram')}, #{@num_of_shelves_var} #{@text_var}"
+            %th.header_table
+              = t('page.all.pris_sec')
+              %span.sub= "#{t('page.all.1_ram')}, #{@num_of_shelves_var} #{@text_var}"
+        %tbody
+          %tr{ align: 'center' }
+            %td= "#{@price_ram} #{t('page.all.uah')}"
+            %td= "#{@price_traversa} #{t('page.all.uah')}"
+            %td.is-total= "#{@price_stillage_osn} #{t('page.all.uah')}"
+            %td.is-total= "#{@price_stillage_prist} #{t('page.all.uah')}"

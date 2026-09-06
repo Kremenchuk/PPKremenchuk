@@ -1,77 +1,10 @@
-// Place all the styles related to the welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// =====================================================================
+//  Legacy classes for welcome-related views.
+//  The "welcome-modern" iteration that used to live here was superseded
+//  by zz_redesign.scss (body.stm-redesign .home), which also carries its
+//  own keyframes — only the About-us page still needs these rules.
+// =====================================================================
 
-.my_product {
-  text-align: center;
-}
-
-.welcome_link {
-  width: 100%;
-  padding-left: 15px;
-  font-size: 18px;
-  padding-bottom: 20px;
-
-}
-
-.basis
-{
-  width: 100%;
-  padding: 2px 0 0 0;
-}
-
-.welcome_tb_padding
-{
-  padding: 25px 0 0 0;;
-}
-
-.products_buttons_welcome
-{
-  width: 302px;
-  height: 184px;
-}
-
-//кнопки Читать далее
-  /* скрываем чекбоксы и блоки с содержанием */
-  .hide {
-    display: none;
-  }
-  .hide + label ~ div{
-    display: none;
-  }
-  /* оформляем текст label *//* вид текста label при активном переключателе */
-  .hide + label,
-  .hide:checked + label {
-    padding: 0;
-    cursor: pointer;
-  }
-
-  .hide:checked + label {
-    color: red;
-  }
-
-  /* когда чекбокс активен показываем блоки с содержанием  */
-  .hide:checked + label + div {
-    display: block;
-  }
-
-  /* demo контейнер */
-  .demo {
-    float: right;
-    padding-bottom: 20px;
-  }
-//---кнопки Читать далее---
-
-.about_us_text {
-  font-size: 18px;
-}
-
-.about_picture_welcome
-{
-  width: 362px;
-  height: 272px;
-}
-
-.about_picture_container {
-  text-align: center;
-}
+.about_us_text { font-size: 18px; }
+.about_picture_welcome { width: 362px; height: 272px; }
+.about_picture_container { text-align: center; }

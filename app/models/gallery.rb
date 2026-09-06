@@ -2,7 +2,7 @@ class Gallery < ActiveRecord::Base
   default_scope { order(horizontal: :desc) }
 
   mount_uploader :image, GalleryImageUploader
-  serialize :image, JSON
+  serialize :image, coder: JSON
   before_save :set_orientation
 
   def self.next(params)

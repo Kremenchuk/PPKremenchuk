@@ -1,156 +1,97 @@
-%h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
-  =t('page.stillage.index.header')
-.container-fluid
-  .row
-    .col-md-6
-      %p
-  .row
-    .col-md-12.all_tytle_page_img_stillage_stillage_warehouse_stillage_pallet
-      =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_tytle_page.gif", :class => "tytle_page_img_stillage_stillage_warehouse_stillage_pallet")
-%p
--if !@constant.on_off_calc_stillage
-  = form_tag(calculate_actual_price_stillage_path, method: :get, id: 'contact_form', name: 'contact_form', remote: true, onsubmit: "return validate_form_stilage();") do
-    .container-fluid
-      .text_size{:onclick => "showHide('hiden_element_1','chg_img_1')" }
-        =image_tag("plus.png", :id => "chg_img_1", :alt => "mater", :name => "img_1", :width => "30", :height => "30")
-        =t('page.all.on_line')
-      #hiden_element_1
-        .row
-          .col-md-2
-            =label_tag(:q, t('page.all.height'))
-            %p
-              (500-3500 #{t('page.all.mm')})
-            %p{:title => t('page.all.height_title')}
-              %input{:maxlength => "4", :name => "hight", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-          .col-md-2
-            =label_tag(:q, t('page.all.widht'))
-            %p
-              (400-1150 #{t('page.all.mm')})
-            %p{:title => t('page.all.widht_title')}
-              %input{:maxlength => "4", :name => "widthS", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-          .col-md-2
-            =label_tag(:q, t('page.all.depth'))
-            %p
-              (250-800 #{t('page.all.mm')})
-            %p{:title => t('page.all.depth_title')}
-              %input{:maxlength => "4", :name => "depth", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-          .col-md-2
-            =label_tag(:q, t('page.all.num_of_shelves'))
-            %p
-              (2-15 #{t('page.all.unit')})
-            %p{:title => t('page.all.num_of_shelves_title')}
-              %input{:maxlength => "2", :name => "num_of_shelves", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-          .col-md-3
-            =label_tag(:q, t('page.all.shelf_load'))
-            %p
-              (20-200 #{t('page.all.kg')})
-            %p{:title => t('page.stillage.index.shelf_load_title')}
-              %input{:maxlength => "3", :name => "shelf_load", :pattern => "^[ 0-9]+$",
-                :size => "10", :value => "", :type => "text"}
-        .row
-          .col-md-3
-            %p
+.pdp
+  %section.pdp-hero
+    %nav.pdp-crumbs
+      = link_to t('page.all.home'), root_path
+      %span.sep /
+      = link_to t('page.home.nav.products'), "#{root_path}#products"
+      %span.sep /
+      %span.cur= t('page.stillage.index.header')
+    %p.eyebrow
+      %span.eyebrow__tick
+      = t('page.all.stillage')
+    %h1.pdp-title= t('page.stillage.index.header')
+    %p.pdp-lead= t('page.stillage.index.lead')
+    %ul.pdp-chips
+      %li
+        %b= t('page.all.height')
+        = "500–3500 #{t('page.all.mm')}"
+      %li
+        %b= t('page.all.widht')
+        = "400–1150 #{t('page.all.mm')}"
+      %li
+        %b= t('page.all.depth')
+        = "250–800 #{t('page.all.mm')}"
+      %li
+        %b= t('page.all.num_of_shelves')
+        = "2–15 #{t('page.all.unit')}"
+      %li
+        %b= t('page.all.shelf_load')
+        = "20–200 #{t('page.all.kg')}"
 
-        .row
-          .col-md-8
-            .style_text_about_stillage_stillage_warehouse_stillage_pallet
-              %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-                %tr
-                  %td
-                    =t('page.stillage.index.tip_polki')
-                  %td
-                    .col-md-12
-                      %input{:id => "radio1", :name => "group1" , :type => "radio", :value => "metall", :checked => "checked"}
-                        =label_tag('radio1', t('page.stillage.index.metall_shelf_type'), :class => 'radio_button_label')
-                    .col-md-12
-                      %input{:id => "radio2", :name => "group1" , :type => "radio", :value => "dsp"}
-                        =label_tag('radio2', t('page.stillage.index.dsp_shelf_type'), :class => 'radio_button_label')
-                %tr
-                  %td
-                    =t('page.all.stillage')
-                  %td
-                    .col-md-12
-                      %input{:id => "radio3", :name => "group2" , :type => "radio", :value => "osinkovaniy", :checked => "checked"}
-                        =label_tag('radio3', t('page.all.osinkovaniy'), :class => 'radio_button_label')
-                    .col-md-12
-                      %input{:id => "radio4", :name => "group2" , :type => "radio", :value => "okrash"}
-                        =label_tag('radio4', t('page.all.okrash'), :class => 'radio_button_label')
-                .row
-          .col-md-3
-            %p
+  -# ONLINE CALCULATOR
+  - if !@constant.on_off_calc_stillage
+    = form_tag(calculate_actual_price_stillage_path, method: :get, id: 'contact_form', name: 'contact_form', data: { controller: 'product-form', action: 'submit->product-form#validate' }) do
+      .pdp-calc
+        .pdp-calc__bar{ data: { action: 'click->product-form#toggle' } }
+          = image_tag('plus.png', id: 'chg_img_1', alt: '+', width: '26', height: '26', data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
+          %span= t('page.all.on_line')
+          %span.hint= t('page.all.calculate_stillage')
+        #hiden_element_1.pdp-panel{ data: { 'product-form-target': 'panel' } }
+          .pdp-fields
+            .pdp-field{ title: t('page.all.height_title') }
+              = label_tag :hight, t('page.all.height')
+              %span.range= "(500–3500 #{t('page.all.mm')})"
+              %input{ maxlength: '4', name: 'hight', pattern: '^[ 0-9]+$', type: 'text', value: '', data: { 'product-form-target': 'field', label: t('page.all.height'), min: 500, max: 3500 } }
+            .pdp-field{ title: t('page.all.widht_title') }
+              = label_tag :widthS, t('page.all.widht')
+              %span.range= "(400–1150 #{t('page.all.mm')})"
+              %input{ maxlength: '4', name: 'widthS', pattern: '^[ 0-9]+$', type: 'text', value: '', data: { 'product-form-target': 'field', label: t('page.all.widht'), min: 400, max: 1150 } }
+            .pdp-field{ title: t('page.all.depth_title') }
+              = label_tag :depth, t('page.all.depth')
+              %span.range= "(250–800 #{t('page.all.mm')})"
+              %input{ maxlength: '4', name: 'depth', pattern: '^[ 0-9]+$', type: 'text', value: '', data: { 'product-form-target': 'field', label: t('page.all.depth'), min: 250, max: 800 } }
+            .pdp-field{ title: t('page.all.num_of_shelves_title') }
+              = label_tag :num_of_shelves, t('page.all.num_of_shelves')
+              %span.range= "(2–15 #{t('page.all.unit')})"
+              %input{ maxlength: '2', name: 'num_of_shelves', pattern: '^[ 0-9]+$', type: 'text', value: '', data: { 'product-form-target': 'field', label: t('page.all.num_of_shelves'), min: 2, max: 15 } }
+            .pdp-field{ title: t('page.stillage.index.shelf_load_title') }
+              = label_tag :shelf_load, t('page.all.shelf_load')
+              %span.range= "(20–200 #{t('page.all.kg')})"
+              %input{ maxlength: '3', name: 'shelf_load', pattern: '^[ 0-9]+$', type: 'text', value: '', data: { 'product-form-target': 'field', label: t('page.all.shelf_load'), min: 20, max: 200 } }
+          .pdp-options
+            .pdp-optgroup
+              %span.pdp-optlabel= t('page.stillage.index.tip_polki')
+              .seg
+                %input.seg__input{ id: 'radio1', name: 'group1', type: 'radio', value: 'metall', checked: 'checked' }
+                %label.seg__opt{ for: 'radio1' }= t('page.stillage.index.metall_shelf_type')
+                %input.seg__input{ id: 'radio2', name: 'group1', type: 'radio', value: 'dsp' }
+                %label.seg__opt{ for: 'radio2' }= t('page.stillage.index.dsp_shelf_type')
+            .pdp-optgroup
+              %span.pdp-optlabel= t('page.all.stillage')
+              .seg
+                %input.seg__input{ id: 'radio3', name: 'group2', type: 'radio', value: 'osinkovaniy', checked: 'checked' }
+                %label.seg__opt{ for: 'radio3' }= t('page.all.osinkovaniy')
+                %input.seg__input{ id: 'radio4', name: 'group2', type: 'radio', value: 'okrash' }
+                %label.seg__opt{ for: 'radio4' }= t('page.all.okrash')
+          .pdp-submit
+            %button.btn.btn--lg{ name: 'send', type: 'submit' }
+              = t('page.all.calculate_stillage')
+              %i.arr →
 
-        .row
-          .col-md-3
-            %input{:name => "send", :type => "submit", :value => t('page.all.calculate_stillage'), :class => "btn btn-success"}
+  #actual_price
+    - if @price_stillage.present?
+      = render partial: 'show_actual_price'
 
-#actual_price
-  .row
-    .col-md-12
-      - if @price_stillage.present?
-        = render partial: 'show_actual_price'
-
-%p
-#no_print
-  .container-fluid
-    .row
-      .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet
-        =raw t('page.stillage.index.about')
-    .row
-      .col-md-12.style_text_about_stillage_stillage_warehouse_stillage_pallet
-        %table{:cellspacing => "5", :cellpadding => "5", :border => "1", :width => "100%"}
-          %tr
-            %th.header_table
-              =t('page.all.table.header_photo')
-            %th.header_table
-              =t('page.all.table.header_name')
-            %th.header_table
-              =t('page.all.table.header_texn')
-            %tr{:align => "center"}
-              %td
-                =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_Paspor_stoyka.png", class: 'stillage_table_images_stoyka')
-              %td
-                =t('page.stillage.index.table.name_1')
-              %td
-                =raw t('page.stillage.index.table.texn_1')
-            %tr{:align => "center"}
-              %td
-                =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_polka.png", class: 'stillage_table_images_polka')
-              %td
-                =t('page.stillage.index.table.name_2')
-              %td
-                =raw t('page.stillage.index.table.texn_2')
-            %tr{:align => "center"}
-              %td
-                =image_tag("design/all_parts/stillage_arxiv/stillage_arhivniy_bitovoy_usil.png", class: 'stillage_table_images_usilok')
-              %td
-                =t('page.stillage.index.table.name_3')
-              %td
-                =raw t('page.stillage.index.table.texn_3')
+  -# ABOUT (hidden when printing the calculation)
+  #no_print
+    .pdp-block
+      - about_intro, about_details = t('page.stillage.index.about').to_s.split(/(?=<p>)/, 2)
+      .pdp-prose= raw about_intro
+      %h2.pdp-h2.pdp-h2--center= t('page.all.table.header_texn')
+      - if about_details.present?
+        .pdp-prose= raw about_details
 
 - if @price_stillage.present?
-  :coffee
-    document.location.hash="#actual_price";
+  :javascript
+    document.location.hash = "#actual_price";
 
-
-:javascript
-  function showHide(element1, element2)
-  {
-    document.querySelector("#" + element1).classList.toggle(element2);
-    const hiden_element = document.getElementById(element1);
-    const obj = document.getElementById(element2);
-    if (obj.src.includes('minus')) {
-      obj.src = '/assets/plus.png';
-      hiden_element.style.display = "none";
-      return
-    }
-    if (obj.src.includes('plus')) {
-      obj.src = '/assets/minus.png';
-      hiden_element.style.display = "block";
-      return
-    }
-
-  }

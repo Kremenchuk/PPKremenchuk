@@ -1,0 +1,176 @@
+// =====================================================================
+//  Global UI refresh — design tokens + modernized site chrome
+//  (header, dropdowns, hamburger menu, footer).
+//  Loaded globally via require_tree; overrides the legacy rules that
+//  live in application.css.scss (which come earlier in the bundle).
+// =====================================================================
+
+:root {
+  // surfaces
+  --stm-bg:        #0e0f11;
+  --stm-surface:   #17191c;
+  --stm-surface-2: #1e2126;
+  --stm-border:    #2a2e34;
+  // text
+  --stm-text:      #e8eaed;
+  --stm-muted:     #9aa1a9;
+  // brand accent (kept from the current logo)
+  --stm-accent:    #fe7d14;
+  --stm-accent-600:#e06c00;
+  --stm-accent-050:rgba(254, 125, 20, .12);
+  // shape
+  --stm-radius:    14px;
+  --stm-radius-sm: 10px;
+  --stm-shadow:    0 10px 30px rgba(0, 0, 0, .45);
+  --stm-ring:      0 0 0 3px var(--stm-accent-050);
+}
+
+// ---- base niceties (safe, global) -----------------------------------
+// NB: no `html { scroll-behavior: smooth }`. Turbo Drive swaps the DOM in
+// place and scrolls to the top *after* rendering, so a global smooth
+// behaviour makes every navigation paint at the previous offset and then
+// visibly glide up. In-page anchors are scrolled smoothly by
+// site_controller#initAnchorScroll instead, which also honours
+// prefers-reduced-motion.
+
+*:focus-visible {
+  outline: 2px solid var(--stm-accent);
+  outline-offset: 2px;
+}
+
+// =====================================================================
+//  Global base theme  (applies the dark industrial look to every page)
+// =====================================================================
+html, body {
+  background: var(--stm-bg);
+}
+
+body {
+  color: var(--stm-text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+p { text-indent: 0; }
+
+h1, h2, h3, h4 {
+  color: var(--stm-text);
+  letter-spacing: -.01em;
+}
+
+a { color: var(--stm-accent); }
+a:hover { color: var(--stm-accent-600); }
+
+hr { border-color: var(--stm-border); }
+
+// =====================================================================
+//  Fluid content container (full-bleed; replaces the fixed 1024px .wrapper)
+// =====================================================================
+.wrapper {
+  display: block;
+  width: 100%;
+  max-width: none;            // stretch to the full viewport width
+  margin-inline: 0;
+  // responsive side gutters: tight on phones, roomy on desktops
+  padding: 84px clamp(14px, 3.5vw, 56px) 56px;
+  box-sizing: border-box;
+  min-height: 78vh;
+}
+
+// =====================================================================
+//  Full-width site chrome (header spans the whole viewport)
+// =====================================================================
+.main > .container-fluid { padding-inline: 0; }
+
+// =====================================================================
+//  Content elements (scoped to .wrapper so header/footer stay intact)
+// =====================================================================
+.wrapper {
+  // ---- tables -----------------------------------------------------
+  table {
+    border-collapse: collapse;
+    background: var(--stm-surface);
+    border-radius: var(--stm-radius-sm);
+    overflow: hidden;
+  }
+  td, th {
+    border: 1px solid var(--stm-border) !important;
+    color: var(--stm-text);
+    padding: 8px 12px;
+  }
+  th { background: var(--stm-surface-2); }
+
+  // ---- images -----------------------------------------------------
+  img { max-width: 100%; }
+
+  // product photos / title images sit on clean white cards so they
+  // read as intentional against the dark background
+  table img {
+    background: #fff;
+    border-radius: 8px;
+    padding: 6px;
+    box-sizing: border-box;
+  }
+
+  // ---- form controls ---------------------------------------------
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="password"],
+  input:not([type]),
+  select,
+  textarea {
+    background: var(--stm-surface-2);
+    color: var(--stm-text);
+    border: 1px solid var(--stm-border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    transition: border-color .18s ease, box-shadow .18s ease;
+
+    &::placeholder { color: var(--stm-muted); }
+    &:focus {
+      outline: none;
+      border-color: var(--stm-accent);
+      box-shadow: var(--stm-ring);
+    }
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] { accent-color: var(--stm-accent); }
+
+  label { color: var(--stm-text); }
+
+  // ---- buttons ----------------------------------------------------
+  .btn,
+  input[type="submit"] {
+    border-radius: 10px;
+    font-weight: 600;
+    border: 1px solid transparent;
+    transition: transform .15s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .btn:hover,
+  input[type="submit"]:hover { transform: translateY(-2px); }
+  .btn:focus-visible,
+  input[type="submit"]:focus-visible { outline: none; box-shadow: var(--stm-ring); }
+
+  .btn-success,
+  input[type="submit"] {
+    background: var(--stm-accent);
+    color: #1a1205;
+  }
+  .btn-success:hover,
+  input[type="submit"]:hover { background: var(--stm-accent-600); color: #1a1205; }
+
+  // ---- auth forms (devise) ---------------------------------------
+  .field { margin-bottom: 14px; }
+  .auth-errors {
+    background: var(--stm-accent-050);
+    border: 1px solid var(--stm-accent);
+    border-radius: var(--stm-radius-sm);
+    padding: 12px 16px;
+    margin-bottom: 18px;
+
+    ul { margin: 0; padding-left: 18px; }
+    li { color: var(--stm-text); }
+  }
+}

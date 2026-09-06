@@ -1,0 +1,55 @@
+# Devise ships English only; without this file every flash on the sign-in,
+# sign-up and password-recovery screens rendered as "translation missing".
+# Only the modules the User model enables are covered (database_authenticatable,
+# registerable, recoverable, rememberable, trackable, validatable).
+uk:
+  devise:
+    failure:
+      already_authenticated: 'Ви вже увійшли.'
+      inactive: 'Ваш акаунт ще не активовано.'
+      invalid: 'Невірний %{authentication_keys} або пароль.'
+      last_attempt: 'Залишилася одна спроба до блокування акаунта.'
+      not_found_in_database: 'Невірний %{authentication_keys} або пароль.'
+      timeout: 'Сесія завершилась. Будь ласка, увійдіть знову.'
+      unconfirmed: 'Щоб продовжити, підтвердьте свою електронну адресу.'
+      unauthenticated: 'Щоб продовжити, увійдіть або зареєструйтеся.'
+    confirmations:
+      confirmed: 'Пошту підтверджено.'
+      send_instructions: 'За кілька хвилин ви отримаєте лист з посиланням для підтвердження пошти.'
+      send_paranoid_instructions: 'Якщо така адреса є в нашій базі, ви отримаєте лист з посиланням для підтвердження.'
+    # Deliberately blank: Devise only flashes a message when the
+    # translation is present, and signing in or out needs no banner —
+    # the header already switches to the signed-in state.
+    sessions:
+      signed_in:           ''
+      signed_out:          ''
+      already_signed_out:  ''
+    registrations:
+      signed_up: 'Вітаємо! Реєстрація пройшла успішно.'
+      signed_up_but_inactive: 'Акаунт створено, але вхід поки неможливий — він не активований.'
+      signed_up_but_unconfirmed: 'Лист із посиланням для підтвердження надіслано на вашу адресу. Перейдіть за посиланням, щоб активувати акаунт.'
+      updated: 'Дані акаунта оновлено.'
+      updated_but_not_signed_in: 'Дані оновлено, але через зміну паролю потрібно увійти знову.'
+      update_needs_confirmation: 'Дані оновлено. Щоб змінити e-mail, підтвердьте нову адресу за посиланням у листі.'
+      destroyed: 'До побачення! Ваш акаунт видалено.'
+    passwords:
+      send_instructions: 'За кілька хвилин ви отримаєте лист з інструкцією для відновлення паролю.'
+      send_paranoid_instructions: 'Якщо така адреса є в нашій базі, ви отримаєте лист з інструкцією для відновлення паролю.'
+      updated: 'Пароль змінено. Ви увійшли в акаунт.'
+      updated_not_active: 'Пароль успішно змінено.'
+      no_token: 'Ця сторінка доступна лише за посиланням з листа про відновлення паролю.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Підтвердження реєстрації'
+      reset_password_instructions:
+        subject: 'Відновлення паролю'
+      password_change:
+        subject: 'Пароль змінено'
+      email_changed:
+        subject: 'E-mail змінено'
+  errors:
+    messages:
+      expired: 'застаріло, запросіть нове'
+      not_found: 'не знайдено'
+      already_confirmed: 'вже підтверджено, спробуйте увійти'
+      not_locked: 'не заблоковано'

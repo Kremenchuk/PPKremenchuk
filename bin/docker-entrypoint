@@ -1,0 +1,16 @@
+#!/bin/bash -e
+
+# Applies pending migrations on every start, and creates + seeds the
+# database on the very first one (`db:prepare` does both). Seeds are
+# idempotent: the admin user uses find_or_create_by and the Constant row
+# is only inserted when the table is empty.
+#
+# Skipped when the container is started for a one-off command
+# (`docker compose run web bundle exec rails console`), so a console does
+# not silently migrate.
+if [ "${1}" = "bundle" ] && [ "${3}" = "puma" ]; then
+  echo "==> db:prepare"
+  bundle exec rails db:prepare
+fi
+
+exec "$@"

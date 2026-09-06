@@ -103,7 +103,9 @@ class StillageWarehouseController < ApplicationController
       @text_var = t('page.all.urovney')
     end
 
-    @name_stillage="#{@hight_var}x#{@width_var}x#{@depth_var} #{@num_of_shelves_var} п. " + type_stillage
+    # тот же формат, что и на странице архивных стеллажей: размеры через
+    # " x " с пробелами — так разделитель не сливается с цифрами
+    @name_stillage="#{@hight_var} x #{@width_var} x #{@depth_var} #{@num_of_shelves_var}п. " + type_stillage
     enter_row_to_excel(@name_stillage, @price_stillage_osn) #внесение в ексель файл данных о расчете стеллажа.
 
     render 'index'

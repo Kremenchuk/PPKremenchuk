@@ -1,36 +1,51 @@
+# =====================================================================
+#  STM Industry — production stack (single container + volumes)
+#
+#  SQLite is a file, not a server, so there is no database service here:
+#  the file lives on the `storage` volume next to the Active Storage
+#  uploads. That is also why DATABASE_URL points into storage/ — mounting
+#  a volume over db/ would hide db/migrate and db/schema.rb.
+# =====================================================================
 
-version: '3'
+name: stm-industry
 
 volumes:
-  bundle:
-  stm_industry_db:
+  storage:        # db/production.sqlite3 + Active Storage
+  uploads:        # CarrierWave gallery images (public/uploads)
+  news_images:    # news photos, written to public/assets/news by NewsController
+  article_images: # article images, written to public/assets/articles
+  logs:
 
 services:
-  stm_industry_db:
-    container_name: stm_industry_db
-    image: nouchka/sqlite3:latest
-    volumes:
-      - stm_industry_db:/root/db
-    stdin_open: true
-    tty: true
-
-  stm_industry_dev:
-    container_name: stm_industry_cont
+  web:
     build:
       context: .
       dockerfile: Dockerfile
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
-    volumes:
-      - .:/app
-      - bundle:/usr/local/bundle
-      - ./node_modules:/app/node_modules
-    tmpfs: /app/tmp
-    depends_on:
-      - stm_industry_db
-    env_file: .env
-    tty: true
-    stdin_open: true
+    image: stm-industry:latest
+    container_name: stm_industry
+    restart: unless-stopped
     ports:
       - "3000:3000"
+    env_file: .env
     environment:
-      - RAILS_ENV=production
+      RAILS_ENV: production
+      # puma serves the precompiled assets itself — there is no nginx in front
+      RAILS_SERVE_STATIC_FILES: "true"
+      RAILS_LOG_TO_STDOUT: "true"
+      RAILS_MAX_THREADS: "5"
+      DATABASE_URL: "sqlite3:storage/production.sqlite3"
+    volumes:
+      - storage:/rails/storage
+      - uploads:/rails/public/uploads
+      # both admin uploaders write into public/assets, which is otherwise
+      # rebuilt from scratch on every image build — mount the two upload
+      # subfolders so the files survive a redeploy
+      - news_images:/rails/public/assets/news
+      - article_images:/rails/public/assets/articles
+      - logs:/rails/log
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:3000/uk"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 40s

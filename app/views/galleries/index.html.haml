@@ -1,37 +1,54 @@
-%h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
-  = t('page.gallery.header')
+.gallery-page{"data-controller" => "gallery"}
 
-%h2#stillages.head2{:align => "center"}
-  = t('page.gallery.arxiv')
+  -# ░░ INTRO ░░
+  %header.g-head
+    %p.eyebrow
+      %span.eyebrow__tick
+      = t('page.home.nav.gallery')
+    %h1.g-title= t('page.gallery.header')
+    %p.g-sub
+      = t('page.welcome.welcome_text')
+      - if @gallery_total.to_i.positive?
+        %span.g-sub__count= t('page.gallery.count', count: @gallery_total)
 
-= render partial: 'photo_cycle', locals: {stillage_type: @stillages}
+  - if @gallery_categories.present?
+    -# ░░ CATEGORY TABS ░░
+    %nav.g-tabs{"aria-label" => t('page.gallery.header')}
+      - @gallery_categories.each do |c|
+        = link_to "##{c[:key]}", class: 'g-tab' do
+          %span= t("page.gallery.#{c[:title_key]}")
+          %span.g-tab__count= c[:photos].size
 
-%h2#warehouses.head2{:align => "center"}
-  = t('page.gallery.warehouse')
+    -# ░░ CATEGORY SECTIONS ░░
+    - @gallery_categories.each do |c|
+      %section.g-section{:id => c[:key]}
+        %h2.g-section__title= t("page.gallery.#{c[:title_key]}")
+        .g-grid
+          - c[:photos].each do |photo|
+            = link_to galleries_view_photo_path(id: photo.id, image_folder: photo.image_folder),
+              class: 'g-thumb',
+              data: { gallery_target: 'item', action: 'gallery#open',
+                      full: photo.image.url, caption: photo.alt_to_image, category: c[:key] } do
+              = image_tag photo.image.thumb.url, alt: photo.alt_to_image, loading: 'lazy'
+              %span.g-thumb__zoom{"aria-hidden" => "true"}
+                %i.fa-solid.fa-magnifying-glass-plus
+  - else
+    %p.g-empty= t('page.gallery.empty')
 
-= render partial: 'photo_cycle', locals: {stillage_type: @warehouses}
-
-%h2#pallets.head2{:align => "center"}
-  = t('page.gallery.pallet')
-
-= render partial: 'photo_cycle', locals: {stillage_type: @pallets}
-
-%h2#trolleys.head2{:align => "center"}
-  = t('page.gallery.trolley')
-
-= render partial: 'photo_cycle', locals: {stillage_type: @trolleys}
-
-%h2#mezanines.head2{:align => "center"}
-  = t('page.gallery.mezzanine')
-
-= render partial: 'photo_cycle', locals: {stillage_type: @mezanines}
-
-%h2#platforms.head2{:align => "center"}
-  = t('page.gallery.platforms')
-
-= render partial: 'photo_cycle', locals: {stillage_type: @platforms}
-
-%h2#lofts.head2{:align => "center"}
-  = t('page.gallery.lofts')
-
-= render partial: 'photo_cycle', locals: {stillage_type: @lofts}
+  -# ░░ LIGHTBOX ░░
+  .g-lightbox{"data-gallery-target" => "lightbox", :role => "dialog", "aria-modal" => "true",
+              "aria-hidden" => "true", :tabindex => "-1",
+              "data-action" => "click->gallery#backdrop touchstart->gallery#touchStart touchend->gallery#touchEnd"}
+    %button.g-lightbox__close{"data-action" => "gallery#close", :type => "button",
+                              "aria-label" => "Close"}
+      %i.fa-solid.fa-xmark
+    %button.g-lightbox__nav.g-lightbox__nav--prev{"data-action" => "gallery#prev", :type => "button",
+                                                  "aria-label" => "Previous"}
+      %i.fa-solid.fa-chevron-left
+    %figure.g-lightbox__stage
+      %img{"data-gallery-target" => "image", :src => "", :alt => ""}
+      %figcaption.g-lightbox__caption{"data-gallery-target" => "caption"}
+    %button.g-lightbox__nav.g-lightbox__nav--next{"data-action" => "gallery#next", :type => "button",
+                                                  "aria-label" => "Next"}
+      %i.fa-solid.fa-chevron-right
+    %span.g-lightbox__counter{"data-gallery-target" => "counter"}
