@@ -652,3 +652,85 @@ body.stm-redesign {
 @media (prefers-reduced-motion: reduce) {
   body.stm-redesign .photostage__hint i { animation: none; }
 }
+
+// =====================================================================
+//  LIGHT THEME  (toggle button in the topbar → <html data-theme="light">)
+//  The redesign reads every colour from the CSS custom properties below,
+//  so flipping them re-skins the whole site. A handful of surfaces are
+//  painted with literal dark values (chrome bars, the warm "result"
+//  panels, the white wordmark logo); those get explicit overrides here.
+// =====================================================================
+:root[data-theme="light"] {
+  --r-bg: #f4f2ec;
+  --r-bg-2: #eae7df;
+  --r-panel: #ffffff;
+  --r-panel-2: #f6f4ee;
+  --r-steel: #e0ddd3;
+  --r-line: rgba(24, 22, 17, .12);
+  --r-line-2: rgba(24, 22, 17, .24);
+  --r-orange: #ef5a12;
+  --r-orange-2: #c0470a;
+  --r-orange-deep: #9f3a06;
+  --r-text: #17161b;
+  --r-muted: #5b5a53;
+}
+
+// pleasant cross-fade when the theme flips
+body.stm-redesign { transition: background-color .35s var(--r-ease), color .35s var(--r-ease); }
+body.stm-redesign .topbar,
+body.stm-redesign .footer,
+body.stm-redesign .pdp-result { transition: background-color .35s var(--r-ease), color .35s var(--r-ease), border-color .35s var(--r-ease); }
+
+:root[data-theme="light"] body.stm-redesign {
+  // ---- chrome ----
+  .topbar { background: #eae7df; }
+  .header { background: rgba(244, 242, 236, .9); }
+  .header.scrolled { background: rgba(255, 255, 255, .96); box-shadow: 0 12px 40px -20px rgba(24, 22, 17, .28); }
+  .footer { background: #eae7df; }
+  // white wordmark logos → dark so they stay visible on light chrome
+  .brand__logo, .footer__brand img { filter: brightness(0); }
+  .brand:hover .brand__logo { filter: brightness(0) drop-shadow(0 4px 12px rgba(239, 90, 18, .35)); }
+
+  // ---- warm dark panels → light (keeps dark text readable) ----
+  .card--feature { background: linear-gradient(150deg, #ffffff, #f1ede4); }
+  .pdp-calc__bar { background: linear-gradient(150deg, #ffffff, #f1ede4); }
+  .pdp-calc__bar:hover { background: linear-gradient(150deg, #ffffff, #efe9de); }
+  .pdp-result { background: linear-gradient(150deg, #ffffff, #f5f0e7); box-shadow: 0 24px 50px -30px rgba(24, 22, 17, .22); }
+  .pdp-note { background: linear-gradient(150deg, #ffffff, #f5f0e7); }
+  .tcard__bar { background: linear-gradient(150deg, #ffffff, #f1ede4); }
+  .tcard__bar:hover { background: linear-gradient(150deg, #ffffff, #efe9de); }
+
+  // ---- showcase glass card floats over the (still moody) photo ----
+  .showcase__card { background: rgba(255, 255, 255, .84); }
+  .showcase__card > p { color: var(--r-muted); }
+
+  // ---- cinematic 3D stages stay dark in BOTH themes ----
+  // The hero and the product 3D studio are rendered showrooms (a dark scene
+  // with light overlay text). Re-assert the dark palette on these subtrees so
+  // their captions/controls keep contrast instead of flipping to dark-on-dark.
+  .scrollstage, .pdp-stage {
+    --r-bg: #0c0c0e; --r-bg-2: #101013;
+    --r-panel: #15151a; --r-panel-2: #1b1b21; --r-steel: #25252c;
+    --r-line: rgba(255, 255, 255, .08); --r-line-2: rgba(255, 255, 255, .16);
+    --r-orange: #ff6a1a; --r-orange-2: #ff8c40; --r-orange-deep: #e0490f;
+    --r-text: #f2f0ea; --r-muted: #97978f;
+  }
+}
+
+// ---- theme toggle button (topbar) ------------------------------------
+body.stm-redesign {
+  .theme-toggle {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 22px; padding: 0; margin-left: 2px;
+    background: none; border: 1px solid var(--r-line-2); border-radius: 3px;
+    color: var(--r-muted); line-height: 0; cursor: pointer;
+    transition: color .3s, border-color .3s;
+  }
+  .theme-toggle:hover { color: var(--r-orange-2); border-color: var(--r-orange); }
+  .theme-toggle svg { display: block; }
+  .theme-toggle__moon { display: none; }
+}
+:root[data-theme="light"] body.stm-redesign {
+  .theme-toggle__sun { display: none; }
+  .theme-toggle__moon { display: block; }
+}

@@ -29,6 +29,19 @@ export default class extends Controller {
     document.body.style.overflow = open ? "hidden" : ""
   }
 
+  // ---- light / dark theme toggle ------------------------------------
+  // Flips <html data-theme="light">; the whole redesign reads its palette
+  // from CSS custom properties, so a single attribute switches every page.
+  // Persisted in localStorage and re-applied before first paint by an inline
+  // script in the <head> (so there is no flash on the next load).
+  toggleTheme() {
+    const root = document.documentElement
+    const light = root.getAttribute("data-theme") !== "light"
+    if (light) root.setAttribute("data-theme", "light")
+    else root.removeAttribute("data-theme")
+    try { localStorage.setItem("stm-theme", light ? "light" : "dark") } catch (e) {}
+  }
+
   closeNavOnClick() {
     if (!this.hasNavTarget) return
     this.navTarget.querySelectorAll("a").forEach((a) => {

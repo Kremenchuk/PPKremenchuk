@@ -200,6 +200,7 @@ ru:
         address:  'г. Харьков, ул. Аравийская, 22'
         email:    'stm_industry@ukr.net'
         tel_number: '+38 (067) _________'
+        theme: 'Переключить тему'
       nav:
         products:   'Продукция'
         production: 'Производство'

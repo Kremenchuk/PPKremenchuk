@@ -210,6 +210,7 @@ uk:
         address:  'м. Харків, вул. Аравійська, 22'
         email:    'stm_industry@ukr.net'
         tel_number: '+38 (067) _________'
+        theme: 'Перемкнути тему'
       nav:
         products:   'Продукція'
         production: 'Виробництво'
