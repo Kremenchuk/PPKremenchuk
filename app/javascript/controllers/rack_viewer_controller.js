@@ -6,8 +6,8 @@ import { makeRackScene } from "../lib/rack_scene"
 //
 // It reads the calculator's own form fields, builds a parametric rack from the
 // millimetre dimensions and re-draws it the moment any field changes, so the
-// product is "drawn immediately" and turns slowly on a turntable. Dragging on
-// the canvas — mouse or finger — spins it (the canvas gets touch-action:none).
+// product is "drawn immediately" and turns slowly on a turntable. Mouse drag
+// spins it; touch is left to page scrolling.
 //
 // Configure via data attributes on the controller element (all optional):
 //   data-rack-viewer-form-value       id of the form to read (default contact_form)
@@ -107,22 +107,17 @@ export default class extends Controller {
     this.ground.receiveShadow = true
     scene.add(this.ground)
 
-    // drag to spin — mouse AND touch. `touch-action: none` stops the browser
-    // from scrolling/zooming the page while a finger drags on the canvas, so
-    // the same pointer handlers work for finger and mouse alike.
-    canvas.style.touchAction = "none"
+    // mouse drag to spin. Touch is deliberately left to the browser so a
+    // finger scrolls the page (the canvas keeps `touch-action: pan-y`).
     canvas.addEventListener("pointerdown", (e) => {
-      if (this.drag) return // one pointer drives the turntable; ignore a second finger
-      this.drag = true; this.dragId = e.pointerId; this.lastX = e.clientX
-      canvas.setPointerCapture(e.pointerId)
-      e.preventDefault()
+      if (e.pointerType && e.pointerType !== "mouse") return
+      this.drag = true; this.lastX = e.clientX; canvas.setPointerCapture(e.pointerId)
     })
     canvas.addEventListener("pointermove", (e) => {
-      if (!this.drag || e.pointerId !== this.dragId) return
+      if (!this.drag) return
       this.yawTarget += (e.clientX - this.lastX) * 0.007; this.lastX = e.clientX
-      e.preventDefault()
     })
-    const up = (e) => { if (e.pointerId === this.dragId) this.drag = false }
+    const up = () => { this.drag = false }
     canvas.addEventListener("pointerup", up)
     canvas.addEventListener("pointercancel", up)
 
