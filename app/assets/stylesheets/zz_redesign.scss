@@ -785,7 +785,9 @@ body.stm-redesign {
 // Injected by product_form_controller so every calculator field can be
 // nudged up/down; changing the value fires `input`, so the live 3D updates.
 body.stm-redesign {
-  .pdp-stepper { margin-top: auto; display: flex; align-items: stretch; }
+  // min-width:0 lets the stepper shrink into its (auto-fit) grid track instead
+  // of forcing the track to its ~244px min-content and overflowing the panel
+  .pdp-stepper { margin-top: auto; display: flex; align-items: stretch; min-width: 0; }
   // `!important`: the generic field rule in product.scss is nested deeper
   // (body.stm-redesign .pdp .pdp-field input) and would otherwise keep its
   // width:100% + 14px side padding, which squeezes the input to ~30px and

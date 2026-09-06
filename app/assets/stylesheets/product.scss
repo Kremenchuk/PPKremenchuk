@@ -76,7 +76,10 @@ body.stm-redesign {
     .pdp-panel { padding: 30px 26px 32px; display: none; }
     #hiden_element_1.pdp-panel { display: none; } // collapsed by default; Stimulus toggles inline display
 
-    .pdp-fields { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+    // auto-fit fits as many ≥150px columns as the (variable-width) panel
+    // allows and grows them to fill — a fixed column count overflowed once the
+    // fields became −/＋ steppers, because each stepper's min-content is wide.
+    .pdp-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px; }
     .pdp-field { display: flex; flex-direction: column; gap: 7px; }
     .pdp-field label {
       font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--r-muted);
@@ -179,18 +182,15 @@ body.stm-redesign {
   }
 
   // ---- RESPONSIVE ---------------------------------------------------
-  @media (max-width: 980px) {
-    .pdp .pdp-fields { grid-template-columns: repeat(3, 1fr); }
-  }
+  // .pdp-fields column count is handled by auto-fit above (adapts to the panel
+  // width, not the viewport), so no manual column-count breakpoints here.
   @media (max-width: 720px) {
-    .pdp .pdp-fields { grid-template-columns: repeat(2, 1fr); }
     .pdp .pdp-options { grid-template-columns: 1fr; }
     .pdp .pdp-result__grid { grid-template-columns: 1fr; }
     .pdp .pdp-calc__bar .hint { display: none; }
   }
   @media (max-width: 440px) {
     .pdp { padding: 0 18px 20px; }
-    .pdp .pdp-fields { grid-template-columns: 1fr; }
   }
 }
 
@@ -209,10 +209,11 @@ body.stm-redesign {
     // ---- three option groups side by side ----------------------------
     .pdp-options--3 { grid-template-columns: repeat(3, 1fr); }
 
-    // pallet racking has four inputs and no option groups
-    .pdp-fields--4 { grid-template-columns: repeat(4, 1fr); }
-    // trolley cards are narrow — two inputs per row
-    .pdp-fields--2 { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    // pallet racking has four inputs and no option groups — let auto-fit lay
+    // them out too (a fixed 4-up overflowed the narrower studio panel)
+    .pdp-fields--4 { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+    // trolley cards are narrow — two inputs per row (minmax(0,…) lets them shrink)
+    .pdp-fields--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 
     // ---- HERO FIGURE --------------------------------------------------
     // content pages (mezzanines, platforms, loft furniture) lead with a
