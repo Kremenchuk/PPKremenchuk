@@ -254,15 +254,7 @@ export default class extends Controller {
       }
     }
 
-    // diagonal braces on the back
-    const braceGeo = new THREE.BoxGeometry(0.035, Math.hypot(W, H) * 0.5, 0.035)
-    for (const dir of [-1, 1]) {
-      const b = new THREE.Mesh(braceGeo, this.rackMat)
-      b.position.set(0, 0, -pz)
-      b.rotation.z = dir * Math.atan2(W, H)
-      b.scale.y = 0.62
-      g.add(b)
-    }
+    // (no back cross-brace — removed per request)
 
     this.shelfSpan = { W: W - post * 3, D: D - post * 3 }
     return g
@@ -299,24 +291,41 @@ export default class extends Controller {
   buildWarehouse(THREE) {
     const g = new THREE.Group()
     const spanW = this.shelfSpan.W, spanD = this.shelfSpan.D
-    const tans = [0xc79a68, 0xb0864f, 0xcaa774, 0x9c7644]
-    for (let i = 0; i < this.shelfY.length; i++) {
-      const n = 2 + (i % 2)
-      for (let k = 0; k < n; k++) {
-        const w = 0.5 + Math.random() * 0.25
-        const h = 0.35 + Math.random() * 0.2
-        const d = spanD * (0.55 + Math.random() * 0.25)
-        const b = this.box(THREE, w, h, d, tans[(i + k) % tans.length], 0.9, 0)
-        b.position.set(lerp(-spanW / 2 + w / 2, spanW / 2 - w / 2, n === 1 ? 0.5 : k / (n - 1)), this.onShelf(i) + h / 2, 0)
-        b.rotation.y = (Math.random() - 0.5) * 0.15
-        g.add(b)
-        // tape line
-        const tape = this.box(THREE, w * 0.12, h + 0.002, d + 0.002, 0x8a6a3a, 0.9)
-        tape.position.copy(b.position)
-        g.add(tape)
+    const tans = [0xc79a68, 0xb0864f, 0xcaa774, 0x9c7644, 0xd8b483]
+    const pallet = (x, y) => {
+      const top = this.box(THREE, 0.64, 0.03, spanD * 0.92, 0x9c7038, 0.85)
+      top.position.set(x, y + 0.045, 0); g.add(top)
+      for (const bx of [-1, 0, 1]) {
+        const blk = this.box(THREE, 0.09, 0.05, spanD * 0.92, 0x7a5628, 0.85)
+        blk.position.set(x + bx * 0.25, y + 0.02, 0); g.add(blk)
       }
     }
-    // a shrink-wrapped pallet on the floor level look (bottom shelf) accent
+    for (let i = 0; i < this.shelfY.length; i++) {
+      const y = this.onShelf(i)
+      for (const side of [-1, 1]) {
+        const cx = side * spanW * 0.24
+        pallet(cx, y)
+        let by = y + 0.06
+        const stack = 2 + Math.floor(Math.random() * 2)
+        for (let s = 0; s < stack; s++) {
+          const w = 0.5 + Math.random() * 0.14
+          const h = 0.2 + Math.random() * 0.12
+          const d = spanD * (0.72 + Math.random() * 0.18)
+          const b = this.box(THREE, w, h, d, tans[(i + s + (side > 0 ? 1 : 0)) % tans.length], 0.92)
+          b.position.set(cx + (Math.random() - 0.5) * 0.05, by + h / 2, 0)
+          b.rotation.y = (Math.random() - 0.5) * 0.12
+          g.add(b)
+          const strap = this.box(THREE, w * 0.1, h + 0.004, d + 0.004, 0x6f5326, 0.9)
+          strap.position.copy(b.position); g.add(strap)
+          by += h
+        }
+      }
+      // a blue crate tucked at the back on alternating shelves
+      if (i % 2 === 0) {
+        const crate = this.box(THREE, 0.4, 0.26, spanD * 0.5, 0x2f6ea5, 0.6, 0.1)
+        crate.position.set(0, y + 0.13, -spanD * 0.14); g.add(crate)
+      }
+    }
     return g
   }
 
@@ -324,33 +333,45 @@ export default class extends Controller {
   buildLibrary(THREE) {
     const g = new THREE.Group()
     const spanW = this.shelfSpan.W, spanD = this.shelfSpan.D
-    const spines = [0x8c3b2f, 0x2f5d50, 0x334a7a, 0x7a6a2f, 0x633b6e, 0x2f6b7a, 0xa8763a, 0x455a64]
+    const spines = [0x8c3b2f, 0x2f5d50, 0x334a7a, 0x7a6a2f, 0x633b6e, 0x2f6b7a, 0xa8763a, 0x455a64, 0x9c4a3a, 0x3a6a4a]
     for (let i = 0; i < this.shelfY.length; i++) {
-      let x = -spanW / 2 + 0.03
-      while (x < spanW / 2 - 0.05) {
-        const t = 0.03 + Math.random() * 0.035
-        const h = 0.42 + Math.random() * 0.16
-        const b = this.box(THREE, t, h, spanD * 0.55, spines[Math.floor(Math.random() * spines.length)], 0.85)
-        const lean = Math.random() < 0.12 ? (Math.random() - 0.5) * 0.25 : 0
-        b.position.set(x + t / 2, this.onShelf(i) + h / 2, 0)
-        b.rotation.z = lean
+      const y = this.onShelf(i)
+      const gapX = -spanW / 2 + spanW * (0.28 + Math.random() * 0.4) // leave a gap for objects
+      let x = -spanW / 2 + 0.04
+      while (x < spanW / 2 - 0.06) {
+        if (Math.abs(x - gapX) < 0.16) { x = gapX + 0.16; continue } // skip the gap
+        const t = 0.026 + Math.random() * 0.03
+        const h = 0.4 + Math.random() * 0.18
+        const b = this.box(THREE, t, h, spanD * 0.55, spines[(Math.random() * spines.length) | 0], 0.85)
+        b.position.set(x + t / 2, y + h / 2, 0)
+        b.rotation.z = Math.random() < 0.14 ? (Math.random() - 0.5) * 0.28 : 0
         g.add(b)
         x += t + 0.004
       }
-      // a couple of horizontal stacks
-      if (i % 2 === 0) {
-        for (let s = 0; s < 3; s++) {
-          const b = this.box(THREE, 0.34, 0.035, spanD * 0.5, spines[(i + s) % spines.length], 0.85)
-          b.position.set(spanW / 2 - 0.24, this.onShelf(i) + 0.02 + s * 0.037, 0.02)
-          g.add(b)
-        }
+      // horizontal stack of books in the gap
+      const stackN = 3 + (i % 2)
+      for (let s = 0; s < stackN; s++) {
+        const b = this.box(THREE, 0.3, 0.032, spanD * 0.5, spines[(i + s) % spines.length], 0.85)
+        b.position.set(gapX, y + 0.02 + s * 0.034, 0.01)
+        b.rotation.y = (Math.random() - 0.5) * 0.06
+        g.add(b)
+      }
+      // a small object resting on the stack
+      if (i % 2) {
+        const mug = this.cyl(THREE, 0.05, 0.045, 0.09, 0x2f6b7a, 0.5, 0, 16)
+        mug.position.set(gapX, y + 0.02 + stackN * 0.034 + 0.05, 0.01); g.add(mug)
+      } else {
+        const box = this.box(THREE, 0.12, 0.08, 0.12, 0xb5643a, 0.6)
+        box.position.set(gapX, y + 0.02 + stackN * 0.034 + 0.045, 0.01); g.add(box)
       }
     }
-    // a globe on the middle shelf
-    const globe = this.ball(THREE, 0.14, 0x3a6a8c, 0.5)
+    // globe + a leaning picture frame
     const mid = Math.floor(this.shelfY.length / 2)
-    globe.position.set(-this.shelfSpan.W / 2 + 0.2, this.onShelf(mid) + 0.16, 0)
-    g.add(globe)
+    const globe = this.ball(THREE, 0.13, 0x3a6a8c, 0.5)
+    globe.position.set(-spanW / 2 + 0.2, this.onShelf(mid) + 0.15, 0); g.add(globe)
+    const frame = this.box(THREE, 0.02, 0.22, 0.3, 0x8a6a3a, 0.6)
+    frame.position.set(spanW / 2 - 0.16, this.onShelf(this.shelfY.length - 1) + 0.13, -spanD * 0.08)
+    frame.rotation.y = -0.22; g.add(frame)
     return g
   }
 
@@ -358,37 +379,51 @@ export default class extends Controller {
   buildProduction(THREE) {
     const g = new THREE.Group()
     const spanW = this.shelfSpan.W, spanD = this.shelfSpan.D
-    const steel = 0x9aa3ad, dark = 0x4a5158
+    const steel = 0x9aa3ad
+    const binCols = [0x3a6ea5, 0xb5442f, 0xd0a53a, 0x4a8a5a]
     for (let i = 0; i < this.shelfY.length; i++) {
-      // metal bins
-      const bin = this.box(THREE, 0.55, 0.22, spanD * 0.6, i % 2 ? 0x3a6ea5 : 0xb5442f, 0.6, 0.3)
-      bin.position.set(-spanW / 2 + 0.4, this.onShelf(i) + 0.11, 0)
-      g.add(bin)
-      // pipes lying across
-      for (let p = 0; p < 3; p++) {
-        const pipe = this.cyl(THREE, 0.05, 0.05, spanW * 0.5, steel, 0.4, 0.8, 12)
+      const y = this.onShelf(i)
+      // a row of small parts bins at the front-left
+      for (let bI = 0; bI < 3; bI++) {
+        const bin = this.box(THREE, 0.3, 0.2, spanD * 0.42, binCols[(i + bI) % binCols.length], 0.6, 0.2)
+        bin.position.set(-spanW / 2 + 0.24 + bI * 0.34, y + 0.1, spanD * 0.2); g.add(bin)
+      }
+      // pipes/rods stacked on the right
+      for (let p = 0; p < 4; p++) {
+        const pipe = this.cyl(THREE, 0.045, 0.045, spanW * 0.42, steel, 0.4, 0.85, 12)
         pipe.rotation.z = Math.PI / 2
-        pipe.position.set(0.15, this.onShelf(i) + 0.06 + p * 0.11, -spanD * 0.18 + p * 0.12)
+        pipe.position.set(0.28, y + 0.05 + (p % 2 ? 0.05 : 0), -spanD * 0.22 + Math.floor(p / 2) * 0.11 + (p % 2 ? 0.055 : 0))
         g.add(pipe)
       }
+      // a few scattered bolts
+      for (let bo = 0; bo < 4; bo++) {
+        const bolt = this.cyl(THREE, 0.02, 0.02, 0.06, 0x6a7079, 0.5, 0.8, 8)
+        bolt.rotation.z = Math.PI / 2
+        bolt.position.set(-spanW / 2 + 0.2 + Math.random() * 0.5, y + 0.03, -spanD * 0.12 + Math.random() * 0.2)
+        g.add(bolt)
+      }
     }
-    // a gear on the middle shelf
+    // a spinning gear on the middle shelf
     const mid = Math.floor(this.shelfY.length / 2)
     const gear = new THREE.Group()
-    const hub = this.cyl(THREE, 0.16, 0.16, 0.07, 0x8a9199, 0.4, 0.85, 24)
-    gear.add(hub)
+    gear.add(this.cyl(THREE, 0.15, 0.15, 0.06, 0x8a9199, 0.4, 0.85, 24))
     for (let t = 0; t < 12; t++) {
-      const tooth = this.box(THREE, 0.05, 0.07, 0.05, 0x8a9199, 0.4, 0.85)
+      const tooth = this.box(THREE, 0.045, 0.06, 0.045, 0x8a9199, 0.4, 0.85)
       const a = (t / 12) * Math.PI * 2
-      tooth.position.set(Math.cos(a) * 0.19, 0, Math.sin(a) * 0.19)
-      tooth.rotation.y = a
-      gear.add(tooth)
+      tooth.position.set(Math.cos(a) * 0.18, 0, Math.sin(a) * 0.18)
+      tooth.rotation.y = a; gear.add(tooth)
     }
     gear.rotation.x = Math.PI / 2
-    gear.position.set(spanW / 2 - 0.3, this.onShelf(mid) + 0.18, 0)
+    gear.position.set(spanW / 2 - 0.34, this.onShelf(mid) + 0.17, 0)
     gear.userData.spin = true
     this.gear = gear
     g.add(gear)
+    // a red toolbox with a handle on the bottom shelf
+    const tb = this.box(THREE, 0.4, 0.16, spanD * 0.5, 0xb5442f, 0.5, 0.2)
+    tb.position.set(-spanW / 2 + 0.34, this.onShelf(0) + 0.09, 0); g.add(tb)
+    const handle = this.cyl(THREE, 0.012, 0.012, 0.24, 0x2a2d33, 0.5, 0.6, 8)
+    handle.rotation.z = Math.PI / 2
+    handle.position.set(-spanW / 2 + 0.34, this.onShelf(0) + 0.2, 0); g.add(handle)
     return g
   }
 
@@ -461,6 +496,34 @@ export default class extends Controller {
       leaf.position.set(pot.position.x + Math.cos(a) * 0.08, pot.position.y + 0.16 + Math.random() * 0.06, Math.sin(a) * 0.08)
       leaf.scale.set(1, 1.5, 0.6)
       g.add(leaf)
+    }
+
+    // ── extra décor for a lived-in look ──
+    // a leaning framed picture on the top shelf
+    const frame = this.box(THREE, 0.02, 0.26, 0.36, 0x2a2d33, 0.5)
+    frame.position.set(spanW / 2 - 0.16, this.onShelf(top) + 0.15, -0.06)
+    frame.rotation.y = -0.24; g.add(frame)
+    const art = this.box(THREE, 0.006, 0.2, 0.28, 0x7a9e8e, 0.6)
+    art.position.copy(frame.position); art.rotation.y = frame.rotation.y
+    art.position.x += 0.014; g.add(art)
+    // a shallow decorative bowl with a sphere on the top shelf
+    const bowl = this.cyl(THREE, 0.12, 0.05, 0.06, 0x3a4a52, 0.4, 0.1, 20)
+    bowl.position.set(-spanW / 2 + 0.62, this.onShelf(top) + 0.05, 0.02); g.add(bowl)
+    const orb = this.ball(THREE, 0.06, 0xcaa15a, 0.35, 0.2)
+    orb.position.set(-spanW / 2 + 0.62, this.onShelf(top) + 0.1, 0.02); g.add(orb)
+    // a candle
+    const candle = this.cyl(THREE, 0.035, 0.04, 0.14, 0xece3d2, 0.6, 0, 16)
+    candle.position.set(spanW / 2 - 0.5, this.onShelf(mid) + 0.09, 0.05); g.add(candle)
+    const flame = this.ball(THREE, 0.014, 0xffb347, 0.3)
+    flame.position.set(spanW / 2 - 0.5, this.onShelf(mid) + 0.17, 0.05); flame.scale.set(1, 1.6, 1); g.add(flame)
+    // a second small trailing plant on an upper shelf
+    const pot2 = this.cyl(THREE, 0.07, 0.06, 0.09, 0xd8cdbd, 0.6, 0, 14)
+    pot2.position.set(0.1, this.onShelf(top) + 0.05, 0.04); g.add(pot2)
+    for (let l = 0; l < 4; l++) {
+      const leaf = this.ball(THREE, 0.06, 0x5f8a4a, 0.7)
+      const a = (l / 4) * Math.PI * 2
+      leaf.position.set(0.1 + Math.cos(a) * 0.06, this.onShelf(top) + 0.12, 0.04 + Math.sin(a) * 0.05)
+      leaf.scale.set(1, 1.4, 0.6); g.add(leaf)
     }
     return g
   }
