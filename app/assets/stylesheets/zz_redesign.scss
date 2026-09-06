@@ -314,7 +314,13 @@ body.stm-redesign {
   }
   @media (max-width: 720px) {
     .nav { position: fixed; inset: 0 0 0 auto; width: #{"min(82vw, 340px)"}; transform: translateX(100%); flex-direction: column; justify-content: center; gap: 8px; padding: 40px; background: var(--r-bg-2); border-left: 1px solid var(--r-line); transition: .45s var(--r-ease); z-index: 99; }
-    .nav.open { transform: none; }
+    // explicit translateX(0) (not `none`) so it transitions cleanly from the
+    // closed translateX(100%) and reliably wins the cascade — `none` here did
+    // not override the base transform, leaving the drawer parked off-screen
+    .nav.open { transform: translateX(0) !important; }
+    // keep the burger clickable ABOVE the open drawer (same header stacking
+    // context: drawer is z-index 99) so tapping it again closes the menu
+    .burger { position: relative; z-index: 101; }
     .nav a { font-size: 24px; padding: 12px 0; }
     .burger { display: flex; }
     .header__cta .btn--sm { display: none; }
@@ -330,13 +336,13 @@ body.stm-redesign {
     .footer__brand { grid-column: 1/-1; }
     .home .hero { min-height: auto; padding: 64px 0 56px; }
     .footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
-    .topbar__in { flex-wrap: wrap; height: auto; padding: 8px 0; gap: 8px 12px; }
-    .topbar__item--address { display: none; }
-    // the topbar can wrap to two rows on phones (variable height), so don't
-    // pin it there — let it scroll away and keep the header sticky at the top
-    .topbar { position: static; }
-    .header { top: 0; }
-    .home > section { scroll-margin-top: 74px; }
+    // keep the top strip (language + theme toggle + auth) pinned on phones too:
+    // force it to ONE compact row (address/email/separators dropped) so its
+    // height is a fixed 38px and the header can stick right below it.
+    .topbar__in { flex-wrap: nowrap; height: 38px; padding: 0; gap: 12px; overflow-x: auto; }
+    .topbar__item--address, .topbar__mail, .topbar__sep { display: none; }
+    .header { top: 38px; }
+    .home > section { scroll-margin-top: 112px; }
   }
   // in-page anchors (#products, #why, …) must land below the pinned chrome:
   // topbar 39px + header 74px on desktop (mobile override above)

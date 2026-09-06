@@ -244,8 +244,12 @@ export default class extends Controller {
           if (prev != null) {
             const dy = y - prev
             const len = Math.hypot(D - post, dy)
+            // the box's long axis is local Z; tilt it about X so it spans dy in
+            // HEIGHT (between the two rungs) and D-post in DEPTH (between the
+            // front and back post). atan2(dy, D-post) — NOT (D-post, dy), which
+            // swings it the wrong way and makes it shoot past the frame.
             addBox(bt * 0.9, 0.026, len, sx * px, (y + prev) / 2, 0, frameMat,
-              { x: (r % 2 ? 1 : -1) * Math.atan2(D - post, dy) }) // zig-zag diagonal
+              { x: (r % 2 ? 1 : -1) * Math.atan2(dy, D - post) }) // zig-zag diagonal
           }
           prev = y
         }
