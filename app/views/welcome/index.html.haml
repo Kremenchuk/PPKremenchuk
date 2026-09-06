@@ -48,7 +48,7 @@
         - welcome_products.each_with_index do |p, i|
           - idx = format('%02d', i + 1)
           - if p[:image]
-            = link_to p[:path], class: 'card reveal', style: "--d:#{i * 0.06}s" do
+            = link_to p[:path], class: "card#{' card--lead' if i.zero?} reveal", style: "--d:#{i * 0.06}s" do
               .card__media= image_tag p[:image], alt: p[:title], loading: 'lazy'
               .card__body
                 %span.card__idx= idx
