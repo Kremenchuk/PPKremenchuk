@@ -1,0 +1,29 @@
+-# Trolley calculation result (mirrors stillage/_show_actual_price). Rendered
+-# in #actual_price on the index after trolley#show computes @price_trol.
+.pdp-result
+  .pdp-result__head
+    %span.pdp-result__name= "#{t('page.trolleys.show.header')} #{@vid}"
+    - print_name = "#{t('page.trolleys.show.header')} #{@vid}"
+    %button.pdp-print{ type: 'button', title: t('page.all.print'), data: { controller: 'print', action: 'click->print#run', 'print-name-value': print_name } }
+      🖨
+  .pdp-result__grid
+    %ul.pdp-result__specs
+      %li
+        %span.k= t('page.trolleys.index.weight')
+        %span.v= "#{@shelf_load_var} #{t('page.all.kg')}"
+      %li
+        %span.k= t('page.trolleys.show.weight_without')
+        %span.v= "#{@wei_trol} #{t('page.all.kg')}"
+      %li.price-row
+        %span.k= t('page.all.price')
+        %span.v= "#{@price_trol} #{t('page.all.uah')}"
+    .pdp-result__dims
+      %span.pdp-result__dim
+        %b= t('page.all.lenght')
+        = "#{@lengthT_var} #{t('page.all.mm')}"
+      %span.pdp-result__dim
+        %b= t('page.all.widht')
+        = "#{@width_var} #{t('page.all.mm')}"
+      %span.pdp-result__dim
+        %b= t('page.trolleys.index.handle_height')
+        = "#{@hight_ruch} #{t('page.all.mm')}"

@@ -1,0 +1,28 @@
+-# One trolley model card (driven by TrolleysHelper::TROLLEY_MODELS).
+-# The whole card is a GET form to trolley#show: submitting re-renders the
+-# index with @price_trol, so the result appears in #actual_price at the top.
+-# Styling: .tcard* in product.scss. Each model keeps unique input ids via
+-# trolley_field_id so the (up to) 15 forms on the page never collide.
+%article.tcard
+  = form_tag trolley_show_path, method: :get, data: { controller: 'product-form', action: 'submit->product-form#validate' } do
+    = hidden_field_tag 'vid', model[:code]
+    .tcard__media
+      = image_tag "trolleys/#{model[:image]}", alt: model[:code], loading: 'lazy'
+    .tcard__body
+      %span.tcard__kicker= t('page.trolleys.index.model.model')
+      %h3.tcard__name= model[:code]
+      %span.tcard__label= t('page.trolleys.index.used_materials')
+      %ul.tcard__mats
+        - model[:materials].each do |mat|
+          %li= t("page.trolleys.index.#{mat}")
+    - if trolley_calc_enabled?(model)
+      .tcard__calc
+        .tcard__bar{ data: { action: 'click->product-form#toggle' } }
+          = image_tag('plus.png', width: '22', height: '22', alt: '+', data: { 'product-form-target': 'icon', 'open-src': asset_path('minus.png') })
+          %span= t('page.trolleys.index.on_line_model')
+        .tcard__panel.pdp-panel{ data: { 'product-form-target': 'panel' } }
+          = render 'on_line_section', model: model
+          .tcard__submit
+            %button.btn.btn--block{ name: 'send', type: 'submit' }
+              = t('page.trolleys.index.calculate')
+              %i.arr →
