@@ -7,10 +7,37 @@ uk:
 
   errors:
     messages:
+      blank:         "— обов'язкове поле"
+      invalid:       'має неправильний формат'
+      taken:         'вже зайнято'
+      too_long: 'задовге (максимум %{count} символів)'
+      too_short: 'закоротке (мінімум %{count} символів)'
+      not_a_number:  'має бути числом'
+      confirmation:  'не збігається з полем «%{attribute}»'
       not_saved: 'Акаунт не створено!'
 
   activerecord:
+    attributes:
+      user:
+        email:                 'E-mail'
+        password:              'Пароль'
+        password_confirmation: 'Підтвердження паролю'
+        current_password:      'Поточний пароль'
+        login:                 'Логін'
+        name:                  "Ім'я"
+      news:
+        title:       'Заголовок'
+        short_text:  'Короткий опис'
+        text:        'Текст'
+        news_date:   'Дата'
+        photo:       'Картинка'
+      article:
+        title:       'Заголовок'
+        short_body:  'Короткий опис'
+        body:        'Текст'
     errors:
+      messages:
+        record_invalid: 'Перевірка не пройдена: %{errors}'
       models:
         user:
           attributes:
@@ -446,12 +473,62 @@ uk:
       password_conf:  'Підтвердження паролю'
       submit_button:  'Реєстрація'
 
+    auth:
+      confirm_header:        'Підтвердження пошти'
+      confirm_lead:          'Не отримали листа? Вкажіть e-mail — надішлемо посилання для підтвердження ще раз.'
+      confirm_submit:        'Надіслати ще раз'
+      confirm_link:          'Не отримали лист підтвердження?'
+      check_mail_title:      'Перевірте пошту'
+      mail:
+        greeting:              'Вітаємо, %{email}!'
+        confirm_instruction:   'Щоб завершити реєстрацію на сайті STM Industry, підтвердьте свою електронну адресу за посиланням нижче.'
+        confirm_action:        'Підтвердити пошту'
+        reset_instruction:     'Ви попросили змінити пароль. Зробити це можна за посиланням нижче.'
+        reset_action:          'Змінити пароль'
+        reset_note:            'Пароль залишиться попереднім, доки ви не перейдете за посиланням і не створите новий.'
+        ignore:                'Якщо ви цього не робили — просто проігноруйте цей лист.'
+      sign_in_header:        'Вхід'
+      sign_in_lead:          'Увійдіть, щоб бачити дилерські ціни та керувати вмістом сайту.'
+      sign_up_header:        'Реєстрація'
+      sign_up_lead:          'Створіть акаунт, щоб отримати доступ до персональних умов.'
+      forgot_header:         'Відновлення паролю'
+      forgot_lead:           'Вкажіть e-mail — надішлемо посилання для встановлення нового паролю.'
+      forgot_submit:         'Надіслати інструкцію'
+      reset_header:          'Новий пароль'
+      reset_lead:            'Придумайте новий пароль для вашого акаунта.'
+      reset_submit:          'Змінити пароль'
+      account_header:        'Мій акаунт'
+      account_lead:          'Змініть контактні дані або пароль.'
+      account_submit:        'Зберегти'
+      email:                 'E-mail'
+      password:              'Пароль'
+      password_new:          'Новий пароль'
+      password_confirm:      'Підтвердження паролю'
+      current_password:      'Поточний пароль'
+      min_chars:             'мінімум %{count} символів'
+      password_keep_hint:    'залиште порожнім, щоб не змінювати'
+      current_password_hint: 'потрібен, щоб підтвердити зміни'
+      errors_title:          'Не вдалося зберегти:'
+      have_account:          'Уже маю акаунт'
+      no_account:            'Немає акаунта? Зареєструватися'
+      forgot_link:           'Забули пароль?'
+      danger_title:          'Видалення акаунта'
+      cancel_account:        'Видалити акаунт'
+      cancel_confirm:        'Видалити акаунт? Цю дію не можна скасувати.'
     login:
       remember_me: "Запам'ятати мене"
       come_in: 'Увійти'
 
     news:
       header: 'Новини'
+      lead:      'Новини компанії: нові вироби, виконані проєкти й зміни у виробництві.'
+      read_more: 'Читати далі'
+      back:      'Усі новини'
+      empty:     'Новин поки немає.'
 
     articles:
       header: 'Статті'
+      lead:      'Матеріали про підбір, монтаж та експлуатацію стелажного обладнання.'
+      read_more: 'Читати далі'
+      back:      'Усі статті'
+      empty:     'Статей поки немає.'

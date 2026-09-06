@@ -22,38 +22,35 @@ class NewsController < ApplicationController
   end
 
   def create
-    begin
-      news = News.new(news_params)
+    @new_news = News.new(news_params)
+    @new_news.photo = store_photo(params[:photo]) if params[:photo].present?
 
-      if params[:photo].present?
-        image_name = "news_#{(Time.now).to_i}_#{params[:photo].original_filename}"
-        image_path = File.join(Rails.root,'/public/assets/news')
-        if !File.directory?(File.join(Rails.root,'public/assets/news'))
-          if !File.directory?(File.join(Rails.root,'public/assets'))
-            Dir.mkdir(File.join(Rails.root,'public/assets'))
-          end
-          Dir.mkdir(File.join(Rails.root,'public/assets/news'))
-        end
-        File.open(File.join(image_path, image_name),'wb') do |f|
-          f.write(params[:photo].read)
-        end
-
-        news.photo = File.join('/assets/news', image_name)
-      end
-      news.save!
-
-    rescue => error
-      flash_message("danger", "Невозможно создать новость. #{error.message}")
+    if @new_news.save
+      redirect_to news_admin_index_path
+    else
+      # Re-render instead of redirecting, so everything the admin typed
+      # survives the round trip (a redirect drops the params). The file
+      # input cannot be repopulated — browsers forbid it — so the photo
+      # has to be picked again.
+      reject("Невозможно создать новость", @new_news)
+      @news = News.all
+      render :news_admin_index, status: :unprocessable_entity
     end
-    redirect_to news_admin_index_path
+  rescue => error
+    flash_now("danger", "Невозможно создать новость. #{error.message}")
+    @new_news ||= News.new(news_params)
+    @news = News.all
+    render :news_admin_index, status: :unprocessable_entity
   end
 
   def update
-    @news.update(news_params)
-
-    redirect_to news_admin_index_path
+    if @news.update(news_params)
+      redirect_to news_admin_index_path
+    else
+      reject("Невозможно сохранить новость", @news)
+      render :edit, status: :unprocessable_entity
+    end
   end
-
 
   def destroy
     @news.destroy
@@ -72,5 +69,31 @@ class NewsController < ApplicationController
                     title: {},
                     short_text: {},
                     text: {} )
+    end
+
+    # Writes the uploaded file under public/assets/news and returns the
+    # public path stored in the `photo` column.
+    def store_photo(upload)
+      image_name = "news_#{Time.now.to_i}_#{upload.original_filename}"
+      image_dir  = Rails.root.join('public', 'assets', 'news')
+      FileUtils.mkdir_p(image_dir)
+
+      File.open(image_dir.join(image_name), 'wb') { |f| f.write(upload.read) }
+
+      File.join('/assets/news', image_name)
+    end
+
+    # Validation errors read as "Картинка не може бути порожньою" — far more
+    # useful than the bare RecordInvalid message the old `save!` produced.
+    def reject(prefix, record)
+      details = record.errors.full_messages.to_sentence
+      flash_now("danger", details.present? ? "#{prefix}: #{details}." : "#{prefix}.")
+    end
+
+    # flash.now, not flash: the response is rendered, not redirected, so the
+    # message must not survive into the next request.
+    def flash_now(type, message)
+      flash.now[:class]   = "alert alert-#{type}"
+      flash.now[:message] = message
     end
 end

@@ -15,13 +15,25 @@ module Admin
     end
 
     def create
-      Article.create!(article_params)
-      redirect_to admin_articles_path
+      @article = Article.new(article_params)
+
+      if @article.save
+        redirect_to admin_articles_path
+      else
+        # Render, do not redirect: a redirect would throw away everything
+        # the admin typed into the three language fields.
+        reject(@article)
+        render :new, status: :unprocessable_entity
+      end
     end
 
     def update
-      @article.update!(article_params)
-      redirect_to admin_articles_path
+      if @article.update(article_params)
+        redirect_to admin_articles_path
+      else
+        reject(@article)
+        render :edit, status: :unprocessable_entity
+      end
     end
 
     def destroy
@@ -71,6 +83,13 @@ module Admin
 
     def find_article
       @article = Article.find(params[:id])
+    end
+
+    # flash.now, because the action renders rather than redirects
+    def reject(record)
+      flash.now[:class]   = "alert alert-danger"
+      flash.now[:message] = record.errors.full_messages.to_sentence.presence ||
+                            "Не удалось сохранить статью."
     end
 
   end

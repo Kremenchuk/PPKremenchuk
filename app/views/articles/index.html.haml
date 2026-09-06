@@ -1,12 +1,22 @@
-%h1.header_stillage_stillage_warehouse_stillage_pallet_trolleys
-  = t('page.articles.header')
+.pdp
+  %section.pdp-hero
+    %nav.pdp-crumbs
+      = link_to t('page.all.home'), root_path
+      %span.sep /
+      %span.cur= t('page.articles.header')
+    %h1.pdp-title= t('page.articles.header')
+    %p.pdp-lead= t('page.articles.lead')
 
-%hr
-.col-md-12
-  - @articles.each do |article|
-    .col-md-12
-      %h3.article_header
-        = link_to raw(article.title[locale.to_s]), article_path(id: article.id)
-      .col-md-12
-        = raw(article.short_body[locale.to_s])
-
+  .pdp-block
+    - if @articles.present?
+      .ed-list.ed-list--plain
+        - @articles.each do |article|
+          %article.ed-item.ed-item--plain
+            .ed-item__body
+              %h2.ed-item__title= link_to raw(localized(article.title)), article_path(id: article.id)
+              .ed-item__excerpt= raw localized(article.short_body)
+              = link_to article_path(id: article.id), class: 'ed-more' do
+                = t('page.articles.read_more')
+                %i.arr →
+    - else
+      %p.ed-empty= t('page.articles.empty')

@@ -6,10 +6,37 @@ en:
 
   errors:
     messages:
+      blank:         'can''t be blank'
+      invalid:       'is invalid'
+      taken:         'has already been taken'
+      too_long: 'is too long (maximum is %{count} characters)'
+      too_short: 'is too short (minimum is %{count} characters)'
+      not_a_number:  'is not a number'
+      confirmation:  "doesn't match %{attribute}"
       not_saved: 'Account was not created!'
 
   activerecord:
+    attributes:
+      user:
+        email:                 'E-mail'
+        password:              'Password'
+        password_confirmation: 'Password confirmation'
+        current_password:      'Current password'
+        login:                 'Login'
+        name:                  'Name'
+      news:
+        title:       'Title'
+        short_text:  'Summary'
+        text:        'Text'
+        news_date:   'Date'
+        photo:       'Image'
+      article:
+        title:       'Title'
+        short_body:  'Summary'
+        body:        'Text'
     errors:
+      messages:
+        record_invalid: 'Validation failed: %{errors}'
       models:
         user:
           attributes:
@@ -443,12 +470,62 @@ en:
       password_conf:  'Password confirmation'
       submit_button:  'Register'
 
+    auth:
+      confirm_header:        'Confirm your e-mail'
+      confirm_lead:          "Didn't get the letter? Enter your e-mail and we will send the confirmation link again."
+      confirm_submit:        'Send again'
+      confirm_link:          "Didn't receive confirmation instructions?"
+      check_mail_title:      'Check your inbox'
+      mail:
+        greeting:              'Hello, %{email}!'
+        confirm_instruction:   'To finish signing up at STM Industry, please confirm your e-mail address using the link below.'
+        confirm_action:        'Confirm my e-mail'
+        reset_instruction:     'You asked to change your password. You can do it using the link below.'
+        reset_action:          'Change my password'
+        reset_note:            'Your password stays the same until you follow the link and create a new one.'
+        ignore:                "If it wasn't you, simply ignore this letter."
+      sign_in_header:        'Sign in'
+      sign_in_lead:          'Sign in to see dealer pricing and manage site content.'
+      sign_up_header:        'Registration'
+      sign_up_lead:          'Create an account to get access to your personal terms.'
+      forgot_header:         'Password recovery'
+      forgot_lead:           'Enter your e-mail and we will send a link to set a new password.'
+      forgot_submit:         'Send instructions'
+      reset_header:          'New password'
+      reset_lead:            'Choose a new password for your account.'
+      reset_submit:          'Change password'
+      account_header:        'My account'
+      account_lead:          'Update your contact details or password.'
+      account_submit:        'Save'
+      email:                 'E-mail'
+      password:              'Password'
+      password_new:          'New password'
+      password_confirm:      'Password confirmation'
+      current_password:      'Current password'
+      min_chars:             '%{count} characters minimum'
+      password_keep_hint:    'leave blank to keep the current one'
+      current_password_hint: 'needed to confirm the changes'
+      errors_title:          'Could not be saved:'
+      have_account:          'I already have an account'
+      no_account:            'No account? Sign up'
+      forgot_link:           'Forgot your password?'
+      danger_title:          'Delete account'
+      cancel_account:        'Delete account'
+      cancel_confirm:        'Delete the account? This cannot be undone.'
     login:
       remember_me: 'Remember me'
       come_in: 'Sign in'
 
     news:
       header: 'News'
+      lead:      'Company news: new products, completed projects and changes on the shop floor.'
+      read_more: 'Read more'
+      back:      'All news'
+      empty:     'No news yet.'
 
     articles:
       header: 'Articles'
+      lead:      'Guides on choosing, installing and running racking equipment.'
+      read_more: 'Read more'
+      back:      'All articles'
+      empty:     'No articles yet.'

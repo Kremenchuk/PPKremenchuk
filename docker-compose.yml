@@ -12,6 +12,8 @@ name: stm-industry
 volumes:
   storage:        # db/production.sqlite3 + Active Storage
   uploads:        # CarrierWave gallery images (public/uploads)
+  news_images:    # news photos, written to public/assets/news by NewsController
+  article_images: # article images, written to public/assets/articles
   logs:
 
 services:
@@ -35,6 +37,11 @@ services:
     volumes:
       - storage:/rails/storage
       - uploads:/rails/public/uploads
+      # both admin uploaders write into public/assets, which is otherwise
+      # rebuilt from scratch on every image build — mount the two upload
+      # subfolders so the files survive a redeploy
+      - news_images:/rails/public/assets/news
+      - article_images:/rails/public/assets/articles
       - logs:/rails/log
     healthcheck:
       test: ["CMD", "curl", "-fsS", "http://localhost:3000/uk"]

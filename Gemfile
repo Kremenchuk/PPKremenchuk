@@ -49,6 +49,9 @@ group :development, :test do
 end
 
 group :development do
+  # Opens every outgoing letter in the browser instead of delivering it,
+  # so confirmation and password-reset links are one click away locally.
+  gem 'letter_opener'
 end
 
 group :test do

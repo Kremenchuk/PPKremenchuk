@@ -7,31 +7,23 @@ class ApplicationController < ActionController::Base
   before_action :set_locale_a, except: :set_locale
   before_action :set_meta_tags
 
-
   def set_meta_tags
     @meta_tags = t("page.meta_tags.#{params[:controller]}", default: t('page.meta_tags.welcome'))
   end
 
   def set_locale
-    I18n.locale = params[:new_locale]
+    new_locale = params[:new_locale]
+
+    I18n.locale = new_locale
     session[:locale] = I18n.locale
     if current_user.present?
-      current_user.language = params[:new_locale]
+      current_user.language = new_locale
       current_user.save!
     end
 
-    referer = request.referer
-    if referer.present?
-      uri = URI(referer)
-      url_hash = Rails.application.routes.recognize_path(uri.path)
-      url_hash[:locale] = params[:new_locale]
-      url_hash.merge!(Rack::Utils.parse_query(uri.query)) if uri.query.present?
-      redirect_to url_hash
-    else
-      redirect_to root_path
-    end
+    redirect_to localized_referer(new_locale)
   rescue ActionController::RoutingError, URI::InvalidURIError
-    redirect_to root_path
+    redirect_to root_path(locale: new_locale)
   end
 
   def default_url_options
@@ -68,7 +60,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   def button_const
     @admin_in = false
     #SendEmail.login_from_site(current_user.email).deliver_now
@@ -78,7 +69,6 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-
 
   def render_422_error #Нет прав на просмотр данной страницы
     render file: "public/422.html", status: 422
@@ -91,6 +81,27 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # Rebuilds the page the visitor came from in the requested locale.
+  #
+  # The root route lives outside the `scope '/:locale'`, so root_path renders
+  # the locale as a query string ("/?locale=uk"). The previous version merged
+  # the referer's query *after* setting :locale, so that stale "locale=uk"
+  # came back as a string key, won over the symbol one during symbolize_keys
+  # and silently cancelled the switch — visible as the /change_locale/en URL
+  # flashing by and the page staying in the old language.
+  #
+  # Query first, locale last.
+  def localized_referer(new_locale)
+    referer = request.referer
+    return root_path(locale: new_locale) if referer.blank?
+
+    uri     = URI(referer)
+    options = Rails.application.routes.recognize_path(uri.path)
+    options.merge!(Rack::Utils.parse_query(uri.query).symbolize_keys) if uri.query.present?
+    options[:locale] = new_locale
+    options[:anchor] = uri.fragment if uri.fragment.present?
+    options
+  end
 
   def set_locale_a
     I18n.locale = params[:locale] || (current_user.language.to_sym if current_user.present?) || I18n.default_locale

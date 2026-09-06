@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_07_12_102046) do
+ActiveRecord::Schema[7.2].define(version: 2026_08_19_120000) do
   create_table "articles", force: :cascade do |t|
     t.json "title", default: {"uk" => "", "en" => "", "ru" => ""}, null: false
     t.json "short_body", default: {"uk" => "", "en" => "", "ru" => ""}, null: false
@@ -249,6 +249,11 @@ ActiveRecord::Schema[7.2].define(version: 2026_07_12_102046) do
     t.integer "language", default: 0
     t.boolean "admin", default: false
     t.integer "diller", default: 4
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

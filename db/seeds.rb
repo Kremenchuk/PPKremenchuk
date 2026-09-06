@@ -1,6 +1,8 @@
 User.find_or_create_by(email: 'kremenchuk@bk.ru' ) do |user|
   user.password = "123456"
   user.admin = true
+  # :confirmable is on — without this the bootstrap admin could never sign in
+  user.confirmed_at = Time.current
   user.save!
 end
 

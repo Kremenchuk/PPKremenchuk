@@ -1,16 +1,20 @@
-<h2>Resend confirmation instructions</h2>
+<div class="auth">
+  <div class="auth__card">
+    <p class="eyebrow"><span class="eyebrow__tick"></span><%= t('page.registration.header') %></p>
+    <h1 class="auth__title"><%= t('page.auth.confirm_header') %></h1>
+    <p class="auth__lead"><%= t('page.auth.confirm_lead') %></p>
 
-<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
-  <%= f.full_error :confirmation_token %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'auth__form' }) do |f| %>
+      <div class="auth-field">
+        <%= f.label :email, t('page.auth.email') %>
+        <%= f.email_field :email, autofocus: true, autocomplete: 'email' %>
+      </div>
+
+      <%= f.button t('page.auth.confirm_submit'), class: 'btn btn--lg btn--block' %>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

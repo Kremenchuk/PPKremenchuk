@@ -65,6 +65,18 @@
               %span
               %span
 
+      -# ░░ FLASH ░░
+      -# Devise and friends write here; nothing rendered these before, so
+      -# "Invalid Email or password" was silently swallowed. The admin
+      -# screens print their own flash[:message] inline — skip that key.
+      - flash_levels = { 'notice' => 'ok', 'success' => 'ok', 'alert' => 'error', 'error' => 'error' }
+      - visible_flash = flash.to_hash.select { |key, value| flash_levels.key?(key) && value.present? }
+      - if visible_flash.any?
+        .flashes
+          .wrap
+            - visible_flash.each do |key, message|
+              %p.flashes__item{ class: "flashes__item--#{flash_levels[key]}" }= message
+
       -# ░░ CONTENT ░░
       - if controller_name == 'welcome' && action_name == 'index'
         = yield

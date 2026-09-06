@@ -1,43 +1,40 @@
-%h3 Додавання і видалення статей
-.col-md-12
-  = link_to 'New', new_admin_article_path, class: "btn btn-success"
-  .col-md-12
-    %hr
-.col-md-12
-  .col-md-6
-    -if @articles.present?
-      - @articles.each do |article|
-        = form_tag admin_article_path(article.id), method: :delete do
-          .col-md-8
-            = link_to article.title['uk'], edit_admin_article_path(article.id)
-            -# = text_field_tag :article_name, article[0], style: 'width: 100%;'
-          .col-md-4
-            = submit_tag "Удалить", {:class =>"btn btn-danger"}
-          .col-md-12
+.pdp
+  %section.pdp-hero
+    %h1.pdp-title Статті
 
-.col-md-12
-  %hr
+  .pdp-block
+    .adm-h2-row
+      %h2.adm-h2 Статті
+      = link_to 'New', new_admin_article_path, class: 'btn btn--sm'
+    - if @articles.present?
+      .adm-rows
+        - @articles.each do |article|
+          .adm-row.adm-row--tight
+            .adm-row__body
+              %h3.adm-row__title= link_to article.title['uk'].presence || '—', edit_admin_article_path(article.id)
+            .adm-row__actions
+              = form_tag admin_article_path(article.id), method: :delete do
+                = submit_tag 'Удалить', class: 'btn btn--sm adm-danger'
+    - else
+      %p.ed-empty Статей ще немає.
 
-%h3 Доступні картинки
-.col-md-12
-  - @images_to_articles.each do |image|
-    = form_tag admin_image_delete_path(image.id), method: :delete do
-      .col-md-4
-        = image_tag(image.path_to_image, {style: 'max-height: 120px;'})
-        .col-md-12{style: 'word-break: break-all;'}
-          = image.path_to_image
-        .col-md-12
-          = submit_tag "Удалить", {:class =>"btn btn-danger"}
+  .pdp-block
+    %h2.adm-h2 Доступні картинки
+    - if @images_to_articles.present?
+      .adm-images
+        - @images_to_articles.each do |image|
+          %figure.adm-image
+            = image_tag image.path_to_image, alt: ''
+            %figcaption.adm-image__path= image.path_to_image
+            = form_tag admin_image_delete_path(image.id), method: :delete do
+              = submit_tag 'Удалить', class: 'btn btn--sm adm-danger'
+    - else
+      %p.ed-empty Картинок ще немає.
 
-.col-md-12
-  %hr
-
-.col-md-12
-  = form_tag admin_image_to_article_path, method: :post, multipart: true do
-    .col-md-12
-      Файл картинки
-    .col-md-12
-      = file_field_tag :image, accept: 'image/*'
-    .col-md-12
-      = submit_tag "Добавить", {:class =>"btn btn-success"}
-
+    .adm-card
+      = form_tag admin_image_to_article_path, method: :post, multipart: true do
+        .adm-field
+          %label.adm-label{ for: 'image' } Файл картинки
+          = file_field_tag :image, accept: 'image/*', class: 'adm-file'
+        .adm-actions
+          = submit_tag 'Добавить', class: 'btn btn--sm'

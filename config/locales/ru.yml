@@ -7,10 +7,37 @@ ru:
 
   errors:
     messages:
+      blank:         "— обязательное поле"
+      invalid:       'имеет неверный формат'
+      taken:         'уже занято'
+      too_long: 'слишком длинное (максимум %{count} символов)'
+      too_short: 'слишком короткое (минимум %{count} символов)'
+      not_a_number:  'должно быть числом'
+      confirmation:  'не совпадает с полем «%{attribute}»'
       not_saved: 'Аккаунт не создан!'
 
   activerecord:
+    attributes:
+      user:
+        email:                 'E-mail'
+        password:              'Пароль'
+        password_confirmation: 'Подтверждение пароля'
+        current_password:      'Текущий пароль'
+        login:                 'Логин'
+        name:                  'Имя'
+      news:
+        title:       'Заголовок'
+        short_text:  'Краткое описание'
+        text:        'Текст'
+        news_date:   'Дата'
+        photo:       'Картинка'
+      article:
+        title:       'Заголовок'
+        short_body:  'Краткое описание'
+        body:        'Текст'
     errors:
+      messages:
+        record_invalid: 'Проверка не пройдена: %{errors}'
       models:
         user:
           attributes:
@@ -454,12 +481,62 @@ ru:
       password_conf:  'Повтор пароля'
       submit_button:  'Регистрация'
 
+    auth:
+      confirm_header:        'Подтверждение почты'
+      confirm_lead:          'Не получили письмо? Укажите e-mail — отправим ссылку для подтверждения ещё раз.'
+      confirm_submit:        'Отправить ещё раз'
+      confirm_link:          'Не получили письмо для подтверждения?'
+      check_mail_title:      'Проверьте почту'
+      mail:
+        greeting:              'Здравствуйте, %{email}!'
+        confirm_instruction:   'Чтобы завершить регистрацию на сайте STM Industry, подтвердите свой адрес электронной почты по ссылке ниже.'
+        confirm_action:        'Подтвердить почту'
+        reset_instruction:     'Вы попросили изменить пароль. Сделать это можно по ссылке ниже.'
+        reset_action:          'Изменить пароль'
+        reset_note:            'Пароль останется прежним, пока вы не перейдёте по ссылке и не создадите новый.'
+        ignore:                'Если вы этого не делали — просто проигнорируйте письмо.'
+      sign_in_header:        'Вход'
+      sign_in_lead:          'Войдите, чтобы видеть дилерские цены и управлять содержимым сайта.'
+      sign_up_header:        'Регистрация'
+      sign_up_lead:          'Создайте аккаунт, чтобы получить доступ к персональным условиям.'
+      forgot_header:         'Восстановление пароля'
+      forgot_lead:           'Укажите e-mail — пришлём ссылку для установки нового пароля.'
+      forgot_submit:         'Отправить инструкцию'
+      reset_header:          'Новый пароль'
+      reset_lead:            'Придумайте новый пароль для вашего аккаунта.'
+      reset_submit:          'Изменить пароль'
+      account_header:        'Мой аккаунт'
+      account_lead:          'Измените контактные данные или пароль.'
+      account_submit:        'Сохранить'
+      email:                 'E-mail'
+      password:              'Пароль'
+      password_new:          'Новый пароль'
+      password_confirm:      'Подтверждение пароля'
+      current_password:      'Текущий пароль'
+      min_chars:             'минимум %{count} символов'
+      password_keep_hint:    'оставьте пустым, чтобы не менять'
+      current_password_hint: 'нужен, чтобы подтвердить изменения'
+      errors_title:          'Не удалось сохранить:'
+      have_account:          'Уже есть аккаунт'
+      no_account:            'Нет аккаунта? Зарегистрироваться'
+      forgot_link:           'Забыли пароль?'
+      danger_title:          'Удаление аккаунта'
+      cancel_account:        'Удалить аккаунт'
+      cancel_confirm:        'Удалить аккаунт? Это действие нельзя отменить.'
     login:
       remember_me: 'Запомнить меня'
       come_in:     'Войти'
 
     news:
       header: 'Новости'
+      lead:      'Новости компании: новые изделия, выполненные проекты и изменения в производстве.'
+      read_more: 'Читать далее'
+      back:      'Все новости'
+      empty:     'Новостей пока нет.'
 
     articles:
       header: 'Статьи'
+      lead:      'Материалы о подборе, монтаже и эксплуатации стеллажного оборудования.'
+      read_more: 'Читать далее'
+      back:      'Все статьи'
+      empty:     'Статей пока нет.'

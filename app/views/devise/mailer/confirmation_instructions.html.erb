@@ -1,5 +1,10 @@
-<p>Welcome <%= @email %>!</p>
+<%# All routes live inside `scope '/:locale'`, and mailers do not inherit
+    ApplicationController#default_url_options — so the locale has to be
+    passed explicitly or url generation raises "missing required keys". %>
+<p><%= t('page.auth.mail.greeting', email: @email) %></p>
 
-<p>You can confirm your account email through the link below:</p>
+<p><%= t('page.auth.mail.confirm_instruction') %></p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to t('page.auth.mail.confirm_action'), confirmation_url(@resource, confirmation_token: @token, locale: I18n.locale) %></p>
+
+<p><%= t('page.auth.mail.ignore') %></p>
