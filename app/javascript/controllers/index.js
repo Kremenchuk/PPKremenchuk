@@ -19,5 +19,8 @@ application.register("print", PrintController)
 import HeroController from "./hero_controller"
 application.register("hero", HeroController)
 
+import PhotostageController from "./photostage_controller"
+application.register("photostage", PhotostageController)
+
 import RackViewerController from "./rack_viewer_controller"
 application.register("rack-viewer", RackViewerController)

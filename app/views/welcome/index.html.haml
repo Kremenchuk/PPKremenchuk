@@ -1,31 +1,38 @@
 .home
-  -# ░░ HERO — full-screen photo scenes, one swipe = one scene ░░
+  -# ░░ HERO — scroll-driven photo morph (photos + text flow into each other) ░░
   - slides = home_slides
-  %section.pstack#hero
-    - slides.each_with_index do |s, i|
-      %section.pscene{class: "pscene--#{s[:key]}"}
-        .pscene__media
-          = image_tag s[:photo], alt: t("page.home.slides.#{s[:key]}.type"), loading: (i.zero? ? 'eager' : 'lazy')
-        .pscene__veil{"aria-hidden" => "true"}
-        .wrap.pscene__in
-          %span.pscene__meta
-            %span.pscene__idx= "#{format('%02d', i + 1)} / #{format('%02d', slides.size)}"
-            %span.pscene__brand= t('page.home.hero.eyebrow')
-          - if i.zero?
-            %h1.pscene__type.reveal= t("page.home.slides.#{s[:key]}.type")
-          - else
-            %h2.pscene__type.reveal= t("page.home.slides.#{s[:key]}.type")
-          %p.pscene__text.reveal{:style => "--d:.08s"}= t("page.home.slides.#{s[:key]}.text")
-          .pscene__actions.reveal{:style => "--d:.16s"}
-            = link_to s[:path], class: 'btn btn--lg' do
-              = t("page.home.slides.#{s[:key]}.cta")
-              %i.arr →
+  %section.photostage#hero{"data-controller" => "photostage", :style => "height: calc(100svh + #{slides.size * 72}svh)"}
+    .photostage__sticky
+      - slides.each_with_index do |s, i|
+        .photostage__layer{class: "photostage__layer--#{s[:key]}", "data-photostage-target" => "layer", "aria-hidden" => "true"}
+          = image_tag s[:photo], alt: "", loading: (i < 2 ? 'eager' : 'lazy')
+          .photostage__grade{"aria-hidden" => "true"}
+      %span.hero__side{"aria-hidden" => "true"} EST · 2002 · KHARKIV · UA
+      .wrap.photostage__stage
+        - slides.each_with_index do |s, i|
+          %article.photostage__cap{"data-photostage-target" => "cap"}
+            %span.photostage__meta
+              %span.photostage__idx= "#{format('%02d', i + 1)} / #{format('%02d', slides.size)}"
+              %span.photostage__brand= t('page.home.hero.eyebrow')
             - if i.zero?
-              = link_to t('page.home.hero.cta_primary'), "#{root_path}#products", class: 'btn btn--ghost btn--lg'
-        - if i.zero?
-          %span.pscene__hint{"aria-hidden" => "true"}
-            = t('page.home.stage.hint')
-            %i ↓
+              %h1.photostage__type= t("page.home.slides.#{s[:key]}.type")
+            - else
+              %h2.photostage__type= t("page.home.slides.#{s[:key]}.type")
+            %p.photostage__text= t("page.home.slides.#{s[:key]}.text")
+            .photostage__actions
+              = link_to s[:path], class: 'btn btn--lg' do
+                = t("page.home.slides.#{s[:key]}.cta")
+                %i.arr →
+              - if i.zero?
+                = link_to t('page.home.hero.cta_primary'), "#{root_path}#products", class: 'btn btn--ghost btn--lg'
+      .photostage__dots{"aria-hidden" => "true"}
+        - slides.each_with_index do |_s, i|
+          %span.photostage__dot{"data-photostage-target" => "dot", class: (i.zero? ? 'is-active' : nil)}
+      .photostage__rail{"aria-hidden" => "true"}
+        %i{"data-photostage-target" => "progress"}
+      %span.photostage__hint{"aria-hidden" => "true"}
+        = t('page.home.stage.hint')
+        %i ↓
 
   -# ░░ PRODUCTS ░░
   %section.section.products#products

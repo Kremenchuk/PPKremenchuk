@@ -530,57 +530,80 @@ body.stm-redesign {
 }
 
 // =====================================================================
-//  HERO v2 — full-screen photo scenes (one swipe = one scene)
+//  HERO — scroll-driven photo morph (photos + text flow into each other)
 // =====================================================================
-// Snap only on the home page; other pages have no snap points anyway.
-html:has(body.page-welcome) { scroll-snap-type: y proximity; }
-
 body.stm-redesign {
-  .pstack { position: relative; }
+  .photostage { position: relative; }               // tall; drives the morph
+  .photostage__sticky {
+    position: sticky; top: 0; height: 100svh; overflow: hidden;
+    display: flex; align-items: flex-end; background: #07080b;
+  }
 
-  .pscene {
-    position: relative;
-    min-height: 100svh;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    display: flex;
-    align-items: flex-end;
-    overflow: hidden;
-    background: #0a0c10;
+  // stacked photo layers, cross-faded + slow zoom by the controller
+  .photostage__layer {
+    position: absolute; inset: 0; z-index: 0; opacity: 0; will-change: opacity, transform;
+    img { width: 100%; height: 100%; object-fit: cover; display: block; }
   }
-  .pscene__media { position: absolute; inset: 0; z-index: 0; }
-  .pscene__media img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-    will-change: transform; animation: kb 24s ease-in-out infinite alternate;
-  }
-  .pscene__veil {
-    position: absolute; inset: 0; z-index: 1;
+  // a single, brand-wide grade so the disparate photos read as ONE system
+  .photostage__grade {
+    position: absolute; inset: 0;
     background:
-      linear-gradient(90deg, rgba(6, 8, 12, .88), rgba(6, 8, 12, .5) 40%, rgba(6, 8, 12, .12) 70%, transparent),
-      linear-gradient(0deg, rgba(6, 8, 12, .82), rgba(6, 8, 12, .1) 48%, transparent);
+      linear-gradient(90deg, rgba(7, 8, 11, .9), rgba(7, 8, 11, .48) 42%, rgba(7, 8, 11, .06) 72%, transparent),
+      linear-gradient(0deg, rgba(7, 8, 11, .86), rgba(7, 8, 11, .12) 46%, transparent),
+      radial-gradient(120% 90% at 82% 20%, rgba(255, 106, 26, .16), transparent 55%);
+    mix-blend-mode: normal;
   }
-  .pscene__in {
-    position: relative; z-index: 2; width: 100%;
-    padding-top: 120px; padding-bottom: clamp(76px, 12vh, 150px);
+
+  .hero__side {
+    position: absolute; right: 26px; top: 42%; z-index: 4;
+    writing-mode: vertical-rl; letter-spacing: .34em; font-family: var(--f-mono);
+    font-size: 11px; color: rgba(255, 255, 255, .4);
   }
-  .pscene__meta {
+
+  // captions stacked in one place, cross-faded by the controller
+  .photostage__stage { position: relative; z-index: 3; width: 100%; padding-bottom: clamp(84px, 13vh, 160px); }
+  // every caption occupies the exact same box and bottom-aligns its content,
+  // so the headline dissolves in place instead of two texts drifting past
+  .photostage__cap {
+    position: absolute; left: 0; right: 0; bottom: 0; opacity: 0; will-change: opacity, transform;
+    min-height: clamp(300px, 44vh, 480px);
+    display: flex; flex-direction: column; justify-content: flex-end;
+  }
+  .photostage__cap:first-child { position: relative; } // reserves layout height
+  .photostage__meta {
     display: inline-flex; align-items: center; gap: 14px; margin-bottom: 18px;
     font-family: var(--f-mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
   }
-  .pscene__idx { color: var(--r-orange); font-weight: 700; }
-  .pscene__brand { color: rgba(255, 255, 255, .68); }
-  .pscene__type {
+  .photostage__idx { color: var(--r-orange); font-weight: 700; }
+  .photostage__brand { color: rgba(255, 255, 255, .68); }
+  .photostage__type {
     font-family: var(--f-disp); font-weight: 700; text-transform: uppercase;
-    line-height: .9; letter-spacing: -.012em; margin: 0 0 20px; max-width: 16ch;
-    font-size: clamp(46px, 9.6vw, 138px);
+    line-height: .88; letter-spacing: -.014em; margin: 0 0 20px; max-width: 15ch;
+    font-size: clamp(48px, 10vw, 150px);
+    text-shadow: 0 20px 60px rgba(0, 0, 0, .45);
   }
-  .pscene__text {
-    font-size: clamp(16px, 2.2vw, 22px); line-height: 1.5; max-width: 46ch;
-    color: rgba(245, 244, 238, .92); margin: 0 0 30px;
+  .photostage__text {
+    font-size: clamp(16px, 2.2vw, 22px); line-height: 1.5; max-width: 44ch;
+    color: rgba(245, 244, 238, .94); margin: 0 0 30px;
   }
-  .pscene__actions { display: flex; gap: 14px; flex-wrap: wrap; }
-  .pscene__hint {
-    position: absolute; left: 50%; transform: translateX(-50%); bottom: 22px; z-index: 3;
+  .photostage__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  // right-side progress rail + scene dots
+  .photostage__rail {
+    position: absolute; right: 27px; top: 50%; transform: translateY(-50%); z-index: 4;
+    width: 2px; height: 120px; background: rgba(255, 255, 255, .16); overflow: hidden;
+    i { display: block; width: 100%; height: 100%; background: var(--r-orange); transform-origin: top; transform: scaleY(0); }
+  }
+  .photostage__dots {
+    position: absolute; right: 22px; top: calc(50% + 84px); z-index: 4;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .photostage__dot {
+    width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, .26); transition: .35s var(--r-ease);
+    &.is-active { background: var(--r-orange); transform: scale(1.4); }
+  }
+  .photostage__hint {
+    position: absolute; left: 50%; transform: translateX(-50%); bottom: 22px; z-index: 4;
     display: inline-flex; align-items: center; gap: 8px; pointer-events: none;
     font-family: var(--f-mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
     color: rgba(255, 255, 255, .6);
@@ -589,11 +612,13 @@ body.stm-redesign {
 
   // ---- de-bulk: tighten the vertical rhythm between sections ----------
   .section { padding: clamp(56px, 7vw, 100px) 0; }
+
+  @media (max-width: 720px) {
+    .photostage .hero__side, .photostage__rail, .photostage__dots { display: none; }
+    .photostage__stage { padding-bottom: 96px; }
+  }
 }
 
-@keyframes kb { from { transform: scale(1.05); } to { transform: scale(1.16); } }
-
 @media (prefers-reduced-motion: reduce) {
-  body.stm-redesign .pscene__media img { animation: none; }
-  body.stm-redesign .pscene__hint i { animation: none; }
+  body.stm-redesign .photostage__hint i { animation: none; }
 }
