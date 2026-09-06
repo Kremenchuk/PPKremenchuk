@@ -32,6 +32,9 @@
       %span.scrollstage__hint{"aria-hidden" => "true"}
         = t('page.home.stage.hint')
         %i ↓
+    -# one invisible snap panel per remaining scene: a single swipe / wheel notch = one scene
+    - (Array(t('page.home.stage.scenes')).size - 1).times do
+      .scrollstage__snap{"aria-hidden" => "true"}
 
   -# ░░ PRODUCTS ░░
   %section.section.products#products

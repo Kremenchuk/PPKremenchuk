@@ -26,31 +26,36 @@ import { loadThree } from "../lib/three_loader"
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v))
 const lerp = (a, b, t) => a + (b - a) * t
 const smooth = (t) => t * t * (3 - 2 * t)
+const smoothstep = (a, b, x) => smooth(clamp((x - a) / (b - a), 0, 1))
 
 // ---- per-scene palette -------------------------------------------------
 // finish: rack material; bgTop/bgBottom: CSS backdrop gradient; fog: depth tint;
 // key/rim/ambient: light colours; camera: [x,y,z] view offset.
 const SCENES = [
-  { // 0 warehouse
-    finish: { color: 0xb9bec7, metalness: 0.92, roughness: 0.34, wood: 0 },
+  { // 0 warehouse — galvanised frame + galvanised deck
+    frame: { color: 0xb9bec7, metalness: 0.9, roughness: 0.34 },
+    shelf: { color: 0xb9bec7, metalness: 0.9, roughness: 0.34 },
     bgTop: [26, 32, 42], bgBottom: [11, 14, 20], fog: [20, 26, 36],
     key: 0xdfe8ff, keyI: 2.2, rim: 0x5b78ff, rimI: 1.1, amb: 0x243044, ambI: 0.7,
     camera: [0.2, 0.9, 8.6],
   },
-  { // 1 library
-    finish: { color: 0x6a4a33, metalness: 0.15, roughness: 0.55, wood: 0.6 },
+  { // 1 library — dark warm frame + wood shelves
+    frame: { color: 0x4a3a2e, metalness: 0.35, roughness: 0.5 },
+    shelf: { color: 0x8a5a2b, metalness: 0.05, roughness: 0.6 },
     bgTop: [58, 40, 26], bgBottom: [22, 15, 12], fog: [40, 28, 20],
     key: 0xffdca8, keyI: 2.3, rim: 0xffb15a, rimI: 1.0, amb: 0x3a2a1c, ambI: 0.9,
     camera: [-0.5, 0.7, 8.2],
   },
-  { // 2 production
-    finish: { color: 0xff6a1a, metalness: 0.55, roughness: 0.42, wood: 0 },
+  { // 2 production — orange frame + steel deck
+    frame: { color: 0xff6a1a, metalness: 0.45, roughness: 0.44 },
+    shelf: { color: 0x9aa1aa, metalness: 0.7, roughness: 0.5 },
     bgTop: [30, 34, 40], bgBottom: [14, 15, 18], fog: [26, 28, 34],
     key: 0xffffff, keyI: 2.4, rim: 0xff7a2a, rimI: 1.3, amb: 0x2a2d33, ambI: 0.75,
     camera: [0.5, 0.8, 8.4],
   },
-  { // 3 designer home
-    finish: { color: 0x8a5a2b, metalness: 0.08, roughness: 0.62, wood: 1 },
+  { // 3 designer / loft — black metal frame + warm wood shelves (like our photo)
+    frame: { color: 0x1b1b20, metalness: 0.5, roughness: 0.4 },
+    shelf: { color: 0x9c6a38, metalness: 0.0, roughness: 0.6 },
     bgTop: [244, 232, 218], bgBottom: [214, 196, 178], fog: [230, 218, 205],
     key: 0xfff0dc, keyI: 2.0, rim: 0xffd0a0, rimI: 0.7, amb: 0xe8dccb, ambI: 1.15,
     camera: [-0.2, 0.6, 8.0],
@@ -81,6 +86,21 @@ export default class extends Controller {
     )
     this.io.observe(this.element)
 
+    // one swipe / one wheel notch / one arrow = exactly one scene
+    this.n = SCENES.length
+    this.index = 0
+    this.animating = false
+    this.touchY = null
+    this.touchLock = false
+    this.onWheel = (e) => this.onWheelScroll(e)
+    this.onKey = (e) => this.onKeyScroll(e)
+    this.onTouchStart = (e) => { this.touchY = e.touches ? e.touches[0].clientY : null; this.touchLock = false }
+    this.onTouchMove = (e) => this.onTouchScroll(e)
+    window.addEventListener("wheel", this.onWheel, { passive: false })
+    window.addEventListener("keydown", this.onKey)
+    window.addEventListener("touchstart", this.onTouchStart, { passive: true })
+    window.addEventListener("touchmove", this.onTouchMove, { passive: false })
+
     loadThree()
       .then((THREE) => this.init(THREE))
       .catch(() => this.element.classList.add("scrollstage--fallback"))
@@ -89,12 +109,82 @@ export default class extends Controller {
   disconnect() {
     window.removeEventListener("scroll", this.onScroll)
     window.removeEventListener("resize", this.onResize)
+    window.removeEventListener("wheel", this.onWheel)
+    window.removeEventListener("keydown", this.onKey)
+    window.removeEventListener("touchstart", this.onTouchStart)
+    window.removeEventListener("touchmove", this.onTouchMove)
     if (this.io) this.io.disconnect()
     if (this.raf) cancelAnimationFrame(this.raf)
+    if (this.scrollRaf) cancelAnimationFrame(this.scrollRaf)
     if (this.renderer) {
       this.renderer.dispose()
       this.renderer.forceContextLoss?.()
     }
+  }
+
+  // ---- scene-snapped scrolling (1 gesture = 1 scene) ------------------
+  isPinned() {
+    const r = this.element.getBoundingClientRect()
+    // the hero can start below a header (offsetTop), so gate on it filling the
+    // bottom of the viewport rather than sitting exactly at y=0
+    return r.top <= this.element.offsetTop + 1 && r.bottom >= window.innerHeight - 1
+  }
+
+  segmentPx() {
+    return (this.element.offsetHeight - window.innerHeight) / (this.n - 1)
+  }
+
+  atEdge(dir) {
+    return (this.index <= 0 && dir < 0) || (this.index >= this.n - 1 && dir > 0)
+  }
+
+  onWheelScroll(e) {
+    if (this.reduceMotion || !this.isPinned()) return
+    const dir = e.deltaY > 0 ? 1 : e.deltaY < 0 ? -1 : 0
+    if (!dir || this.atEdge(dir)) return // release to normal page scroll
+    e.preventDefault()
+    if (!this.animating) this.goToScene(this.index + dir)
+  }
+
+  onKeyScroll(e) {
+    if (this.reduceMotion || !this.isPinned()) return
+    let dir = 0
+    if (["ArrowDown", "PageDown", " ", "Spacebar"].includes(e.key)) dir = 1
+    else if (["ArrowUp", "PageUp"].includes(e.key)) dir = -1
+    if (!dir || this.atEdge(dir)) return
+    e.preventDefault()
+    if (!this.animating) this.goToScene(this.index + dir)
+  }
+
+  onTouchScroll(e) {
+    if (this.reduceMotion || !this.isPinned() || this.touchY == null) return
+    const dy = this.touchY - e.touches[0].clientY
+    const dir = dy > 0 ? 1 : -1
+    if (this.atEdge(dir)) return // release
+    e.preventDefault()
+    if (this.animating || this.touchLock || Math.abs(dy) < 40) return
+    this.touchLock = true
+    this.goToScene(this.index + dir)
+  }
+
+  goToScene(i) {
+    this.index = clamp(i, 0, this.n - 1)
+    const to = this.element.offsetTop + Math.round(this.index * this.segmentPx())
+    this.animating = true
+    this.tweenScroll(to, 640, () => { this.animating = false })
+  }
+
+  tweenScroll(to, dur, done) {
+    const from = window.scrollY
+    const start = performance.now()
+    if (this.scrollRaf) cancelAnimationFrame(this.scrollRaf)
+    const step = (now) => {
+      const t = clamp((now - start) / dur, 0, 1)
+      window.scrollTo(0, from + (to - from) * smooth(t))
+      if (t < 1) this.scrollRaf = requestAnimationFrame(step)
+      else if (done) done()
+    }
+    this.scrollRaf = requestAnimationFrame(step)
   }
 
   // ---- setup ----------------------------------------------------------
@@ -146,8 +236,8 @@ export default class extends Controller {
     this.world = new THREE.Group()
     scene.add(this.world)
 
-    this.rackMat = new THREE.MeshStandardMaterial({ color: 0xb9bec7, metalness: 0.9, roughness: 0.34 })
-    this.woodMat = new THREE.MeshStandardMaterial({ color: 0x8a5a2b, metalness: 0.05, roughness: 0.6 })
+    this.frameMat = new THREE.MeshStandardMaterial({ color: 0xb9bec7, metalness: 0.9, roughness: 0.34 })
+    this.shelfMat = new THREE.MeshStandardMaterial({ color: 0xb9bec7, metalness: 0.9, roughness: 0.34 })
     this.rack = this.buildRack(THREE)
     this.world.add(this.rack)
 
@@ -214,7 +304,7 @@ export default class extends Controller {
   buildRack(THREE) {
     const g = new THREE.Group()
     const W = 2.6, D = 1.15, H = 3.3
-    const post = 0.075
+    const post = 0.06 // slimmer, more like a real steel/loft frame
     this.rackDims = { W, D, H }
     this.floorY = -H / 2
 
@@ -222,18 +312,32 @@ export default class extends Controller {
     const px = W / 2 - post / 2
     const pz = D / 2 - post / 2
     for (const sx of [-1, 1]) for (const sz of [-1, 1]) {
-      const m = new THREE.Mesh(postGeo, this.rackMat)
+      const m = new THREE.Mesh(postGeo, this.frameMat)
       m.position.set(sx * px, 0, sz * pz)
       m.castShadow = m.receiveShadow = true
       g.add(m)
-      // feet
-      const foot = new THREE.Mesh(new THREE.BoxGeometry(post * 2.4, 0.06, post * 2.4), this.rackMat)
-      foot.position.set(sx * px, -H / 2 + 0.03, sz * pz)
+      const foot = new THREE.Mesh(new THREE.BoxGeometry(post * 2.2, 0.05, post * 2.6), this.frameMat)
+      foot.position.set(sx * px, -H / 2 + 0.025, sz * pz)
       foot.castShadow = true
       g.add(foot)
     }
 
-    // shelves
+    // side-frame bracing (real upright frames): horizontal ties + one diagonal
+    // per side — the diagonal doubles as the loft rack's signature leaning brace
+    const brace = post * 0.55
+    for (const sx of [-1, 1]) {
+      for (const ty of [-H / 2 + 0.22, H / 2 - 0.22]) {
+        const tie = new THREE.Mesh(new THREE.BoxGeometry(brace, brace, D - post), this.frameMat)
+        tie.position.set(sx * px, ty, 0); tie.castShadow = true; g.add(tie)
+      }
+      const dLen = Math.hypot(D - post, H - 0.5)
+      const diag = new THREE.Mesh(new THREE.BoxGeometry(brace, dLen, brace), this.frameMat)
+      diag.position.set(sx * px, 0, 0)
+      diag.rotation.x = Math.atan2(D - post, H - 0.5)
+      diag.castShadow = true; g.add(diag)
+    }
+
+    // shelves (wood/steel deck depending on the scene) + front/back load beams
     this.shelfY = []
     const N = 5
     const top = H / 2 - 0.12
@@ -241,20 +345,17 @@ export default class extends Controller {
     for (let i = 0; i < N; i++) {
       const y = lerp(bottom, top, i / (N - 1))
       this.shelfY.push(y)
-      const shelf = new THREE.Mesh(new THREE.BoxGeometry(W - post, 0.05, D - post), this.rackMat)
+      const shelf = new THREE.Mesh(new THREE.BoxGeometry(W - post, 0.045, D - post), this.shelfMat)
       shelf.position.set(0, y, 0)
       shelf.castShadow = shelf.receiveShadow = true
       g.add(shelf)
-      // front/back beams for a truer rack look
       for (const sz of [-1, 1]) {
-        const beam = new THREE.Mesh(new THREE.BoxGeometry(W - post, 0.09, 0.05), this.rackMat)
+        const beam = new THREE.Mesh(new THREE.BoxGeometry(W - post, 0.085, 0.045), this.frameMat)
         beam.position.set(0, y - 0.02, sz * (D / 2 - post / 2))
         beam.castShadow = true
         g.add(beam)
       }
     }
-
-    // (no back cross-brace — removed per request)
 
     this.shelfSpan = { W: W - post * 3, D: D - post * 3 }
     return g
@@ -534,6 +635,8 @@ export default class extends Controller {
     const total = this.element.offsetHeight - window.innerHeight
     const scrolled = clamp(-rect.top, 0, total)
     this.target = total > 0 ? scrolled / total : 0
+    // keep the scene index in sync when the user isn't mid-snap (scrollbar, resize)
+    if (!this.animating) this.index = Math.round(this.target * (this.n - 1))
   }
 
   resize() {
@@ -581,8 +684,9 @@ export default class extends Controller {
 
   applyBlend(w) {
     const THREE = this.THREE
-    // rack finish
-    let r = 0, g = 0, b = 0, metal = 0, rough = 0, wood = 0
+    // rack frame + shelf materials (blended separately)
+    const fr = [0, 0, 0]; let fm = 0, frg = 0
+    const sr = [0, 0, 0]; let sm = 0, srg = 0
     const cam = [0, 0, 0]
     const key = new THREE.Color(0, 0, 0), rim = new THREE.Color(0, 0, 0), amb = new THREE.Color(0, 0, 0)
     let keyI = 0, rimI = 0, ambI = 0
@@ -590,18 +694,22 @@ export default class extends Controller {
     for (let s = 0; s < SCENES.length; s++) {
       const S = SCENES[s], k = w[s]
       if (k <= 0) continue
-      const c = new THREE.Color(S.finish.color)
-      r += c.r * k; g += c.g * k; b += c.b * k
-      metal += S.finish.metalness * k; rough += S.finish.roughness * k; wood += S.finish.wood * k
+      const fc = new THREE.Color(S.frame.color)
+      fr[0] += fc.r * k; fr[1] += fc.g * k; fr[2] += fc.b * k
+      fm += S.frame.metalness * k; frg += S.frame.roughness * k
+      const sc = new THREE.Color(S.shelf.color)
+      sr[0] += sc.r * k; sr[1] += sc.g * k; sr[2] += sc.b * k
+      sm += S.shelf.metalness * k; srg += S.shelf.roughness * k
       cam[0] += S.camera[0] * k; cam[1] += S.camera[1] * k; cam[2] += S.camera[2] * k
       key.add(new THREE.Color(S.key).multiplyScalar(k)); keyI += S.keyI * k
       rim.add(new THREE.Color(S.rim).multiplyScalar(k)); rimI += S.rimI * k
       amb.add(new THREE.Color(S.amb).multiplyScalar(k)); ambI += S.ambI * k
       for (let j = 0; j < 3; j++) { bgT[j] += S.bgTop[j] * k; bgB[j] += S.bgBottom[j] * k; fog[j] += S.fog[j] * k }
     }
-    this.rackMat.color.setRGB(r, g, b)
-    this.rackMat.metalness = metal
-    this.rackMat.roughness = rough
+    this.frameMat.color.setRGB(fr[0], fr[1], fr[2])
+    this.frameMat.metalness = fm; this.frameMat.roughness = frg
+    this.shelfMat.color.setRGB(sr[0], sr[1], sr[2])
+    this.shelfMat.metalness = sm; this.shelfMat.roughness = srg
 
     this.camera.position.lerp(new THREE.Vector3(cam[0], cam[1], cam[2]), 0.12)
     this.camera.lookAt(0, 0.1, 0)
@@ -632,14 +740,26 @@ export default class extends Controller {
   }
 
   updateUI(w) {
+    // the scene names are big now, so cross-fading two would double-expose —
+    // give the text a dead-zone: the current name leaves before the next arrives
+    const n = SCENES.length
+    const seg = clamp(this.progress, 0, 1) * (n - 1)
+    const i = clamp(Math.floor(seg), 0, n - 2)
+    const f = seg - i
+    const outO = 1 - smoothstep(0, 0.5, f)
+    const inO = smoothstep(0.5, 1, f)
     if (this.hasCapTarget) {
       this.capTargets.forEach((el) => {
         const s = Number(el.dataset.scene)
-        el.style.opacity = smooth(w[s] || 0)
+        let o = 0, rise = 0
+        if (s === i) { o = outO; rise = (1 - outO) * -18 }
+        else if (s === i + 1) { o = inO; rise = (1 - inO) * 26 }
+        el.style.opacity = o.toFixed(3)
+        el.style.transform = `translate3d(0, ${rise.toFixed(1)}px, 0)`
       })
     }
     if (this.hasDotTarget) {
-      const active = w.indexOf(Math.max(...w))
+      const active = f > 0.5 ? i + 1 : i
       this.dotTargets.forEach((el) => {
         el.classList.toggle("is-active", Number(el.dataset.scene) === active)
       })
