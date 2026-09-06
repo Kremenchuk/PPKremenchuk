@@ -141,9 +141,10 @@
         %h2.sec-title.sec-title--center= t('page.welcome.h3_met_stel')
       .prose.prose--center
         %p= "#{t('page.welcome.text_met_stel_anons')} #{t('page.welcome.text_met_stel_block')}"
-        %h3= t('page.welcome.h3_we_create')
+      %h3.prose__h3= t('page.welcome.h3_we_create')
+      .prose-links
         - welcome_reductions.each do |id, link_key, path, anons_key, _block_key|
-          %p
+          %p.prose-links__item
             = link_to t("page.welcome.#{link_key}"), path
             = t("page.welcome.#{anons_key}")
 
