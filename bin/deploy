@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+# =====================================================================
+#  Deploy: pull from GitHub, rebuild, restart.
+#
+#  What each of the four moving parts needs is handled automatically:
+#    1. code      — git pull below
+#    2. migrations— bin/docker-entrypoint runs db:prepare on every start
+#    3. assets    — precompiled during the image build
+#    4. gems      — `bundle install` layer is keyed on Gemfile.lock, so a
+#                   changed Gemfile invalidates it and the gems reinstall
+#
+#  Usage:  bin/deploy [branch]        (default: the current branch)
+# =====================================================================
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+BRANCH="${1:-$(git rev-parse --abbrev-ref HEAD)}"
+COMPOSE="docker compose"
+$COMPOSE version >/dev/null 2>&1 || COMPOSE="docker-compose"
+
+if [ ! -f .env ]; then
+  echo "!! .env is missing — copy .env.example and fill it in" >&2
+  exit 1
+fi
+
+echo "==> git pull ($BRANCH)"
+git fetch --prune origin
+BEFORE="$(git rev-parse HEAD)"
+git checkout "$BRANCH"
+git pull --ff-only origin "$BRANCH"
+AFTER="$(git rev-parse HEAD)"
+
+if [ "$BEFORE" = "$AFTER" ]; then
+  echo "    already up to date ($AFTER)"
+else
+  echo "    $BEFORE -> $AFTER"
+  git --no-pager diff --stat "$BEFORE" "$AFTER" -- Gemfile.lock package.json yarn.lock db/migrate \
+    | sed 's/^/    /'
+fi
+
+echo "==> build"
+$COMPOSE build
+
+echo "==> up"
+# db:prepare runs inside the container before puma starts
+$COMPOSE up -d
+
+echo "==> waiting for the healthcheck"
+for _ in $(seq 1 30); do
+  status="$($COMPOSE ps --format '{{.Health}}' web 2>/dev/null || echo '')"
+  [ "$status" = "healthy" ] && break
+  sleep 2
+done
+
+$COMPOSE ps
+echo "==> recent log"
+$COMPOSE logs --tail 30 web
+
+echo "==> pruning dangling images"
+docker image prune -f >/dev/null
+
+echo "done."
