@@ -392,7 +392,9 @@ export default class extends Controller {
 
   frameCamera(c) {
     const reach = Math.max(c.L * 1.15, c.W * 1.3, c.H + 0.35)
-    const dist = reach * 1.85 + 0.45
+    // a touch further back than the rack viewer: the card stage is small and
+    // the dimension pills at the ends must stay inside the frame
+    const dist = reach * 2.05 + 0.5
     this.camera.position.set(dist * 0.66, c.H * 0.55 + 0.3, dist * 0.74)
     this.camera.lookAt(0, c.H * 0.42, 0)
     this.camera.updateProjectionMatrix()

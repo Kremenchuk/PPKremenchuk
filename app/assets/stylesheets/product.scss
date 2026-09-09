@@ -711,3 +711,38 @@ body.stm-redesign {
 // the platform page photo is a dim warehouse shot — lift it to the same bright
 // register as the other product figures (mezzanine / loft)
 body.stm-redesign .pdp .pdp-figure__img--lift { filter: brightness(1.32) contrast(1.06) saturate(.82); }
+
+// =====================================================================
+//  RESULT PRICE TABLE ON PHONES — 4 columns → 2×2 blocks
+//  The warehouse / pallet result carries a 4-column price table (~540px of
+//  min-content). On a 390px screen it only fitted by side-scrolling inside
+//  .pdp-pricetable, which read as "the right columns are cut off". Below
+//  720px the table becomes a 2-column grid with each header sitting right
+//  above its own value (display:contents on thead/tbody/tr lets th/td be the
+//  grid items), so nothing scrolls and nothing is clipped.
+// =====================================================================
+@media (max-width: 720px) {
+  body.stm-redesign .pdp .pdp-pricetable { overflow: visible; }
+  body.stm-redesign .pdp .pdp-pricetable table {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0;
+    width: 100%; border: 0; border-radius: 0;
+  }
+  body.stm-redesign .pdp .pdp-pricetable thead,
+  body.stm-redesign .pdp .pdp-pricetable tbody,
+  body.stm-redesign .pdp .pdp-pricetable tr { display: contents; }
+  body.stm-redesign .pdp .pdp-pricetable th,
+  body.stm-redesign .pdp .pdp-pricetable td { display: block; min-width: 0; padding: 10px 8px; }
+  body.stm-redesign .pdp .pdp-pricetable th { font-size: 10.5px; }
+  body.stm-redesign .pdp .pdp-pricetable td { font-size: 17px; white-space: normal; }
+  body.stm-redesign .pdp .pdp-pricetable td.is-total { font-size: 20px; }
+  // pair every header with the value beneath it: rows 1-2 = first two
+  // columns, rows 3-4 = last two (the totals)
+  body.stm-redesign .pdp .pdp-pricetable th:nth-child(1) { grid-area: 1 / 1; }
+  body.stm-redesign .pdp .pdp-pricetable th:nth-child(2) { grid-area: 1 / 2; }
+  body.stm-redesign .pdp .pdp-pricetable th:nth-child(3) { grid-area: 3 / 1; }
+  body.stm-redesign .pdp .pdp-pricetable th:nth-child(4) { grid-area: 3 / 2; }
+  body.stm-redesign .pdp .pdp-pricetable td:nth-child(1) { grid-area: 2 / 1; }
+  body.stm-redesign .pdp .pdp-pricetable td:nth-child(2) { grid-area: 2 / 2; }
+  body.stm-redesign .pdp .pdp-pricetable td:nth-child(3) { grid-area: 4 / 1; }
+  body.stm-redesign .pdp .pdp-pricetable td:nth-child(4) { grid-area: 4 / 2; }
+}

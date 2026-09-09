@@ -822,3 +822,17 @@ body.stm-redesign {
   .pdp-stepper__btn:active { background: var(--r-orange-deep); }
   .tcard__panel .pdp-stepper__btn { flex-basis: 30px; font-size: 18px; }
 }
+
+// ---- auth (Devise sign-in) — a centred, narrow card instead of the bare
+// left-aligned legacy form -----------------------------------------------
+body.stm-redesign .auth {
+  max-width: 420px; margin: 56px auto 72px; padding: 0 22px;
+  h2 { text-align: center; font-family: var(--f-disp); font-weight: 600; text-transform: uppercase; font-size: 32px; letter-spacing: .01em; margin: 0 0 26px; color: var(--r-text); }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--r-muted); margin-bottom: 6px; }
+  .field input[type="email"], .field input[type="password"] { width: 100%; box-sizing: border-box; }
+  .field input[type="checkbox"] + label { display: inline; margin-left: 6px; text-transform: none; letter-spacing: 0; font-family: var(--f-body); font-size: 14px; color: var(--r-text); }
+  .actions { margin: 22px 0 18px; }
+  .actions input[type="submit"] { width: 100%; }
+  a { display: block; color: var(--r-orange-2); margin-top: 8px; font-size: 14px; }
+}
