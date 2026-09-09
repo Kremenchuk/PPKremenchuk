@@ -20,24 +20,29 @@ import { makeRackScene } from "../lib/rack_scene"
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v))
 const lerp = (a, b, t) => a + (b - a) * t
 
-// Per-model recipe, lifted from TrolleyController#show:
-//   TP  priceTP(kol_shelf, deck, _, kol_ruchek)  → shelves (incl. bottom), deck, handles
-//   KS  priceKS(set_long, set_shot, …)           → mesh panels on the long / short sides
-//   PT  pricePT(nw, deck, _, setka)              → deck, mesh back behind the handle
+// Per-model recipe, matched against the product photos
+// (app/assets/images/trolleys/telegka_*.png):
+//   TP  shelf trolleys — N decks incl. the platform, Π-bow handle at one or
+//       both ends; TP-06/07 carry blue steel TRAYS (raised edge) not wood
+//   KS  wood platform, corner posts run up to grip bars at BOTH ends with a
+//       mesh panel filling each end; long-side walls: none (02), back only
+//       (03), both but low (01); KS-04 is a full-height mesh box with a door
+//   PT  flat platform (blue steel 01/02, wood 03/04) + one bow; 01/04 have a
+//       mesh back filling the bow
 const MODELS = {
   "TP-01": { kind: "tp", shelves: 2, deck: "dsp", handles: 1 },
   "TP-02": { kind: "tp", shelves: 3, deck: "dsp", handles: 1 },
   "TP-03": { kind: "tp", shelves: 4, deck: "dsp", handles: 1 },
   "TP-04": { kind: "tp", shelves: 2, deck: "dsp", handles: 2 },
   "TP-05": { kind: "tp", shelves: 3, deck: "dsp", handles: 2 },
-  "TP-06": { kind: "tp", shelves: 3, deck: "met", handles: 1 },
-  "TP-07": { kind: "tp", shelves: 2, deck: "met", handles: 1 },
-  "KS-01": { kind: "ks", meshLong: 2, meshShort: 2, deck: "met" },
-  "KS-02": { kind: "ks", meshLong: 0, meshShort: 2, deck: "met" },
-  "KS-03": { kind: "ks", meshLong: 1, meshShort: 2, deck: "met" },
-  "KS-04": { kind: "ks", meshLong: 2, meshShort: 2, deck: "met", doors: true },
-  "PT-01": { kind: "pt", deck: "met", meshBack: true },
-  "PT-02": { kind: "pt", deck: "met", meshBack: false },
+  "TP-06": { kind: "tp", shelves: 3, deck: "tray", handles: 1 },
+  "TP-07": { kind: "tp", shelves: 2, deck: "tray", handles: 1 },
+  "KS-01": { kind: "ks", deck: "dsp", meshLong: 2, longH: 0.6 },
+  "KS-02": { kind: "ks", deck: "dsp", meshLong: 0 },
+  "KS-03": { kind: "ks", deck: "dsp", meshLong: 1, longH: 1 },
+  "KS-04": { kind: "ks", deck: "dsp", cage: true },
+  "PT-01": { kind: "pt", deck: "steel", meshBack: true },
+  "PT-02": { kind: "pt", deck: "steel", meshBack: false },
   "PT-03": { kind: "pt", deck: "dsp", meshBack: false },
   "PT-04": { kind: "pt", deck: "dsp", meshBack: true },
 }
@@ -217,7 +222,9 @@ export default class extends Controller {
     const g = new THREE.Group()
     const M = this.materials
     const frame = M.bluePaint                      // RAL5005 powder coat, like the real ones
-    const deckMat = c.deck === "dsp" ? M.wood : M.steelDeck
+    // steel decks are powder-coated blue as well (TP-06/07 trays, PT-01/02
+    // platforms) — only ДСП is wood
+    const deckMat = c.deck === "dsp" ? M.wood : frame
     const { L, W, H } = c
     const tube = 0.025                             // 25×25 square tube
     const angle = 0.02                             // 20×20 angle for shelf rims
@@ -256,18 +263,31 @@ export default class extends Controller {
         alongX ? box(spanU, bar, bar, cx, cy + v, cz, frame) : box(bar, bar, spanU, cx, cy + v, cz, frame)
       }
     }
-    // a shelf = angle rim + deck panel at height y
-    const shelf = (y) => {
+    // a shelf = angle rim + deck panel at height y; `lip` adds the raised edge
+    // of a steel tray (TP-06 / TP-07)
+    const shelf = (y, lip = false) => {
       for (const sz of [-1, 1]) box(L - tube, angle, angle, 0, y - angle / 2, sz * (W / 2 - tube / 2 - angle / 2), frame)
       for (const sx of [-1, 1]) box(angle, angle, W - tube, sx * (L / 2 - tube / 2 - angle / 2), y - angle / 2, 0, frame)
       box(L - tube * 2, 0.016, W - tube * 2, 0, y + 0.006, 0, deckMat)
+      if (lip) {
+        const lh = 0.05
+        for (const sz of [-1, 1]) box(L - tube * 2, lh, 0.012, 0, y + lh / 2, sz * (W / 2 - tube - 0.006), frame)
+        for (const sx of [-1, 1]) box(0.012, lh, W - tube * 2, sx * (L / 2 - tube - 0.006), y + lh / 2, 0, frame)
+      }
     }
-    // U-shaped push handle at end sx (+1 / −1), from y0 up to the grip at H
-    const handle = (sx, y0) => {
+    // 4 corner posts from the platform up to topY
+    const posts = (topY) => {
+      for (const sx of [-1, 1]) for (const sz of [-1, 1])
+        box(tube, topY - platY, tube, sx * (L / 2 - tube / 2), (topY + platY) / 2, sz * (W / 2 - tube / 2), frame)
+    }
+    // Π-shaped push bow at end sx (+1 / −1): two uprights from y0 to the grip at H
+    const bow = (sx, y0) => {
       const hx = sx * (L / 2 - 0.03)
       for (const sz of [-1, 1]) rod(hr, H - y0, hx, (H + y0) / 2, sz * (W / 2 - 0.05), "y")
       rod(hr, W - 0.1 + hr * 2, hx, H, 0, "z")
     }
+    // grip bar joining two full-height corner posts at end sx
+    const grip = (sx) => rod(hr, W - tube, sx * (L / 2 - tube / 2), H, 0, "z")
 
     // ── castors: 4 swivel wheels under the platform corners ─────────────
     for (const sx of [-1, 1]) for (const sz of [-1, 1]) {
@@ -285,51 +305,54 @@ export default class extends Controller {
       box(0.07, 0.01, 0.07, wx, platY - 0.02, wz, frame)                            // mounting plate
     }
 
-    // ── platform frame (square tube rectangle) + bottom deck ────────────
+    // ── platform frame (square tube rectangle) ───────────────────────────
     for (const sz of [-1, 1]) box(L, tube, tube, 0, platY - tube / 2, sz * (W / 2 - tube / 2), frame)
     for (const sx of [-1, 1]) box(tube, tube, W - tube * 2, sx * (L / 2 - tube / 2), platY - tube / 2, 0, frame)
-    shelf(platY + tube / 2)
+    const deckY = platY + tube / 2
 
     if (c.kind === "tp") {
-      // shelf trolley: corner posts carry N decks (the bottom one is the platform)
+      // shelf trolley: corner posts carry N decks (the bottom one is the
+      // platform); the bow rises above the top deck at one or both ends
+      const tray = c.deck === "tray"
       const topY = H - 0.14
       const N = Math.max(2, c.shelves)
-      for (const sx of [-1, 1]) for (const sz of [-1, 1])
-        box(tube, topY - platY, tube, sx * (L / 2 - tube / 2), (topY + platY) / 2, sz * (W / 2 - tube / 2), frame)
-      for (let k = 1; k < N; k++) shelf(lerp(platY + tube / 2, topY, k / (N - 1)))
-      handle(1, topY)
-      if (c.handles > 1) handle(-1, topY)
+      shelf(deckY, tray)
+      posts(topY)
+      for (let k = 1; k < N; k++) shelf(lerp(deckY, topY, k / (N - 1)), tray)
+      bow(1, topY)
+      if (c.handles > 1) bow(-1, topY)
     } else if (c.kind === "ks") {
-      // cage trolley: posts up to the cage top, welded-mesh walls, one push handle
-      const cageTop = H - 0.06
-      const cageH = cageTop - platY
-      for (const sx of [-1, 1]) for (const sz of [-1, 1])
-        box(tube, cageH, tube, sx * (L / 2 - tube / 2), platY + cageH / 2, sz * (W / 2 - tube / 2), frame)
-      // top rail
-      for (const sz of [-1, 1]) box(L, tube, tube, 0, cageTop - tube / 2, sz * (W / 2 - tube / 2), frame)
-      for (const sx of [-1, 1]) box(tube, tube, W - tube * 2, sx * (L / 2 - tube / 2), cageTop - tube / 2, 0, frame)
-      const wallH = cageH - tube * 2, wallY = platY + tube + wallH / 2
-      // short sides (both) and long sides (0 / 1 / 2)
-      for (let i = 0; i < c.meshShort; i++) {
-        const sx = i === 0 ? -1 : 1
-        meshPanel(sx * (L / 2 - tube / 2), wallY, 0, W - tube * 2, wallH, false)
-      }
-      for (let i = 0; i < c.meshLong; i++) {
-        const sz = i === 0 ? -1 : 1
-        meshPanel(0, wallY, sz * (W / 2 - tube / 2), L - tube * 2, wallH, true)
-        if (c.doors && i === c.meshLong - 1) {
-          // door split: a centre post and a mid rail on the door side
-          box(tube, wallH, tube, 0, wallY, sz * (W / 2 - tube / 2), frame)
-          box(L - tube * 2, tube, tube, 0, wallY, sz * (W / 2 - tube / 2), frame)
+      shelf(deckY)                                 // wood platform, as in the photos
+      posts(H)                                     // corner posts run up to the grips
+      const wallY0 = platY + tube, fullH = (H - tube) - wallY0
+      if (c.cage) {
+        // KS-04: full-height mesh box, rails all round, door split on the front
+        for (const sz of [-1, 1]) box(L, tube, tube, 0, H - tube / 2, sz * (W / 2 - tube / 2), frame)
+        for (const sx of [-1, 1]) box(tube, tube, W - tube * 2, sx * (L / 2 - tube / 2), H - tube / 2, 0, frame)
+        for (const sx of [-1, 1]) meshPanel(sx * (L / 2 - tube / 2), wallY0 + fullH / 2, 0, W - tube * 2, fullH, false)
+        for (const sz of [-1, 1]) meshPanel(0, wallY0 + fullH / 2, sz * (W / 2 - tube / 2), L - tube * 2, fullH, true)
+        box(tube, fullH, tube, 0, wallY0 + fullH / 2, W / 2 - tube / 2, frame)           // door post
+        box(L - tube * 2, tube, tube, 0, wallY0 + fullH / 2, W / 2 - tube / 2, frame)   // door mid rail
+      } else {
+        // KS-01/02/03: a grip at BOTH ends, each bow filled with a mesh panel
+        grip(1); grip(-1)
+        for (const sx of [-1, 1]) meshPanel(sx * (L / 2 - tube / 2), wallY0 + fullH / 2, 0, W - tube * 2, fullH, false)
+        // long-side walls: none (KS-02) · back only, full height (KS-03) ·
+        // both sides, low (KS-01)
+        const lh = fullH * (c.longH || 1)
+        const sides = c.meshLong === 2 ? [-1, 1] : c.meshLong === 1 ? [-1] : []
+        for (const sz of sides) {
+          meshPanel(0, wallY0 + lh / 2, sz * (W / 2 - tube / 2), L - tube * 2, lh, true)
+          box(L - tube * 2, tube * 0.8, tube * 0.8, 0, wallY0 + lh, sz * (W / 2 - tube / 2), frame) // wall top rail
         }
       }
-      handle(1, cageTop)
     } else {
-      // platform trolley: flat deck; handle at one end, optionally with a mesh back
-      handle(1, platY)
+      // PT: flat platform (blue steel or wood) + one bow; PT-01/04 fill it with mesh
+      shelf(deckY)
+      bow(1, platY)
       if (c.meshBack) {
-        const backH = H - 0.1 - platY
-        meshPanel(L / 2 - 0.03, platY + backH / 2, 0, W - 0.1, backH, false)
+        const y0 = platY + tube, bh = (H - tube) - y0
+        meshPanel(L / 2 - 0.03, y0 + bh / 2, 0, W - 0.1, bh, false)
       }
     }
 
